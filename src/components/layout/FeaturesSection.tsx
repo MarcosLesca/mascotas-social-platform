@@ -9,6 +9,7 @@ const features = [
     bgGradient: "bg-gradient-to-br from-rose-50 to-rose-100",
     borderColor: "border-rose-200",
     hoverBorder: "hover:border-rose-300",
+    icon: "https://i.pinimg.com/1200x/14/52/69/1452695d8bdc7ae2b042a376ff420a6f.jpg",
   },
   {
     title: "Adopción Responsable",
@@ -18,6 +19,7 @@ const features = [
     bgGradient: "bg-gradient-to-br from-emerald-50 to-emerald-100",
     borderColor: "border-emerald-200",
     hoverBorder: "hover:border-emerald-300",
+    icon: "https://i.pinimg.com/1200x/48/ab/80/48ab802f71fb10db7a4101f13f7499e0.jpg",
   },
   {
     title: "Ayuda Comunitaria",
@@ -27,6 +29,7 @@ const features = [
     bgGradient: "bg-gradient-to-br from-sky-50 to-sky-100",
     borderColor: "border-sky-200",
     hoverBorder: "hover:border-sky-300",
+    icon: "https://i.pinimg.com/1200x/9e/df/9b/9edf9b6c85ec664ea6da30d59993faa5.jpg",
   },
 ];
 
@@ -70,8 +73,16 @@ export function FeaturesSection() {
 
               <div className="relative z-10">
                 {/* Icon Container */}
-                <div className="w-20 h-20 mx-auto mb-8 bg-white/90 backdrop-blur rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-xl"></div>
+                <div className="w-20 h-20 mx-auto mb-8 bg-white/90 backdrop-blur rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                  {typeof feature.icon === "string" ? (
+                    <img
+                      src={feature.icon}
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    feature.icon
+                  )}
                 </div>
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
