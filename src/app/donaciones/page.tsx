@@ -135,9 +135,18 @@ export default function DonacionesPage() {
                   {urgencyLabels[urgencyLevel]}
                 </div>
                 
-                <div className="p-8">
-                  {/* Amount needed */}
-                  <div className="text-center mb-6">
+                 <div className="p-8">
+                   {/* Image */}
+                   <div className="relative aspect-square rounded-2xl overflow-hidden mb-6">
+                     <img 
+                       src="/images/placeholder-donation.svg" 
+                       alt="Necesita ayuda"
+                       className="w-full h-full object-cover"
+                     />
+                   </div>
+                   
+                   {/* Amount needed */}
+                   <div className="text-center mb-6">
                     <div className="text-3xl font-bold text-gray-900">
                       ${5000 * i}
                     </div>

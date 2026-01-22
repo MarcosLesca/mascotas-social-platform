@@ -96,10 +96,12 @@ export default function PerdidasPage() {
               
               <div className="p-8">
                 {/* Image Placeholder */}
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-gray-100 to-gray-200">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-20 h-20 bg-gray-300 rounded-2xl"></div>
-                  </div>
+                <div className="relative aspect-square rounded-2xl overflow-hidden mb-6">
+                  <img 
+                    src="/images/placeholder-lost.svg" 
+                    alt="Mascota perdida"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 
                 {/* Content */}

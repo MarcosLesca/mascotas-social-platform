@@ -44,7 +44,7 @@ export function PetCard({ post, className = "" }: PetCardProps) {
       
       <div className="p-8">
         {/* Image Container */}
-        <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-neutral-100 to-neutral-200">
+        <div className="relative aspect-square rounded-2xl overflow-hidden mb-6">
           {post.images.length > 0 ? (
             <img 
               src={post.images[0].url} 
@@ -52,9 +52,16 @@ export function PetCard({ post, className = "" }: PetCardProps) {
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="w-16 h-16 bg-neutral-300 rounded-xl"></div>
-            </div>
+            <img 
+              src={
+                post.type === 'lost' ? '/images/placeholder-lost.svg' :
+                post.type === 'adoption' ? '/images/placeholder-adoption.svg' :
+                post.type === 'donation' ? '/images/placeholder-donation.svg' :
+                '/images/placeholder-found.svg'
+              }
+              alt={post.title}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
           )}
           
           {/* Image overlay on hover */}

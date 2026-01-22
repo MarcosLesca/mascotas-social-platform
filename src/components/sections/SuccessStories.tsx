@@ -57,18 +57,19 @@ export function SuccessStories() {
               delay={index * 200}
             >
               <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 card-reveal interactive">
-                {/* Image */}
-                <div className="relative aspect-square overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-200 to-sky-200"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 bg-white/30 rounded-2xl backdrop-blur-sm"></div>
-                  </div>
-                  
-                  {/* Success badge */}
-                  <div className="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                    ✓ Reunido
-                  </div>
-                </div>
+                 {/* Image */}
+                 <div className="relative aspect-square overflow-hidden">
+                   <img 
+                     src="/images/placeholder-found.svg" 
+                     alt={story.title}
+                     className="w-full h-full object-cover"
+                   />
+                   
+                   {/* Success badge */}
+                   <div className="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                     ✓ Reunido
+                   </div>
+                 </div>
 
                 <div className="p-8">
                   {/* Time & Location */}

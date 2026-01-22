@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Upload, X, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PetImage } from "@/types";
 
@@ -64,12 +63,14 @@ export function ImageUpload({
       <div
         {...getRootProps()}
         className={cn(
-          "border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer transition-colors hover:border-blue-400 hover:bg-blue-50",
+          "border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer transition-colors hover:border-blue-400 hover:bg-blue-50 interactive",
           isDragActive && "border-blue-400 bg-blue-50"
         )}
       >
         <input {...getInputProps()} />
-        <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+        <div className="mx-auto w-12 h-12 text-gray-400 mb-4 flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-dashed border-gray-400 rounded-lg"></div>
+        </div>
         {isDragActive ? (
           <p className="text-blue-600">Suelta las imágenes aquí...</p>
         ) : (
@@ -104,9 +105,9 @@ export function ImageUpload({
               <button
                 type="button"
                 onClick={() => removeImage(index)}
-                className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity w-6 h-6 flex items-center justify-center text-xs font-bold interactive"
               >
-                <X className="h-4 w-4" />
+                ×
               </button>
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-b-lg truncate">
                 {image.alt}
@@ -118,7 +119,9 @@ export function ImageUpload({
 
       {images.length === 0 && (
         <div className="text-center py-8">
-          <ImageIcon className="mx-auto h-12 w-12 text-gray-300 mb-2" />
+          <div className="mx-auto w-12 h-12 text-gray-300 mb-2 flex items-center justify-center">
+            <div className="w-8 h-8 border-2 border-dashed border-gray-300 rounded-lg"></div>
+          </div>
           <p className="text-gray-500">No hay imágenes seleccionadas</p>
         </div>
       )}
