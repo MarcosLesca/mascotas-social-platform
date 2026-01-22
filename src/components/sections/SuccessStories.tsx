@@ -56,7 +56,7 @@ export function SuccessStories() {
               animation="fadeInUp" 
               delay={index * 200}
             >
-              <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 card-reveal">
+              <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 card-reveal interactive">
                 {/* Image */}
                 <div className="relative aspect-square overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-200 to-sky-200"></div>
@@ -106,7 +106,7 @@ export function SuccessStories() {
                 <h3 className="text-2xl font-bold mb-2">¿Quieres compartir tu historia?</h3>
                 <p className="text-emerald-100">Tu experiencia puede inspirar a otros a ayudar</p>
               </div>
-              <button className="bg-white text-emerald-600 px-8 py-4 rounded-2xl font-bold hover:bg-emerald-50 transition-colors">
+              <button className="bg-white text-emerald-600 px-8 py-4 rounded-2xl font-bold hover:bg-emerald-50 transition-colors interactive">
                 Compartir Historia
               </button>
             </div>

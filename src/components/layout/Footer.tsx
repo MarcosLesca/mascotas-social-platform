@@ -49,18 +49,18 @@ export function Footer() {
             <div className="space-y-6">
               <h3 className="font-bold text-white text-lg mb-4">Servicios</h3>
               <div className="space-y-3">
-                <Link href="/perdidas" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2">
-                  Mascotas Perdidas
-                </Link>
-                <Link href="/adopcion" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2">
-                  Adopción Responsable
-                </Link>
-                <Link href="/donaciones" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2">
-                  Ayuda Comunitaria
-                </Link>
-                <Link href="/publicar" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2">
-                  Publicar
-                </Link>
+              <Link href="/perdidas" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2 interactive">
+                Mascotas Perdidas
+              </Link>
+              <Link href="/adopcion" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2 interactive">
+                Adopción Responsable
+              </Link>
+              <Link href="/donaciones" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2 interactive">
+                Ayuda Comunitaria
+              </Link>
+              <Link href="/publicar" className="block text-gray-400 hover:text-emerald-400 transition-colors duration-200 py-2 interactive">
+                Publicar
+              </Link>
               </div>
             </div>
 
@@ -68,16 +68,16 @@ export function Footer() {
             <div className="space-y-6">
               <h3 className="font-bold text-white text-lg mb-4">Recursos</h3>
               <div className="space-y-3">
-                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2 interactive">
                   Cómo Publicar
                 </a>
-                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2 interactive">
                   Consejos de Seguridad
                 </a>
-                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2 interactive">
                   Guía de Adopción
                 </a>
-                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-sky-400 transition-colors duration-200 py-2 interactive">
                   Preguntas Frecuentes
                 </a>
               </div>
@@ -87,16 +87,16 @@ export function Footer() {
             <div className="space-y-6">
               <h3 className="font-bold text-white text-lg mb-4">Legal y Contacto</h3>
               <div className="space-y-3">
-                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2 interactive">
                   Términos de Uso
                 </a>
-                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2 interactive">
                   Política de Privacidad
                 </a>
-                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2 interactive">
                   Contacto
                 </a>
-                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2">
+                <a href="#" className="block text-gray-400 hover:text-rose-400 transition-colors duration-200 py-2 interactive">
                   Reportar Abuso
                 </a>
               </div>
@@ -118,7 +118,7 @@ export function Footer() {
               <ScrollAnimation animation="fadeInRight" delay={200}>
                 <div className="flex items-center space-x-4">
                   <span className="text-gray-400 text-sm">Desarrollado con ❤️ por</span>
-                  <div className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 rounded-2xl border border-gray-600 hover:border-gray-500 transition-all duration-300 hover:scale-105 group">
+                  <div className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 rounded-2xl border border-gray-600 hover:border-gray-500 transition-all duration-300 hover:scale-105 group interactive">
                     <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
                       <span className="text-white font-bold text-sm">L&amp;M</span>
                     </div>

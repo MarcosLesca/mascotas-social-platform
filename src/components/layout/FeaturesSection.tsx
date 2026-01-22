@@ -52,15 +52,12 @@ export function FeaturesSection() {
               key={feature.title}
               href={feature.href}
               className={cn(
-                "group relative block p-10 rounded-3xl text-center transition-all duration-700 hover:scale-105 border-2 overflow-hidden",
+                "group relative block p-10 rounded-3xl text-center transition-all duration-700 hover:scale-105 border-2 overflow-hidden interactive",
                 feature.bgGradient,
                 feature.borderColor,
                 feature.hoverBorder,
                 "shadow-lg hover:shadow-2xl"
               )}
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
             >
               {/* Background decoration */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
@@ -79,7 +76,7 @@ export function FeaturesSection() {
                 </p>
                 
                 {/* Learn more indicator */}
-                <div className="mt-8 inline-flex items-center space-x-2 text-gray-500 group-hover:text-gray-700 transition-colors">
+                <div className="mt-8 inline-flex items-center space-x-2 text-gray-500 group-hover:text-gray-700 transition-colors interactive">
                   <span className="text-sm font-medium">Explorar</span>
                   <span className="text-lg">→</span>
                 </div>

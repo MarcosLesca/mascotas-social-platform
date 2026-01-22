@@ -15,7 +15,7 @@ export function HeroSection() {
         <div className="text-center space-y-8 max-w-5xl mx-auto">
           <ScrollAnimation animation="fadeInDown">
             {/* Trust Badge */}
-            <div className="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-6 py-3 rounded-full text-sm font-medium hover-lift">
+            <div className="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-6 py-3 rounded-full text-sm font-medium hover-lift interactive">
               <div className="w-2 h-2 bg-emerald-600 rounded-full animate-pulse"></div>
               <span>Plataforma Confiable y Responsable</span>
             </div>
@@ -60,7 +60,7 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
               <Link 
                 href="/perdidas"
-                className="group relative bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 overflow-hidden btn-shine"
+                className="group relative bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 overflow-hidden btn-shine interactive"
               >
                 <span className="relative z-10">Buscar Mascota Perdida</span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
@@ -68,7 +68,7 @@ export function HeroSection() {
               
               <Link 
                 href="/publicar"
-                className="group relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 overflow-hidden btn-shine"
+                className="group relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 overflow-hidden btn-shine interactive"
               >
                 <span className="relative z-10">Publicar Ahora</span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
@@ -79,14 +79,14 @@ export function HeroSection() {
             <div className="flex flex-wrap justify-center gap-6 pt-8">
               <Link 
                 href="/adopcion"
-                className="text-emerald-600 hover:text-emerald-700 font-semibold text-base flex items-center space-x-2 transition-all duration-200 hover:scale-105"
+                className="text-emerald-600 hover:text-emerald-700 font-semibold text-base flex items-center space-x-2 transition-all duration-200 hover:scale-105 interactive"
               >
                 <span>Adopción Responsable</span>
                 <span className="text-emerald-400 transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link 
                 href="/donaciones"
-                className="text-sky-600 hover:text-sky-700 font-semibold text-base flex items-center space-x-2 transition-all duration-200 hover:scale-105"
+                className="text-sky-600 hover:text-sky-700 font-semibold text-base flex items-center space-x-2 transition-all duration-200 hover:scale-105 interactive"
               >
                 <span>Ayuda Comunitaria</span>
                 <span className="text-sky-400 transition-transform group-hover:translate-x-1">→</span>

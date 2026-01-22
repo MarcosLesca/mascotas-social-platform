@@ -32,7 +32,7 @@ export default function DonacionesPage() {
               <h3 className="text-2xl font-bold mb-2">Emergencia Activa</h3>
               <p className="text-red-100">3 casos urgentes necesitan asistencia veterinaria inmediata</p>
             </div>
-            <button className="bg-white text-red-600 px-8 py-4 rounded-2xl font-bold hover:bg-red-50 transition-colors">
+            <button className="bg-white text-red-600 px-8 py-4 rounded-2xl font-bold hover:bg-red-50 transition-colors interactive">
               Ver Emergencias
             </button>
           </div>
@@ -174,7 +174,7 @@ export default function DonacionesPage() {
                     <p><span className="font-semibold">Publicado:</span> {i === 1 ? "Hoy" : `Hace ${i} días`}</p>
                   </div>
                   
-                  <button className="w-full bg-sky-500 hover:bg-sky-600 text-white py-3 rounded-2xl font-bold transition-all duration-200 hover:scale-105">
+                  <button className="w-full bg-sky-500 hover:bg-sky-600 text-white py-3 rounded-2xl font-bold transition-all duration-200 hover:scale-105 interactive">
                     Ofrecer Ayuda
                   </button>
                 </div>
@@ -189,7 +189,7 @@ export default function DonacionesPage() {
           <p className="text-xl mb-8 text-sky-100">
             Únete a nuestra red de voluntarios y profesionales que marcan la diferencia
           </p>
-          <button className="bg-white text-sky-600 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-sky-50 transition-colors">
+          <button className="bg-white text-sky-600 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-sky-50 transition-colors interactive">
             Ser Voluntario
           </button>
         </div>

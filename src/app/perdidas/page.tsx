@@ -58,7 +58,7 @@ export default function PerdidasPage() {
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">&nbsp;</label>
-              <button className="w-full bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:scale-105">
+              <button className="w-full bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:scale-105 interactive">
                 Buscar
               </button>
             </div>
@@ -141,9 +141,9 @@ export default function PerdidasPage() {
                     <span className="text-sm text-gray-500">
                       {i === 1 ? "Hoy" : i === 2 ? "Ayer" : `Hace ${i} días`}
                     </span>
-                    <span className="text-sm font-medium text-rose-600">
-                      Contactar →
-                    </span>
+              <span className="text-sm font-medium text-rose-600 interactive">
+                Contactar →
+              </span>
                   </div>
                 </div>
               </div>
@@ -153,7 +153,7 @@ export default function PerdidasPage() {
 
         {/* Load More */}
         <div className="text-center mt-16">
-          <button className="bg-white border-2 border-rose-200 text-rose-600 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-rose-50 transition-all duration-200">
+          <button className="bg-white border-2 border-rose-200 text-rose-600 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-rose-50 transition-all duration-200 interactive">
             Cargar Más Publicaciones
           </button>
         </div>

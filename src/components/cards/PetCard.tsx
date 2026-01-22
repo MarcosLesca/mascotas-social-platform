@@ -33,7 +33,7 @@ export function PetCard({ post, className = "" }: PetCardProps) {
       href={`/publicacion/${post.slug}`}
       className={`
         group block bg-white border-2 rounded-3xl overflow-hidden 
-        transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl 
+        transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl interactive
         ${typeColors[post.type]} ${className}
       `}
     >

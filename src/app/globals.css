@@ -135,6 +135,24 @@ html {
   outline-offset: 2px;
 }
 
+/* Cursor pointer for all clickable elements */
+a, button, input[type="button"], input[type="submit"], [role="button"], [role="link"], 
+[onclick], label[for], select, textarea, input[type="checkbox"], input[type="radio"], 
+.clickable, [data-clickable] {
+  cursor: pointer !important;
+}
+
+/* Interactive elements that should have pointer cursor */
+.interactive {
+  cursor: pointer !important;
+}
+
+/* Ensure all Tailwind interactive classes have pointer */
+.hover\:scale-105, .hover\:scale-110, .hover\:scale-\[1\.02\], 
+.hover\:shadow-2xl, .hover\:shadow-xl, .hover\:shadow-lg {
+  cursor: pointer !important;
+}
+
 /* Enhanced transitions */
 .transition-elegant {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
