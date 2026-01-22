@@ -1,26 +1,162 @@
 @import "tailwindcss";
+@import "./animations.css";
 
 :root {
+  /* Core Colors - Professional & Ethical */
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Empathetic Primary - Sky/Emerald gradient for trust */
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --primary-light: #d1fae5;
+  --primary-dark: #065f46;
+  
+  /* Status Colors */
+  --lost: #f43f5e;
+  --lost-light: #fecaca;
+  --lost-dark: #991b1b;
+  
+  --found: #10b981;
+  --found-light: #d1fae5;
+  --found-dark: #065f46;
+  
+  --adoption: #06b6d4;
+  --adoption-light: #cffafe;
+  --adoption-dark: #083344;
+  
+  --donation: #3b82f6;
+  --donation-light: #dbeafe;
+  --donation-dark: #1e3a8a;
+  
+  /* Neutral Gradients for elegance */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  
+  /* Brand Colors */
+  --lm-primary: #1e40af;
+  --lm-secondary: #64748b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-lost: var(--lost);
+  --color-lost-light: var(--lost-light);
+  --color-lost-dark: var(--lost-dark);
+  --color-found: var(--found);
+  --color-found-light: var(--found-light);
+  --color-found-dark: var(--found-dark);
+  --color-adoption: var(--adoption);
+  --color-adoption-light: var(--adoption-light);
+  --color-adoption-dark: var(--adoption-dark);
+  --color-donation: var(--donation);
+  --color-donation-light: var(--donation-light);
+  --color-donation-dark: var(--donation-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Light theme (default) */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+}
+
+/* Dark theme */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --neutral-50: #171717;
+  --neutral-100: #262626;
+  --neutral-200: #404040;
+  --neutral-300: #525252;
+  --neutral-400: #737373;
+  --neutral-500: #a3a3a3;
+  --neutral-600: #d4d4d4;
+  --neutral-700: #e5e5e5;
+  --neutral-800: #f5f5f5;
+  --neutral-900: #fafafa;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --neutral-50: #171717;
+    --neutral-100: #262626;
+    --neutral-200: #404040;
+    --neutral-300: #525252;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Professional focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Enhanced transitions */
+.transition-elegant {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Professional hover effects */
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Custom scrollbar for elegance */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400);
 }

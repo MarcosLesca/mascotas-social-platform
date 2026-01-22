@@ -210,17 +210,17 @@ export function PublicationForm() {
           <label className="block text-lg font-semibold mb-4">Tipo de publicación *</label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { value: POST_TYPE.LOST, label: "🐕 Mascota Perdida", desc: "Busca a tu mascota" },
-              { value: POST_TYPE.ADOPTION, label: "🏠 Adopción", desc: "Busca hogar para una mascota" },
-              { value: POST_TYPE.DONATION, label: "❤️ Donación", desc: "Solicita ayuda" },
+              { value: POST_TYPE.LOST, label: "Mascota Perdida", desc: "Busca a tu mascota", color: "border-rose-300 bg-rose-50" },
+              { value: POST_TYPE.ADOPTION, label: "Adopción", desc: "Busca hogar para una mascota", color: "border-emerald-300 bg-emerald-50" },
+              { value: POST_TYPE.DONATION, label: "Ayuda Comunitaria", desc: "Solicita asistencia", color: "border-sky-300 bg-sky-50" },
             ].map((type) => (
               <label
                 key={type.value}
                 className={cn(
-                  "block p-4 border rounded-lg cursor-pointer transition-colors",
+                  "block p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 hover:scale-105",
                   selectedType === type.value
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-300 hover:border-gray-400"
+                    ? type.color
+                    : "border-gray-300 hover:border-gray-400 bg-white"
                 )}
               >
                 <input
@@ -230,7 +230,7 @@ export function PublicationForm() {
                   className="sr-only"
                 />
                 <div className="text-center">
-                  <div className="font-semibold">{type.label}</div>
+                  <div className="text-lg font-bold mb-2">{type.label}</div>
                   <div className="text-sm text-gray-600">{type.desc}</div>
                 </div>
               </label>
