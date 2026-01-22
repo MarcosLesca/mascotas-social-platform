@@ -3,7 +3,7 @@ import { ScrollAnimation } from "@/components/animations/ScrollAnimation";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-emerald-50 via-white to-sky-50 dark:from-emerald-950/20 dark:via-black dark:to-sky-950/20 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-emerald-50/50 via-white to-sky-50/50 overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl"></div>

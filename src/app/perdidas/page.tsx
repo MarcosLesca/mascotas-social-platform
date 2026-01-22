@@ -5,7 +5,7 @@ import { PetCard, PetCardSkeleton } from "@/components/cards/PetCard";
 
 export default function PerdidasPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-orange-50 dark:from-rose-950/20 dark:via-black dark:to-orange-950/20">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50/30 via-white to-orange-50/30">
       <Navigation />
       
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">

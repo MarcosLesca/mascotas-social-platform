@@ -29,7 +29,7 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-900 dark:to-black">
+    <section className="py-24 bg-gradient-to-br from-neutral-50/50 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-6 py-3 rounded-full text-sm font-medium mb-6">

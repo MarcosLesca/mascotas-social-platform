@@ -69,47 +69,50 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Light theme (default) */
+/* Ultra Eye-friendly Light Theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --neutral-50: #fafafa;
-  --neutral-100: #f5f5f5;
-  --neutral-200: #e5e5e5;
-  --neutral-300: #d4d4d4;
-  --neutral-400: #a3a3a3;
-  --neutral-500: #737373;
-  --neutral-600: #525252;
-  --neutral-700: #404040;
-  --neutral-800: #262626;
-  --neutral-900: #171717;
-}
-
-/* Dark theme */
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --neutral-50: #171717;
-  --neutral-100: #262626;
-  --neutral-200: #404040;
-  --neutral-300: #525252;
-  --neutral-400: #737373;
-  --neutral-500: #a3a3a3;
-  --neutral-600: #d4d4d4;
-  --neutral-700: #e5e5e5;
-  --neutral-800: #f5f5f5;
-  --neutral-900: #fafafa;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --neutral-50: #171717;
-    --neutral-100: #262626;
-    --neutral-200: #404040;
-    --neutral-300: #525252;
-  }
+  /* Ultra Soft Backgrounds */
+  --background: #fefefe;
+  --foreground: #4b5563;
+  
+  /* Status Colors - Maximum eye comfort */
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --primary-light: #ecfdf5;
+  --primary-dark: #065f46;
+  
+  /* Ultra Soft Status Colors */
+  --lost: #f87171;
+  --lost-light: #fef2f2;
+  --lost-dark: #b91c1c;
+  
+  --found: #4ade80;
+  --found-light: #f0fdf4;
+  --found-dark: #166534;
+  
+  --adoption: #7dd3fc;
+  --adoption-light: #f0f9ff;
+  --adoption-dark: #075985;
+  
+  --donation: #93c5fd;
+  --donation-light: #eff6ff;
+  --donation-dark: #1d4ed8;
+  
+  /* Ultra Comfortable Neutrals - Maximum readability */
+  --neutral-50: #ffffff;
+  --neutral-100: #fafbfc;
+  --neutral-200: #f3f4f6;
+  --neutral-300: #e5e7eb;
+  --neutral-400: #d1d5db;
+  --neutral-500: #9ca3af;
+  --neutral-600: #6b7280;
+  --neutral-700: #4b5563;
+  --neutral-800: #374151;
+  --neutral-900: #1f2937;
+  
+  /* Brand Colors */
+  --lm-primary: #3b82f6;
+  --lm-secondary: #6b7280;
 }
 
 body {
