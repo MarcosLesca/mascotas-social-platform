@@ -3,12 +3,18 @@ import { ScrollAnimation } from "@/components/animations/ScrollAnimation";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-emerald-50/50 via-white to-sky-50/50 overflow-hidden">
-      {/* Background decorative elements */}
+    <section
+      className="relative min-h-[90vh] flex items-center bg-cover bg-center bg-no-repeat overflow-hidden brightness-90 contrast-105"
+      style={{ backgroundImage: "url('/images/home-background.jpg')" }}
+    >
+      {/* Background overlay to maintain brand colors */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/90"></div>
+
+      {/* Additional decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-sky-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -22,12 +28,12 @@ export function HeroSection() {
 
           <ScrollAnimation animation="fadeInUp" delay={200}>
             <div className="space-y-6">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 leading-tight tracking-tight">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-lg">
                 Porque volver a casa también es un derecho
               </h1>
 
               <div className="max-w-4xl mx-auto">
-                <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 leading-relaxed font-light">
+                <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed">
                   Mascotas SJ es una plataforma creada para ayudar a reencontrar
                   mascotas perdidas, visibilizar mascotas encontradas y brindar
                   apoyo a quienes lo necesitan. Un espacio digital desarrollado
