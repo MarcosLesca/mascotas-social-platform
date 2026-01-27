@@ -1,0 +1,9 @@
+
+{
+  "name": "PetWelfare Community",
+  "description": "A comprehensive community platform for lost pet reporting, responsible pet adoption, and animal rescue fundraising, featuring an AI-powered pet care assistant.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
