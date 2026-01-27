@@ -34,7 +34,7 @@ const App: React.FC = () => {
     <div className="layout-container flex flex-col min-h-screen selection:bg-primary selection:text-background-dark">
       <Navbar currentView={currentView} setView={setCurrentView} />
       
-      <main className="flex-1 max-w-[1440px] mx-auto w-full px-4 md:px-10 lg:px-20 py-8">
+      <main className="flex-1">
         {renderView()}
       </main>
 

@@ -1,0 +1,337 @@
+/* HeroZoom.module.css */
+.scrollContainer {
+  height: 300vh;
+  /* Espacio suficiente para el scroll */
+  position: relative;
+  z-index: 10;
+}
+
+.zoomContainer {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background-color: #f6f8f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  right: 0;
+}
+
+.headingContainer {
+  position: absolute;
+  z-index: 5;
+  text-align: center;
+  opacity: 0;
+  /* Empieza invisible */
+  filter: blur(10px);
+  scale: 0.5;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  pointer-events: none;
+  font-family: "Playfair Display", serif;
+  /* Aplicar fuente Playfair */
+  box-sizing: border-box;
+  top: 0;
+  left: 42rem;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.zoomItem {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: transform, opacity;
+  z-index: 20;
+  /* Por encima del texto inicialmente */
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.zoomItem:hover .imageWrapper {
+  transform: scale(1.05);
+  z-index: 30;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.zoomItem:hover .overlay {
+  opacity: 1;
+}
+
+.imageText {
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Posicionamiento inicial de las imágenes - Distribución tipo "Muro" o "Collage" */
+
+/* Izquierda */
+.item1 {
+  left: 5%;
+  top: 10%;
+  width: 15vw;
+  height: 20vh;
+  z-index: 25;
+}
+
+.item2 {
+  left: 22%;
+  top: 5%;
+  width: 12vw;
+  height: 18vh;
+  z-index: 22;
+}
+
+.item3 {
+  left: 8%;
+  top: 35%;
+  width: 18vw;
+  height: 25vh;
+  z-index: 24;
+}
+
+.item4 {
+  left: 28%;
+  top: 28%;
+  width: 14vw;
+  height: 22vh;
+  z-index: 23;
+}
+
+.item5 {
+  left: 2%;
+  top: 65%;
+  width: 16vw;
+  height: 24vh;
+  z-index: 25;
+}
+
+.item6 {
+  left: 20%;
+  top: 55%;
+  width: 13vw;
+  height: 19vh;
+  z-index: 21;
+}
+
+.item7 {
+  left: 35%;
+  top: 55%;
+  width: 12vw;
+  height: 30vh;
+  z-index: 22;
+}
+
+.item8 {
+  left: 15%;
+  top: 80%;
+  width: 20vw;
+  height: 15vh;
+  z-index: 24;
+}
+
+/* Derecha */
+.item9 {
+  right: 5%;
+  top: 8%;
+  width: 16vw;
+  height: 22vh;
+  z-index: 25;
+}
+
+.item10 {
+  right: 23%;
+  top: 3%;
+  width: 11vw;
+  height: 19vh;
+  z-index: 22;
+}
+
+.item11 {
+  right: 8%;
+  top: 35%;
+  width: 19vw;
+  height: 26vh;
+  z-index: 24;
+}
+
+.item12 {
+  right: 29%;
+  top: 25%;
+  width: 13vw;
+  height: 20vh;
+  z-index: 23;
+}
+
+.item13 {
+  right: 3%;
+  top: 65%;
+  width: 17vw;
+  height: 23vh;
+  z-index: 25;
+}
+
+.item14 {
+  right: 22%;
+  top: 50%;
+  width: 14vw;
+  height: 28vh;
+  z-index: 21;
+}
+
+.item15 {
+  right: 38%;
+  top: 60%;
+  width: 11vw;
+  height: 18vh;
+  z-index: 22;
+}
+
+.item16 {
+  right: 12%;
+  top: 82%;
+  width: 18vw;
+  height: 14vh;
+  z-index: 24;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+  .imageText {
+    font-size: 1rem;
+  }
+
+  .item1 {
+    width: 35vw;
+    height: 15vh;
+    left: 2%;
+    top: 5%;
+  }
+
+  .item2 {
+    width: 30vw;
+    height: 12vh;
+    left: 40%;
+    top: 2%;
+  }
+
+  .item3 {
+    width: 40vw;
+    height: 20vh;
+    left: 5%;
+    top: 22%;
+  }
+
+  .item4 {
+    width: 32vw;
+    height: 18vh;
+    left: 50%;
+    top: 18%;
+  }
+
+  .item5 {
+    width: 38vw;
+    height: 18vh;
+    left: 2%;
+    top: 45%;
+  }
+
+  .item6 {
+    width: 30vw;
+    height: 15vh;
+    left: 45%;
+    top: 40%;
+  }
+
+  .item7 {
+    display: none;
+  }
+
+  /* Ocultar algunos en móvil para no saturar */
+  .item8 {
+    width: 45vw;
+    height: 15vh;
+    left: 10%;
+    top: 65%;
+  }
+
+  .item9 {
+    width: 35vw;
+    height: 18vh;
+    right: 2%;
+    top: 8%;
+  }
+
+  .item10 {
+    display: none;
+  }
+
+  .item11 {
+    width: 40vw;
+    height: 20vh;
+    right: 5%;
+    top: 30%;
+  }
+
+  .item12 {
+    display: none;
+  }
+
+  .item13 {
+    width: 38vw;
+    height: 18vh;
+    right: 2%;
+    top: 55%;
+  }
+
+  .item14 {
+    width: 32vw;
+    height: 22vh;
+    right: 45%;
+    top: 50%;
+  }
+
+  .item15 {
+    display: none;
+  }
+
+  .item16 {
+    width: 42vw;
+    height: 15vh;
+    right: 8%;
+    top: 78%;
+  }
+}

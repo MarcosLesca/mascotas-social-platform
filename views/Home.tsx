@@ -1,10 +1,17 @@
 
 import React from 'react';
 import { MOCK_LOST_PETS, MOCK_CAMPAIGNS } from '../constants';
+import HeroZoom from '../components/home/HeroZoom';
 
 const Home: React.FC = () => {
   return (
-    <div className="grid grid-cols-12 gap-8">
+    <>
+      {/* Hero Section con GSAP Animation - Full Width */}
+      <HeroZoom />
+      
+      {/* Contenido Principal - Con contenedor y padding */}
+      <div className="px-4 md:px-10 lg:px-20 py-8">
+        <div className="grid grid-cols-12 gap-8 max-w-[1440px] mx-auto">
       {/* Sidebar - Impact & Links */}
       <aside className="hidden xl:flex col-span-3 flex-col gap-6">
         <div className="bg-white dark:bg-white/5 p-6 rounded-3xl shadow-sm border border-accent-teal/5">
@@ -190,7 +197,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </aside>
-    </div>
+      </div>
+      </div>
+    </>
   );
 };
 
