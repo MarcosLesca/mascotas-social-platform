@@ -1,7 +1,7 @@
 /* HeroZoom.module.css */
 .scrollContainer {
-  height: 300vh;
-  /* Espacio suficiente para el scroll */
+  height: 200vh;
+  /* Espacio ajustado para la animación */
   position: relative;
   z-index: 10;
 }
@@ -37,7 +37,7 @@
   /* Aplicar fuente Playfair */
   box-sizing: border-box;
   top: 0;
-  left: 42rem;
+  left: 22rem;
   right: 0;
   bottom: 0;
   display: flex;

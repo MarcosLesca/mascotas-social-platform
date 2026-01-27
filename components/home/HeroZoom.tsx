@@ -47,7 +47,7 @@ export default function HeroZoom() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=150%",
+          end: "bottom top",
           pin: true,
           scrub: 1,
         },
