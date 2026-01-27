@@ -1,7 +1,7 @@
 /* HeroZoom.module.css */
 .scrollContainer {
-  height: 200vh;
-  /* Espacio ajustado para la animación */
+  height: 100vh;
+  /* Solo una pantalla de alto */
   position: relative;
   z-index: 10;
 }

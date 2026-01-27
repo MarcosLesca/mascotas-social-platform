@@ -9,8 +9,8 @@ const Home: React.FC = () => {
       {/* Hero Section con GSAP Animation - Full Width */}
       <HeroZoom />
       
-      {/* Contenido Principal - Con contenedor y padding */}
-      <div className="px-4 md:px-10 lg:px-20 py-8">
+      {/* Contenido Principal - Posicionado para que aparezca durante la animación */}
+      <div className="relative px-4 md:px-10 lg:px-20 py-8" style={{ marginTop: '200vh' }}>
         <div className="grid grid-cols-12 gap-8 max-w-[1440px] mx-auto">
       {/* Sidebar - Impact & Links */}
       <aside className="hidden xl:flex col-span-3 flex-col gap-6">
