@@ -5,6 +5,7 @@ import Home from './views/Home';
 import LostPets from './views/LostPets';
 import Adoption from './views/Adoption';
 import AIPetAssistant from './views/AIPetAssistant';
+import FAQSection from './components/FAQSection';
 import ToastContainer from './components/Toast';
 import { AppProvider, useApp } from './context/AppContext';
 import { View } from './types';
@@ -40,6 +41,7 @@ const AppContent: React.FC = () => {
       case View.LOST_PETS: return <LostPets onToast={addToast} />;
       case View.ADOPTION: return <Adoption onToast={addToast} />;
       case View.AI_ASSISTANT: return <AIPetAssistant onToast={addToast} />;
+      case View.FAQ: return <FAQSection />;
       case View.DONATIONS: return (
         <div className="flex items-center justify-center min-h-[60vh] text-center p-10">
           <div className="max-w-md">
@@ -75,6 +77,7 @@ const AppContent: React.FC = () => {
           </div>
           
           <nav className="flex flex-wrap justify-center gap-8 text-sm font-bold text-accent-teal">
+            <button onClick={() => setCurrentView(View.FAQ)} className="hover:text-primary transition-colors">Preguntas Frecuentes</button>
             <a href="#" className="hover:text-primary transition-colors">Política de Privacidad</a>
             <a href="#" className="hover:text-primary transition-colors">Términos de Servicio</a>
             <a href="#" className="hover:text-primary transition-colors">Soporte</a>
@@ -120,13 +123,13 @@ const AppContent: React.FC = () => {
           <span className="material-symbols-outlined font-bold text-3xl">add</span>
         </button>
         <button 
-          onClick={() => setCurrentView(View.DONATIONS)} 
+          onClick={() => setCurrentView(View.FAQ)} 
           className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.DONATIONS ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+            currentView === View.FAQ ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span className="material-symbols-outlined">volunteer_activism</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Donar</span>
+          <span className="material-symbols-outlined">help</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">Ayuda</span>
         </button>
         <button 
           onClick={() => setCurrentView(View.AI_ASSISTANT)} 

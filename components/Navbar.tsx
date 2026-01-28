@@ -48,6 +48,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
               Donaciones
             </button>
             <button 
+              onClick={() => setView(View.FAQ)}
+              className={`text-sm font-semibold transition-colors ${currentView === View.FAQ ? 'text-primary' : 'hover:text-primary'} flex items-center gap-1`}
+            >
+              <span className="material-symbols-outlined text-sm">help</span>
+              Preguntas
+            </button>
+            <button 
               onClick={() => setView(View.AI_ASSISTANT)}
               className={`text-sm font-semibold transition-colors ${currentView === View.AI_ASSISTANT ? 'text-primary' : 'hover:text-primary'} flex items-center gap-1`}
             >

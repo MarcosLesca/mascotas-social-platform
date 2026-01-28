@@ -4,7 +4,8 @@ export enum View {
   LOST_PETS = 'lost_pets',
   ADOPTION = 'adoption',
   DONATIONS = 'donations',
-  AI_ASSISTANT = 'ai_assistant'
+  AI_ASSISTANT = 'ai_assistant',
+  FAQ = 'faq'
 }
 
 export interface Pet {
