@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { submitLostPetReport } from '../services/lostPetsService';
 
 interface ReportLostPetModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit?: (data: any) => void;
+  onSubmit?: (data: unknown) => void;
+  onError?: (message: string) => void;
 }
 
-const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose, onSubmit }) => {
+const ACCEPT_IMAGES = 'image/jpeg,image/png,image/webp';
+const MAX_MB = 5;
+
+const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  onError,
+}) => {
   const [formData, setFormData] = useState({
     petName: '',
-    species: 'dog',
+    species: 'dog' as 'dog' | 'cat' | 'bird' | 'other',
     breed: '',
-    gender: 'male',
+    gender: 'male' as 'male' | 'female',
     age: '',
-    size: 'medium',
+    size: 'medium' as 'small' | 'medium' | 'large',
     color: '',
     distinctiveFeatures: '',
     lastSeenDate: '',
@@ -24,26 +34,79 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
     additionalInfo: '',
     urgency: false,
     hasReward: false,
-    rewardAmount: ''
+    rewardAmount: '',
   });
-
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: unknown) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    setSubmitError(null);
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    if (!f.type.match(/^image\/(jpeg|png|webp)$/i)) {
+      onError?.('Solo se permiten imágenes JPEG, PNG o WebP.');
+      return;
+    }
+    if (f.size > MAX_MB * 1024 * 1024) {
+      onError?.(`La imagen no puede superar ${MAX_MB} MB.`);
+      return;
+    }
+    setImageFile(f);
+    const reader = new FileReader();
+    reader.onload = () => setImagePreview(reader.result as string);
+    reader.readAsDataURL(f);
+    setSubmitError(null);
+  };
+
+  const clearImage = () => {
+    setImageFile(null);
+    setImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!imageFile) {
+      setSubmitError('Debes subir una foto de la mascota.');
+      return;
+    }
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    console.log('Report submitted:', formData);
-    onSubmit?.(formData);
+    setSubmitError(null);
+    const { error } = await submitLostPetReport({
+      petName: formData.petName,
+      species: formData.species,
+      breed: formData.breed,
+      gender: formData.gender,
+      age: formData.age,
+      size: formData.size,
+      color: formData.color,
+      distinctiveFeatures: formData.distinctiveFeatures,
+      lastSeenDate: formData.lastSeenDate,
+      lastSeenLocation: formData.lastSeenLocation,
+      additionalInfo: formData.additionalInfo,
+      urgency: formData.urgency,
+      hasReward: formData.hasReward,
+      rewardAmount: formData.rewardAmount,
+      contactName: formData.contactName,
+      contactPhone: formData.contactPhone,
+      contactEmail: formData.contactEmail,
+      imageFile,
+    });
     setIsSubmitting(false);
+    if (error) {
+      setSubmitError(error.message);
+      onError?.(error.message);
+      return;
+    }
+    onSubmit?.(formData);
     onClose();
   };
 
@@ -54,6 +117,42 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
+
+  const canProceedStep1 = !!(
+    formData.petName.trim() &&
+    formData.breed.trim() &&
+    formData.color.trim() &&
+    imageFile
+  );
+
+  useEffect(() => {
+    if (!isOpen) {
+      setFormData({
+        petName: '',
+        species: 'dog',
+        breed: '',
+        gender: 'male',
+        age: '',
+        size: 'medium',
+        color: '',
+        distinctiveFeatures: '',
+        lastSeenDate: '',
+        lastSeenLocation: '',
+        contactName: '',
+        contactPhone: '',
+        contactEmail: '',
+        additionalInfo: '',
+        urgency: false,
+        hasReward: false,
+        rewardAmount: '',
+      });
+      setImageFile(null);
+      setImagePreview(null);
+      setCurrentStep(1);
+      setSubmitError(null);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -105,14 +204,63 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
         {/* Form Content */}
         <form onSubmit={handleSubmit} className="p-8 max-h-[60vh] overflow-y-auto">
           {/* Step 1: Pet Information */}
+          {submitError && (
+            <div
+              role="alert"
+              className="flex items-center gap-2 p-3 rounded-xl bg-urgent-red/10 dark:bg-urgent-red/20 border border-urgent-red/30 text-urgent-red text-sm"
+            >
+              <span className="material-symbols-outlined text-xl flex-shrink-0">error</span>
+              <span>{submitError}</span>
+            </div>
+          )}
+
           {currentStep === 1 && (
             <div className="space-y-6">
               <h3 className="text-xl font-bold mb-4">Información de la Mascota</h3>
+
+              <div>
+                <label className="block text-sm font-bold text-accent-teal mb-2">Foto de la mascota *</label>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept={ACCEPT_IMAGES}
+                  onChange={handleImageChange}
+                  className="hidden"
+                  aria-label="Subir foto de la mascota"
+                />
+                {imagePreview ? (
+                  <div className="relative inline-block">
+                    <img
+                      src={imagePreview}
+                      alt="Vista previa"
+                      className="w-40 h-40 object-cover rounded-xl border-2 border-accent-teal/20"
+                    />
+                    <button
+                      type="button"
+                      onClick={clearImage}
+                      className="absolute -top-2 -right-2 p-1.5 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90"
+                    >
+                      <span className="material-symbols-outlined text-lg">close</span>
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-4xl text-accent-teal">add_photo_alternate</span>
+                    <span className="text-sm font-bold text-accent-teal">Subir foto</span>
+                  </button>
+                )}
+                <p className="mt-1 text-xs text-accent-teal">JPEG, PNG o WebP. Máx. {MAX_MB} MB.</p>
+              </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Nombre de la Mascota *</label>
+                  <label htmlFor="report-petName" className="block text-sm font-bold text-accent-teal mb-2">Nombre de la Mascota *</label>
                   <input
+                    id="report-petName"
                     type="text"
                     required
                     value={formData.petName}
@@ -123,8 +271,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Especie *</label>
+                  <label htmlFor="report-species" className="block text-sm font-bold text-accent-teal mb-2">Especie *</label>
                   <select
+                    id="report-species"
                     value={formData.species}
                     onChange={(e) => handleInputChange('species', e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
@@ -149,8 +298,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Género *</label>
+                  <label htmlFor="report-gender" className="block text-sm font-bold text-accent-teal mb-2">Género *</label>
                   <select
+                    id="report-gender"
                     value={formData.gender}
                     onChange={(e) => handleInputChange('gender', e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
@@ -172,8 +322,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Tamaño</label>
+                  <label htmlFor="report-size" className="block text-sm font-bold text-accent-teal mb-2">Tamaño</label>
                   <select
+                    id="report-size"
                     value={formData.size}
                     onChange={(e) => handleInputChange('size', e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
@@ -217,8 +368,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Fecha en que se perdió *</label>
+                  <label htmlFor="report-lastSeenDate" className="block text-sm font-bold text-accent-teal mb-2">Fecha en que se perdió *</label>
                   <input
+                    id="report-lastSeenDate"
                     type="date"
                     required
                     value={formData.lastSeenDate}
@@ -228,8 +380,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Ubicación donde se perdió *</label>
+                  <label htmlFor="report-lastSeenLocation" className="block text-sm font-bold text-accent-teal mb-2">Ubicación donde se perdió *</label>
                   <input
+                    id="report-lastSeenLocation"
                     type="text"
                     required
                     value={formData.lastSeenLocation}
@@ -241,8 +394,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-accent-teal mb-2">Información Adicional</label>
+                <label htmlFor="report-additionalInfo" className="block text-sm font-bold text-accent-teal mb-2">Información Adicional</label>
                 <textarea
+                  id="report-additionalInfo"
                   value={formData.additionalInfo}
                   onChange={(e) => handleInputChange('additionalInfo', e.target.value)}
                   className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
@@ -365,7 +519,8 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({ isOpen, onClose
               <button
                 type="button"
                 onClick={nextStep}
-                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all"
+                disabled={currentStep === 1 && !canProceedStep1}
+                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Siguiente
               </button>

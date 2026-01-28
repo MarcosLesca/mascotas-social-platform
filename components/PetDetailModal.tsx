@@ -1,6 +1,10 @@
 import React from 'react';
 import { Pet } from '../types';
 
+function digitsOnly(s: string): string {
+  return s.replace(/\D/g, '');
+}
+
 interface PetDetailModalProps {
   pet: Pet | null;
   isOpen: boolean;
@@ -12,6 +16,16 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
   if (!isOpen || !pet) return null;
 
   const isLost = pet.status === 'lost';
+  const hasPhone = !!pet.contactPhone?.trim();
+  const hasEmail = !!pet.contactEmail?.trim();
+  const hasContact = hasPhone || hasEmail || !!pet.contactName?.trim();
+  const waNumber = hasPhone ? digitsOnly(pet.contactPhone!) : '';
+  const waHref = waNumber
+    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`
+    : null;
+  const mailHref = hasEmail
+    ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
+    : null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
@@ -103,36 +117,55 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
               )}
 
               {/* Información de contacto */}
-              <div className="bg-accent-teal/5 rounded-2xl p-6">
-                <h3 className="text-xl font-bold mb-4">Información de Contacto</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-primary">person</span>
-                    <span className="font-medium">Dueño: Ana García</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-primary">phone</span>
-                    <a 
-                      href={`https://wa.me/5491123456789?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-accent-teal hover:text-primary transition-colors underline flex items-center gap-2"
-                    >
-                      +54 9 11 2345-6789
-                      <span className="material-symbols-outlined text-sm">open_in_new</span>
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-primary">mail</span>
-                    <a 
-                      href={`mailto:ana.garcia@email.com?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`}
-                      className="font-medium text-accent-teal hover:text-primary transition-colors underline"
-                    >
-                      ana.garcia@email.com
-                    </a>
+              {(hasContact || !isLost) && (
+                <div className="bg-accent-teal/5 rounded-2xl p-6">
+                  <h3 className="text-xl font-bold mb-4">Información de Contacto</h3>
+                  <div className="space-y-3">
+                    {pet.contactName && (
+                      <div className="flex items-center gap-3">
+                        <span className="material-symbols-outlined text-primary">person</span>
+                        <span className="font-medium">{isLost ? 'Reportante' : 'Contacto'}: {pet.contactName}</span>
+                      </div>
+                    )}
+                    {hasPhone && (
+                      <div className="flex items-center gap-3">
+                        <span className="material-symbols-outlined text-primary">phone</span>
+                        {waHref ? (
+                          <a
+                            href={waHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-accent-teal hover:text-primary transition-colors underline flex items-center gap-2"
+                          >
+                            {pet.contactPhone}
+                            <span className="material-symbols-outlined text-sm">open_in_new</span>
+                          </a>
+                        ) : (
+                          <span className="font-medium">{pet.contactPhone}</span>
+                        )}
+                      </div>
+                    )}
+                    {hasEmail && (
+                      <div className="flex items-center gap-3">
+                        <span className="material-symbols-outlined text-primary">mail</span>
+                        {mailHref ? (
+                          <a
+                            href={mailHref}
+                            className="font-medium text-accent-teal hover:text-primary transition-colors underline"
+                          >
+                            {pet.contactEmail}
+                          </a>
+                        ) : (
+                          <span className="font-medium">{pet.contactEmail}</span>
+                        )}
+                      </div>
+                    )}
+                    {!hasContact && !isLost && (
+                      <p className="text-sm text-accent-teal">Contacto disponible en la publicación.</p>
+                    )}
                   </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Columna lateral - Acciones */}
@@ -149,23 +182,27 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   {isLost ? '¡He visto a esta mascota!' : 'Quiero Adoptar'}
                 </button>
 
-                <a 
-                  href={`https://wa.me/5491123456789?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
-                >
-                  <span className="material-symbols-outlined text-2xl">whatsapp</span>
-                  Contactar por WhatsApp
-                </a>
+                {waHref && (
+                  <a
+                    href={waHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
+                  >
+                    <span className="material-symbols-outlined text-2xl">whatsapp</span>
+                    Contactar por WhatsApp
+                  </a>
+                )}
 
-                <a 
-                  href={`mailto:ana.garcia@email.com?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`}
-                  className="w-full bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all"
-                >
-                  <span className="material-symbols-outlined text-2xl">mail</span>
-                  Enviar Email
-                </a>
+                {mailHref && (
+                  <a
+                    href={mailHref}
+                    className="w-full bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all"
+                  >
+                    <span className="material-symbols-outlined text-2xl">mail</span>
+                    Enviar Email
+                  </a>
+                )}
 
                 <button className="w-full bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all">
                   <span className="material-symbols-outlined text-2xl">share</span>

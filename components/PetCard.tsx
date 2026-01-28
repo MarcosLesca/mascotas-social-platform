@@ -1,6 +1,9 @@
-
 import React, { useState } from 'react';
 import { Pet } from '../types';
+
+function digitsOnly(s: string): string {
+  return s.replace(/\D/g, '');
+}
 
 interface PetCardProps {
   pet: Pet;
@@ -12,6 +15,16 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   const [isFavorited, setIsFavorited] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const isLost = pet.status === 'lost';
+  const hasPhone = !!pet.contactPhone?.trim();
+  const hasEmail = !!pet.contactEmail?.trim();
+  const hasContact = hasPhone || hasEmail;
+  const waNumber = hasPhone ? digitsOnly(pet.contactPhone!) : '';
+  const waHref = waNumber
+    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`
+    : null;
+  const mailHref = hasEmail
+    ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
+    : null;
 
   const handleShare = (platform: string) => {
     const shareData = {
@@ -144,27 +157,33 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
           </button>
         </div>
 
-        {/* Quick Contact */}
-        <div className="pt-3 border-t border-accent-teal/10">
-          <div className="flex gap-2">
-            <a 
-              href={`https://wa.me/5491123456789?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
-            >
-              <span className="material-symbols-outlined text-sm">whatsapp</span>
-              WhatsApp
-            </a>
-            <a 
-              href={`mailto:ana.garcia@email.com?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`}
-              className="flex-1 bg-accent-teal hover:bg-primary text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
-            >
-              <span className="material-symbols-outlined text-sm">mail</span>
-              Email
-            </a>
+        {/* Quick Contact (solo si hay contacto y es perdida) */}
+        {isLost && hasContact && (
+          <div className="pt-3 border-t border-accent-teal/10">
+            <div className="flex gap-2">
+              {waHref && (
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
+                >
+                  <span className="material-symbols-outlined text-sm">whatsapp</span>
+                  WhatsApp
+                </a>
+              )}
+              {mailHref && (
+                <a
+                  href={mailHref}
+                  className="flex-1 bg-accent-teal hover:bg-primary text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
+                >
+                  <span className="material-symbols-outlined text-sm">mail</span>
+                  Email
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import LostPets from './views/LostPets';
@@ -82,6 +82,7 @@ const AppContent: React.FC = () => {
             <a href="#" className="hover:text-primary transition-colors">Términos de Servicio</a>
             <a href="#" className="hover:text-primary transition-colors">Soporte</a>
             <a href="#" className="hover:text-primary transition-colors">Contacto</a>
+            <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link>
           </nav>
 
           <div className="flex gap-4">

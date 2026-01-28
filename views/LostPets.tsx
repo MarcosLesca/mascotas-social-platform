@@ -1,6 +1,5 @@
-
-import React, { useState, useMemo } from 'react';
-import { MOCK_LOST_PETS } from '../constants';
+import React, { useState, useMemo, useEffect } from 'react';
+import { fetchApprovedLostPets } from '../services/lostPetsService';
 import PetCard from '../components/PetCard';
 import PetDetailModal from '../components/PetDetailModal';
 import ReportLostPetModal from '../components/ReportLostPetModal';
@@ -19,6 +18,8 @@ interface LostPetsProps {
 }
 
 const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
+  const [pets, setPets] = useState<Pet[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
@@ -29,12 +30,27 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     timeRange: '',
     location: '',
     color: '',
-    urgency: false
+    urgency: false,
   });
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetchApprovedLostPets().then(({ data, error }) => {
+      if (cancelled) return;
+      setLoading(false);
+      if (error) {
+        onToast('No se pudieron cargar las mascotas perdidas. Revisa la conexión.', 'error');
+        return;
+      }
+      setPets(data);
+    });
+    return () => { cancelled = true; };
+  }, [onToast]);
 
   // Filtrar y buscar mascotas
   const filteredPets = useMemo(() => {
-    let filtered = MOCK_LOST_PETS;
+    let filtered = pets;
 
     // Búsqueda por texto
     if (searchTerm) {
@@ -81,7 +97,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     }
 
     return filtered;
-  }, [searchTerm, filters]);
+  }, [pets, searchTerm, filters]);
 
   const clearFilters = () => {
     setFilters({
@@ -128,9 +144,12 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     setShowReportModal(false);
   };
 
-  const handleReportSubmit = (data: any) => {
-    console.log('Nuevo reporte:', data);
-    onToast('¡Reporte publicado! Tu mascota ahora está en nuestra red de búsqueda.', 'success');
+  const handleReportSubmit = () => {
+    onToast('Reporte enviado. Un administrador lo revisará pronto; si lo aprueba, se publicará aquí.', 'success');
+  };
+
+  const handleReportError = (msg: string) => {
+    onToast(msg, 'error');
   };
 
   return (
@@ -139,8 +158,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         <div className="flex-1">
           <h2 className="text-4xl font-extrabold mb-2">Búsqueda de Mascotas Perdidas</h2>
           <p className="text-accent-teal text-lg">
-            Ayuda a reunir hoy a <span className="text-primary font-bold">1,240</span> mascotas con sus familias.
-            {filteredPets.length !== MOCK_LOST_PETS.length && (
+            Ayuda a reunir hoy a <span className="text-primary font-bold">{pets.length}</span> mascotas con sus familias.
+            {hasActiveFilters && (
               <span className="ml-2 text-sm">({filteredPets.length} resultados)</span>
             )}
           </p>
@@ -278,6 +297,13 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
       {/* Vista de Cuadrícula */}
       {viewMode === 'grid' && (
+        <>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20 gap-4">
+              <span className="material-symbols-outlined text-5xl text-primary animate-pulse">pets</span>
+              <p className="text-accent-teal font-medium">Cargando mascotas perdidas…</p>
+            </div>
+          ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredPets.map(pet => (
             <PetCard 
@@ -305,10 +331,12 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
             </button>
           </div>
         </div>
+          )}
+        </>
       )}
 
-      {/* Sin resultados */}
-      {filteredPets.length === 0 && viewMode === 'grid' && (
+      {/* Sin resultados (solo con filtros activos) */}
+      {!loading && hasActiveFilters && filteredPets.length === 0 && viewMode === 'grid' && (
         <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center">
           <span className="material-symbols-outlined text-6xl text-accent-teal mb-4">search_off</span>
           <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
@@ -332,6 +360,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         isOpen={showReportModal}
         onClose={handleCloseReportModal}
         onSubmit={handleReportSubmit}
+        onError={handleReportError}
       />
     </div>
   );
