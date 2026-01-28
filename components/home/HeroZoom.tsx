@@ -139,15 +139,30 @@ export default function HeroZoom() {
     () => {
       if (!containerRef.current) return;
 
+      // Detectar viewport para ajustar animación
+      const isMobile = window.innerWidth < 640;
+
+      // Configuración especial para mobile
+      const mobileConfig = {
+        trigger: containerRef.current,
+        start: "top top", 
+        end: "bottom top",
+        pin: false, // Sin pin en mobile para evitar problemas
+        scrub: 1,
+        pinSpacing: false,
+      };
+
+      const desktopConfig = {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "+=200%",
+        pin: true,
+        scrub: 1,
+        pinSpacing: false,
+      };
+
       const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=200%",
-          pin: true,
-          scrub: 1,
-          pinSpacing: false,
-        },
+        scrollTrigger: isMobile ? mobileConfig : desktopConfig,
       });
 
       // Animación de apertura: imágenes se mueven hacia los lados
