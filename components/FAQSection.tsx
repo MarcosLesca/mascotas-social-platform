@@ -10,7 +10,11 @@ interface FAQItem {
 
 const FAQSection: React.FC = () => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  // Scroll to top when component mounts
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const faqData: FAQItem[] = [
     // Generales
@@ -164,15 +168,6 @@ const FAQSection: React.FC = () => {
     }
   ];
 
-  const categories = [
-    { id: 'all', name: 'Todas', icon: 'help' },
-    { id: 'general', name: 'Generales', icon: 'pets' },
-    { id: 'perdidas', name: 'Mascotas Perdidas', icon: 'search' },
-    { id: 'adopcion', name: 'Adopción', icon: 'favorite' },
-    { id: 'donaciones', name: 'Donaciones', icon: 'volunteer_activism' },
-    { id: 'tecnico', name: 'Ayuda Técnica', icon: 'support' }
-  ];
-
   const toggleExpanded = (id: string) => {
     const newExpanded = new Set(expandedItems);
     if (newExpanded.has(id)) {
@@ -183,14 +178,13 @@ const FAQSection: React.FC = () => {
     setExpandedItems(newExpanded);
   };
 
-  const filteredFAQs = selectedCategory === 'all' 
-    ? faqData 
-    : faqData.filter(item => item.category === selectedCategory);
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 animate-fade-in">
+        <div className="mb-6">
+          <span className="material-symbols-outlined text-6xl text-primary mb-4">help</span>
+        </div>
         <h1 className="text-4xl md:text-5xl font-black mb-4">
           Preguntas <span className="text-primary">Frecuentes</span>
         </h1>
@@ -199,27 +193,9 @@ const FAQSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Categorías */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
-        {categories.map(category => (
-          <button
-            key={category.id}
-            onClick={() => setSelectedCategory(category.id)}
-            className={`px-4 py-2 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
-              selectedCategory === category.id
-                ? 'bg-primary text-background-dark'
-                : 'bg-white dark:bg-white/5 border border-accent-teal/20 text-accent-teal hover:border-primary'
-            }`}
-          >
-            <span className="material-symbols-outlined text-lg">{category.icon}</span>
-            {category.name}
-          </button>
-        ))}
-      </div>
-
       {/* FAQ Items */}
       <div className="space-y-4">
-        {filteredFAQs.map((item, index) => (
+        {faqData.map((item, index) => (
           <div 
             key={item.id}
             className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/5 overflow-hidden stagger-item"
@@ -255,48 +231,15 @@ const FAQSection: React.FC = () => {
         ))}
       </div>
 
-      {/* Help Section */}
-      <div className="mt-16 bg-gradient-to-r from-primary/10 to-accent-teal/10 rounded-3xl p-8 border border-primary/20">
-        <div className="text-center">
-          <span className="material-symbols-outlined text-5xl text-primary mb-4">support_agent</span>
-          <h2 className="text-2xl font-black mb-4">¿No encontraste tu respuesta?</h2>
-          <p className="text-accent-teal mb-6 max-w-2xl mx-auto">
-            Si tenés alguna otra pregunta o necesitás ayuda personalizada, nuestro equipo está para ayudarte.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button className="bg-primary text-background-dark px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:opacity-90 transition-all">
-              <span className="material-symbols-outlined">whatsapp</span>
-              Contactar por WhatsApp
-            </button>
-            <button className="bg-white dark:bg-white/10 border border-accent-teal/20 text-accent-teal px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:border-primary transition-all">
-              <span className="material-symbols-outlined">mail</span>
-              Enviar Email
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Emergency Info */}
-      <div className="mt-12 bg-orange-50 dark:bg-orange-900/20 rounded-3xl p-8 border border-orange-200 dark:border-orange-800/30">
-        <div className="flex gap-4">
-          <span className="material-symbols-outlined text-orange-500 text-3xl">emergency</span>
-          <div>
-            <h3 className="text-xl font-bold mb-3">🚨 Emergencias Veterinarias</h3>
-            <p className="text-accent-teal mb-4">
-              Si tu mascota está en emergencia médica, contactá inmediatamente a:
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-orange-500">phone</span>
-                <span className="font-bold">Veterinarias 24hs: 0800-123-4567</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-orange-500">pets</span>
-                <span className="font-bold">Rescate Animal: 0800-RESCATE (737-2283)</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Return to Top Button */}
+      <div className="mt-16 text-center">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto hover:opacity-90 transition-all"
+        >
+          <span className="material-symbols-outlined">keyboard_arrow_up</span>
+          Volver al Principio
+        </button>
       </div>
     </div>
   );
