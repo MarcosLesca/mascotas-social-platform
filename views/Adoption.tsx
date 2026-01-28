@@ -1,14 +1,145 @@
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { MOCK_ADOPTION_PETS } from '../constants';
 import PetCard from '../components/PetCard';
+import PetDetailModal from '../components/PetDetailModal';
+import { Pet } from '../types';
 
-const Adoption: React.FC = () => {
+interface AdoptionFilters {
+  species: string[];
+  age: string[];
+  energy: string;
+  searchTerm: string;
+}
+
+interface AdoptionProps {
+  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info') => void;
+}
+
+const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
+  const [filters, setFilters] = useState<AdoptionFilters>({
+    species: ['Perros'],
+    age: [],
+    energy: 'Medio',
+    searchTerm: ''
+  });
+  const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Filtrar mascotas según los filtros seleccionados
+  const filteredPets = useMemo(() => {
+    let filtered = MOCK_ADOPTION_PETS;
+
+    // Filtro por especie
+    if (filters.species.length > 0) {
+      const speciesMap: { [key: string]: string } = {
+        'Perros': 'dog',
+        'Gatos': 'cat',
+        'Aves': 'bird'
+      };
+      const selectedSpecies = filters.species.map(s => speciesMap[s]).filter(Boolean);
+      filtered = filtered.filter(pet => selectedSpecies.includes(pet.species));
+    }
+
+    // Filtro por edad
+    if (filters.age.length > 0) {
+      filtered = filtered.filter(pet => {
+        if (!pet.age) return false;
+        
+        const ageLower = pet.age.toLowerCase();
+        return filters.age.some(filterAge => {
+          switch (filterAge) {
+            case 'Cachorro':
+              return ageLower.includes('año') && parseInt(ageLower) <= 2 || ageLower.includes('mes');
+            case 'Joven':
+              return ageLower.includes('año') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
+            case 'Adulto':
+              return ageLower.includes('año') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
+            case 'Senior':
+              return ageLower.includes('año') && parseInt(ageLower) > 10;
+            default:
+              return false;
+          }
+        });
+      });
+    }
+
+    // Filtro por búsqueda
+    if (filters.searchTerm) {
+      const searchLower = filters.searchTerm.toLowerCase();
+      filtered = filtered.filter(pet => 
+        pet.name.toLowerCase().includes(searchLower) ||
+        pet.breed.toLowerCase().includes(searchLower) ||
+        pet.description?.toLowerCase().includes(searchLower)
+      );
+    }
+
+    return filtered;
+  }, [filters]);
+
+  const handlePetAction = (pet: Pet, action: string) => {
+    switch (action) {
+      case 'view':
+        setSelectedPet(pet);
+        setShowModal(true);
+        break;
+      case 'adopt':
+        onToast(`Solicitud de adopción para ${pet.name} enviada. Te contactaremos pronto.`, 'success');
+        break;
+      default:
+        console.log('Acción:', action, 'para:', pet.name);
+    }
+  };
+
+  const handleViewDetails = (pet: Pet) => {
+    setSelectedPet(pet);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedPet(null);
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      species: ['Perros'],
+      age: [],
+      energy: 'Medio',
+      searchTerm: ''
+    });
+  };
+
+  const toggleSpecies = (species: string) => {
+    setFilters(prev => ({
+      ...prev,
+      species: prev.species.includes(species)
+        ? prev.species.filter(s => s !== species)
+        : [...prev.species, species]
+    }));
+  };
+
+  const toggleAge = (age: string) => {
+    setFilters(prev => ({
+      ...prev,
+      age: prev.age.includes(age)
+        ? prev.age.filter(a => a !== age)
+        : [...prev.age, age]
+    }));
+  };
+
+  const hasActiveFilters = filters.species.length !== 1 || filters.age.length > 0 || filters.searchTerm;
+
   return (
     <div className="flex flex-col gap-10">
       <div className="max-w-3xl">
         <h1 className="text-5xl font-black tracking-tight mb-4">Encuentra a tu mejor amigo</h1>
-        <p className="text-xl text-accent-teal font-display italic">Descubre mascotas amorosas listas para un hogar definitivo. Cada adopción salva una vida.</p>
+        <p className="text-xl text-accent-teal font-display italic">
+          Descubre mascotas amorosas listas para un hogar definitivo. Cada adopción salva una vida.
+          {filteredPets.length !== MOCK_ADOPTION_PETS.length && (
+            <span className="ml-2 text-sm">({filteredPets.length} resultados)</span>
+          )}
+        </p>
       </div>
 
       <div className="grid grid-cols-12 gap-10">
@@ -16,7 +147,28 @@ const Adoption: React.FC = () => {
           <div className="bg-white dark:bg-white/5 p-8 rounded-3xl border border-accent-teal/5 sticky top-24">
             <div className="flex justify-between items-center mb-8">
               <h3 className="text-xl font-bold">Filtros</h3>
-              <button className="text-xs font-bold text-primary">LIMPIAR</button>
+              {hasActiveFilters && (
+                <button 
+                  onClick={clearFilters}
+                  className="text-xs font-bold text-primary hover:underline"
+                >
+                  LIMPIAR
+                </button>
+              )}
+            </div>
+
+            {/* Búsqueda */}
+            <div className="mb-8">
+              <div className="relative">
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-accent-teal text-xl">search</span>
+                <input 
+                  type="text" 
+                  placeholder="Buscar por nombre, raza..."
+                  className="w-full pl-10 pr-4 py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
+                  value={filters.searchTerm}
+                  onChange={(e) => setFilters({...filters, searchTerm: e.target.value})}
+                />
+              </div>
             </div>
             
             <div className="space-y-8">
@@ -24,7 +176,17 @@ const Adoption: React.FC = () => {
                 <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
                   {['Perros', 'Gatos', 'Aves'].map(s => (
-                    <button key={s} className={`px-4 py-2 rounded-full text-xs font-bold ${s === 'Perros' ? 'bg-primary text-background-dark' : 'bg-accent-teal/5 text-accent-teal'}`}>{s}</button>
+                    <button 
+                      key={s} 
+                      onClick={() => toggleSpecies(s)}
+                      className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                        filters.species.includes(s) 
+                          ? 'bg-primary text-background-dark' 
+                          : 'bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/10'
+                      }`}
+                    >
+                      {s}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -34,7 +196,12 @@ const Adoption: React.FC = () => {
                 <div className="space-y-3">
                   {['Cachorro', 'Joven', 'Adulto', 'Senior'].map(age => (
                     <label key={age} className="flex items-center gap-3 cursor-pointer group">
-                      <input type="checkbox" className="rounded text-primary focus:ring-primary border-accent-teal/20" />
+                      <input 
+                        type="checkbox" 
+                        checked={filters.age.includes(age)}
+                        onChange={() => toggleAge(age)}
+                        className="rounded text-primary focus:ring-primary border-accent-teal/20" 
+                      />
                       <span className="text-sm font-medium group-hover:text-primary transition-colors">{age}</span>
                     </label>
                   ))}
@@ -45,22 +212,51 @@ const Adoption: React.FC = () => {
                 <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Energía</p>
                 <div className="grid grid-cols-3 gap-2">
                   {['Bajo', 'Medio', 'Alto'].map(e => (
-                    <button key={e} className={`py-2 rounded-xl text-[10px] font-black uppercase tracking-tighter ${e === 'Medio' ? 'bg-primary text-background-dark' : 'bg-accent-teal/5 text-accent-teal'}`}>{e}</button>
+                    <button 
+                      key={e} 
+                      onClick={() => setFilters({...filters, energy: e})}
+                      className={`py-2 rounded-xl text-[10px] font-black uppercase tracking-tighter transition-all ${
+                        filters.energy === e 
+                          ? 'bg-primary text-background-dark' 
+                          : 'bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/10'
+                      }`}
+                    >
+                      {e}
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
 
-            <button className="w-full mt-10 bg-primary text-background-dark py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">APLICAR FILTROS</button>
+            <button className="w-full mt-10 bg-primary text-background-dark py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+              {filteredPets.length} Mascotas
+            </button>
           </div>
         </aside>
 
         <div className="col-span-12 lg:col-span-9">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {MOCK_ADOPTION_PETS.map(pet => (
-              <PetCard key={pet.id} pet={pet} />
+            {filteredPets.map(pet => (
+              <PetCard 
+                key={pet.id} 
+                pet={pet} 
+                onAction={handlePetAction}
+                onViewDetails={handleViewDetails}
+              />
             ))}
           </div>
+
+          {/* Sin resultados */}
+          {filteredPets.length === 0 && (
+            <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
+              <span className="material-symbols-outlined text-6xl text-accent-teal mb-4">pets</span>
+              <h3 className="text-2xl font-bold mb-2">No encontramos mascotas con esos filtros</h3>
+              <p className="text-accent-teal mb-6">Intenta ajustar los filtros para ver más opciones</p>
+              <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
+                Limpiar filtros
+              </button>
+            </div>
+          )}
 
           <div className="mt-16 p-12 bg-accent-teal/5 rounded-[2.5rem] border border-accent-teal/10 relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -86,6 +282,14 @@ const Adoption: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Modal de detalles */}
+          <PetDetailModal
+            pet={selectedPet}
+            isOpen={showModal}
+            onClose={handleCloseModal}
+            onAction={handlePetAction}
+          />
         </div>
       </div>
     </div>

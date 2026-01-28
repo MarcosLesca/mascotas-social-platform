@@ -1,21 +1,45 @@
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import LostPets from './views/LostPets';
 import Adoption from './views/Adoption';
 import AIPetAssistant from './views/AIPetAssistant';
+import ToastContainer from './components/Toast';
+import { AppProvider, useApp } from './context/AppContext';
 import { View } from './types';
 
-const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<View>(View.HOME);
+const AppContent: React.FC = () => {
+  const { currentView, setCurrentView, toasts, removeToast, addToast } = useApp();
+
+  // Initialize animations on mount
+  useEffect(() => {
+    // Add stagger animation to cards
+    const cards = document.querySelectorAll('.stagger-item');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cards.forEach(card => observer.observe(card));
+
+    return () => {
+      cards.forEach(card => observer.unobserve(card));
+    };
+  }, [currentView]); // Re-run when view changes
 
   const renderView = () => {
     switch (currentView) {
-      case View.HOME: return <Home />;
-      case View.LOST_PETS: return <LostPets />;
-      case View.ADOPTION: return <Adoption />;
-      case View.AI_ASSISTANT: return <AIPetAssistant />;
+      case View.HOME: return <Home onToast={addToast} />;
+      case View.LOST_PETS: return <LostPets onToast={addToast} />;
+      case View.ADOPTION: return <Adoption onToast={addToast} />;
+      case View.AI_ASSISTANT: return <AIPetAssistant onToast={addToast} />;
       case View.DONATIONS: return (
         <div className="flex items-center justify-center min-h-[60vh] text-center p-10">
           <div className="max-w-md">
@@ -69,27 +93,63 @@ const App: React.FC = () => {
 
       {/* Mobile Bottom Nav */}
       <div className="lg:hidden sticky bottom-0 z-50 bg-background-light dark:bg-background-dark border-t border-accent-teal/10 flex items-center justify-around py-4 px-2 backdrop-blur-md">
-        <button onClick={() => setCurrentView(View.HOME)} className={`flex flex-col items-center gap-1 ${currentView === View.HOME ? 'text-primary' : 'text-accent-teal/60'}`}>
+        <button 
+          onClick={() => setCurrentView(View.HOME)} 
+          className={`flex flex-col items-center gap-1 transition-colors ${
+            currentView === View.HOME ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+          }`}
+        >
           <span className="material-symbols-outlined">home</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">Inicio</span>
         </button>
-        <button onClick={() => setCurrentView(View.LOST_PETS)} className={`flex flex-col items-center gap-1 ${currentView === View.LOST_PETS ? 'text-primary' : 'text-accent-teal/60'}`}>
+        <button 
+          onClick={() => setCurrentView(View.LOST_PETS)} 
+          className={`flex flex-col items-center gap-1 transition-colors ${
+            currentView === View.LOST_PETS ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+          }`}
+        >
           <span className="material-symbols-outlined">map</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">Mascotas</span>
         </button>
-        <button className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform">
+        <button 
+          onClick={() => {
+            addToast('Función de reporte próximamente', 'info');
+          }}
+          className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05]"
+        >
           <span className="material-symbols-outlined font-bold text-3xl">add</span>
         </button>
-        <button onClick={() => setCurrentView(View.DONATIONS)} className={`flex flex-col items-center gap-1 ${currentView === View.DONATIONS ? 'text-primary' : 'text-accent-teal/60'}`}>
+        <button 
+          onClick={() => setCurrentView(View.DONATIONS)} 
+          className={`flex flex-col items-center gap-1 transition-colors ${
+            currentView === View.DONATIONS ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+          }`}
+        >
           <span className="material-symbols-outlined">volunteer_activism</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">Donar</span>
         </button>
-        <button onClick={() => setCurrentView(View.AI_ASSISTANT)} className={`flex flex-col items-center gap-1 ${currentView === View.AI_ASSISTANT ? 'text-primary' : 'text-accent-teal/60'}`}>
+        <button 
+          onClick={() => setCurrentView(View.AI_ASSISTANT)} 
+          className={`flex flex-col items-center gap-1 transition-colors ${
+            currentView === View.AI_ASSISTANT ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+          }`}
+        >
           <span className="material-symbols-outlined">smart_toy</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">AI</span>
         </button>
       </div>
+
+      {/* Toast Container */}
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
   );
 };
 

@@ -1,9 +1,48 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { MOCK_LOST_PETS, MOCK_CAMPAIGNS } from '../constants';
 import HeroZoom from '../components/home/HeroZoom';
+import DonationModal from '../components/DonationModal';
+import ReportLostPetModal from '../components/ReportLostPetModal';
+import { DonationCampaign } from '../types';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info') => void;
+}
+
+const Home: React.FC<HomeProps> = ({ onToast }) => {
+  const [selectedCampaign, setSelectedCampaign] = useState<DonationCampaign | null>(null);
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+
+  const handleDonateClick = (campaign: DonationCampaign) => {
+    setSelectedCampaign(campaign);
+    setShowDonationModal(true);
+  };
+
+  const handleCloseDonationModal = () => {
+    setShowDonationModal(false);
+    setSelectedCampaign(null);
+  };
+
+  const handleDonation = (amount: number, data: any) => {
+    console.log('Donación procesada:', { amount, campaign: selectedCampaign?.title, data });
+    onToast(`¡Gracias por tu donación de $${amount}!`, 'success');
+  };
+
+  const handleOpenReportModal = () => {
+    setShowReportModal(true);
+  };
+
+  const handleCloseReportModal = () => {
+    setShowReportModal(false);
+  };
+
+  const handleReportSubmit = (data: any) => {
+    console.log('Nuevo reporte:', data);
+    onToast('Reporte publicado exitosamente', 'success');
+  };
+
   return (
     <>
       {/* Hero Section con GSAP Animation - Full Width */}
@@ -102,8 +141,15 @@ const Home: React.FC = () => {
             </div>
           </div>
           <div className="flex gap-4">
-            <button className="flex-1 bg-primary text-background-dark py-4 rounded-2xl font-bold text-sm shadow-lg hover:opacity-90 transition-all">Colaborar ahora</button>
-            <button className="flex-1 border border-accent-teal/20 py-4 rounded-2xl font-bold text-sm hover:bg-accent-teal/5 transition-colors">Leer historia</button>
+            <button 
+              onClick={() => handleDonateClick(MOCK_CAMPAIGNS[0])}
+              className="flex-1 bg-primary text-background-dark py-4 rounded-2xl font-bold text-sm shadow-lg hover:opacity-90 transition-all"
+            >
+              Colaborar ahora
+            </button>
+            <button className="flex-1 border border-accent-teal/20 py-4 rounded-2xl font-bold text-sm hover:bg-accent-teal/5 transition-colors">
+              Leer historia
+            </button>
           </div>
         </article>
 
@@ -145,7 +191,10 @@ const Home: React.FC = () => {
 
       {/* Right Column - Actions & Alerts */}
       <aside className="hidden lg:flex lg:col-span-4 xl:col-span-3 flex-col gap-6">
-        <button className="w-full bg-primary text-background-dark h-16 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:-translate-y-1 transition-all active:scale-95">
+        <button 
+          onClick={handleOpenReportModal}
+          className="w-full bg-primary text-background-dark h-16 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:-translate-y-1 transition-all active:scale-95"
+        >
           <span className="material-symbols-outlined font-bold text-2xl">add_alert</span>
           Reportar Mascota Perdida
         </button>
@@ -199,6 +248,21 @@ const Home: React.FC = () => {
       </aside>
       </div>
       </div>
+
+      {/* Donation Modal */}
+      <DonationModal
+        campaign={selectedCampaign}
+        isOpen={showDonationModal}
+        onClose={handleCloseDonationModal}
+        onDonate={handleDonation}
+      />
+
+      {/* Report Modal */}
+      <ReportLostPetModal
+        isOpen={showReportModal}
+        onClose={handleCloseReportModal}
+        onSubmit={handleReportSubmit}
+      />
     </>
   );
 };
