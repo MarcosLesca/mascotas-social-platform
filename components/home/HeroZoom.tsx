@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import { useApp } from "../../context/AppContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -134,6 +135,7 @@ const zoomItems: ZoomItem[] = [
 
 export default function HeroZoom() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { setCurrentView } = useApp();
 
   useGSAP(
     () => {
@@ -231,6 +233,28 @@ export default function HeroZoom() {
             Desarrollo Web, pensado para generar un impacto real en la
             comunidad.
           </p>
+          
+          {/* Botones de acción */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center items-center px-4 pointer-events-auto">
+            <button
+              onClick={() => setCurrentView('lost_pets')}
+              className="px-6 py-3 bg-red-200 hover:bg-red-300 text-black font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[200px]"
+            >
+              Publicar Mascota Perdida
+            </button>
+            <button
+              onClick={() => setCurrentView('adoption')}
+              className="px-6 py-3 bg-green-200 hover:bg-green-300 text-black font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[200px]"
+            >
+              Adoptar una Mascota
+            </button>
+            <button
+              onClick={() => setCurrentView('donations')}
+              className="px-6 py-3 bg-blue-200 hover:bg-blue-300 text-black font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[200px]"
+            >
+              Ayudar/Donar
+            </button>
+          </div>
         </div>
 
         {/* Imágenes */}
