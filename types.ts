@@ -57,6 +57,32 @@ export interface LostPetReportRow {
   rejection_reason: string | null;
 }
 
+export type AdoptionPetStatus = 'pending' | 'approved' | 'rejected';
+
+export interface AdoptionPetReportRow {
+  id: string;
+  status: AdoptionPetStatus;
+  pet_name: string;
+  species: 'dog' | 'cat' | 'bird' | 'other';
+  breed: string;
+  gender: 'male' | 'female';
+  age: string | null;
+  size: 'small' | 'medium' | 'large' | null;
+  color: string;
+  description: string | null;
+  location: string;
+  med_status: string[] | null;
+  adoption_requirements: string | null;
+  contact_name: string;
+  contact_phone: string;
+  contact_email: string | null;
+  image_url: string;
+  submitted_at: string;
+  reviewed_at: string | null;
+  reviewed_by: string | null;
+  rejection_reason: string | null;
+}
+
 export interface DonationCampaign {
   id: string;
   title: string;

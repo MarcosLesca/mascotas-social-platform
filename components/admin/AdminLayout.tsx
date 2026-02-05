@@ -31,6 +31,12 @@ const AdminLayout: React.FC = () => {
               >
                 Mascotas perdidas
               </Link>
+              <Link
+                to="/admin/adoption"
+                className="px-3 py-1.5 rounded-lg text-sm font-bold text-accent-teal hover:bg-accent-teal/10 transition-colors"
+              >
+                AdopciÃ³n
+              </Link>
             </nav>
           </div>
           <div className="flex items-center gap-3">

@@ -34,3 +34,14 @@ El panel de administración usa **Supabase** para autenticación y base de datos
    - El reporte se guarda con estado `pending`. Solo los aprobados se publican.
    - Admin en **Admin → Mascotas perdidas**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
    - Si aprueba, el reporte pasa a `approved` y se muestra en la vista pública de Mascotas perdidas.
+
+
+## Adopci??n (ABM + aprobaci??n)
+
+1. **Supabase Storage:** Dashboard ??? Storage ??? New bucket ??? nombre `adoption-pet-images`, **p??blico**.
+2. **SQL:** En Supabase ??? SQL Editor, ejecuta el contenido de [scripts/init-adoption-pets.sql](scripts/init-adoption-pets.sql) (tabla `adoption_pet_reports`, RLS y pol??ticas de Storage).
+3. **Flujo:**
+   - Un responsable publica una mascota en **Adopci??n** ??? **COMENZAR** (formulario con foto, datos, ubicaci??n y contacto).
+   - La publicaci??n se guarda con estado `pending`. Solo las aprobadas se publican.
+   - Admin en **Admin ??? Adopci??n**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
+   - Si aprueba, la publicaci??n pasa a `approved` y se muestra en la vista p??blica de Adopci??n.

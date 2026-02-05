@@ -1,8 +1,9 @@
 
-import React, { useState, useMemo } from 'react';
-import { MOCK_ADOPTION_PETS } from '../constants';
+import React, { useState, useMemo, useEffect } from 'react';
+import { fetchApprovedAdoptionPets } from '../services/adoptionPetsService';
 import PetCard from '../components/PetCard';
 import PetDetailModal from '../components/PetDetailModal';
+import ReportAdoptionPetModal from '../components/ReportAdoptionPetModal';
 import { Pet } from '../types';
 
 interface AdoptionFilters {
@@ -17,6 +18,8 @@ interface AdoptionProps {
 }
 
 const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
+  const [pets, setPets] = useState<Pet[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<AdoptionFilters>({
     species: ['Perros'],
     age: [],
@@ -25,10 +28,26 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   });
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetchApprovedAdoptionPets().then(({ data, error }) => {
+      if (cancelled) return;
+      setLoading(false);
+      if (error) {
+        onToast('No se pudieron cargar las mascotas en adopciÃ³n. Revisa la conexiÃ³n.', 'error');
+        return;
+      }
+      setPets(data);
+    });
+    return () => { cancelled = true; };
+  }, [onToast]);
 
   // Filtrar mascotas según los filtros seleccionados
   const filteredPets = useMemo(() => {
-    let filtered = MOCK_ADOPTION_PETS;
+    let filtered = pets;
 
     // Filtro por especie
     if (filters.species.length > 0) {
@@ -75,7 +94,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
     }
 
     return filtered;
-  }, [filters]);
+  }, [filters, pets]);
 
   const handlePetAction = (pet: Pet, action: string) => {
     switch (action) {
@@ -99,6 +118,22 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedPet(null);
+  };
+
+  const handleOpenReportModal = () => {
+    setShowReportModal(true);
+  };
+
+  const handleCloseReportModal = () => {
+    setShowReportModal(false);
+  };
+
+  const handleReportSubmit = () => {
+    onToast('PublicaciÃ³n enviada. Un administrador la revisarÃ¡ pronto; si la aprueba, se publicarÃ¡ aquÃ­.', 'success');
+  };
+
+  const handleReportError = (msg: string) => {
+    onToast(msg, 'error');
   };
 
   const clearFilters = () => {
@@ -136,7 +171,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         <h1 className="text-5xl font-black tracking-tight mb-4">Encuentra a tu mejor amigo</h1>
         <p className="text-xl text-accent-teal font-display italic">
           Descubre mascotas amorosas listas para un hogar definitivo. Cada adopción salva una vida.
-          {filteredPets.length !== MOCK_ADOPTION_PETS.length && (
+          {hasActiveFilters && (
             <span className="ml-2 text-sm">({filteredPets.length} resultados)</span>
           )}
         </p>
@@ -235,23 +270,52 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         </aside>
 
         <div className="col-span-12 lg:col-span-9">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {filteredPets.map(pet => (
-              <PetCard 
-                key={pet.id} 
-                pet={pet} 
-                onAction={handlePetAction}
-                onViewDetails={handleViewDetails}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20 gap-4">
+              <span className="material-symbols-outlined text-5xl text-primary animate-pulse">pets</span>
+              <p className="text-accent-teal font-medium">Cargando mascotas en adopci??n???</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+              {filteredPets.map(pet => (
+                <PetCard 
+                  key={pet.id} 
+                  pet={pet} 
+                  onAction={handlePetAction}
+                  onViewDetails={handleViewDetails}
+                />
+              ))}
+
+              <div
+                className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[380px]"
+                onClick={handleOpenReportModal}
+              >
+                <div className="size-20 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-4xl font-bold">add</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Publicar en adopci??n</h3>
+                <p className="text-sm text-accent-teal mb-8 max-w-[220px]">
+                  Ayuda a encontrar un hogar definitivo. Cre?? una publicaci??n ahora.
+                </p>
+                <button
+                  className="bg-primary text-background-dark px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenReportModal();
+                  }}
+                >
+                  COMENZAR
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Sin resultados */}
-          {filteredPets.length === 0 && (
+          {!loading && filteredPets.length === 0 && (
             <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
               <span className="material-symbols-outlined text-6xl text-accent-teal mb-4">pets</span>
               <h3 className="text-2xl font-bold mb-2">No encontramos mascotas con esos filtros</h3>
-              <p className="text-accent-teal mb-6">Intenta ajustar los filtros para ver más opciones</p>
+              <p className="text-accent-teal mb-6">Intenta ajustar los filtros para ver m??s opciones</p>
               <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>
@@ -289,6 +353,14 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             isOpen={showModal}
             onClose={handleCloseModal}
             onAction={handlePetAction}
+          />
+
+          {/* Modal de publicaciÃ³n */}
+          <ReportAdoptionPetModal
+            isOpen={showReportModal}
+            onClose={handleCloseReportModal}
+            onSubmit={handleReportSubmit}
+            onError={handleReportError}
           />
         </div>
       </div>
