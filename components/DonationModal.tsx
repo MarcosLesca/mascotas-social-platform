@@ -5,71 +5,32 @@ interface DonationModalProps {
   campaign: DonationCampaign | null;
   isOpen: boolean;
   onClose: () => void;
-  onDonate?: (amount: number, data: any) => void;
 }
 
-const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose, onDonate }) => {
-  const [selectedAmount, setSelectedAmount] = useState(1000);
-  const [customAmount, setCustomAmount] = useState('');
-  const [donorInfo, setDonorInfo] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    isAnonymous: false
-  });
-  const [isProcessing, setIsProcessing] = useState(false);
+const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose }) => {
+  const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const presetAmounts = [500, 1000, 2500, 5000, 10000];
-
-  const handleAmountSelect = (amount: number) => {
-    setSelectedAmount(amount);
-    setCustomAmount('');
-  };
-
-  const handleCustomAmount = (value: string) => {
-    setCustomAmount(value);
-    setSelectedAmount(0);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsProcessing(true);
-
-    const finalAmount = customAmount ? parseInt(customAmount) : selectedAmount;
-    const donationData = {
-      amount: finalAmount,
-      campaignId: campaign?.id,
-      ...donorInfo
-    };
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    console.log('Donation processed:', donationData);
-    onDonate?.(finalAmount, donationData);
-    setIsProcessing(false);
-    onClose();
+  const handleCopy = (text: string, fieldName: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(fieldName);
+    setTimeout(() => setCopiedField(null), 2000);
   };
 
   if (!isOpen || !campaign) return null;
-
-  const progressPercentage = (campaign.raised / campaign.goal) * 100;
-  const remaining = campaign.goal - campaign.raised;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white dark:bg-background-dark rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
         {/* Header */}
         <div className="relative h-48 overflow-hidden">
-          <img 
-            src={campaign.image} 
+          <img
+            src={campaign.image}
             alt={campaign.title}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-          
-          <button 
+
+          <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-colors"
           >
@@ -78,189 +39,133 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
 
           <div className="absolute bottom-6 left-6 right-6">
             <h2 className="text-3xl font-black text-white mb-2">{campaign.title}</h2>
-            <p className="text-white/90 text-sm">{campaign.description}</p>
           </div>
         </div>
 
-        {/* Campaign Progress */}
+        {/* Campaign Goal */}
         <div className="p-6 bg-accent-teal/5 border-b border-accent-teal/10">
-          <div className="flex justify-between text-sm font-bold mb-3">
-            <span className="text-primary">${campaign.raised.toLocaleString()} recaudados</span>
-            <span className="text-accent-teal">Meta: ${campaign.goal.toLocaleString()}</span>
-          </div>
-          <div className="h-3 w-full bg-accent-teal/10 rounded-full overflow-hidden mb-3">
-            <div 
-              className="h-full bg-primary shadow-[0_0_10px_#13ec5b] transition-all duration-500" 
-              style={{ width: `${Math.min(progressPercentage, 100)}%` }}
-            ></div>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-xs text-accent-teal font-medium">
-              {progressPercentage.toFixed(1)}% completado
-            </span>
-            <span className="text-xs font-bold text-primary">
-              ${remaining.toLocaleString()} restantes
-            </span>
+          <div className="flex items-center justify-center gap-3">
+            <span className="material-symbols-outlined text-2xl text-primary">flag</span>
+            <div className="text-center">
+              <p className="text-xs text-accent-teal font-medium mb-1">Meta de la Campaña</p>
+              <p className="text-2xl font-black text-primary">${campaign.goal.toLocaleString()}</p>
+            </div>
           </div>
         </div>
 
-        {/* Donation Form */}
-        <form onSubmit={handleSubmit} className="p-6 max-h-[50vh] overflow-y-auto">
-          <div className="space-y-6">
-            {/* Amount Selection */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">Selecciona el monto a donar</h3>
-              <div className="grid grid-cols-3 gap-3 mb-4">
-                {presetAmounts.map(amount => (
-                  <button
-                    key={amount}
-                    type="button"
-                    onClick={() => handleAmountSelect(amount)}
-                    className={`py-3 rounded-xl font-bold transition-all ${
-                      selectedAmount === amount && !customAmount
-                        ? 'bg-primary text-background-dark shadow-lg'
-                        : 'bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/10'
-                    }`}
-                  >
-                    ${amount}
-                  </button>
-                ))}
+        {/* Donation Information */}
+        <div className="p-6 max-h-[50vh] overflow-y-auto space-y-6">
+          {/* Pet Information */}
+          <div className="bg-gradient-to-br from-primary/5 to-accent-teal/5 rounded-2xl p-6 border border-accent-teal/10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="material-symbols-outlined text-2xl text-primary">pets</span>
+              <h3 className="text-xl font-black">Información de la Mascota</h3>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <span className="text-xs text-accent-teal font-medium block mb-1">Motivo de la Donación:</span>
+                <p className="text-sm leading-relaxed">{campaign.description}</p>
               </div>
-              
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-accent-teal font-bold">$</span>
-                <input
-                  type="number"
-                  placeholder="Otro monto"
-                  value={customAmount}
-                  onChange={(e) => handleCustomAmount(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
-                />
+              <div className="flex justify-between pt-2 border-t border-accent-teal/10">
+                <span className="text-accent-teal font-medium text-sm">Nombre:</span>
+                <span className="font-bold text-sm">{campaign.petName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-accent-teal font-medium text-sm">Responsable:</span>
+                <span className="font-bold text-sm">{campaign.responsibleName}</span>
               </div>
             </div>
+          </div>
 
-            {/* Donor Information */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">Tus datos</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Nombre *</label>
-                  <input
-                    type="text"
-                    required
-                    value={donorInfo.name}
-                    onChange={(e) => setDonorInfo({...donorInfo, name: e.target.value})}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
-                    placeholder="Tu nombre completo"
-                  />
-                </div>
+          {/* Banking Information */}
+          <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="material-symbols-outlined text-2xl text-primary">account_balance</span>
+              <h3 className="text-xl font-black">Información Bancaria</h3>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-bold text-accent-teal mb-2">Email *</label>
-                    <input
-                      type="email"
-                      required
-                      value={donorInfo.email}
-                      onChange={(e) => setDonorInfo({...donorInfo, email: e.target.value})}
-                      className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
-                      placeholder="tu@email.com"
-                    />
+            <div className="space-y-4">
+              {/* CBU */}
+              <div>
+                <label className="block text-sm font-bold text-accent-teal mb-2">CBU</label>
+                <div className="flex gap-2">
+                  <div className="flex-1 px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl font-mono text-sm">
+                    {campaign.cbu}
                   </div>
-
-                  <div>
-                    <label className="block text-sm font-bold text-accent-teal mb-2">Teléfono</label>
-                    <input
-                      type="tel"
-                      value={donorInfo.phone}
-                      onChange={(e) => setDonorInfo({...donorInfo, phone: e.target.value})}
-                      className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
-                      placeholder="+54 9 11 2345-6789"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Mensaje (opcional)</label>
-                  <textarea
-                    value={donorInfo.message}
-                    onChange={(e) => setDonorInfo({...donorInfo, message: e.target.value})}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
-                    rows={3}
-                    placeholder="Deja un mensaje de apoyo..."
-                  />
-                </div>
-
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={donorInfo.isAnonymous}
-                    onChange={(e) => setDonorInfo({...donorInfo, isAnonymous: e.target.checked})}
-                    className="rounded text-primary focus:ring-primary border-accent-teal/20"
-                  />
-                  <span className="font-medium">Donar de forma anónima</span>
-                </label>
-              </div>
-            </div>
-
-            {/* Payment Method */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">Método de pago</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { icon: 'credit_card', label: 'Tarjeta', method: 'card' },
-                  { icon: 'account_balance', label: 'Transferencia', method: 'transfer' },
-                  { icon: 'payments', label: 'Mercado Pago', method: 'mercadopago' },
-                  { icon: 'currency_bitcoin', label: 'Cripto', method: 'crypto' }
-                ].map(({ icon, label, method }) => (
                   <button
-                    key={method}
-                    type="button"
-                    className="p-4 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl hover:border-primary transition-colors flex items-center gap-3"
+                    onClick={() => handleCopy(campaign.cbu, 'cbu')}
+                    className="px-4 py-3 bg-primary hover:bg-primary/90 text-background-dark rounded-xl font-bold transition-colors flex items-center gap-2"
                   >
-                    <span className="material-symbols-outlined text-xl text-accent-teal">{icon}</span>
-                    <span className="font-medium">{label}</span>
+                    <span className="material-symbols-outlined text-lg">
+                      {copiedField === 'cbu' ? 'check' : 'content_copy'}
+                    </span>
+                    {copiedField === 'cbu' ? 'Copiado' : 'Copiar'}
                   </button>
-                ))}
+                </div>
               </div>
-            </div>
 
-            {/* Security Notice */}
-            <div className="bg-green-50 dark:bg-green-900/20 rounded-2xl p-4 border border-green-200 dark:border-green-800/30">
-              <div className="flex gap-3">
-                <span className="material-symbols-outlined text-green-500 text-xl">security</span>
-                <div>
-                  <h4 className="font-bold text-sm mb-1">Pago Seguro</h4>
-                  <p className="text-xs text-accent-teal">
-                    Tu donación está protegida con encriptación SSL. Recibirás un comprobante por email.
-                  </p>
+              {/* Alias */}
+              <div>
+                <label className="block text-sm font-bold text-accent-teal mb-2">Alias</label>
+                <div className="flex gap-2">
+                  <div className="flex-1 px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl font-mono text-sm">
+                    {campaign.alias}
+                  </div>
+                  <button
+                    onClick={() => handleCopy(campaign.alias, 'alias')}
+                    className="px-4 py-3 bg-primary hover:bg-primary/90 text-background-dark rounded-xl font-bold transition-colors flex items-center gap-2"
+                  >
+                    <span className="material-symbols-outlined text-lg">
+                      {copiedField === 'alias' ? 'check' : 'content_copy'}
+                    </span>
+                    {copiedField === 'alias' ? 'Copiado' : 'Copiar'}
+                  </button>
+                </div>
+              </div>
+
+              {/* Account Holder */}
+              <div>
+                <label className="block text-sm font-bold text-accent-teal mb-2">Titular de la Cuenta</label>
+                <div className="px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl">
+                  {campaign.accountHolder}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Submit Button */}
-          <div className="mt-8 pt-6 border-t border-accent-teal/10">
-            <button
-              type="submit"
-              disabled={isProcessing || (!selectedAmount && !customAmount)}
-              className="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-            >
-              {isProcessing ? (
-                <>
-                  <span className="material-symbols-outlined animate-spin">refresh</span>
-                  Procesando donación...
-                </>
-              ) : (
-                <>
-                  <span className="material-symbols-outlined">volunteer_activism</span>
-                  Donar ${customAmount || selectedAmount}
-                </>
-              )}
-            </button>
+          {/* Contact Information */}
+          <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="material-symbols-outlined text-2xl text-primary">contact_phone</span>
+              <h3 className="text-xl font-black">Información de Contacto</h3>
+            </div>
+            <div className="flex gap-2">
+              <div className="flex-1 px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl">
+                {campaign.contactInfo}
+              </div>
+              <button
+                onClick={() => handleCopy(campaign.contactInfo, 'contact')}
+                className="px-4 py-3 bg-primary hover:bg-primary/90 text-background-dark rounded-xl font-bold transition-colors flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined text-lg">
+                  {copiedField === 'contact' ? 'check' : 'content_copy'}
+                </span>
+                {copiedField === 'contact' ? 'Copiado' : 'Copiar'}
+              </button>
+            </div>
           </div>
-        </form>
+
+          {/* Deadline */}
+          <div className="bg-gradient-to-br from-primary/5 to-accent-teal/5 rounded-2xl p-6 border border-accent-teal/10">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-2xl text-primary">event</span>
+              <div>
+                <h3 className="font-bold text-sm text-accent-teal">Fecha Límite</h3>
+                <p className="text-lg font-black">{campaign.deadline}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
