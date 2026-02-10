@@ -88,19 +88,31 @@ export const MOCK_CAMPAIGNS: DonationCampaign[] = [
     id: 'c1',
     title: 'Cirugía para Max: Recuperación de Pata',
     description: 'Cirugía ortopédica especializada urgente para un cruce de golden retriever rescatado.',
-    raised: 1250,
     goal: 2000,
     image: 'https://images.unsplash.com/photo-1551730459-92db2a308d6a?q=80&w=800&auto=format&fit=crop',
     urgency: true,
-    type: 'medical'
+    type: 'medical',
+    petName: 'Max',
+    cbu: '0170123420000012345678',
+    alias: 'max.cirugia.2026',
+    accountHolder: 'María González',
+    responsibleName: 'María González',
+    contactInfo: '+54 9 11 2345-6789 | maria.gonzalez@email.com',
+    deadline: '28 de Febrero, 2026'
   },
   {
     id: 'c2',
     title: 'Rescate: 15 Cachorros Encontrados',
     description: 'Vacunación inmediata, desparasitación y nutrición especializada necesaria.',
-    raised: 450,
     goal: 800,
     image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop',
-    type: 'medical'
+    type: 'medical',
+    petName: 'Camada Rescatada',
+    cbu: '0340567890000098765432',
+    alias: 'rescate.cachorros.2026',
+    accountHolder: 'Fundación Patitas Felices',
+    responsibleName: 'Carlos Rodríguez',
+    contactInfo: '+54 9 11 9876-5432 | fundacion@patitasfelices.org',
+    deadline: '15 de Marzo, 2026'
   }
 ];

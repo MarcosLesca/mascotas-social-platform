@@ -4,7 +4,8 @@ import Navbar from './components/Navbar';
 import Home from './views/Home';
 import LostPets from './views/LostPets';
 import Adoption from './views/Adoption';
-import AIPetAssistant from './views/AIPetAssistant';
+import AboutUs from './views/AboutUs';
+import Donations from './views/Donations';
 import FAQSection from './components/FAQSection';
 import ToastContainer from './components/Toast';
 import { AppProvider, useApp } from './context/AppContext';
@@ -40,17 +41,9 @@ const AppContent: React.FC = () => {
       case View.HOME: return <Home onToast={addToast} />;
       case View.LOST_PETS: return <LostPets onToast={addToast} />;
       case View.ADOPTION: return <Adoption onToast={addToast} />;
-      case View.AI_ASSISTANT: return <AIPetAssistant onToast={addToast} />;
+      case View.AI_ASSISTANT: return <AboutUs />;
       case View.FAQ: return <FAQSection />;
-      case View.DONATIONS: return (
-        <div className="flex items-center justify-center min-h-[60vh] text-center p-10">
-          <div className="max-w-md">
-            <h2 className="text-3xl font-black mb-4">Donaciones y Solidaridad</h2>
-            <p className="text-accent-teal leading-relaxed">Estamos terminando de configurar la plataforma de pagos seguros. ¡Vuelve pronto para ayudar a nuestros amigos!</p>
-            <button onClick={() => setCurrentView(View.HOME)} className="mt-8 bg-primary text-background-dark px-10 py-4 rounded-2xl font-black shadow-lg">VOLVER AL INICIO</button>
-          </div>
-        </div>
-      );
+      case View.DONATIONS: return <Donations />;
       default: return <Home />;
     }
   };
@@ -58,7 +51,7 @@ const AppContent: React.FC = () => {
   return (
     <div className="layout-container flex flex-col min-h-screen selection:bg-primary selection:text-background-dark">
       <Navbar currentView={currentView} setView={setCurrentView} />
-      
+
       <main className="flex-1">
         {renderView()}
       </main>
@@ -66,12 +59,15 @@ const AppContent: React.FC = () => {
       <footer className="border-t border-accent-teal/10 py-12 px-6 lg:px-20 mt-auto bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-4">
+            <div className="bg-primary p-2 rounded-lg text-white">
+              <span className="material-symbols-outlined block text-2xl">pets</span>
+            </div>
             <div>
               <h2 className="text-xl font-black">PetWelfare</h2>
               <p className="text-xs text-accent-teal font-medium tracking-tight">Comunidad de Bienestar Animal © 2024</p>
             </div>
           </div>
-          
+
           <nav className="flex flex-wrap justify-center gap-8 text-sm font-bold text-accent-teal">
             <button onClick={() => setCurrentView(View.FAQ)} className="hover:text-primary transition-colors">Preguntas Frecuentes</button>
             <a href="#" className="hover:text-primary transition-colors">Política de Privacidad</a>
@@ -81,53 +77,61 @@ const AppContent: React.FC = () => {
             <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link>
           </nav>
 
-          <div className="flex gap-4 text-xs text-accent-teal font-medium">
-            <span>Construido con cariño para las mascotas y sus familias.</span>
+          <div className="flex gap-4">
+            {['public', 'share', 'forum'].map(icon => (
+              <button key={icon} className="size-10 rounded-xl bg-accent-teal/10 flex items-center justify-center hover:bg-primary transition-all">
+                <span className="material-symbols-outlined text-lg">{icon}</span>
+              </button>
+            ))}
           </div>
         </div>
       </footer>
 
       {/* Mobile Bottom Nav */}
       <div className="lg:hidden sticky bottom-0 z-50 bg-background-light dark:bg-background-dark border-t border-accent-teal/10 flex items-center justify-around py-4 px-2 backdrop-blur-md">
-        <button 
-          onClick={() => setCurrentView(View.HOME)} 
-          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
+        <button
+          onClick={() => setCurrentView(View.HOME)}
+          className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.HOME ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span>Inicio</span>
+          <span className="material-symbols-outlined">home</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">Inicio</span>
         </button>
-        <button 
-          onClick={() => setCurrentView(View.LOST_PETS)} 
-          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
+        <button
+          onClick={() => setCurrentView(View.LOST_PETS)}
+          className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.LOST_PETS ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span>Mascotas</span>
+          <span className="material-symbols-outlined">map</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">Mascotas</span>
         </button>
-        <button 
+        <button
           onClick={() => {
             addToast('Función de reporte próximamente', 'info');
           }}
-          className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05] text-[10px] font-bold uppercase tracking-tighter"
+          className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05]"
         >
-          <span>Reportar</span>
+          <span className="material-symbols-outlined font-bold text-3xl">add</span>
         </button>
-        <button 
-          onClick={() => setCurrentView(View.FAQ)} 
-          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
+        <button
+          onClick={() => setCurrentView(View.FAQ)}
+          className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.FAQ ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span>Ayuda</span>
+          <span className="material-symbols-outlined">help</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">Ayuda</span>
         </button>
-        <button 
-          onClick={() => setCurrentView(View.AI_ASSISTANT)} 
-          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
+        <button
+          onClick={() => setCurrentView(View.AI_ASSISTANT)}
+          className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.AI_ASSISTANT ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span>AI</span>
+          <span className="material-symbols-outlined">info</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">Nosotros</span>
         </button>
       </div>
 

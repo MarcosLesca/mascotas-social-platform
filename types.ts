@@ -1,20 +1,20 @@
 export enum View {
-  HOME = 'home',
-  LOST_PETS = 'lost_pets',
-  ADOPTION = 'adoption',
-  DONATIONS = 'donations',
-  AI_ASSISTANT = 'ai_assistant',
-  FAQ = 'faq'
+  HOME = "home",
+  LOST_PETS = "lost_pets",
+  ADOPTION = "adoption",
+  DONATIONS = "donations",
+  AI_ASSISTANT = "ai_assistant",
+  FAQ = "faq",
 }
 
 export interface Pet {
   id: string;
   name: string;
   breed: string;
-  species: 'dog' | 'cat' | 'bird' | 'other';
-  gender: 'male' | 'female';
+  species: "dog" | "cat" | "bird" | "other";
+  gender: "male" | "female";
   age?: string;
-  status: 'lost' | 'found' | 'adoption';
+  status: "lost" | "found" | "adoption";
   urgency?: boolean;
   timeLabel?: string;
   location: string;
@@ -28,17 +28,17 @@ export interface Pet {
   contactEmail?: string;
 }
 
-export type LostPetStatus = 'pending' | 'approved' | 'rejected';
+export type LostPetStatus = "pending" | "approved" | "rejected";
 
 export interface LostPetReportRow {
   id: string;
   status: LostPetStatus;
   pet_name: string;
-  species: 'dog' | 'cat' | 'bird' | 'other';
+  species: "dog" | "cat" | "bird" | "other";
   breed: string;
-  gender: 'male' | 'female';
+  gender: "male" | "female";
   age: string | null;
-  size: 'small' | 'medium' | 'large' | null;
+  size: "small" | "medium" | "large" | null;
   color: string;
   distinctive_features: string | null;
   last_seen_date: string;
@@ -57,17 +57,17 @@ export interface LostPetReportRow {
   rejection_reason: string | null;
 }
 
-export type AdoptionPetStatus = 'pending' | 'approved' | 'rejected';
+export type AdoptionPetStatus = "pending" | "approved" | "rejected";
 
 export interface AdoptionPetReportRow {
   id: string;
   status: AdoptionPetStatus;
   pet_name: string;
-  species: 'dog' | 'cat' | 'bird' | 'other';
+  species: "dog" | "cat" | "bird" | "other";
   breed: string;
-  gender: 'male' | 'female';
+  gender: "male" | "female";
   age: string | null;
-  size: 'small' | 'medium' | 'large' | null;
+  size: "small" | "medium" | "large" | null;
   color: string;
   description: string | null;
   location: string;
@@ -87,14 +87,21 @@ export interface DonationCampaign {
   id: string;
   title: string;
   description: string;
-  raised: number;
   goal: number;
   image: string;
   urgency?: boolean;
-  type: 'medical' | 'food' | 'infrastructure';
+  type: "medical" | "food" | "infrastructure";
+  // Campos para donaciones directas
+  petName: string;
+  cbu: string; // CBU bancario
+  alias: string; // Alias bancario
+  accountHolder: string; // Titular de la cuenta
+  responsibleName: string; // Responsable de la mascota
+  contactInfo: string; // Información de contacto
+  deadline: string; // Fecha límite de donación
 }
 
 export interface Message {
-  role: 'user' | 'model';
+  role: "user" | "model";
   content: string;
 }
