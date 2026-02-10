@@ -26,21 +26,6 @@ const ToastNotification: React.FC<ToastProps> = ({ toast, onRemove }) => {
     return () => clearTimeout(timer);
   }, [toast.id, toast.duration, onRemove]);
 
-  const getIcon = () => {
-    switch (toast.type) {
-      case 'success':
-        return 'check_circle';
-      case 'error':
-        return 'error';
-      case 'warning':
-        return 'warning';
-      case 'info':
-        return 'info';
-      default:
-        return 'info';
-    }
-  };
-
   const getColors = () => {
     switch (toast.type) {
       case 'success':
@@ -64,9 +49,6 @@ const ToastNotification: React.FC<ToastProps> = ({ toast, onRemove }) => {
         ${getColors()} ${isVisible ? 'toast-enter' : 'toast-exit'}
       `}
     >
-      <span className="material-symbols-outlined text-xl flex-shrink-0">
-        {getIcon()}
-      </span>
       <p className="font-medium text-sm leading-tight flex-1">
         {toast.message}
       </p>
@@ -75,9 +57,9 @@ const ToastNotification: React.FC<ToastProps> = ({ toast, onRemove }) => {
           setIsVisible(false);
           setTimeout(() => onRemove(toast.id), 300);
         }}
-        className="p-1 rounded-full hover:bg-white/20 transition-colors"
+        className="px-2 py-1 rounded-full hover:bg-white/20 transition-colors text-xs font-bold"
       >
-        <span className="material-symbols-outlined text-sm">close</span>
+        X
       </button>
     </div>
   );

@@ -39,9 +39,6 @@ const AIPetAssistant: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto h-[70vh] flex flex-col bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/10 overflow-hidden shadow-2xl">
       <div className="p-6 bg-primary text-background-dark flex items-center gap-4">
-        <div className="size-12 rounded-full bg-white flex items-center justify-center">
-          <span className="material-symbols-outlined text-3xl text-primary animate-pulse">smart_toy</span>
-        </div>
         <div>
           <h2 className="text-xl font-black">Asistente Care+</h2>
           <p className="text-xs font-bold opacity-70">Impulsado por Gemini AI</p>
@@ -90,9 +87,9 @@ const AIPetAssistant: React.FC = () => {
           <button 
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-3 bg-primary text-background-dark rounded-xl shadow-md hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+            className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-primary text-background-dark rounded-xl shadow-md hover:scale-105 active:scale-95 transition-all disabled:opacity-50 text-sm font-bold"
           >
-            <span className="material-symbols-outlined">send</span>
+            Enviar
           </button>
         </div>
         <p className="mt-3 text-[10px] text-center text-accent-teal font-medium uppercase tracking-widest opacity-60">

@@ -165,9 +165,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
             <h2 className="text-2xl font-black">Reportar Mascota Perdida</h2>
             <button 
               onClick={onClose}
-              className="p-2 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+              className="px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-sm font-bold transition-colors"
             >
-              <span className="material-symbols-outlined text-xl">close</span>
+              Cerrar
             </button>
           </div>
           
@@ -209,7 +209,6 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               role="alert"
               className="flex items-center gap-2 p-3 rounded-xl bg-urgent-red/10 dark:bg-urgent-red/20 border border-urgent-red/30 text-urgent-red text-sm"
             >
-              <span className="material-symbols-outlined text-xl flex-shrink-0">error</span>
               <span>{submitError}</span>
             </div>
           )}
@@ -238,19 +237,18 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     <button
                       type="button"
                       onClick={clearImage}
-                      className="absolute -top-2 -right-2 p-1.5 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90"
+                      className="absolute -top-2 -right-2 px-2 py-1 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90 text-xs font-bold"
                     >
-                      <span className="material-symbols-outlined text-lg">close</span>
+                      X
                     </button>
                   </div>
                 ) : (
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors"
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-accent-teal"
                   >
-                    <span className="material-symbols-outlined text-4xl text-accent-teal">add_photo_alternate</span>
-                    <span className="text-sm font-bold text-accent-teal">Subir foto</span>
+                    Subir foto
                   </button>
                 )}
                 <p className="mt-1 text-xs text-accent-teal">JPEG, PNG o WebP. Máx. {MAX_MB} MB.</p>
@@ -486,7 +484,6 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
 
               <div className="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-6 border border-orange-200 dark:border-orange-800/30">
                 <div className="flex gap-3">
-                  <span className="material-symbols-outlined text-orange-500 text-2xl">info</span>
                   <div>
                     <h4 className="font-bold mb-2">Importante</h4>
                     <ul className="text-sm text-accent-teal space-y-1">

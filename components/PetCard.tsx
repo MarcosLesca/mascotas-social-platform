@@ -72,15 +72,13 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
               e.stopPropagation();
               setIsFavorited(!isFavorited);
             }}
-            className={`p-2 backdrop-blur-md rounded-full transition-all ${
+            className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
               isFavorited 
                 ? 'bg-white/90 text-red-500' 
-                : 'bg-white/20 hover:bg-white/40 text-white'
+                : 'bg-white/40 text-slate-800 hover:bg-white/60'
             }`}
           >
-            <span className="material-symbols-outlined text-xl">
-              {isFavorited ? 'favorite' : 'favorite_border'}
-            </span>
+            {isFavorited ? 'En favoritos' : 'Favorito'}
           </button>
           
           <div className="relative">
@@ -89,19 +87,19 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                 e.stopPropagation();
                 setShowShareMenu(!showShareMenu);
               }}
-              className="p-2 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-colors"
+              className="px-3 py-1 rounded-full bg-white/40 text-slate-800 text-xs font-bold hover:bg-white/60 transition-colors"
             >
-              <span className="material-symbols-outlined text-xl">share</span>
+              Compartir
             </button>
             
             {showShareMenu && (
-              <div className="absolute top-12 right-0 bg-white dark:bg-background-dark rounded-xl shadow-xl border border-accent-teal/10 p-2 min-w-[160px] z-50">
+              <div className="absolute top-10 right-0 bg-white dark:bg-background-dark rounded-xl shadow-xl border border-accent-teal/10 p-2 min-w-[180px] z-50">
                 {[
-                  { icon: 'public', label: 'Copiar link', action: 'copy_link' },
-                  { icon: 'alternate_email', label: 'WhatsApp', action: 'whatsapp' },
-                  { icon: 'sms', label: 'SMS', action: 'sms' },
-                  { icon: 'mail', label: 'Email', action: 'email' }
-                ].map(({ icon, label, action }) => (
+                  { label: 'Copiar link', action: 'copy_link' },
+                  { label: 'Compartir por WhatsApp', action: 'whatsapp' },
+                  { label: 'Compartir por SMS', action: 'sms' },
+                  { label: 'Compartir por Email', action: 'email' }
+                ].map(({ label, action }) => (
                   <button
                     key={action}
                     onClick={(e) => {
@@ -109,10 +107,9 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                       handleShare(action);
                       setShowShareMenu(false);
                     }}
-                    className="w-full flex items-center gap-3 p-3 hover:bg-accent-teal/5 rounded-lg text-left transition-colors"
+                    className="w-full flex items-center gap-3 p-3 hover:bg-accent-teal/5 rounded-lg text-left transition-colors text-sm font-medium"
                   >
-                    <span className="material-symbols-outlined text-lg text-accent-teal">{icon}</span>
-                    <span className="text-sm font-medium">{label}</span>
+                    {label}
                   </button>
                 ))}
               </div>
@@ -133,7 +130,6 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         </div>
 
         <div className="flex items-start gap-2 mb-6">
-          <span className="material-symbols-outlined text-primary text-lg mt-0.5">location_on</span>
           <div>
             <p className="text-sm font-bold">{isLost ? `Visto: ${pet.location}` : pet.location}</p>
             {pet.distance && <p className="text-xs text-accent-teal">{pet.distance} de distancia</p>}
@@ -145,14 +141,12 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
             onClick={() => onAction?.(pet, 'view')}
             className="flex-1 bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all btn-primary"
           >
-            <span className="material-symbols-outlined text-xl">info</span>
             Ver Detalles
           </button>
           <button 
             onClick={() => onAction?.(pet, isLost ? 'seen' : 'adopt')}
             className="flex-1 bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm btn-primary"
           >
-            <span className="material-symbols-outlined text-xl">{isLost ? 'visibility' : 'favorite'}</span>
             {isLost ? 'La vi' : 'Adoptar'}
           </button>
         </div>
@@ -168,7 +162,6 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                   rel="noopener noreferrer"
                   className="flex-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
                 >
-                  <span className="material-symbols-outlined text-sm">whatsapp</span>
                   WhatsApp
                 </a>
               )}
@@ -177,7 +170,6 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                   href={mailHref}
                   className="flex-1 bg-accent-teal hover:bg-primary text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
                 >
-                  <span className="material-symbols-outlined text-sm">mail</span>
                   Email
                 </a>
               )}

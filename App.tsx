@@ -45,7 +45,6 @@ const AppContent: React.FC = () => {
       case View.DONATIONS: return (
         <div className="flex items-center justify-center min-h-[60vh] text-center p-10">
           <div className="max-w-md">
-            <span className="material-symbols-outlined text-7xl text-primary mb-6 animate-pulse">volunteer_activism</span>
             <h2 className="text-3xl font-black mb-4">Donaciones y Solidaridad</h2>
             <p className="text-accent-teal leading-relaxed">Estamos terminando de configurar la plataforma de pagos seguros. ¡Vuelve pronto para ayudar a nuestros amigos!</p>
             <button onClick={() => setCurrentView(View.HOME)} className="mt-8 bg-primary text-background-dark px-10 py-4 rounded-2xl font-black shadow-lg">VOLVER AL INICIO</button>
@@ -67,9 +66,6 @@ const AppContent: React.FC = () => {
       <footer className="border-t border-accent-teal/10 py-12 px-6 lg:px-20 mt-auto bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-4">
-            <div className="bg-primary p-2 rounded-lg text-white">
-              <span className="material-symbols-outlined block text-2xl">pets</span>
-            </div>
             <div>
               <h2 className="text-xl font-black">PetWelfare</h2>
               <p className="text-xs text-accent-teal font-medium tracking-tight">Comunidad de Bienestar Animal © 2024</p>
@@ -85,12 +81,8 @@ const AppContent: React.FC = () => {
             <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link>
           </nav>
 
-          <div className="flex gap-4">
-            {['public', 'share', 'forum'].map(icon => (
-              <button key={icon} className="size-10 rounded-xl bg-accent-teal/10 flex items-center justify-center hover:bg-primary transition-all">
-                <span className="material-symbols-outlined text-lg">{icon}</span>
-              </button>
-            ))}
+          <div className="flex gap-4 text-xs text-accent-teal font-medium">
+            <span>Construido con cariño para las mascotas y sus familias.</span>
           </div>
         </div>
       </footer>
@@ -99,47 +91,43 @@ const AppContent: React.FC = () => {
       <div className="lg:hidden sticky bottom-0 z-50 bg-background-light dark:bg-background-dark border-t border-accent-teal/10 flex items-center justify-around py-4 px-2 backdrop-blur-md">
         <button 
           onClick={() => setCurrentView(View.HOME)} 
-          className={`flex flex-col items-center gap-1 transition-colors ${
+          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
             currentView === View.HOME ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span className="material-symbols-outlined">home</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Inicio</span>
+          <span>Inicio</span>
         </button>
         <button 
           onClick={() => setCurrentView(View.LOST_PETS)} 
-          className={`flex flex-col items-center gap-1 transition-colors ${
+          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
             currentView === View.LOST_PETS ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span className="material-symbols-outlined">map</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Mascotas</span>
+          <span>Mascotas</span>
         </button>
         <button 
           onClick={() => {
             addToast('Función de reporte próximamente', 'info');
           }}
-          className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05]"
+          className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05] text-[10px] font-bold uppercase tracking-tighter"
         >
-          <span className="material-symbols-outlined font-bold text-3xl">add</span>
+          <span>Reportar</span>
         </button>
         <button 
           onClick={() => setCurrentView(View.FAQ)} 
-          className={`flex flex-col items-center gap-1 transition-colors ${
+          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
             currentView === View.FAQ ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span className="material-symbols-outlined">help</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Ayuda</span>
+          <span>Ayuda</span>
         </button>
         <button 
           onClick={() => setCurrentView(View.AI_ASSISTANT)} 
-          className={`flex flex-col items-center gap-1 transition-colors ${
+          className={`flex flex-col items-center gap-1 transition-colors text-[10px] font-bold uppercase tracking-tighter ${
             currentView === View.AI_ASSISTANT ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
           }`}
         >
-          <span className="material-symbols-outlined">smart_toy</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">AI</span>
+          <span>AI</span>
         </button>
       </div>
 

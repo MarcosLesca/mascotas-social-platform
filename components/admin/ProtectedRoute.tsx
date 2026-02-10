@@ -13,10 +13,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark">
-        <div className="animate-pulse flex flex-col items-center gap-4">
-          <span className="material-symbols-outlined text-5xl text-primary">pets</span>
-          <p className="text-accent-teal font-medium">Verificando sesión…</p>
-        </div>
+        <p className="text-accent-teal font-medium">Verificando sesión…</p>
       </div>
     );
   }

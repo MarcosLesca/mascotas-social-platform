@@ -165,12 +165,12 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
         {/* Header */}
         <div className="bg-primary text-background-dark p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-black">Publicar en AdopciÃ³n</h2>
+            <h2 className="text-2xl font-black">Publicar en Adopción</h2>
             <button
               onClick={onClose}
-              className="p-2 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+              className="px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-sm font-bold transition-colors"
             >
-              <span className="material-symbols-outlined text-xl">close</span>
+              Cerrar
             </button>
           </div>
 
@@ -215,14 +215,13 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               role="alert"
               className="flex items-center gap-2 p-3 rounded-xl bg-urgent-red/10 dark:bg-urgent-red/20 border border-urgent-red/30 text-urgent-red text-sm"
             >
-              <span className="material-symbols-outlined text-xl flex-shrink-0">error</span>
               <span>{submitError}</span>
             </div>
           )}
 
           {currentStep === 1 && (
             <div className="space-y-6">
-              <h3 className="text-xl font-bold mb-4">InformaciÃ³n de la Mascota</h3>
+              <h3 className="text-xl font-bold mb-4">Información de la Mascota</h3>
 
               <div>
                 <label className="block text-sm font-bold text-accent-teal mb-2">
@@ -246,21 +245,18 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     <button
                       type="button"
                       onClick={clearImage}
-                      className="absolute -top-2 -right-2 p-1.5 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90"
+                      className="absolute -top-2 -right-2 px-2 py-1 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90 text-xs font-bold"
                     >
-                      <span className="material-symbols-outlined text-lg">close</span>
+                      X
                     </button>
                   </div>
                 ) : (
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors"
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-accent-teal"
                   >
-                    <span className="material-symbols-outlined text-4xl text-accent-teal">
-                      add_photo_alternate
-                    </span>
-                    <span className="text-sm font-bold text-accent-teal">Subir foto</span>
+                    Subir foto
                   </button>
                 )}
                 <p className="mt-1 text-xs text-accent-teal">
@@ -315,7 +311,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
                 <div>
                   <label htmlFor="adopt-gender" className="block text-sm font-bold text-accent-teal mb-2">
-                    GÃ©nero *
+                    Género *
                   </label>
                   <select
                     id="adopt-gender"
@@ -341,7 +337,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
                 <div>
                   <label htmlFor="adopt-size" className="block text-sm font-bold text-accent-teal mb-2">
-                    TamaÃ±o
+                    Tamaño
                   </label>
                   <select
                     id="adopt-size"
@@ -349,7 +345,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     onChange={(e) => handleInputChange('size', e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
                   >
-                    <option value="small">PequeÃ±o</option>
+                    <option value="small">Pequeño</option>
                     <option value="medium">Mediano</option>
                     <option value="large">Grande</option>
                   </select>
@@ -372,11 +368,11 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
           {currentStep === 2 && (
             <div className="space-y-6">
-              <h3 className="text-xl font-bold mb-4">Detalles de AdopciÃ³n</h3>
+              <h3 className="text-xl font-bold mb-4">Detalles de Adopción</h3>
 
               <div>
                 <label htmlFor="adopt-location" className="block text-sm font-bold text-accent-teal mb-2">
-                  UbicaciÃ³n *
+                  Ubicación *
                 </label>
                 <input
                   id="adopt-location"
@@ -385,13 +381,13 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
                   className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
-                  placeholder="Ej: CÃ³rdoba, Barrio Nueva CÃ³rdoba"
+                  placeholder="Ej: Córdoba, Barrio Nueva Córdoba"
                 />
               </div>
 
               <div>
                 <label htmlFor="adopt-description" className="block text-sm font-bold text-accent-teal mb-2">
-                  DescripciÃ³n
+                  Descripción
                 </label>
                 <textarea
                   id="adopt-description"
@@ -404,7 +400,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               </div>
 
               <div>
-                <p className="text-sm font-bold text-accent-teal mb-3">Estado MÃ©dico</p>
+                <p className="text-sm font-bold text-accent-teal mb-3">Estado Médico</p>
                 <div className="flex flex-wrap gap-3">
                   {MED_STATUS_OPTIONS.map(option => (
                     <label key={option} className="flex items-center gap-2 cursor-pointer">
@@ -422,7 +418,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
               <div>
                 <label htmlFor="adopt-requirements" className="block text-sm font-bold text-accent-teal mb-2">
-                  Requisitos de adopciÃ³n
+                  Requisitos de adopción
                 </label>
                 <textarea
                   id="adopt-requirements"
@@ -438,7 +434,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
           {currentStep === 3 && (
             <div className="space-y-6">
-              <h3 className="text-xl font-bold mb-4">InformaciÃ³n de Contacto</h3>
+              <h3 className="text-xl font-bold mb-4">Información de Contacto</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -479,13 +475,12 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
               <div className="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-6 border border-orange-200 dark:border-orange-800/30">
                 <div className="flex gap-3">
-                  <span className="material-symbols-outlined text-orange-500 text-2xl">info</span>
                   <div>
                     <h4 className="font-bold mb-2">Importante</h4>
                     <ul className="text-sm text-accent-teal space-y-1">
-                      <li>â€¢ Tu informaciÃ³n serÃ¡ visible en la publicaciÃ³n aprobada</li>
-                      <li>â€¢ Los interesados te contactarÃ¡n directamente</li>
-                      <li>â€¢ Podemos pausar o eliminar la publicaciÃ³n si lo solicitÃ¡s</li>
+                      <li>• Tu información será visible en la publicación aprobada</li>
+                      <li>• Los interesados te contactarán directamente</li>
+                      <li>• Podemos pausar o eliminar la publicación si lo solicitás</li>
                     </ul>
                   </div>
                 </div>

@@ -182,9 +182,6 @@ const FAQSection: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in">
-        <div className="mb-6">
-          <span className="material-symbols-outlined text-6xl text-primary mb-4">help</span>
-        </div>
         <h1 className="text-4xl md:text-5xl font-black mb-4">
           Preguntas <span className="text-primary">Frecuentes</span>
         </h1>
@@ -205,18 +202,15 @@ const FAQSection: React.FC = () => {
               onClick={() => toggleExpanded(item.id)}
               className="w-full px-6 py-5 text-left flex items-center gap-4 hover:bg-accent-teal/5 transition-colors"
             >
-              <span className="material-symbols-outlined text-primary text-xl flex-shrink-0">
-                {item.icon}
-              </span>
               <div className="flex-1">
                 <h3 className="font-bold text-lg">{item.question}</h3>
               </div>
               <span 
-                className={`material-symbols-outlined text-accent-teal transition-transform ${
+                className={`text-accent-teal transition-transform text-xl font-bold ${
                   expandedItems.has(item.id) ? 'rotate-180' : ''
                 }`}
               >
-                expand_more
+                ▾
               </span>
             </button>
             
@@ -235,9 +229,8 @@ const FAQSection: React.FC = () => {
       <div className="mt-16 text-center">
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto hover:opacity-90 transition-all"
+          className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold mx-auto hover:opacity-90 transition-all"
         >
-          <span className="material-symbols-outlined">keyboard_arrow_up</span>
           Volver al Principio
         </button>
       </div>

@@ -71,9 +71,9 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
           
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-colors"
+            className="absolute top-4 right-4 px-3 py-1 bg-white/80 hover:bg-white text-slate-800 rounded-full text-xs font-bold transition-colors"
           >
-            <span className="material-symbols-outlined text-xl">close</span>
+            Cerrar
           </button>
 
           <div className="absolute bottom-6 left-6 right-6">
@@ -209,18 +209,17 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
               <h3 className="text-lg font-bold mb-4">Método de pago</h3>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { icon: 'credit_card', label: 'Tarjeta', method: 'card' },
-                  { icon: 'account_balance', label: 'Transferencia', method: 'transfer' },
-                  { icon: 'payments', label: 'Mercado Pago', method: 'mercadopago' },
-                  { icon: 'currency_bitcoin', label: 'Cripto', method: 'crypto' }
-                ].map(({ icon, label, method }) => (
+                  { label: 'Tarjeta', method: 'card' },
+                  { label: 'Transferencia', method: 'transfer' },
+                  { label: 'Mercado Pago', method: 'mercadopago' },
+                  { label: 'Cripto', method: 'crypto' }
+                ].map(({ label, method }) => (
                   <button
                     key={method}
                     type="button"
-                    className="p-4 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl hover:border-primary transition-colors flex items-center gap-3"
+                    className="p-4 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl hover:border-primary transition-colors flex items-center justify-center font-medium text-sm"
                   >
-                    <span className="material-symbols-outlined text-xl text-accent-teal">{icon}</span>
-                    <span className="font-medium">{label}</span>
+                    {label}
                   </button>
                 ))}
               </div>
@@ -229,7 +228,6 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
             {/* Security Notice */}
             <div className="bg-green-50 dark:bg-green-900/20 rounded-2xl p-4 border border-green-200 dark:border-green-800/30">
               <div className="flex gap-3">
-                <span className="material-symbols-outlined text-green-500 text-xl">security</span>
                 <div>
                   <h4 className="font-bold text-sm mb-1">Pago Seguro</h4>
                   <p className="text-xs text-accent-teal">
@@ -249,12 +247,10 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
             >
               {isProcessing ? (
                 <>
-                  <span className="material-symbols-outlined animate-spin">refresh</span>
                   Procesando donación...
                 </>
               ) : (
                 <>
-                  <span className="material-symbols-outlined">volunteer_activism</span>
                   Donar ${customAmount || selectedAmount}
                 </>
               )}

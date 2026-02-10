@@ -234,23 +234,23 @@ export default function HeroZoom() {
             comunidad.
           </p>
           
-          {/* Botones de acción */}
+          {/* Botones de acción estilo "patitas" */}
           <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center items-center px-4 pointer-events-auto">
             <button
               onClick={() => setCurrentView('lost_pets')}
-              className="px-6 py-3 bg-red-200 hover:bg-red-300 text-black font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[200px]"
+              className="px-8 py-4 bg-red-200 hover:bg-red-300 text-black font-semibold rounded-full transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[220px] border-2 border-red-300"
             >
               Publicar Mascota Perdida
             </button>
             <button
               onClick={() => setCurrentView('adoption')}
-              className="px-6 py-3 bg-green-200 hover:bg-green-300 text-black font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[200px]"
+              className="px-8 py-4 bg-green-200 hover:bg-green-300 text-black font-semibold rounded-full transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[220px] border-2 border-green-300"
             >
               Adoptar una Mascota
             </button>
             <button
               onClick={() => setCurrentView('donations')}
-              className="px-6 py-3 bg-blue-200 hover:bg-blue-300 text-black font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[200px]"
+              className="px-8 py-4 bg-blue-200 hover:bg-blue-300 text-black font-semibold rounded-full transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[220px] border-2 border-blue-300"
             >
               Ayudar/Donar
             </button>

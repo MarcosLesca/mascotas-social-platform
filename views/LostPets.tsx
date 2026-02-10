@@ -185,11 +185,10 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       </div>
 
       <div className="relative">
-        <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-accent-teal text-2xl">search</span>
         <input 
           type="text" 
           placeholder="Busca por raza, color o zona..."
-          className="w-full pl-14 pr-6 py-5 bg-white dark:bg-white/5 border-none rounded-2xl focus:ring-2 focus:ring-primary shadow-sm text-lg"
+          className="w-full px-6 pr-6 py-5 bg-white dark:bg-white/5 border-none rounded-2xl focus:ring-2 focus:ring-primary shadow-sm text-lg"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -211,9 +210,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                 : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
             }`}
           >
-            <span className="material-symbols-outlined text-sm">pets</span>
             {filters.species || 'Especie'}
-            {filters.species && <span className="material-symbols-outlined text-sm">close</span>}
+            {filters.species && <span className="text-xs underline">Limpiar</span>}
           </button>
         </div>
 
@@ -232,9 +230,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                 : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
             }`}
           >
-            <span className="material-symbols-outlined text-sm">schedule</span>
             {filters.timeRange || 'Fecha'}
-            {filters.timeRange && <span className="material-symbols-outlined text-sm">close</span>}
+            {filters.timeRange && <span className="text-xs underline">Limpiar</span>}
           </button>
         </div>
 
@@ -253,9 +250,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                 : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
             }`}
           >
-            <span className="material-symbols-outlined text-sm">location_on</span>
             {filters.location || 'Ubicación'}
-            {filters.location && <span className="material-symbols-outlined text-sm">close</span>}
+            {filters.location && <span className="text-xs underline">Limpiar</span>}
           </button>
         </div>
 
@@ -268,27 +264,24 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
           }`}
         >
-          <span className="material-symbols-outlined text-sm">priority_high</span>
           Urgente
-          {filters.urgency && <span className="material-symbols-outlined text-sm">close</span>}
+          {filters.urgency && <span className="text-xs underline">Quitar</span>}
         </button>
 
         {/* Limpiar filtros */}
         {hasActiveFilters && (
           <button 
             onClick={clearFilters}
-            className="ml-auto text-primary text-sm font-bold hover:underline flex items-center gap-2"
+            className="ml-auto text-primary text-sm font-bold hover:underline"
           >
-            <span className="material-symbols-outlined text-sm">clear_all</span>
             Limpiar filtros
           </button>
         )}
       </div>
 
-      {/* Vista de Mapa (placeholder) */}
+      {/* Vista de Mapa (placeholder sin iconos) */}
       {viewMode === 'map' && (
         <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-8 text-center min-h-[500px] flex flex-col items-center justify-center">
-          <span className="material-symbols-outlined text-6xl text-accent-teal mb-4">map</span>
           <h3 className="text-2xl font-bold mb-2">Vista de Mapa</h3>
           <p className="text-accent-teal mb-6">Mapa interactivo con ubicaciones de mascotas perdidas</p>
           <p className="text-sm text-accent-teal/80">Encontramos {filteredPets.length} mascotas en tu zona</p>
@@ -300,7 +293,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         <>
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
-              <span className="material-symbols-outlined text-5xl text-primary animate-pulse">pets</span>
               <p className="text-accent-teal font-medium">Cargando mascotas perdidas…</p>
             </div>
           ) : (
@@ -317,9 +309,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
           {/* Report Placeholder Card */}
           <div className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[400px]"
                onClick={handleOpenReportModal}>
-            <div className="size-20 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-              <span className="material-symbols-outlined text-4xl font-bold">add</span>
-            </div>
             <h3 className="text-xl font-bold mb-3">¿Has perdido a alguien?</h3>
             <p className="text-sm text-accent-teal mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
             <button className="bg-primary text-background-dark px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all" 
@@ -338,7 +327,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       {/* Sin resultados (solo con filtros activos) */}
       {!loading && hasActiveFilters && filteredPets.length === 0 && viewMode === 'grid' && (
         <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center">
-          <span className="material-symbols-outlined text-6xl text-accent-teal mb-4">search_off</span>
           <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
           <p className="text-accent-teal mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
           <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">

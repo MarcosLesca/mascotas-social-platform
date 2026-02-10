@@ -56,29 +56,23 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
         <div className="bg-white dark:bg-white/5 p-6 rounded-3xl shadow-sm border border-accent-teal/5">
           <h3 className="font-bold text-lg mb-4">Nuestro Impacto</h3>
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-xl">favorite</span>
-              <div>
-                <p className="text-xl font-bold leading-none">1,248</p>
-                <p className="text-[10px] text-accent-teal uppercase font-bold tracking-wider">Mascotas Reunidas</p>
-              </div>
+            <div>
+              <p className="text-xl font-bold leading-none">1,248</p>
+              <p className="text-[10px] text-accent-teal uppercase font-bold tracking-wider">Mascotas Reunidas</p>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-xl">home_health</span>
-              <div>
-                <p className="text-xl font-bold leading-none">452</p>
-                <p className="text-[10px] text-accent-teal uppercase font-bold tracking-wider">Adopciones Exitosas</p>
-              </div>
+            <div>
+              <p className="text-xl font-bold leading-none">452</p>
+              <p className="text-[10px] text-accent-teal uppercase font-bold tracking-wider">Adopciones Exitosas</p>
             </div>
           </div>
         </div>
 
         <div className="bg-white dark:bg-white/5 p-6 rounded-3xl shadow-sm border border-accent-teal/5">
           <h3 className="font-bold text-xs text-accent-teal uppercase tracking-widest mb-4">Enlaces Rápidos</h3>
-          <nav className="flex flex-col gap-3">
+          <nav className="flex flex-col gap-3 text-sm font-medium">
             {['Ser Voluntario', 'Mapa de Veterinarios', 'Grupos Locales'].map((link) => (
-              <a key={link} className="flex items-center justify-between group text-sm font-medium hover:text-primary transition-colors" href="#">
-                {link} <span className="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward_ios</span>
+              <a key={link} className="hover:text-primary transition-colors" href="#">
+                {link}
               </a>
             ))}
           </nav>
@@ -98,17 +92,17 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
               />
             </div>
             <div className="p-8 md:w-3/5 flex flex-col">
-              <div className="flex justify-between items-start mb-3">
+              <div className="flex justify-between items-start mb-3 text-xs text-accent-teal font-medium">
                 <span className="text-[10px] font-black uppercase tracking-widest bg-urgent-red text-white px-3 py-1 rounded-full">ALERTA CRÍTICA</span>
-                <span className="text-xs text-accent-teal font-medium">hace 2 horas</span>
+                <span>hace 2 horas</span>
               </div>
               <h3 className="text-2xl font-bold mb-2">Buddy - Golden Retriever</h3>
-              <p className="text-sm text-accent-teal mb-6 flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-base">location_on</span> North Park, entrada Calle 5
+              <p className="text-sm text-accent-teal mb-6">
+                North Park, entrada Calle 5
               </p>
               <div className="mt-auto flex gap-3">
                 <button className="flex-1 bg-primary hover:bg-primary/90 text-background-dark py-3 rounded-xl font-bold text-sm shadow-md transition-all">He visto a Buddy</button>
-                <button className="px-4 border border-accent-teal/20 rounded-xl hover:bg-accent-teal/5"><span className="material-symbols-outlined text-xl">share</span></button>
+                <button className="px-4 border border-accent-teal/20 rounded-xl hover:bg-accent-teal/5 text-sm font-bold">Compartir</button>
               </div>
             </div>
           </div>
@@ -117,9 +111,6 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
         {/* Donation Campaign Card */}
         <article className="bg-white dark:bg-white/5 rounded-3xl p-8 shadow-sm border border-accent-teal/5">
           <div className="flex items-center gap-4 mb-6">
-            <div className="size-14 rounded-full bg-slate-200 border-2 border-primary overflow-hidden">
-              <img src="https://picsum.photos/id/1012/200/200" className="w-full h-full object-cover" alt="User" />
-            </div>
             <div>
               <h4 className="font-bold">Rescate Animal Centro</h4>
               <p className="text-xs text-accent-teal">Publicado hace 5 horas</p>
@@ -167,22 +158,9 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
             <p className="text-base italic text-accent-teal/90 mb-6 leading-relaxed">
               "Después de 200 días en el refugio, Luna finalmente encontró a su familia ideal. ¡Ahora tiene un gran jardín y dos hermanos humanos para jugar!"
             </p>
-            <div className="flex items-center justify-between">
-              <div className="flex -space-x-3">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="size-10 rounded-full border-4 border-white dark:border-background-dark overflow-hidden">
-                    <img src={`https://picsum.photos/id/${i+50}/100/100`} className="w-full h-full object-cover" alt="Supporter" />
-                  </div>
-                ))}
-                <div className="size-10 rounded-full border-4 border-white dark:border-background-dark bg-accent-teal/10 flex items-center justify-center text-[10px] font-bold">+12</div>
-              </div>
-              <div className="flex gap-6">
-                <button className="flex items-center gap-2 text-sm font-bold text-accent-teal hover:text-primary transition-colors">
-                  <span className="material-symbols-outlined text-2xl">favorite</span> 142
-                </button>
-                <button className="flex items-center gap-2 text-sm font-bold text-accent-teal hover:text-primary transition-colors">
-                  <span className="material-symbols-outlined text-2xl">chat</span> 18
-                </button>
+          <div className="flex items-center justify-between">
+              <div className="text-xs text-accent-teal">
+                142 personas apoyaron esta historia · 18 comentarios
               </div>
             </div>
           </div>
@@ -195,17 +173,14 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
           onClick={handleOpenReportModal}
           className="w-full bg-primary text-background-dark h-16 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:-translate-y-1 transition-all active:scale-95"
         >
-          <span className="material-symbols-outlined font-bold text-2xl">add_alert</span>
           Reportar Mascota Perdida
         </button>
 
         <div className="bg-white dark:bg-white/5 rounded-3xl shadow-sm border border-accent-teal/5 overflow-hidden">
           <div className="p-6 border-b border-accent-teal/5 flex justify-between items-center">
-            <h3 className="font-bold flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">trending_up</span>
+            <h3 className="font-bold">
               Casos Destacados
             </h3>
-            <span className="bg-primary/10 text-primary text-[10px] px-2 py-1 rounded-full font-bold">LIVE</span>
           </div>
           <div className="p-4 space-y-2">
             {[
@@ -227,21 +202,19 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
           <a className="block text-center p-5 text-sm font-bold text-primary hover:bg-primary/5 border-t border-accent-teal/5 transition-colors" href="#">Ver todos los casos</a>
         </div>
 
-        <div className="bg-slate-900 rounded-3xl shadow-2xl border border-white/10 overflow-hidden group">
-          <div className="h-48 relative overflow-hidden flex items-center justify-center">
-            <img 
-              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" 
-              className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:scale-110 transition-transform duration-700" 
-              alt="Map Background"
+        <div className="bg-slate-900 rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
+          <div className="h-64 relative overflow-hidden">
+            <iframe
+              title="Mapa San Justo, Santa Fe, Argentina"
+              src="https://www.google.com/maps?q=San+Justo+Santa+Fe+Argentina&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="relative z-10 flex flex-col items-center gap-3">
-              <span className="material-symbols-outlined text-urgent-red text-5xl animate-bounce drop-shadow-[0_0_15px_rgba(239,68,68,0.5)]">location_on</span>
-              <p className="bg-white/95 dark:bg-black/90 px-4 py-2 rounded-full text-xs font-black shadow-2xl tracking-tight">6 ALERTAS CERCA</p>
-            </div>
           </div>
           <div className="p-6">
             <p className="text-sm text-slate-300 leading-relaxed text-center">
-              Alertas activas en tu zona (radio de 8 km). Activa el GPS para actualizaciones.
+              Mapa centrado en San Justo, Santa Fe, Argentina.
             </p>
           </div>
         </div>

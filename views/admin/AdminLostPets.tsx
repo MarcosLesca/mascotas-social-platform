@@ -103,7 +103,6 @@ const AdminLostPets: React.FC = () => {
             to="/admin"
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent-teal/10 dark:bg-accent-teal/20 text-accent-teal font-bold hover:bg-accent-teal/20 dark:hover:bg-accent-teal/30 transition-colors"
           >
-            <span className="material-symbols-outlined text-xl">arrow_back</span>
             Volver al panel
           </Link>
         </div>
@@ -113,19 +112,16 @@ const AdminLostPets: React.FC = () => {
             role="alert"
             className="flex items-center gap-2 p-4 rounded-xl bg-urgent-red/10 dark:bg-urgent-red/20 border border-urgent-red/30 text-urgent-red mb-6"
           >
-            <span className="material-symbols-outlined text-xl flex-shrink-0">error</span>
             <span>{error}</span>
           </div>
         )}
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
-            <span className="material-symbols-outlined text-5xl text-primary animate-pulse">pets</span>
             <p className="text-accent-teal font-medium">Cargando reportes pendientes…</p>
           </div>
         ) : reports.length === 0 ? (
           <div className="bg-white dark:bg-slate-900/80 rounded-2xl border border-accent-teal/10 p-12 text-center">
-            <span className="material-symbols-outlined text-6xl text-accent-teal mb-4">check_circle</span>
             <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
               No hay reportes pendientes
             </h2>
@@ -186,24 +182,13 @@ const AdminLostPets: React.FC = () => {
                       disabled={!!acting}
                       className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-background-dark font-bold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {acting === r.id ? (
-                        <>
-                          <span className="material-symbols-outlined animate-spin text-lg">progress_activity</span>
-                          Aprobando…
-                        </>
-                      ) : (
-                        <>
-                          <span className="material-symbols-outlined text-lg">check_circle</span>
-                          Aprobar
-                        </>
-                      )}
+                      {acting === r.id ? 'Aprobando…' : 'Aprobar'}
                     </button>
                     <button
                       onClick={() => handleRejectClick(r)}
                       disabled={!!acting}
                       className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-urgent-red/10 dark:bg-urgent-red/20 text-urgent-red font-bold hover:bg-urgent-red/20 dark:hover:bg-urgent-red/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <span className="material-symbols-outlined text-lg">cancel</span>
                       Rechazar
                     </button>
                   </div>

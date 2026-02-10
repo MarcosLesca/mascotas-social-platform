@@ -45,9 +45,9 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
           {/* Botón cerrar */}
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-colors"
+            className="absolute top-4 right-4 px-3 py-1 bg-white/80 hover:bg-white text-slate-800 rounded-full text-xs font-bold transition-colors"
           >
-            <span className="material-symbols-outlined text-2xl">close</span>
+            Cerrar
           </button>
 
           {/* Badges */}
@@ -89,8 +89,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
 
               {/* Ubicación */}
               <div>
-                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary">location_on</span>
+                <h3 className="text-xl font-bold mb-3">
                   {isLost ? 'Última Vez Visto' : 'Ubicación'}
                 </h3>
                 <p className="text-accent-teal font-medium">{pet.location}</p>
@@ -102,8 +101,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
               {/* Estado médico */}
               {pet.medStatus && pet.medStatus.length > 0 && (
                 <div>
-                  <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary">medical_services</span>
+                  <h3 className="text-xl font-bold mb-3">
                     Estado Médico
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -123,22 +121,19 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   <div className="space-y-3">
                     {pet.contactName && (
                       <div className="flex items-center gap-3">
-                        <span className="material-symbols-outlined text-primary">person</span>
                         <span className="font-medium">{isLost ? 'Reportante' : 'Contacto'}: {pet.contactName}</span>
                       </div>
                     )}
                     {hasPhone && (
                       <div className="flex items-center gap-3">
-                        <span className="material-symbols-outlined text-primary">phone</span>
                         {waHref ? (
                           <a
                             href={waHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium text-accent-teal hover:text-primary transition-colors underline flex items-center gap-2"
+                            className="font-medium text-accent-teal hover:text-primary transition-colors underline"
                           >
                             {pet.contactPhone}
-                            <span className="material-symbols-outlined text-sm">open_in_new</span>
                           </a>
                         ) : (
                           <span className="font-medium">{pet.contactPhone}</span>
@@ -147,7 +142,6 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                     )}
                     {hasEmail && (
                       <div className="flex items-center gap-3">
-                        <span className="material-symbols-outlined text-primary">mail</span>
                         {mailHref ? (
                           <a
                             href={mailHref}
@@ -176,9 +170,6 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   onClick={() => onAction?.(pet, isLost ? 'seen' : 'adopt')}
                   className="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
                 >
-                  <span className="material-symbols-outlined text-2xl">
-                    {isLost ? 'visibility' : 'favorite'}
-                  </span>
                   {isLost ? '¡He visto a esta mascota!' : 'Quiero Adoptar'}
                 </button>
 
@@ -189,7 +180,6 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                     rel="noopener noreferrer"
                     className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
                   >
-                    <span className="material-symbols-outlined text-2xl">whatsapp</span>
                     Contactar por WhatsApp
                   </a>
                 )}
@@ -199,13 +189,11 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                     href={mailHref}
                     className="w-full bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all"
                   >
-                    <span className="material-symbols-outlined text-2xl">mail</span>
                     Enviar Email
                   </a>
                 )}
 
                 <button className="w-full bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all">
-                  <span className="material-symbols-outlined text-2xl">share</span>
                   Compartir
                 </button>
               </div>
@@ -238,13 +226,12 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
               {/* Alerta de seguridad */}
               <div className="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-4 border border-orange-200 dark:border-orange-800/30">
                 <div className="flex gap-3">
-                  <span className="material-symbols-outlined text-orange-500 text-xl">warning</span>
                   <div>
                     <h5 className="font-bold text-sm mb-1">Seguridad Primero</h5>
                     <p className="text-xs text-accent-teal">
                       {isLost 
-                        ? 'Nunca envíes dinero por adelantado. Encuentrate en un lugar público.' 
-                        : 'Verifica la información del refugio. Pide certificados veterinarios.'
+                        ? 'Nunca envíes dinero por adelantado. Encuéntrate en un lugar público.' 
+                        : 'Verifica la información del refugio. Pedí certificados veterinarios.'
                       }
                     </p>
                   </div>

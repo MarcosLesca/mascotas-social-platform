@@ -13,9 +13,6 @@ const AdminLayout: React.FC = () => {
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-6">
             <Link to="/admin" className="flex items-center gap-3">
-              <div className="bg-primary p-2 rounded-xl text-background-dark">
-                <span className="material-symbols-outlined text-2xl">admin_panel_settings</span>
-              </div>
               <span className="font-black text-lg text-slate-900 dark:text-white">Admin PetWelfare</span>
             </Link>
             <nav className="hidden md:flex items-center gap-2">
@@ -51,10 +48,10 @@ const AdminLayout: React.FC = () => {
             </div>
             <button
               onClick={() => signOut()}
-              className="p-2 rounded-xl text-slate-500 hover:bg-urgent-red/10 hover:text-urgent-red transition-colors"
+              className="px-3 py-1 rounded-xl text-slate-500 hover:bg-urgent-red/10 hover:text-urgent-red transition-colors text-sm font-bold"
               title="Cerrar sesión"
             >
-              <span className="material-symbols-outlined text-xl">logout</span>
+              Cerrar sesión
             </button>
           </div>
         </div>

@@ -195,11 +195,10 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             {/* Búsqueda */}
             <div className="mb-8">
               <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-accent-teal text-xl">search</span>
                 <input 
                   type="text" 
                   placeholder="Buscar por nombre, raza..."
-                  className="w-full pl-10 pr-4 py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
                   value={filters.searchTerm}
                   onChange={(e) => setFilters({...filters, searchTerm: e.target.value})}
                 />
@@ -272,8 +271,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         <div className="col-span-12 lg:col-span-9">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
-              <span className="material-symbols-outlined text-5xl text-primary animate-pulse">pets</span>
-              <p className="text-accent-teal font-medium">Cargando mascotas en adopci??n???</p>
+              <p className="text-accent-teal font-medium">Cargando mascotas en adopción…</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -290,12 +288,9 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                 className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[380px]"
                 onClick={handleOpenReportModal}
               >
-                <div className="size-20 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined text-4xl font-bold">add</span>
-                </div>
-                <h3 className="text-xl font-bold mb-3">Publicar en adopci??n</h3>
+                <h3 className="text-xl font-bold mb-3">Publicar en adopción</h3>
                 <p className="text-sm text-accent-teal mb-8 max-w-[220px]">
-                  Ayuda a encontrar un hogar definitivo. Cre?? una publicaci??n ahora.
+                  Ayuda a encontrar un hogar definitivo. Creá una publicación ahora.
                 </p>
                 <button
                   className="bg-primary text-background-dark px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
@@ -313,9 +308,8 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
           {/* Sin resultados */}
           {!loading && filteredPets.length === 0 && (
             <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
-              <span className="material-symbols-outlined text-6xl text-accent-teal mb-4">pets</span>
               <h3 className="text-2xl font-bold mb-2">No encontramos mascotas con esos filtros</h3>
-              <p className="text-accent-teal mb-6">Intenta ajustar los filtros para ver m??s opciones</p>
+              <p className="text-accent-teal mb-6">Intenta ajustar los filtros para ver más opciones</p>
               <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>
@@ -334,7 +328,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                     'Adaptación y socialización'
                   ].map(step => (
                     <div key={step} className="flex items-center gap-4">
-                      <span className="material-symbols-outlined text-primary bg-white dark:bg-white/10 p-2 rounded-xl">check_circle</span>
+                      <span className="w-2 h-2 rounded-full bg-primary inline-block" />
                       <span className="font-bold">{step}</span>
                     </div>
                   ))}

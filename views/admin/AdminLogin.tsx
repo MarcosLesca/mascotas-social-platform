@@ -91,10 +91,7 @@ const AdminLogin: React.FC = () => {
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark">
-        <div className="animate-pulse flex flex-col items-center gap-4">
-          <span className="material-symbols-outlined text-5xl text-primary">pets</span>
-          <p className="text-accent-teal font-medium">Cargando…</p>
-        </div>
+        <p className="text-accent-teal font-medium">Cargando…</p>
       </div>
     );
   }
@@ -104,9 +101,6 @@ const AdminLogin: React.FC = () => {
       <div className="w-full max-w-md">
         <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-xl border border-accent-teal/10 p-8">
           <div className="flex flex-col items-center gap-2 mb-8">
-            <div className="bg-primary p-3 rounded-xl text-background-dark">
-              <span className="material-symbols-outlined text-4xl">admin_panel_settings</span>
-            </div>
             <h1 className="text-2xl font-black text-slate-900 dark:text-white">Admin PetWelfare</h1>
             <p className="text-sm text-accent-teal">Inicia sesión para continuar</p>
           </div>
@@ -117,7 +111,6 @@ const AdminLogin: React.FC = () => {
                 role="alert"
                 className="flex items-center gap-2 p-3 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-sm"
               >
-                <span className="material-symbols-outlined text-xl flex-shrink-0">schedule</span>
                 <span>
                   Demasiados intentos. Podrás intentar de nuevo en{' '}
                   <strong>{formatRemaining(rateLimit.remainingMs)}</strong>.
@@ -129,7 +122,6 @@ const AdminLogin: React.FC = () => {
                 role="alert"
                 className="flex items-center gap-2 p-3 rounded-xl bg-urgent-red/10 dark:bg-urgent-red/20 border border-urgent-red/30 text-urgent-red text-sm"
               >
-                <span className="material-symbols-outlined text-xl flex-shrink-0">error</span>
                 <span>{formError}</span>
               </div>
             )}
@@ -187,12 +179,10 @@ const AdminLogin: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword((s) => !s)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-xs font-bold"
                   aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 >
-                  <span className="material-symbols-outlined text-xl">
-                    {showPassword ? 'visibility_off' : 'visibility'}
-                  </span>
+                  {showPassword ? 'Ocultar' : 'Ver'}
                 </button>
               </div>
               {errors.password && (
@@ -209,7 +199,6 @@ const AdminLogin: React.FC = () => {
             >
               {submitting ? (
                 <span className="inline-flex items-center justify-center gap-2">
-                  <span className="material-symbols-outlined animate-spin text-xl">progress_activity</span>
                   Iniciando sesión…
                 </span>
               ) : rateLimit.blocked ? (
