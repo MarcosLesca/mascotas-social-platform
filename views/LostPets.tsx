@@ -6,11 +6,10 @@ import ReportLostPetModal from '../components/ReportLostPetModal';
 import { Pet } from '../types';
 
 interface FilterState {
-  species: string;
-  timeRange: string;
-  location: string;
-  color: string;
+  species: string[];
+  age: string[];
   urgency: boolean;
+  searchTerm: string;
 }
 
 interface LostPetsProps {
@@ -20,17 +19,14 @@ interface LostPetsProps {
 const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   const [pets, setPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
-    species: '',
-    timeRange: '',
-    location: '',
-    color: '',
+    species: ['Perros'],
+    age: [],
     urgency: false,
+    searchTerm: '',
   });
 
   useEffect(() => {
@@ -53,8 +49,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     let filtered = pets;
 
     // Búsqueda por texto
-    if (searchTerm) {
-      const searchLower = searchTerm.toLowerCase();
+    if (filters.searchTerm) {
+      const searchLower = filters.searchTerm.toLowerCase();
       filtered = filtered.filter(pet => 
         pet.name.toLowerCase().includes(searchLower) ||
         pet.breed.toLowerCase().includes(searchLower) ||
@@ -63,14 +59,36 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     }
 
     // Filtro por especie
-    if (filters.species) {
+    if (filters.species.length > 0) {
+      const speciesMap: { [key: string]: string } = {
+        'Perros': 'dog',
+        'Gatos': 'cat',
+        'Aves': 'bird'
+      };
+      const selectedSpecies = filters.species.map(s => speciesMap[s]).filter(Boolean);
+      filtered = filtered.filter(pet => selectedSpecies.includes(pet.species));
+    }
+
+    // Filtro por edad (si el reporte tiene edad)
+    if (filters.age.length > 0) {
       filtered = filtered.filter(pet => {
-        const speciesMap: { [key: string]: string } = {
-          'Perros': 'dog',
-          'Gatos': 'cat',
-          'Aves': 'bird'
-        };
-        return pet.species === speciesMap[filters.species];
+        if (!pet.age) return false;
+
+        const ageLower = pet.age.toLowerCase();
+        return filters.age.some(filterAge => {
+          switch (filterAge) {
+            case 'Cachorro':
+              return ageLower.includes('año') && parseInt(ageLower) <= 2 || ageLower.includes('mes');
+            case 'Joven':
+              return ageLower.includes('año') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
+            case 'Adulto':
+              return ageLower.includes('año') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
+            case 'Senior':
+              return ageLower.includes('año') && parseInt(ageLower) > 10;
+            default:
+              return false;
+          }
+        });
       });
     }
 
@@ -79,38 +97,41 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       filtered = filtered.filter(pet => pet.urgency);
     }
 
-    // Filtro por rango de tiempo
-    if (filters.timeRange) {
-      const now = new Date();
-      filtered = filtered.filter(pet => {
-        if (!pet.timeLabel) return true;
-        
-        const hours = parseInt(pet.timeLabel.match(/\d+/)?.[0] || '0');
-        const unit = pet.timeLabel.includes('hora') ? 'hours' : 'days';
-        
-        if (filters.timeRange === 'Últimas 24h' && unit === 'hours' && hours <= 24) return true;
-        if (filters.timeRange === 'Última semana' && (unit === 'hours' || (unit === 'days' && hours <= 7))) return true;
-        if (filters.timeRange === 'Último mes' && (unit === 'hours' || (unit === 'days' && hours <= 30))) return true;
-        
-        return false;
-      });
-    }
-
     return filtered;
   }, [pets, searchTerm, filters]);
 
   const clearFilters = () => {
     setFilters({
-      species: '',
-      timeRange: '',
-      location: '',
-      color: '',
-      urgency: false
+      species: ['Perros'],
+      age: [],
+      urgency: false,
+      searchTerm: ''
     });
-    setSearchTerm('');
   };
 
-  const hasActiveFilters = filters.species || filters.timeRange || filters.location || filters.color || filters.urgency || searchTerm;
+  const hasActiveFilters =
+    filters.species.length !== 1 ||
+    filters.age.length > 0 ||
+    filters.urgency ||
+    !!filters.searchTerm;
+
+  const toggleSpecies = (species: string) => {
+    setFilters(prev => ({
+      ...prev,
+      species: prev.species.includes(species)
+        ? prev.species.filter(s => s !== species)
+        : [...prev.species, species],
+    }));
+  };
+
+  const toggleAge = (age: string) => {
+    setFilters(prev => ({
+      ...prev,
+      age: prev.age.includes(age)
+        ? prev.age.filter(a => a !== age)
+        : [...prev.age, age],
+    }));
+  };
 
   const handlePetAction = (pet: Pet, action: string) => {
     switch (action) {
@@ -153,176 +174,148 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="flex-1">
-          <h2 className="text-4xl font-extrabold mb-2">Búsqueda de Mascotas Perdidas</h2>
-          <p className="text-accent-teal text-lg">
-            Ayuda a reunir hoy a <span className="text-primary font-bold">{pets.length}</span> mascotas con sus familias.
-            {hasActiveFilters && (
-              <span className="ml-2 text-sm">({filteredPets.length} resultados)</span>
-            )}
-          </p>
-        </div>
-        <div className="flex gap-2 bg-accent-teal/5 p-1 rounded-2xl">
-          <button 
-            onClick={() => setViewMode('grid')}
-            className={`px-6 py-2 rounded-xl font-bold text-sm transition-colors ${
-              viewMode === 'grid' ? 'bg-white dark:bg-white/10 shadow-sm' : 'text-accent-teal hover:text-primary'
-            }`}
-          >
-            Cuadrícula
-          </button>
-          <button 
-            onClick={() => setViewMode('map')}
-            className={`px-6 py-2 rounded-xl font-bold text-sm transition-colors ${
-              viewMode === 'map' ? 'bg-white dark:bg-white/10 shadow-sm' : 'text-accent-teal hover:text-primary'
-            }`}
-          >
-            Mapa
-          </button>
-        </div>
+    <div className="flex flex-col gap-10">
+      <div className="max-w-3xl">
+        <h2 className="text-4xl font-extrabold mb-2">Búsqueda de Mascotas Perdidas</h2>
+        <p className="text-accent-teal text-lg">
+          Ayuda a reunir hoy a <span className="text-primary font-bold">{pets.length}</span> mascotas con sus familias.
+          {hasActiveFilters && (
+            <span className="ml-2 text-sm">({filteredPets.length} resultados)</span>
+          )}
+        </p>
       </div>
 
-      <div className="relative">
-        <input 
-          type="text" 
-          placeholder="Busca por raza, color o zona..."
-          className="w-full px-6 pr-6 py-5 bg-white dark:bg-white/5 border-none rounded-2xl focus:ring-2 focus:ring-primary shadow-sm text-lg"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
+      <div className="grid grid-cols-12 gap-10">
+        <aside className="col-span-12 lg:col-span-3">
+          <div className="bg-white dark:bg-white/5 p-8 rounded-3xl border border-accent-teal/5 sticky top-24">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-bold">Filtros</h3>
+              {hasActiveFilters && (
+                <button 
+                  onClick={clearFilters}
+                  className="text-xs font-bold text-primary hover:underline"
+                >
+                  LIMPIAR
+                </button>
+              )}
+            </div>
 
-      <div className="flex flex-wrap gap-3 pb-2 overflow-x-auto scrollbar-hide">
-        {/* Filtro Especie */}
-        <div className="relative">
-          <button 
-            onClick={() => {
-              const speciesOptions = ['', 'Perros', 'Gatos', 'Aves'];
-              const currentIndex = speciesOptions.indexOf(filters.species);
-              const nextIndex = (currentIndex + 1) % speciesOptions.length;
-              setFilters({...filters, species: speciesOptions[nextIndex]});
-            }}
-            className={`px-5 py-2.5 border rounded-xl text-sm font-bold flex items-center gap-2 transition-colors ${
-              filters.species 
-                ? 'bg-primary text-background-dark border-primary' 
-                : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
-            }`}
-          >
-            {filters.species || 'Especie'}
-            {filters.species && <span className="text-xs underline">Limpiar</span>}
-          </button>
-        </div>
+            {/* Búsqueda */}
+            <div className="mb-8">
+              <div className="relative">
+                <input 
+                  type="text" 
+                  placeholder="Buscar por nombre, raza o zona..."
+                  className="w-full px-4 py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
+                  value={filters.searchTerm}
+                  onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-8">
+              <div>
+                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Especie</p>
+                <div className="flex flex-wrap gap-2">
+                  {['Perros', 'Gatos', 'Aves'].map(s => (
+                    <button 
+                      key={s} 
+                      onClick={() => toggleSpecies(s)}
+                      className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                        filters.species.includes(s) 
+                          ? 'bg-primary text-background-dark' 
+                          : 'bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/10'
+                      }`}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-        {/* Filtro Fecha */}
-        <div className="relative">
-          <button 
-            onClick={() => {
-              const timeOptions = ['', 'Últimas 24h', 'Última semana', 'Último mes'];
-              const currentIndex = timeOptions.indexOf(filters.timeRange);
-              const nextIndex = (currentIndex + 1) % timeOptions.length;
-              setFilters({...filters, timeRange: timeOptions[nextIndex]});
-            }}
-            className={`px-5 py-2.5 border rounded-xl text-sm font-bold flex items-center gap-2 transition-colors ${
-              filters.timeRange 
-                ? 'bg-primary text-background-dark border-primary' 
-                : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
-            }`}
-          >
-            {filters.timeRange || 'Fecha'}
-            {filters.timeRange && <span className="text-xs underline">Limpiar</span>}
-          </button>
-        </div>
+              <div>
+                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Edad</p>
+                <div className="space-y-3">
+                  {['Cachorro', 'Joven', 'Adulto', 'Senior'].map(age => (
+                    <label key={age} className="flex items-center gap-3 cursor-pointer group">
+                      <input 
+                        type="checkbox" 
+                        checked={filters.age.includes(age)}
+                        onChange={() => toggleAge(age)}
+                        className="rounded text-primary focus:ring-primary border-accent-teal/20" 
+                      />
+                      <span className="text-sm font-medium group-hover:text-primary transition-colors">{age}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
 
-        {/* Filtro Ubicación */}
-        <div className="relative">
-          <button 
-            onClick={() => {
-              const locationOptions = ['', 'Cerca', 'A menos de 5km', 'A menos de 10km'];
-              const currentIndex = locationOptions.indexOf(filters.location);
-              const nextIndex = (currentIndex + 1) % locationOptions.length;
-              setFilters({...filters, location: locationOptions[nextIndex]});
-            }}
-            className={`px-5 py-2.5 border rounded-xl text-sm font-bold flex items-center gap-2 transition-colors ${
-              filters.location 
-                ? 'bg-primary text-background-dark border-primary' 
-                : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
-            }`}
-          >
-            {filters.location || 'Ubicación'}
-            {filters.location && <span className="text-xs underline">Limpiar</span>}
-          </button>
-        </div>
+              <div>
+                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Urgencia</p>
+                <label className="flex items-center gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={filters.urgency}
+                    onChange={(e) => setFilters({ ...filters, urgency: e.target.checked })}
+                    className="rounded text-primary focus:ring-primary border-accent-teal/20"
+                  />
+                  <span className="text-sm font-medium group-hover:text-primary transition-colors">
+                    Mostrar solo casos urgentes
+                  </span>
+                </label>
+              </div>
+            </div>
 
-        {/* Filtro Urgencia */}
-        <button 
-          onClick={() => setFilters({...filters, urgency: !filters.urgency})}
-          className={`px-5 py-2.5 border rounded-xl text-sm font-bold flex items-center gap-2 transition-colors ${
-            filters.urgency 
-              ? 'bg-urgent-red text-white border-urgent-red' 
-              : 'bg-white dark:bg-white/5 border-accent-teal/10 hover:border-primary'
-          }`}
-        >
-          Urgente
-          {filters.urgency && <span className="text-xs underline">Quitar</span>}
-        </button>
+            <button className="w-full mt-10 bg-primary text-background-dark py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+              {filteredPets.length} Mascotas
+            </button>
+          </div>
+        </aside>
 
-        {/* Limpiar filtros */}
-        {hasActiveFilters && (
-          <button 
-            onClick={clearFilters}
-            className="ml-auto text-primary text-sm font-bold hover:underline"
-          >
-            Limpiar filtros
-          </button>
-        )}
-      </div>
-
-      {/* Vista de Mapa (placeholder sin iconos) */}
-      {viewMode === 'map' && (
-        <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-8 text-center min-h-[500px] flex flex-col items-center justify-center">
-          <h3 className="text-2xl font-bold mb-2">Vista de Mapa</h3>
-          <p className="text-accent-teal mb-6">Mapa interactivo con ubicaciones de mascotas perdidas</p>
-          <p className="text-sm text-accent-teal/80">Encontramos {filteredPets.length} mascotas en tu zona</p>
-        </div>
-      )}
-
-      {/* Vista de Cuadrícula */}
-      {viewMode === 'grid' && (
-        <>
+        <div className="col-span-12 lg:col-span-9">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
               <p className="text-accent-teal font-medium">Cargando mascotas perdidas…</p>
             </div>
           ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {filteredPets.map(pet => (
-            <PetCard 
-              key={pet.id} 
-              pet={pet} 
-              onAction={handlePetAction}
-              onViewDetails={handleViewDetails}
-            />
-          ))}
-          
-          {/* Report Placeholder Card */}
-          <div className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[400px]"
-               onClick={handleOpenReportModal}>
-            <h3 className="text-xl font-bold mb-3">¿Has perdido a alguien?</h3>
-            <p className="text-sm text-accent-teal mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
-            <button className="bg-primary text-background-dark px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all" 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleOpenReportModal();
-                    }}>
-              COMENZAR
-            </button>
-          </div>
-        </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {filteredPets.map(pet => (
+                <PetCard 
+                  key={pet.id} 
+                  pet={pet} 
+                  onAction={handlePetAction}
+                  onViewDetails={handleViewDetails}
+                />
+              ))}
+              
+              {/* Report Placeholder Card */}
+              <div className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[400px]"
+                   onClick={handleOpenReportModal}>
+                <h3 className="text-xl font-bold mb-3">¿Has perdido a alguien?</h3>
+                <p className="text-sm text-accent-teal mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
+                <button className="bg-primary text-background-dark px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenReportModal();
+                        }}>
+                  COMENZAR
+                </button>
+              </div>
+            </div>
           )}
-        </>
-      )}
+
+          {/* Sin resultados (solo con filtros activos) */}
+          {!loading && hasActiveFilters && filteredPets.length === 0 && (
+            <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
+              <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
+              <p className="text-accent-teal mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
+              <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
+                Limpiar filtros
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Sin resultados (solo con filtros activos) */}
       {!loading && hasActiveFilters && filteredPets.length === 0 && viewMode === 'grid' && (

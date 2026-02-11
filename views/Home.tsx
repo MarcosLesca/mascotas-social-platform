@@ -4,13 +4,16 @@ import { MOCK_CAMPAIGNS } from '../constants';
 import HeroZoom from '../components/home/HeroZoom';
 import { fetchApprovedLostPets } from '../services/lostPetsService';
 import { fetchApprovedAdoptionPets } from '../services/adoptionPetsService';
+import { useApp } from '../context/AppContext';
 import type { Pet, DonationCampaign } from '../types';
+import { View } from '../types';
 
 interface HomeProps {
   onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info') => void;
 }
 
 const Home: React.FC<HomeProps> = ({ onToast }) => {
+  const { setCurrentView } = useApp();
   const [lostPets, setLostPets] = useState<Pet[]>([]);
   const [adoptionPets, setAdoptionPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
@@ -73,7 +76,8 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 {latestLost.map((pet) => (
                   <article
                     key={pet.id}
-                    className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/10 overflow-hidden shadow-sm"
+                    className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/10 overflow-hidden shadow-sm cursor-pointer hover:border-primary/50 hover:shadow-lg transition-all"
+                    onClick={() => setCurrentView(View.LOST_PETS)}
                   >
                     <div className="h-40 overflow-hidden">
                       <img
@@ -100,6 +104,16 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 ))}
               </div>
             )}
+            {latestLost.length > 0 && (
+              <div className="mt-4 text-right">
+                <button
+                  onClick={() => setCurrentView(View.LOST_PETS)}
+                  className="text-sm font-bold text-primary hover:underline"
+                >
+                  Ver más
+                </button>
+              </div>
+            )}
           </section>
 
           {/* Últimas mascotas en adopción */}
@@ -114,7 +128,8 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 {latestAdoption.map((pet) => (
                   <article
                     key={pet.id}
-                    className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/10 overflow-hidden shadow-sm"
+                    className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/10 overflow-hidden shadow-sm cursor-pointer hover:border-primary/50 hover:shadow-lg transition-all"
+                    onClick={() => setCurrentView(View.ADOPTION)}
                   >
                     <div className="h-40 overflow-hidden">
                       <img
@@ -141,6 +156,16 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 ))}
               </div>
             )}
+            {latestAdoption.length > 0 && (
+              <div className="mt-4 text-right">
+                <button
+                  onClick={() => setCurrentView(View.ADOPTION)}
+                  className="text-sm font-bold text-primary hover:underline"
+                >
+                  Ver más
+                </button>
+              </div>
+            )}
           </section>
 
           {/* Últimas donaciones publicadas */}
@@ -153,7 +178,8 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 {latestDonations.map((campaign) => (
                   <article
                     key={campaign.id}
-                    className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/10 overflow-hidden shadow-sm"
+                    className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/10 overflow-hidden shadow-sm cursor-pointer hover:border-primary/50 hover:shadow-lg transition-all"
+                    onClick={() => setCurrentView(View.DONATIONS)}
                   >
                     <div className="h-40 overflow-hidden">
                       <img
@@ -173,6 +199,16 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                     </div>
                   </article>
                 ))}
+              </div>
+            )}
+            {latestDonations.length > 0 && (
+              <div className="mt-4 text-right">
+                <button
+                  onClick={() => setCurrentView(View.DONATIONS)}
+                  className="text-sm font-bold text-primary hover:underline"
+                >
+                  Ver más
+                </button>
               </div>
             )}
           </section>
