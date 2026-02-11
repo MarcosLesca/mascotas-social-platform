@@ -1,5 +1,96 @@
 import React, { useState } from 'react';
 
+// Componente para renderizar respuestas con HTML
+const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
+  // Función para renderizar listas con formato 1) 2) 3)
+  const renderCustomList = (items: string[], startNumber: number = 1) => {
+    return (
+      <ol className="space-y-2" style={{ listStyle: 'none', paddingLeft: 0 }}>
+        {items.map((item, index) => (
+          <li key={index} style={{ position: 'relative', paddingLeft: '2rem', marginBottom: '0.5rem' }}>
+            <span style={{ position: 'absolute', left: 0, color: '#13ec5b', fontWeight: 'bold' }}>
+              {startNumber + index})
+            </span>
+            {item}
+          </li>
+        ))}
+      </ol>
+    );
+  };
+
+  // Respuesta específica sobre cómo reportar mascota perdida
+  if (content.includes('Reportar Mascota Perdida')) {
+    return (
+      <div className="text-accent-teal leading-relaxed">
+        <p className="mb-3">Es muy fácil:</p>
+        {renderCustomList([
+          'Hacé clic en el botón "Reportar Mascota Perdida"',
+          'Completá los datos de tu mascota',
+          'Subí una foto clara',
+          'Indicá dónde y cuándo se perdió',
+          'Dejá tus datos de contacto'
+        ])}
+        <p className="mt-3">¡Y listo! Tu publicación quedará activa.</p>
+      </div>
+    );
+  }
+
+  // Respuesta sobre qué hacer si veo una mascota perdida
+  if (content.includes('Mascotas Encontradas')) {
+    return (
+      <div className="text-accent-teal leading-relaxed">
+        <p className="mb-3">¡Gracias por ayudar! Podés:</p>
+        {renderCustomList([
+          'Tomar una foto',
+          'Publicar en la sección "Mascotas Encontradas"',
+          'Indicar el lugar donde la viste',
+          'Dejar contacto'
+        ])}
+        <p className="mt-3">O directamente contactar al dueño si ves un reporte que coincide.</p>
+      </div>
+    );
+  }
+
+  // Respuesta sobre cómo adoptar
+  if (content.includes('Contactá directamente al refugio')) {
+    return (
+      <div className="text-accent-teal leading-relaxed">
+        {renderCustomList([
+          'Buscá en la sección "Adopción"',
+          'Contactá directamente al refugio/responsable vía WhatsApp o Email',
+          'Visita la mascota',
+          'Completá los requisitos del refugio',
+          '¡Lleva a tu nuevo amigo a casa!'
+        ])}
+      </div>
+    );
+  }
+
+  // Respuesta sobre cómo donar
+  if (content.includes('Entrá a la campaña que querés apoyar')) {
+    return (
+      <div className="text-accent-teal leading-relaxed">
+        <p className="mb-3">Es muy fácil:</p>
+        {renderCustomList([
+          'Entrá a la campaña que querés apoyar',
+          'Elegí el monto',
+          'Seleccioná el método de pago',
+          'Completá tus datos'
+        ])}
+        <p className="mt-3">Podés donar con tarjeta, transferencia, Mercado Pago o incluso cripto.</p>
+      </div>
+    );
+  }
+  
+  // Para otras respuestas, usamos el HTML normal
+  return (
+    <div 
+      className="text-accent-teal leading-relaxed faq-answer"
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
+  );
+};
+
 interface FAQItem {
   id: string;
   question: string;
@@ -44,7 +135,7 @@ const FAQSection: React.FC = () => {
     {
       id: '4',
       question: '¿Cómo reporto que perdí mi mascota?',
-      answer: 'Es muy fácil: 1) Hacé clic en el botón "Reportar Mascota Perdida" 2) Completá los datos de tu mascota 3) Subí una foto clara 4) Indicá dónde y cuándo se perdió 5) Dejá tus datos de contacto. ¡Y listo! Tu publicación quedará activa.',
+      answer: '<p>Es muy fácil:</p><ol><li>Hacé clic en el botón "Reportar Mascota Perdida"</li><li>Completá los datos de tu mascota</li><li>Subí una foto clara</li><li>Indicá dónde y cuándo se perdió</li><li>Dejá tus datos de contacto</li></ol><p>¡Y listo! Tu publicación quedará activa.</p>',
       category: 'perdidas',
       icon: 'search'
     },
@@ -65,7 +156,7 @@ const FAQSection: React.FC = () => {
     {
       id: '7',
       question: '¿Qué hago si veo una mascota perdida?',
-      answer: '¡Gracias por ayudar! Podés: 1) Tomar una foto 2) Publicar en la sección "Mascotas Encontradas" 3) Indicar el lugar donde la viste 4) Dejar contacto. O directamente contactar al dueño si ves un reporte que coincide.',
+      answer: '<p>¡Gracias por ayudar! Podés:</p><ol><li>Tomar una foto</li><li>Publicar en la sección "Mascotas Encontradas"</li><li>Indicar el lugar donde la viste</li><li>Dejar contacto</li></ol><p>O directamente contactar al dueño si ves un reporte que coincide.</p>',
       category: 'perdidas',
       icon: 'visibility'
     },
@@ -74,7 +165,7 @@ const FAQSection: React.FC = () => {
     {
       id: '8',
       question: '¿Cómo adopto una mascota?',
-      answer: '1) Buscá en la sección "Adopción" 2) Contactá directamente al refugio/responsable vía WhatsApp o Email 3) Visita la mascota 4) Completá los requisitos del refugio 5) ¡Lleva a tu nuevo amigo a casa!',
+      answer: '<ol><li>Buscá en la sección "Adopción"</li><li>Contactá directamente al refugio/responsable vía WhatsApp o Email</li><li>Visita la mascota</li><li>Completá los requisitos del refugio</li><li>¡Lleva a tu nuevo amigo a casa!</li></ol>',
       category: 'adopcion',
       icon: 'favorite'
     },
@@ -104,7 +195,7 @@ const FAQSection: React.FC = () => {
     {
       id: '12',
       question: '¿Cómo hago una donación?',
-      answer: 'Es muy fácil: 1) Entrá a la campaña que querés apoyar 2) Elegí el monto 3) Seleccioná el método de pago 4) Completá tus datos. Podés donar con tarjeta, transferencia, Mercado Pago o incluso cripto.',
+      answer: '<p>Es muy fácil:</p><ol><li>Entrá a la campaña que querés apoyar</li><li>Elegí el monto</li><li>Seleccioná el método de pago</li><li>Completá tus datos</li></ol><p>Podés donar con tarjeta, transferencia, Mercado Pago o incluso cripto.</p>',
       category: 'donaciones',
       icon: 'payments'
     },
@@ -216,9 +307,7 @@ const FAQSection: React.FC = () => {
                   
                   {expandedItems.has(item.id) && (
                     <div className="px-6 pb-5 pl-[60px] animate-fade-in">
-                      <p className="text-accent-teal leading-relaxed whitespace-pre-line">
-                        {item.answer}
-                      </p>
+                      <FAQAnswer content={item.answer} />
                     </div>
                   )}
                 </div>
