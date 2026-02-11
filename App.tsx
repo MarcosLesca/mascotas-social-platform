@@ -1,50 +1,58 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './views/Home';
-import LostPets from './views/LostPets';
-import Adoption from './views/Adoption';
-import AboutUs from './views/AboutUs';
-import Donations from './views/Donations';
-import FAQSection from './components/FAQSection';
-import ToastContainer from './components/Toast';
-import { AppProvider, useApp } from './context/AppContext';
-import { View } from './types';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./views/Home";
+import LostPets from "./views/LostPets";
+import Adoption from "./views/Adoption";
+import AboutUs from "./views/AboutUs";
+import Donations from "./views/Donations";
+import FAQSection from "./components/FAQSection";
+import ToastContainer from "./components/Toast";
+import { AppProvider, useApp } from "./context/AppContext";
+import { View } from "./types";
 
 const AppContent: React.FC = () => {
-  const { currentView, setCurrentView, toasts, removeToast, addToast } = useApp();
+  const { currentView, setCurrentView, toasts, removeToast, addToast } =
+    useApp();
 
   // Initialize animations on mount
   useEffect(() => {
     // Add stagger animation to cards
-    const cards = document.querySelectorAll('.stagger-item');
+    const cards = document.querySelectorAll(".stagger-item");
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('show');
+            entry.target.classList.add("show");
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    cards.forEach(card => observer.observe(card));
+    cards.forEach((card) => observer.observe(card));
 
     return () => {
-      cards.forEach(card => observer.unobserve(card));
+      cards.forEach((card) => observer.unobserve(card));
     };
   }, [currentView]); // Re-run when view changes
 
   const renderView = () => {
     switch (currentView) {
-      case View.HOME: return <Home onToast={addToast} />;
-      case View.LOST_PETS: return <LostPets onToast={addToast} />;
-      case View.ADOPTION: return <Adoption onToast={addToast} />;
-      case View.AI_ASSISTANT: return <AboutUs />;
-      case View.FAQ: return <FAQSection />;
-      case View.DONATIONS: return <Donations />;
-      default: return <Home />;
+      case View.HOME:
+        return <Home onToast={addToast} />;
+      case View.LOST_PETS:
+        return <LostPets onToast={addToast} />;
+      case View.ADOPTION:
+        return <Adoption onToast={addToast} />;
+      case View.AI_ASSISTANT:
+        return <AboutUs />;
+      case View.FAQ:
+        return <FAQSection />;
+      case View.DONATIONS:
+        return <Donations />;
+      default:
+        return <Home />;
     }
   };
 
@@ -52,35 +60,57 @@ const AppContent: React.FC = () => {
     <div className="layout-container flex flex-col min-h-screen selection:bg-primary selection:text-background-dark">
       <Navbar currentView={currentView} setView={setCurrentView} />
 
-      <main className="flex-1">
-        {renderView()}
-      </main>
+      <main className="flex-1">{renderView()}</main>
 
       <footer className="border-t border-accent-teal/10 py-12 px-6 lg:px-20 mt-auto bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-4">
             <div className="bg-primary p-2 rounded-lg text-white">
-              <span className="material-symbols-outlined block text-2xl">pets</span>
+              <span className="material-symbols-outlined block text-2xl">
+                pets
+              </span>
             </div>
             <div>
-              <h2 className="text-xl font-black">PetWelfare</h2>
-              <p className="text-xs text-accent-teal font-medium tracking-tight">Comunidad de Bienestar Animal © 2024</p>
+              <h2 className="text-xl font-black">Mascotas SJ</h2>
+              <p className="text-xs text-accent-teal font-medium tracking-tight">
+                Comunidad de Bienestar Animal © 2024
+              </p>
             </div>
           </div>
 
           <nav className="flex flex-wrap justify-center gap-8 text-sm font-bold text-accent-teal">
-            <button onClick={() => setCurrentView(View.FAQ)} className="hover:text-primary transition-colors">Preguntas Frecuentes</button>
-            <a href="#" className="hover:text-primary transition-colors">Política de Privacidad</a>
-            <a href="#" className="hover:text-primary transition-colors">Términos de Servicio</a>
-            <a href="#" className="hover:text-primary transition-colors">Soporte</a>
-            <a href="#" className="hover:text-primary transition-colors">Contacto</a>
-            <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link>
+            <button
+              onClick={() => setCurrentView(View.FAQ)}
+              className="hover:text-primary transition-colors"
+            >
+              Preguntas Frecuentes
+            </button>
+            <a href="#" className="hover:text-primary transition-colors">
+              Política de Privacidad
+            </a>
+            <a href="#" className="hover:text-primary transition-colors">
+              Términos de Servicio
+            </a>
+            <a href="#" className="hover:text-primary transition-colors">
+              Soporte
+            </a>
+            <a href="#" className="hover:text-primary transition-colors">
+              Contacto
+            </a>
+            <Link to="/admin" className="hover:text-primary transition-colors">
+              Admin
+            </Link>
           </nav>
 
           <div className="flex gap-4">
-            {['public', 'share', 'forum'].map(icon => (
-              <button key={icon} className="size-10 rounded-xl bg-accent-teal/10 flex items-center justify-center hover:bg-primary transition-all">
-                <span className="material-symbols-outlined text-lg">{icon}</span>
+            {["public", "share", "forum"].map((icon) => (
+              <button
+                key={icon}
+                className="size-10 rounded-xl bg-accent-teal/10 flex items-center justify-center hover:bg-primary transition-all"
+              >
+                <span className="material-symbols-outlined text-lg">
+                  {icon}
+                </span>
               </button>
             ))}
           </div>
@@ -92,46 +122,64 @@ const AppContent: React.FC = () => {
         <button
           onClick={() => setCurrentView(View.HOME)}
           className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.HOME ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+            currentView === View.HOME
+              ? "text-primary"
+              : "text-accent-teal/60 hover:text-primary"
           }`}
         >
           <span className="material-symbols-outlined">home</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Inicio</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">
+            Inicio
+          </span>
         </button>
         <button
           onClick={() => setCurrentView(View.LOST_PETS)}
           className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.LOST_PETS ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+            currentView === View.LOST_PETS
+              ? "text-primary"
+              : "text-accent-teal/60 hover:text-primary"
           }`}
         >
           <span className="material-symbols-outlined">map</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Mascotas</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">
+            Mascotas
+          </span>
         </button>
         <button
           onClick={() => {
-            addToast('Función de reporte próximamente', 'info');
+            addToast("Función de reporte próximamente", "info");
           }}
           className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05]"
         >
-          <span className="material-symbols-outlined font-bold text-3xl">add</span>
+          <span className="material-symbols-outlined font-bold text-3xl">
+            add
+          </span>
         </button>
         <button
           onClick={() => setCurrentView(View.FAQ)}
           className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.FAQ ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+            currentView === View.FAQ
+              ? "text-primary"
+              : "text-accent-teal/60 hover:text-primary"
           }`}
         >
           <span className="material-symbols-outlined">help</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Ayuda</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">
+            Ayuda
+          </span>
         </button>
         <button
           onClick={() => setCurrentView(View.AI_ASSISTANT)}
           className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.AI_ASSISTANT ? 'text-primary' : 'text-accent-teal/60 hover:text-primary'
+            currentView === View.AI_ASSISTANT
+              ? "text-primary"
+              : "text-accent-teal/60 hover:text-primary"
           }`}
         >
           <span className="material-symbols-outlined">info</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Nosotros</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">
+            Nosotros
+          </span>
         </button>
       </div>
 
