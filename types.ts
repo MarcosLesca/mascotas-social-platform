@@ -3,7 +3,7 @@ export enum View {
   LOST_PETS = "lost_pets",
   ADOPTION = "adoption",
   DONATIONS = "donations",
-  AI_ASSISTANT = "ai_assistant",
+  ABOUT_US = "about_us",
   FAQ = "faq",
 }
 

@@ -98,7 +98,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     }
 
     return filtered;
-  }, [pets, searchTerm, filters]);
+  }, [pets, filters.searchTerm, filters]);
 
   const clearFilters = () => {
     setFilters({
@@ -318,7 +318,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       </div>
 
       {/* Sin resultados (solo con filtros activos) */}
-      {!loading && hasActiveFilters && filteredPets.length === 0 && viewMode === 'grid' && (
+      {!loading && hasActiveFilters && filteredPets.length === 0 && (
         <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center">
           <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
           <p className="text-accent-teal mb-6">Intenta ajustar los filtros o el término de búsqueda</p>

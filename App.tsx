@@ -45,7 +45,7 @@ const AppContent: React.FC = () => {
         return <LostPets onToast={addToast} />;
       case View.ADOPTION:
         return <Adoption onToast={addToast} />;
-      case View.AI_ASSISTANT:
+      case View.ABOUT_US:
         return <AboutUs />;
       case View.FAQ:
         return <FAQSection />;
@@ -169,9 +169,9 @@ const AppContent: React.FC = () => {
           </span>
         </button>
         <button
-          onClick={() => setCurrentView(View.AI_ASSISTANT)}
+          onClick={() => setCurrentView(View.ABOUT_US)}
           className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.AI_ASSISTANT
+            currentView === View.ABOUT_US
               ? "text-primary"
               : "text-accent-teal/60 hover:text-primary"
           }`}

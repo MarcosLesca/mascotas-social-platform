@@ -50,8 +50,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
               Preguntas
             </button>
             <button
-              onClick={() => setView(View.AI_ASSISTANT)}
-              className={`text-sm font-semibold transition-colors ${currentView === View.AI_ASSISTANT ? "text-primary" : "hover:text-primary"}`}
+              onClick={() => setView(View.ABOUT_US)}
+              className={`text-sm font-semibold transition-colors ${currentView === View.ABOUT_US ? "text-primary" : "hover:text-primary"}`}
             >
               Nosotros
             </button>

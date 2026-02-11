@@ -16,7 +16,17 @@ const AboutUs: React.FC = () => {
         </p>
       </div>
 
-      
+      {/* Simple content section */}
+      <div className="text-center space-y-8 max-w-4xl mx-auto">
+        <div className="bg-white dark:bg-white/5 rounded-3xl p-12 border border-accent-teal/10">
+          <h2 className="text-2xl font-bold mb-6 text-primary">Comunidad de Bienestar Animal</h2>
+          <p className="text-accent-teal leading-relaxed text-lg">
+            Somos una plataforma dedicada a conectar personas que aman a las mascotas, 
+            facilitando la búsqueda de animales perdidos, promoviendo adopciones responsables 
+            y apoyando a quienes necesitan ayuda para el cuidado de sus compañeros peludos.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
