@@ -41,7 +41,7 @@ const Donations: React.FC = () => {
           <div>
             <h3 className="text-xl font-black mb-2">Donaciones Directas y Transparentes</h3>
             <p className="text-accent-teal leading-relaxed">
-              En PetWelfare <strong>no administramos el dinero</strong> de las donaciones. Solo publicamos las necesidades
+              En Mascotas SJ <strong>no administramos el dinero</strong> de las donaciones. Solo publicamos las necesidades
               y proporcionamos toda la información necesaria para que puedas donar directamente a los responsables de las mascotas.
               Cada campaña incluye el CBU/Alias, titular de la cuenta y datos de contacto verificados.
             </p>
@@ -117,89 +117,7 @@ const Donations: React.FC = () => {
         </div>
       </div>
 
-      {/* How to Donate Section */}
-      <div className="bg-white dark:bg-white/5 rounded-3xl p-10 border border-accent-teal/10">
-        <h2 className="text-3xl font-black mb-8 text-center">¿Cómo Donar?</h2>
-        <div className="grid md:grid-cols-4 gap-6">
-          {[
-            {
-              step: '1',
-              icon: 'search',
-              title: 'Elige una Campaña',
-              description: 'Selecciona la causa que quieras apoyar'
-            },
-            {
-              step: '2',
-              icon: 'content_copy',
-              title: 'Copia el CBU/Alias',
-              description: 'Usa el botón de copiar en el modal'
-            },
-            {
-              step: '3',
-              icon: 'account_balance',
-              title: 'Realiza la Transferencia',
-              description: 'Desde tu banco o billetera virtual'
-            },
-            {
-              step: '4',
-              icon: 'contact_phone',
-              title: 'Contacta (Opcional)',
-              description: 'Confirma tu donación con el responsable'
-            }
-          ].map((item) => (
-            <div key={item.step} className="text-center space-y-3">
-              <div className="relative inline-flex items-center justify-center">
-                <div className="size-16 bg-primary/10 rounded-2xl flex items-center justify-center">
-                  <span className="material-symbols-outlined text-3xl text-primary">{item.icon}</span>
-                </div>
-                <div className="absolute -top-2 -right-2 size-8 bg-primary text-background-dark rounded-full flex items-center justify-center font-black text-sm">
-                  {item.step}
-                </div>
-              </div>
-              <h3 className="font-black">{item.title}</h3>
-              <p className="text-sm text-accent-teal">{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* FAQ Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-3xl p-10 border border-blue-200 dark:border-blue-800/30">
-        <h2 className="text-3xl font-black mb-6 text-center">Preguntas Frecuentes</h2>
-        <div className="space-y-4 max-w-3xl mx-auto">
-          <details className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/10">
-            <summary className="font-bold cursor-pointer flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary">help</span>
-              ¿PetWelfare maneja el dinero de las donaciones?
-            </summary>
-            <p className="mt-4 text-sm text-accent-teal pl-9">
-              No, PetWelfare no administra ni maneja el dinero. Solo publicamos las campañas con toda la información
-              necesaria para que puedas donar directamente a los responsables de las mascotas.
-            </p>
-          </details>
-
-          <details className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/10">
-            <summary className="font-bold cursor-pointer flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary">help</span>
-              ¿Cómo sé que mi donación llegará a la mascota?
-            </summary>
-            <p className="mt-4 text-sm text-accent-teal pl-9">
-              Cada campaña incluye información de contacto verificada del responsable. Puedes comunicarte directamente
-              con ellos para confirmar tu donación y hacer seguimiento del caso.
-            </p>
-          </details>
-
-          <details className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/10">
-            <summary className="font-bold cursor-pointer flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary">help</span>
-              ¿Puedo donar cualquier monto?
-            </summary>
-            <p className="mt-4 text-sm text-accent-teal pl-9">
-              Sí, puedes donar el monto que desees. Cada aporte, por pequeño que sea, hace la diferencia.
-            </p>
-          </details>
-        </div>
-      </div>
 
       {/* Donation Modal */}
       <DonationModal

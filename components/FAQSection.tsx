@@ -4,7 +4,7 @@ interface FAQItem {
   id: string;
   question: string;
   answer: string;
-  category: 'general' | 'perdidas' | 'adopcion' | 'donaciones' | 'tecnico';
+  category: 'general' | 'perdidas' | 'adopcion' | 'donaciones';
   icon: string;
 }
 
@@ -121,50 +121,6 @@ const FAQSection: React.FC = () => {
       answer: '¡Claro que sí! Muchos refugios necesitan alimento, mantas, medicamentos. Contactalos directamente por WhatsApp para coordinar la entrega.',
       category: 'donaciones',
       icon: 'inventory_2'
-    },
-
-    // Técnico
-    {
-      id: '15',
-      question: 'No encuentro mi mascota, ¿qué hago?',
-      answer: 'Intentá: 1) Limpiar filtros de búsqueda 2) Usar palabras clave simples (color, raza) 3) Probá con la vista de mapa 4) Si no está, publicala como perdida. Si tenés problemas técnicos, recargá la página.',
-      category: 'tecnico',
-      icon: 'refresh'
-    },
-    {
-      id: '16',
-      question: '¿Cómo uso los filtros de búsqueda?',
-      answer: 'Los filtros son muy simples: Hacé clic en "Especie" para elegir perros/gatos, "Fecha" para ver recientes, "Ubicación" para cerca tuyo. Hacé clic en "Limpiar filtros" para empezar de nuevo.',
-      category: 'tecnico',
-      icon: 'filter_list'
-    },
-    {
-      id: '17',
-      question: '¿Qué significa el botón de "favoritos"?',
-      answer: 'El ❤️ (corazón) te guarda las mascotas que te interesan para volver a verlas fácilmente. Es como guardar en favoritos, pero solo para vos.',
-      category: 'tecnico',
-      icon: 'favorite'
-    },
-    {
-      id: '18',
-      question: '¿Cómo contacto al dueño de una mascota?',
-      answer: 'Hay tres formas: 1) Botón verde de WhatsApp (charla instantánea) 2) Botón de Email (mensaje formal) 3) En los datos de contacto del anuncio. ¡Siempre contactá con respeto!',
-      category: 'tecnico',
-      icon: 'contact_phone'
-    },
-    {
-      id: '19',
-      question: 'La página funciona en el celular?',
-      answer: 'Sí, está diseñada para celulares. Podés usarla desde cualquier navegador. En móviles tenés navegación más fácil con botones abajo.',
-      category: 'tecnico',
-      icon: 'smartphone'
-    },
-    {
-      id: '20',
-      question: '¿Es seguro compartir mis datos?',
-      answer: 'Sí, tus datos solo se muestran a quienes contacten. No compartimos tu información con nadie. Pero recordá: nunca pagues dinero adelantado a desconocidos.',
-      category: 'tecnico',
-      icon: 'security'
     }
   ];
 
@@ -192,8 +148,7 @@ const FAQSection: React.FC = () => {
     general: 'Preguntas Generales',
     perdidas: 'Mascotas Perdidas',
     adopcion: 'Adopción',
-    donaciones: 'Donaciones',
-    tecnico: 'Ayuda Técnica'
+    donaciones: 'Donaciones'
   };
 
   return (
@@ -220,7 +175,6 @@ const FAQSection: React.FC = () => {
                   {category === 'perdidas' && 'M'}
                   {category === 'adopcion' && 'A'}
                   {category === 'donaciones' && 'D'}
-                  {category === 'tecnico' && 'T'}
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-white mb-1">
@@ -231,7 +185,6 @@ const FAQSection: React.FC = () => {
                     {category === 'perdidas' && 'Encuentra o reporta mascotas desaparecidas'}
                     {category === 'adopcion' && 'Dale un hogar a un peludo'}
                     {category === 'donaciones' && 'Ayuda a quienes más lo necesitan'}
-                    {category === 'tecnico' && 'Resolución de dudas técnicas'}
                   </p>
                 </div>
               </div>
