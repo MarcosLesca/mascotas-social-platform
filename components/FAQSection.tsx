@@ -178,6 +178,24 @@ const FAQSection: React.FC = () => {
     setExpandedItems(newExpanded);
   };
 
+  // Agrupar FAQs por categoría
+  const groupedFAQs = faqData.reduce((acc, item) => {
+    if (!acc[item.category]) {
+      acc[item.category] = [];
+    }
+    acc[item.category].push(item);
+    return acc;
+  }, {} as Record<string, FAQItem[]>);
+
+  // Títulos de las categorías
+  const categoryTitles = {
+    general: 'Preguntas Generales',
+    perdidas: 'Mascotas Perdidas',
+    adopcion: 'Adopción',
+    donaciones: 'Donaciones',
+    tecnico: 'Ayuda Técnica'
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
@@ -190,37 +208,69 @@ const FAQSection: React.FC = () => {
         </p>
       </div>
 
-      {/* FAQ Items */}
-      <div className="space-y-4">
-        {faqData.map((item, index) => (
-          <div 
-            key={item.id}
-            className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/5 overflow-hidden stagger-item"
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            <button
-              onClick={() => toggleExpanded(item.id)}
-              className="w-full px-6 py-5 text-left flex items-center gap-4 hover:bg-accent-teal/5 transition-colors"
-            >
-              <div className="flex-1">
-                <h3 className="font-bold text-lg">{item.question}</h3>
+      {/* FAQ Items por categoría */}
+      <div className="space-y-8">
+        {Object.entries(groupedFAQs).map(([category, items], categoryIndex) => (
+          <div key={category} className="space-y-4">
+            {/* Título de la categoría */}
+            <div className="mb-6 text-center">
+              <div className="inline-flex items-center gap-4 bg-gradient-to-r from-primary/20 to-accent-teal/20 px-8 py-4 rounded-2xl border border-accent-teal/30 backdrop-blur-sm">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                  {category === 'general' && 'P'}
+                  {category === 'perdidas' && 'M'}
+                  {category === 'adopcion' && 'A'}
+                  {category === 'donaciones' && 'D'}
+                  {category === 'tecnico' && 'T'}
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-white mb-1">
+                    {categoryTitles[category as keyof typeof categoryTitles]}
+                  </h2>
+                  <p className="text-sm text-accent-teal/80">
+                    {category === 'general' && 'Información básica de la plataforma'}
+                    {category === 'perdidas' && 'Encuentra o reporta mascotas desaparecidas'}
+                    {category === 'adopcion' && 'Dale un hogar a un peludo'}
+                    {category === 'donaciones' && 'Ayuda a quienes más lo necesitan'}
+                    {category === 'tecnico' && 'Resolución de dudas técnicas'}
+                  </p>
+                </div>
               </div>
-              <span 
-                className={`text-accent-teal transition-transform text-xl font-bold ${
-                  expandedItems.has(item.id) ? 'rotate-180' : ''
-                }`}
-              >
-                ▾
-              </span>
-            </button>
+            </div>
             
-            {expandedItems.has(item.id) && (
-              <div className="px-6 pb-5 pl-[60px] animate-fade-in">
-                <p className="text-accent-teal leading-relaxed whitespace-pre-line">
-                  {item.answer}
-                </p>
-              </div>
-            )}
+            {/* Items de la categoría */}
+            <div className="space-y-3">
+              {items.map((item, itemIndex) => (
+                <div 
+                  key={item.id}
+                  className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/5 overflow-hidden stagger-item"
+                  style={{ animationDelay: `${(categoryIndex * 0.2) + (itemIndex * 0.1)}s` }}
+                >
+                  <button
+                    onClick={() => toggleExpanded(item.id)}
+                    className="w-full px-6 py-5 text-left flex items-center gap-4 hover:bg-accent-teal/5 transition-colors"
+                  >
+                    <div className="flex-1 pt-4">
+                      <h3 className="font-bold text-lg">{item.question}</h3>
+                    </div>
+                    <span 
+                      className={`text-accent-teal transition-transform text-xl font-bold ${
+                        expandedItems.has(item.id) ? 'rotate-180' : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  
+                  {expandedItems.has(item.id) && (
+                    <div className="px-6 pb-5 pl-[60px] animate-fade-in">
+                      <p className="text-accent-teal leading-relaxed whitespace-pre-line">
+                        {item.answer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
