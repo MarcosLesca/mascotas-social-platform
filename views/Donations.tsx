@@ -95,7 +95,7 @@ const Donations: React.FC = () => {
                   <div className="bg-accent-teal/5 rounded-xl p-3">
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-accent-teal font-medium">Meta:</span>
-                      <span className="text-lg font-black text-primary">${campaign.goal.toLocaleString()}</span>
+                      <span className="text-lg font-black text-primary">${campaign.goal.toLocaleString('es-AR')}</span>
                     </div>
                   </div>
 

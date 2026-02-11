@@ -48,7 +48,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
             <span className="material-symbols-outlined text-2xl text-primary">flag</span>
             <div className="text-center">
               <p className="text-xs text-accent-teal font-medium mb-1">Meta de la Campaña</p>
-              <p className="text-2xl font-black text-primary">${campaign.goal.toLocaleString()}</p>
+              <p className="text-2xl font-black text-primary">${campaign.goal.toLocaleString('es-AR')}</p>
             </div>
           </div>
         </div>
