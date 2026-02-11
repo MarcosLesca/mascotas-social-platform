@@ -316,30 +316,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             </div>
           )}
 
-          <div className="mt-16 p-12 bg-accent-teal/5 rounded-[2.5rem] border border-accent-teal/10 relative overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl font-black mb-6">Guía de Adopción Responsable</h2>
-                <p className="text-accent-teal mb-8 leading-relaxed">Adoptar es un compromiso de por vida. Te ayudamos a preparar tu hogar y corazón para la llegada de tu nuevo integrante.</p>
-                <div className="space-y-4">
-                  {[
-                    'Evaluación de estilo de vida',
-                    'Cuidado veterinario inicial',
-                    'Adaptación y socialización'
-                  ].map(step => (
-                    <div key={step} className="flex items-center gap-4">
-                      <span className="w-2 h-2 rounded-full bg-primary inline-block" />
-                      <span className="font-bold">{step}</span>
-                    </div>
-                  ))}
-                </div>
-                <button className="mt-10 bg-white dark:bg-white/10 text-primary px-8 py-4 rounded-2xl font-bold border border-primary/20 hover:bg-primary hover:text-white transition-all">Ver guía completa</button>
-              </div>
-              <div className="relative">
-                <img src="https://images.unsplash.com/photo-1554692998-192502d4a49c?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-2xl rotate-3" alt="Happy Dog" />
-              </div>
-            </div>
-          </div>
+
 
           {/* Modal de detalles */}
           <PetDetailModal

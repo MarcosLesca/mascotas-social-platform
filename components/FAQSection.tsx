@@ -20,8 +20,8 @@ const FAQSection: React.FC = () => {
     // Generales
     {
       id: '1',
-      question: '¿Qué es PetWelfare y cómo funciona?',
-      answer: 'PetWelfare es una plataforma gratuita para ayudar a encontrar mascotas perdidas, facilitar adopciones y apoyar a refugios. Funciona como una red comunitaria donde cualquiera puede publicar, buscar y colaborar. Es como tener un cartel virtual en toda la ciudad.',
+      question: '¿Qué es Mascotas SJ y cómo funciona?',
+      answer: 'Mascotas SJ es una plataforma gratuita para ayudar a encontrar mascotas perdidas, facilitar adopciones y apoyar a refugios. Funciona como una red comunitaria donde cualquiera puede publicar, buscar y colaborar. Es como tener un cartel virtual en toda la ciudad.',
       category: 'general',
       icon: 'pets'
     },
@@ -204,7 +204,7 @@ const FAQSection: React.FC = () => {
           Preguntas <span className="text-primary">Frecuentes</span>
         </h1>
         <p className="text-lg text-accent-teal max-w-2xl mx-auto">
-          Todo lo que necesitás saber para usar PetWelfare. ¡Guía paso a paso para encontrar a tu mejor amigo!
+          Todo lo que necesitás saber para usar Mascotas SJ. ¡Guía paso a paso para encontrar a tu mejor amigo!
         </p>
       </div>
 
