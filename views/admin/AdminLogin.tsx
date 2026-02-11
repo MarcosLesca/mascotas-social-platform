@@ -101,7 +101,7 @@ const AdminLogin: React.FC = () => {
       <div className="w-full max-w-md">
         <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-xl border border-accent-teal/10 p-8">
           <div className="flex flex-col items-center gap-2 mb-8">
-            <h1 className="text-2xl font-black text-slate-900 dark:text-white">Admin PetWelfare</h1>
+            <h1 className="text-2xl font-black text-slate-900 dark:text-white">Admin Mascotas SJ</h1>
             <p className="text-sm text-accent-teal">Inicia sesión para continuar</p>
           </div>
 

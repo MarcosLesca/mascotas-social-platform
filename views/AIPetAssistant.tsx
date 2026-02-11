@@ -5,7 +5,7 @@ import { Message } from '../types';
 
 const AIPetAssistant: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', content: '¡Hola! Soy tu asistente PetWelfare. Puedo ayudarte con dudas sobre salud, comportamiento o razas de tus mascotas. ¿En qué puedo ayudarte hoy?' }
+    { role: 'model', content: '¡Hola! Soy tu asistente Mascotas SJ. Puedo ayudarte con dudas sobre salud, comportamiento o razas de tus mascotas. ¿En qué puedo ayudarte hoy?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);

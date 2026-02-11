@@ -73,7 +73,7 @@ const AdminDashboard: React.FC = () => {
 
         <div className="mt-10 pt-8 border-t border-accent-teal/10 flex flex-wrap items-center justify-between gap-4">
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            PetWelfare Admin · Supabase Auth
+            Mascotas SJ Admin · Supabase Auth
           </p>
           <button
             onClick={() => signOut()}
