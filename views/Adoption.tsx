@@ -21,7 +21,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   const [pets, setPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<AdoptionFilters>({
-    species: ['Perros'],
+    species: [],
     age: [],
     energy: 'Medio',
     searchTerm: ''
@@ -54,10 +54,19 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
       const speciesMap: { [key: string]: string } = {
         'Perros': 'dog',
         'Gatos': 'cat',
-        'Aves': 'bird'
+        'Aves': 'bird',
+        'Otros': 'other'
+      };
+      const normalizeSpecies = (value: string) => {
+        const normalized = value.toLowerCase();
+        if (normalized.startsWith('perr')) return 'dog';
+        if (normalized.startsWith('gat')) return 'cat';
+        if (normalized.startsWith('ave')) return 'bird';
+        if (normalized.startsWith('other')) return 'other';
+        return value;
       };
       const selectedSpecies = filters.species.map(s => speciesMap[s]).filter(Boolean);
-      filtered = filtered.filter(pet => selectedSpecies.includes(pet.species));
+      filtered = filtered.filter(pet => selectedSpecies.includes(normalizeSpecies(pet.species)));
     }
 
     // Filtro por edad
@@ -138,7 +147,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
 
   const clearFilters = () => {
     setFilters({
-      species: ['Perros'],
+      species: [],
       age: [],
       energy: 'Medio',
       searchTerm: ''
@@ -163,7 +172,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
     }));
   };
 
-  const hasActiveFilters = filters.species.length !== 1 || filters.age.length > 0 || filters.searchTerm;
+  const hasActiveFilters = filters.species.length > 0 || filters.age.length > 0 || filters.searchTerm;
 
   return (
     <div className="flex flex-col gap-10">
@@ -209,7 +218,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               <div>
                 <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
-                  {['Perros', 'Gatos', 'Aves'].map(s => (
+                  {['Perros', 'Gatos', 'Aves', 'Otros'].map(s => (
                     <button 
                       key={s} 
                       onClick={() => toggleSpecies(s)}
