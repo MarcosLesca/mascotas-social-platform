@@ -60,7 +60,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
     <>
       {/* Hero Section con GSAP Animation - Full Width */}
       <HeroZoom />
-      
+
       {/* Listas principales debajo del hero */}
       <div className="relative px-4 md:px-10 lg:px-20 py-12" style={{ marginTop: '200vh' }}>
         <div className="max-w-[1440px] mx-auto space-y-12">

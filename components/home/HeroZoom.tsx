@@ -147,7 +147,7 @@ export default function HeroZoom() {
       // Configuración especial para mobile
       const mobileConfig = {
         trigger: containerRef.current,
-        start: "top top", 
+        start: "top top",
         end: "bottom top",
         pin: false, // Sin pin en mobile para evitar problemas
         scrub: 1,
@@ -220,39 +220,42 @@ export default function HeroZoom() {
       <div className={styles.zoomContainer}>
         {/* Título animado - inicialmente oculto/pequeño */}
         <div className={`${styles.headingContainer} hero-heading`}>
-          <h1 className="text-5xl md:text-7xl font-bold text-center leading-tight font-serif">
-            <span className="text-black">Porque volver a casa</span>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.titleText}>Porque volver a casa</span>
             <br />
-            <span className="text-black">también es un </span>
-            <span className="text-red-600 italic">derecho</span>
+            <span className={styles.titleText}>también es un </span>
+            <span className={styles.titleHighlight}>derecho</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mt-6 text-center max-w-2xl mx-auto font-medium">
+          <p className={styles.heroDescription}>
             Mascotas SJ es una plataforma creada para ayudar a reencontrar
             mascotas perdidas, visibilizar mascotas encontradas y brindar apoyo
             a quienes lo necesitan. Un espacio digital desarrollado por L&M
             Desarrollo Web, pensado para generar un impacto real en la
             comunidad.
           </p>
-          
-          {/* Botones de acción estilo "patitas" */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center items-center px-4 pointer-events-auto">
+
+          {/* Botones de acción estilo moderno */}
+          <div className={styles.buttonContainer}>
             <button
               onClick={() => setCurrentView('lost_pets')}
-              className="px-8 py-4 bg-red-200 hover:bg-red-300 text-black font-semibold rounded-full transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[220px] border-2 border-red-300"
+              className={styles.actionButton + ' ' + styles.lostPetButton}
             >
-              Publicar Mascota Perdida
+              <span className={styles.buttonIcon}>🐾</span>
+              <span className={styles.buttonText}>Publicar Mascota Perdida</span>
             </button>
             <button
               onClick={() => setCurrentView('adoption')}
-              className="px-8 py-4 bg-green-200 hover:bg-green-300 text-black font-semibold rounded-full transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[220px] border-2 border-green-300"
+              className={styles.actionButton + ' ' + styles.adoptionButton}
             >
-              Adoptar una Mascota
+              <span className={styles.buttonIcon}>❤️</span>
+              <span className={styles.buttonText}>Adoptar una Mascota</span>
             </button>
             <button
               onClick={() => setCurrentView('donations')}
-              className="px-8 py-4 bg-blue-200 hover:bg-blue-300 text-black font-semibold rounded-full transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[220px] border-2 border-blue-300"
+              className={styles.actionButton + ' ' + styles.donationButton}
             >
-              Ayudar/Donar
+              <span className={styles.buttonIcon}>🤝</span>
+              <span className={styles.buttonText}>Ayudar/Donar</span>
             </button>
           </div>
         </div>

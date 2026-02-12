@@ -8,7 +8,7 @@
 
 .zoomContainer {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   position: relative;
   background-color: #f6f8f6;
@@ -17,79 +17,134 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  left: 0;
-  right: 0;
 }
 
 .headingContainer {
   position: absolute;
-  z-index: 5;
+  z-index: 10;
   text-align: center;
   opacity: 0;
-  /* Empieza invisible */
   filter: blur(10px);
-  scale: 0.5;
+  scale: 0.8; /* Estado inicial para la animación GSAP */
   width: 100%;
   max-width: 1200px;
-  padding: 0 20px;
+  padding: 0 1.5rem;
   pointer-events: none;
   font-family: "Playfair Display", serif;
-  /* Aplicar fuente Playfair */
   box-sizing: border-box;
+  /* Centrado absoluto robusto */
   top: 0;
-  left: 22rem;
+  left: 0;
   right: 0;
   bottom: 0;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+/* ========================================
+   HERO TITLE & DESCRIPTION STYLES
+   ======================================== */
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.titleText {
+  color: #000000;
+}
+
+.titleHighlight {
+  color: #dc2626;
+  font-style: italic;
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-top: 1.5rem;
+  text-align: center;
+  max-width: 45rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Media Queries Consilidadas */
+
 /* Mobile: < 640px */
 @media (max-width: 639px) {
   .headingContainer {
-    left: 0;
     padding: 0 1rem;
     max-width: 100%;
   }
-  
-  .headingContainer h1 {
-    font-size: 2.5rem !important;
+
+  .heroTitle {
+    font-size: 2.25rem;
+    line-height: 1.2;
   }
-  
-  .headingContainer p {
-    font-size: 1rem !important;
+
+  .heroDescription {
+    font-size: 0.95rem;
+    margin-top: 1rem;
     padding: 0 0.5rem;
+    line-height: 1.4;
   }
 }
 
-/* Tablet: 640px - 1023px */
+/* Intermediate screens: 640px - 1023px (Tablet) */
 @media (min-width: 640px) and (max-width: 1023px) {
   .headingContainer {
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    max-width: 90%;
   }
-  
-  .headingContainer h1 {
-    font-size: 4rem !important;
+
+  .heroTitle {
+    font-size: 3.25rem;
+  }
+
+  .heroDescription {
+    font-size: 1.1rem;
+    max-width: 40rem;
+    margin-top: 1.25rem;
   }
 }
 
-/* Custom 980x1024 */
-@media (width: 980px) and (height: 1024px) {
-  .headingContainer {
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    padding: 0 2rem;
+/* Desktop: 1024px - 1439px */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .heroTitle {
+    font-size: 4.25rem;
   }
-  
-  .headingContainer h1 {
-    font-size: 4.5rem !important;
+
+  .heroDescription {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
   }
 }
+
+/* Large Desktop: >= 1440px */
+@media (min-width: 1440px) {
+  .heroTitle {
+    font-size: 5.5rem;
+  }
+
+  .heroDescription {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    max-width: 55rem;
+  }
+}
+
+
 
 .zoomItem {
   position: absolute;
@@ -279,7 +334,7 @@
   .scrollContainer {
     height: 200vh; /* El doble para dar espacio al scroll */
   }
-  
+
   .zoomContainer {
     position: fixed; /* Fijar el contenedor */
     top: 0;
@@ -387,30 +442,30 @@
     font-size: 1.1rem;
   }
 
-  /* Ajustar tamaños para tablet */
-  .item1 { width: 20vw; height: 22vh; }
-  .item2 { width: 18vw; height: 20vh; }
-  .item3 { width: 22vw; height: 24vh; }
-  .item4 { width: 19vw; height: 21vh; }
-  .item5 { width: 21vw; height: 23vh; }
-  .item6 { width: 18vw; height: 20vh; }
-  .item7 { width: 17vw; height: 26vh; }
-  .item8 { width: 23vw; height: 17vh; }
-  
-  .item9 { width: 20vw; height: 23vh; }
-  .item10 { width: 16vw; height: 20vh; }
-  .item11 { width: 22vw; height: 25vh; }
-  .item12 { width: 18vw; height: 21vh; }
-  .item13 { width: 21vw; height: 22vh; }
-  .item14 { width: 19vw; height: 25vh; }
-  .item15 { width: 16vw; height: 18vh; }
-  .item16 { width: 22vw; height: 16vh; }
+  /* Ajustar tamaños para tablet - Empujar más hacia los bordes */
+  .item1 { width: 18vw; height: 20vh; left: 2%; }
+  .item2 { width: 16vw; height: 18vh; left: 20%; }
+  .item3 { width: 20vw; height: 22vh; left: 5%; }
+  .item4 { width: 17vw; height: 19vh; left: 25%; }
+  .item5 { width: 19vw; height: 21vh; left: 2%; }
+  .item6 { width: 16vw; height: 18vh; left: 18%; }
+  .item8 { width: 21vw; height: 15vh; left: 10%; }
+
+  .item9 { width: 18vw; height: 21vh; right: 2%; }
+  .item10 { width: 14vw; height: 18vh; right: 20%; }
+  .item11 { width: 20vw; height: 23vh; right: 5%; }
+  .item12 { width: 16vw; height: 19vh; right: 25%; }
+  .item13 { width: 19vw; height: 20vh; right: 2%; }
+  .item14 { width: 17vw; height: 23vh; right: 20%; }
+  .item15 { width: 14vw; height: 16vh; right: 35%; }
+  .item16 { width: 20vw; height: 14vh; right: 10%; }
 
   /* Ocultar solo 1 en tablet */
   .item7 {
     display: none;
   }
 }
+
 
 /* Custom 980x1024 */
 @media (width: 980px) and (height: 1024px) {
@@ -427,7 +482,7 @@
   .item6 { width: 14vw; height: 19vh; }
   .item7 { width: 13vw; height: 27vh; }
   .item8 { width: 19vw; height: 16vh; }
-  
+
   .item9 { width: 16vw; height: 22vh; }
   .item10 { width: 13vw; height: 19vh; }
   .item11 { width: 18vw; height: 24vh; }
@@ -438,4 +493,222 @@
   .item16 { width: 18vw; height: 15vh; }
 
   /* Mantener todas las imágenes visibles */
+}
+
+/* ========================================
+   BUTTON STYLES - Modern & Responsive
+   ======================================== */
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  pointer-events: auto;
+  width: 100%;
+  max-width: 900px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 320px;
+  min-height: 56px;
+  text-align: center;
+}
+
+.actionButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.actionButton:hover::before {
+  left: 100%;
+}
+
+.actionButton:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.actionButton:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.buttonIcon {
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.actionButton:hover .buttonIcon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.buttonText {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Lost Pet Button - Red/Orange Gradient */
+.lostPetButton {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #ff8787 100%);
+  color: white;
+}
+
+.lostPetButton:hover {
+  background: linear-gradient(135deg, #ff5252 0%, #e63946 50%, #ff6b6b 100%);
+}
+
+/* Adoption Button - Green Gradient */
+.adoptionButton {
+  background: linear-gradient(135deg, #51cf66 0%, #37b24d 50%, #69db7c 100%);
+  color: white;
+}
+
+.adoptionButton:hover {
+  background: linear-gradient(135deg, #40c057 0%, #2f9e44 50%, #51cf66 100%);
+}
+
+/* Donation Button - Blue/Purple Gradient */
+.donationButton {
+  background: linear-gradient(135deg, #4dabf7 0%, #339af0 50%, #74c0fc 100%);
+  color: white;
+}
+
+.donationButton:hover {
+  background: linear-gradient(135deg, #339af0 0%, #228be6 50%, #4dabf7 100%);
+}
+
+/* ========================================
+   RESPONSIVE BUTTON STYLES
+   ======================================== */
+
+/* Mobile: < 640px */
+@media (max-width: 639px) {
+  .buttonContainer {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .actionButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+    max-width: 100%;
+    min-height: 52px;
+    gap: 0.5rem;
+  }
+
+  .buttonIcon {
+    font-size: 1.25rem;
+  }
+
+  .buttonText {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Mobile: < 380px */
+@media (max-width: 379px) {
+  .actionButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    min-height: 48px;
+  }
+
+  .buttonIcon {
+    font-size: 1.1rem;
+  }
+
+  .buttonText {
+    font-size: 0.85rem;
+  }
+}
+
+/* Tablet: 640px - 1023px */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .buttonContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .actionButton {
+    flex: 1 1 calc(50% - 0.5rem);
+    max-width: calc(50% - 0.5rem);
+    min-width: 200px;
+  }
+
+  /* Third button takes full width on tablet */
+  .actionButton:nth-child(3) {
+    flex: 1 1 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop: >= 1024px */
+@media (min-width: 1024px) {
+  .buttonContainer {
+    flex-direction: row;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .actionButton {
+    flex: 0 1 auto;
+    max-width: 280px;
+    padding: 1.125rem 2.25rem;
+  }
+
+  .buttonIcon {
+    font-size: 1.6rem;
+  }
+
+  .buttonText {
+    font-size: 1.05rem;
+  }
+}
+
+/* Large Desktop: >= 1440px */
+@media (min-width: 1440px) {
+  .actionButton {
+    max-width: 300px;
+    padding: 1.25rem 2.5rem;
+  }
+
+  .buttonIcon {
+    font-size: 1.75rem;
+  }
+
+  .buttonText {
+    font-size: 1.1rem;
+  }
 }
