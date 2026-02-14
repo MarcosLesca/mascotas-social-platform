@@ -774,3 +774,102 @@
     width: auto;
   }
 }
+
+/* ========================================
+   PAW PRINTS ANIMATION - Multiple Directions
+   ======================================== */
+
+.pawContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.paw {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  animation: 2500ms pawAnimation ease-in-out infinite;
+  opacity: 0;
+}
+
+.paw svg {
+  width: 100%;
+  height: 100%;
+}
+
+.paw .icon {
+  fill: currentColor;
+}
+
+/* Different sizes */
+.paw.small {
+  width: 30px;
+  height: 30px;
+}
+
+.paw.medium {
+  width: 50px;
+  height: 50px;
+}
+
+.paw.large {
+  width: 70px;
+  height: 70px;
+}
+
+.paw.xlarge {
+  width: 90px;
+  height: 90px;
+}
+
+/* Positions - distributed across the hero */
+.paw:nth-child(1) { top: 5%; left: 10%; animation-delay: 0.1s; }
+.paw:nth-child(2) { top: 8%; left: 30%; animation-delay: 0.3s; transform: rotate(25deg); }
+.paw:nth-child(3) { top: 3%; left: 50%; animation-delay: 0.5s; }
+.paw:nth-child(4) { top: 10%; left: 70%; animation-delay: 0.7s; transform: rotate(-15deg); }
+.paw:nth-child(5) { top: 5%; left: 85%; animation-delay: 0.9s; transform: rotate(45deg); }
+.paw:nth-child(6) { top: 20%; left: 5%; animation-delay: 0.2s; transform: rotate(-30deg); }
+.paw:nth-child(7) { top: 15%; left: 45%; animation-delay: 0.4s; }
+.paw:nth-child(8) { top: 25%; left: 90%; animation-delay: 0.6s; transform: rotate(20deg); }
+.paw:nth-child(9) { top: 35%; left: 15%; animation-delay: 0.8s; transform: rotate(-45deg); }
+.paw:nth-child(10) { top: 30%; left: 75%; animation-delay: 1s; }
+.paw:nth-child(11) { top: 40%; left: 35%; animation-delay: 0.15s; transform: rotate(60deg); }
+.paw:nth-child(12) { top: 38%; left: 60%; animation-delay: 0.35s; transform: rotate(-20deg); }
+.paw:nth-child(13) { top: 45%; left: 8%; animation-delay: 0.55s; }
+.paw:nth-child(14) { top: 50%; left: 80%; animation-delay: 0.75s; transform: rotate(35deg); }
+.paw:nth-child(15) { top: 55%; left: 25%; animation-delay: 0.95s; transform: rotate(-40deg); }
+.paw:nth-child(16) { top: 52%; left: 55%; animation-delay: 0.25s; }
+.paw:nth-child(17) { top: 60%; left: 5%; animation-delay: 0.45s; transform: rotate(15deg); }
+.paw:nth-child(18) { top: 58%; left: 40%; animation-delay: 0.65s; transform: rotate(-60deg); }
+.paw:nth-child(19) { top: 65%; left: 70%; animation-delay: 0.85s; }
+.paw:nth-child(20) { top: 70%; left: 20%; animation-delay: 1.05s; transform: rotate(30deg); }
+.paw:nth-child(21) { top: 68%; left: 50%; animation-delay: 0.12s; transform: rotate(-25deg); }
+.paw:nth-child(22) { top: 75%; left: 85%; animation-delay: 0.32s; }
+.paw:nth-child(23) { top: 80%; left: 10%; animation-delay: 0.52s; transform: rotate(50deg); }
+.paw:nth-child(24) { top: 78%; left: 35%; animation-delay: 0.72s; transform: rotate(-35deg); }
+.paw:nth-child(25) { top: 85%; left: 60%; animation-delay: 0.92s; }
+.paw:nth-child(26) { top: 88%; left: 90%; animation-delay: 0.18s; transform: rotate(-10deg); }
+.paw:nth-child(27) { top: 12%; left: 20%; animation-delay: 0.38s; transform: rotate(70deg); }
+.paw:nth-child(28) { top: 22%; left: 55%; animation-delay: 0.58s; transform: rotate(-55deg); }
+.paw:nth-child(29) { top: 42%; left: 75%; animation-delay: 0.78s; }
+.paw:nth-child(30) { top: 72%; left: 45%; animation-delay: 0.98s; transform: rotate(40deg); }
+
+@keyframes pawAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(0deg);
+  }
+  15% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2) rotate(10deg);
+  }
+}
