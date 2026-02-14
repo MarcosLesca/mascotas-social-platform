@@ -154,28 +154,17 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
               </p>
             </div>
           ) : (
-            <section className="columns-1 md:columns-2 xl:columns-3 gap-6 [column-fill:_balance]">
+            <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {mixedRecentCards.map((item, index) => {
-                const imageHeightClass =
-                  index % 4 === 0
-                    ? "h-64"
-                    : index % 3 === 0
-                      ? "h-44"
-                      : index % 2 === 0
-                        ? "h-56"
-                        : "h-52";
-
                 if (item.kind === "donation") {
                   const campaign = item.campaign;
                   return (
                     <article
                       key={item.id}
                       onClick={() => setCurrentView(View.DONATIONS)}
-                      className="mb-6 break-inside-avoid rounded-3xl overflow-hidden border border-accent-teal/15 bg-white dark:bg-white/5 cursor-pointer hover:border-primary/40 hover:shadow-xl transition-all"
+                      className="rounded-3xl overflow-hidden border border-accent-teal/15 bg-white dark:bg-white/5 cursor-pointer hover:border-primary/40 hover:shadow-xl transition-all flex flex-col"
                     >
-                      <div
-                        className={`relative ${imageHeightClass} overflow-hidden`}
-                      >
+                      <div className="relative h-52 overflow-hidden flex-shrink-0">
                         <img
                           src={campaign.image}
                           alt={campaign.title}
@@ -192,14 +181,14 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                         )}
                       </div>
 
-                      <div className="p-5 space-y-2">
+                      <div className="p-5 space-y-2 flex-1 flex flex-col">
                         <h3 className="text-lg font-black leading-tight">
                           {campaign.title}
                         </h3>
                         <p className="text-sm text-accent-teal line-clamp-3">
                           {campaign.description}
                         </p>
-                        <div className="pt-2 border-t border-accent-teal/10 text-xs text-accent-teal">
+                        <div className="pt-2 border-t border-accent-teal/10 text-xs text-accent-teal mt-auto">
                           <p className="font-bold">
                             Meta: ${campaign.goal.toLocaleString("es-AR")}
                           </p>
@@ -219,11 +208,9 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                     onClick={() =>
                       setCurrentView(isLost ? View.LOST_PETS : View.ADOPTION)
                     }
-                    className="mb-6 break-inside-avoid rounded-3xl overflow-hidden border border-accent-teal/15 bg-white dark:bg-white/5 cursor-pointer hover:border-primary/40 hover:shadow-xl transition-all"
+                    className="rounded-3xl overflow-hidden border border-accent-teal/15 bg-white dark:bg-white/5 cursor-pointer hover:border-primary/40 hover:shadow-xl transition-all flex flex-col"
                   >
-                    <div
-                      className={`relative ${imageHeightClass} overflow-hidden`}
-                    >
+                    <div className="relative h-52 overflow-hidden flex-shrink-0">
                       <img
                         src={pet.image}
                         alt={pet.name}
@@ -246,17 +233,17 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                       )}
                     </div>
 
-                    <div className="p-5 space-y-2">
+                    <div className="p-5 space-y-2 flex-1 flex flex-col">
                       <h3 className="text-lg font-black">{pet.name}</h3>
                       <p className="text-sm text-accent-teal">
-                        {pet.breed} � {pet.location}
+                        {pet.breed} - {pet.location}
                       </p>
                       {pet.description && (
                         <p className="text-sm text-accent-teal line-clamp-3">
                           {pet.description}
                         </p>
                       )}
-                      <div className="pt-2 border-t border-accent-teal/10 text-xs text-accent-teal">
+                      <div className="pt-2 border-t border-accent-teal/10 text-xs text-accent-teal mt-auto">
                         {isLost ? (
                           <p>{pet.timeLabel || "Reporte reciente"}</p>
                         ) : (
