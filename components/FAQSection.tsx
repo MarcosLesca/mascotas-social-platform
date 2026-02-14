@@ -246,7 +246,7 @@ const FAQSection: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in">
-        <h1 className="text-4xl md:text-5xl font-black mb-4">
+        <h1 className="text-4xl md:text-5xl font-black mb-4 text-black">
           Preguntas <span className="text-primary">Frecuentes</span>
         </h1>
         <p className="text-lg text-accent-teal max-w-2xl mx-auto">
@@ -255,29 +255,15 @@ const FAQSection: React.FC = () => {
       </div>
 
       {/* FAQ Items por categoría */}
-      <div className="space-y-8">
+      <div className="space-y-10">
         {Object.entries(groupedFAQs).map(([category, items], categoryIndex) => (
-          <div key={category} className="space-y-4">
+          <div id={`category-${category}`} key={category} className="scroll-mt-8">
             {/* Título de la categoría */}
-            <div className="mb-6 text-center">
-              <div className="inline-flex items-center gap-4 bg-gradient-to-r from-primary/20 to-accent-teal/20 px-8 py-4 rounded-2xl border border-accent-teal/30 backdrop-blur-sm">
-                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-                  {category === 'general' && 'P'}
-                  {category === 'perdidas' && 'M'}
-                  {category === 'adopcion' && 'A'}
-                  {category === 'donaciones' && 'D'}
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white mb-1">
-                    {categoryTitles[category as keyof typeof categoryTitles]}
-                  </h2>
-                  <p className="text-sm text-accent-teal/80">
-                    {category === 'general' && 'Información básica de la plataforma'}
-                    {category === 'perdidas' && 'Encuentra o reporta mascotas desaparecidas'}
-                    {category === 'adopcion' && 'Dale un hogar a un peludo'}
-                    {category === 'donaciones' && 'Ayuda a quienes más lo necesitan'}
-                  </p>
-                </div>
+            <div className="mb-6">
+              <div className="pb-4 border-b-4 border-primary">
+                <h2 className="text-2xl md:text-3xl font-bold text-black">
+                  {categoryTitles[category as keyof typeof categoryTitles]}
+                </h2>
               </div>
             </div>
             
@@ -294,7 +280,7 @@ const FAQSection: React.FC = () => {
                     className="w-full px-6 py-5 text-left flex items-center gap-4 hover:bg-accent-teal/5 transition-colors"
                   >
                     <div className="flex-1 pt-4">
-                      <h3 className="font-bold text-lg">{item.question}</h3>
+                      <h3 className="font-bold text-lg text-black">{item.question}</h3>
                     </div>
                     <span 
                       className={`text-accent-teal transition-transform text-xl font-bold ${
@@ -321,9 +307,9 @@ const FAQSection: React.FC = () => {
       <div className="mt-16 text-center">
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold mx-auto hover:opacity-90 transition-all"
+          className="bg-primary text-white px-8 py-3 rounded-xl font-bold mx-auto hover:opacity-90 transition-all inline-flex items-center gap-2"
         >
-          Volver al Principio
+          <span>↑</span> Volver al índice
         </button>
       </div>
     </div>
