@@ -12,7 +12,6 @@ interface PetCardProps {
 }
 
 const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
-  const [isFavorited, setIsFavorited] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const isLost = pet.status === 'lost';
   const hasPhone = !!pet.contactPhone?.trim();
@@ -67,20 +66,6 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
           )}
         </div>
         <div className="absolute top-3 right-3 flex gap-2">
-          <button 
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsFavorited(!isFavorited);
-            }}
-            className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
-              isFavorited 
-                ? 'bg-white/90 text-red-500' 
-                : 'bg-white/40 text-slate-800 hover:bg-white/60'
-            }`}
-          >
-            {isFavorited ? 'En favoritos' : 'Favorito'}
-          </button>
-          
           <div className="relative">
             <button 
               onClick={(e) => {
