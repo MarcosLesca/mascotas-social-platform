@@ -785,6 +785,7 @@
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
+  color: #4c9a66;
 }
 
 .paw {
@@ -801,7 +802,7 @@
 }
 
 .paw .icon {
-  fill: currentColor;
+  fill: #4c9a66 !important;
 }
 
 /* Different sizes */

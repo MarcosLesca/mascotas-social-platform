@@ -242,41 +242,41 @@ export default function HeroZoom() {
         {/* Paw Prints Animation - Behind images */}
         <div className={`${styles.pawContainer} paw-container`}>
           {/* Row 1 - Top */}
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
           {/* Row 2 */}
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
           {/* Row 3 */}
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
           {/* Row 4 */}
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
           {/* Row 5 */}
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
           {/* Row 6 - Bottom */}
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
           {/* Extra scattered */}
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon"><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
         </div>
 
         {/* Titulo animado - inicialmente oculto/pequeno */}
