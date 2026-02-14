@@ -2,29 +2,82 @@ import React from 'react';
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16 space-y-20">
+    <div className="max-w-6xl mx-auto px-6 py-16">
       {/* Hero Section */}
-      <div className="text-center space-y-6">
-        <div className="inline-flex items-center justify-center size-20 bg-primary/10 rounded-3xl mb-4">
-          <span className="material-symbols-outlined text-5xl text-primary">pets</span>
-        </div>
-        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary to-accent-teal bg-clip-text text-transparent">
+      <div className="text-center space-y-6 mb-16">
+        <h1 className="text-4xl md:text-5xl font-black text-[#203553]">
           Sobre Nosotros
         </h1>
-        <p className="text-xl text-accent-teal max-w-3xl mx-auto leading-relaxed">
-          Conectando corazones para el bienestar de nuestras mascotas
-        </p>
       </div>
 
-      {/* Simple content section */}
-      <div className="text-center space-y-8 max-w-4xl mx-auto">
-        <div className="bg-white dark:bg-white/5 rounded-3xl p-12 border border-accent-teal/10">
-          <h2 className="text-2xl font-bold mb-6 text-primary">Comunidad de Bienestar Animal</h2>
-          <p className="text-accent-teal leading-relaxed text-lg">
-            Somos una plataforma dedicada a conectar personas que aman a las mascotas, 
-            facilitando la búsqueda de animales perdidos, promoviendo adopciones responsables 
-            y apoyando a quienes necesitan ayuda para el cuidado de sus compañeros peludos.
-          </p>
+      {/* Desarrollado por LyM - PRIMERO */}
+      <div className="mb-12 text-center">
+        <div className="inline-flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-white/5 rounded-3xl p-8 border-2 border-[#ecdbbd]/50 shadow-lg">
+          {/* Logo de LyM */}
+          <div className="flex-shrink-0">
+            <img 
+              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png" 
+              alt="LyM Desarrollo Web" 
+              className="w-20 h-20 mx-auto"
+            />
+          </div>
+          
+          <div className="text-left">
+            <p className="text-lg text-[#203553] font-semibold mb-2">
+              Esta plataforma fue desarrollada por
+            </p>
+            <a 
+              href="https://lymdesarrolloweb.com.ar/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-2xl font-bold text-[#273f56] hover:text-[#898e8d] transition-colors underline underline-offset-4"
+            >
+              LyM Desarrollo Web
+            </a>
+            <p className="text-black mt-2 font-bold">
+              ¿Necesitás una página web? Visitanos.
+            </p>
+          </div>
+
+          <a 
+            href="https://lymdesarrolloweb.com.ar/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-[#273f56] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#203553] transition-colors"
+          >
+            Visitar Web
+          </a>
+        </div>
+      </div>
+
+      {/* Nuestra Identidad y Qué Hacemos */}
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Nuestra Identidad */}
+        <div className="bg-[#203553]/90 p-8 rounded-3xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+          <div className="relative z-10">
+            <h2 className="text-2xl font-bold text-[#ecdbbd] mb-4">
+              Nuestra Identidad
+            </h2>
+            <p className="text-white/80 leading-relaxed">
+              Somos Loana y Marcos (L&M Studio), un equipo de desarrollo de San Justo, Santa Fe, 
+              enfocado en crear soluciones digitales que combinan diseño, tecnología y rendimiento.
+            </p>
+          </div>
+        </div>
+
+        {/* Qué hacemos */}
+        <div className="bg-[#203553]/90 p-8 rounded-3xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+          <div className="relative z-10">
+            <h2 className="text-2xl font-bold text-[#ecdbbd] mb-4">
+              Qué Hacemos
+            </h2>
+            <p className="text-white/80 leading-relaxed">
+              Trabajamos de forma remota con comunicación clara y organización simple. 
+              Nos capacitamos constantemente para ofrecer soluciones modernas, rápidas y bien diseñadas.
+            </p>
+          </div>
         </div>
       </div>
     </div>
