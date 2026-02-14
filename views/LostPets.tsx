@@ -23,7 +23,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
-    species: ['Perros'],
+    species: [],
     age: [],
     urgency: false,
     searchTerm: '',
@@ -63,7 +63,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       const speciesMap: { [key: string]: string } = {
         'Perros': 'dog',
         'Gatos': 'cat',
-        'Aves': 'bird'
+        'Aves': 'bird',
+        'Otros': 'other'
       };
       const selectedSpecies = filters.species.map(s => speciesMap[s]).filter(Boolean);
       filtered = filtered.filter(pet => selectedSpecies.includes(pet.species));
@@ -102,7 +103,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
   const clearFilters = () => {
     setFilters({
-      species: ['Perros'],
+      species: [],
       age: [],
       urgency: false,
       searchTerm: ''
@@ -110,7 +111,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   const hasActiveFilters =
-    filters.species.length !== 1 ||
+    filters.species.length > 0 ||
     filters.age.length > 0 ||
     filters.urgency ||
     !!filters.searchTerm;
@@ -214,7 +215,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               <div>
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
-                  {['Perros', 'Gatos', 'Aves'].map(s => (
+                  {['Perros', 'Gatos', 'Aves', 'Otros'].map(s => (
                     <button 
                       key={s} 
                       onClick={() => toggleSpecies(s)}
@@ -314,16 +315,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         </div>
       </div>
 
-      {/* Sin resultados (solo con filtros activos) */}
-      {!loading && hasActiveFilters && filteredPets.length === 0 && (
-        <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center">
-          <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
-          <p className="text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
-          <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
-            Limpiar filtros
-          </button>
-        </div>
-      )}
 
       {/* Modal de detalles */}
       <PetDetailModal
