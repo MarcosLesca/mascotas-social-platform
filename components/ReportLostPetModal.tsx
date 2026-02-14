@@ -160,7 +160,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white dark:bg-background-dark rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
         {/* Header */}
-        <div className="bg-primary text-background-dark p-6">
+        <div className="bg-urgent-red text-white p-6">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-black">Reportar Mascota Perdida</h2>
             <button 
@@ -181,7 +181,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               <div key={step} className="flex items-center flex-1">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                   currentStep >= step 
-                    ? 'bg-white text-primary' 
+                    ? 'bg-white text-urgent-red' 
                     : 'bg-white/20 text-white/60'
                 }`}>
                   {step}
@@ -218,7 +218,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               <h3 className="text-xl font-bold mb-4">Información de la Mascota</h3>
 
               <div>
-                <label className="block text-sm font-bold text-accent-teal mb-2">Foto de la mascota *</label>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Foto de la mascota *</label>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -232,7 +232,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     <img
                       src={imagePreview}
                       alt="Vista previa"
-                      className="w-40 h-40 object-cover rounded-xl border-2 border-accent-teal/20"
+                      className="w-40 h-40 object-cover rounded-xl border-2 border-gray-800/20"
                     />
                     <button
                       type="button"
@@ -246,35 +246,35 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-accent-teal"
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-gray-800/30 hover:border-urgent-red hover:bg-urgent-red/5 transition-colors text-sm font-bold text-gray-800"
                   >
                     Subir foto
                   </button>
                 )}
-                <p className="mt-1 text-xs text-accent-teal">JPEG, PNG o WebP. Máx. {MAX_MB} MB.</p>
+                <p className="mt-1 text-xs text-gray-800">JPEG, PNG o WebP. Máx. {MAX_MB} MB.</p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="report-petName" className="block text-sm font-bold text-accent-teal mb-2">Nombre de la Mascota *</label>
+                  <label htmlFor="report-petName" className="block text-sm font-bold text-gray-800 mb-2">Nombre de la Mascota *</label>
                   <input
                     id="report-petName"
                     type="text"
                     required
                     value={formData.petName}
                     onChange={(e) => handleInputChange('petName', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                     placeholder="Ej: Buddy"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="report-species" className="block text-sm font-bold text-accent-teal mb-2">Especie *</label>
+                  <label htmlFor="report-species" className="block text-sm font-bold text-gray-800 mb-2">Especie *</label>
                   <select
                     id="report-species"
                     value={formData.species}
                     onChange={(e) => handleInputChange('species', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                   >
                     <option value="dog">Perro</option>
                     <option value="cat">Gato</option>
@@ -284,24 +284,24 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Raza *</label>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Raza *</label>
                   <input
                     type="text"
                     required
                     value={formData.breed}
                     onChange={(e) => handleInputChange('breed', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                     placeholder="Ej: Golden Retriever"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="report-gender" className="block text-sm font-bold text-accent-teal mb-2">Género *</label>
+                  <label htmlFor="report-gender" className="block text-sm font-bold text-gray-800 mb-2">Género *</label>
                   <select
                     id="report-gender"
                     value={formData.gender}
                     onChange={(e) => handleInputChange('gender', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                   >
                     <option value="male">Macho</option>
                     <option value="female">Hembra</option>
@@ -309,23 +309,23 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Edad Aproximada</label>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Edad Aproximada</label>
                   <input
                     type="text"
                     value={formData.age}
                     onChange={(e) => handleInputChange('age', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                     placeholder="Ej: 3 años"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="report-size" className="block text-sm font-bold text-accent-teal mb-2">Tamaño</label>
+                  <label htmlFor="report-size" className="block text-sm font-bold text-gray-800 mb-2">Tamaño</label>
                   <select
                     id="report-size"
                     value={formData.size}
                     onChange={(e) => handleInputChange('size', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                   >
                     <option value="small">Pequeño</option>
                     <option value="medium">Mediano</option>
@@ -335,23 +335,23 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-accent-teal mb-2">Color/Colores *</label>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Color/Colores *</label>
                 <input
                   type="text"
                   required
                   value={formData.color}
                   onChange={(e) => handleInputChange('color', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                   placeholder="Ej: Dorado con manchas blancas"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-accent-teal mb-2">Características Distintivas</label>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Características Distintivas</label>
                 <textarea
                   value={formData.distinctiveFeatures}
                   onChange={(e) => handleInputChange('distinctiveFeatures', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                   rows={3}
                   placeholder="Ej: Cicatriz en la oreja izquierda, collar rojo con placa..."
                 />
@@ -366,38 +366,38 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="report-lastSeenDate" className="block text-sm font-bold text-accent-teal mb-2">Fecha en que se perdió *</label>
+                  <label htmlFor="report-lastSeenDate" className="block text-sm font-bold text-gray-800 mb-2">Fecha en que se perdió *</label>
                   <input
                     id="report-lastSeenDate"
                     type="date"
                     required
                     value={formData.lastSeenDate}
                     onChange={(e) => handleInputChange('lastSeenDate', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="report-lastSeenLocation" className="block text-sm font-bold text-accent-teal mb-2">Ubicación donde se perdió *</label>
+                  <label htmlFor="report-lastSeenLocation" className="block text-sm font-bold text-gray-800 mb-2">Ubicación donde se perdió *</label>
                   <input
                     id="report-lastSeenLocation"
                     type="text"
                     required
                     value={formData.lastSeenLocation}
                     onChange={(e) => handleInputChange('lastSeenLocation', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                     placeholder="Ej: Parque Oakwood, entrada Calle 5"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="report-additionalInfo" className="block text-sm font-bold text-accent-teal mb-2">Información Adicional</label>
+                <label htmlFor="report-additionalInfo" className="block text-sm font-bold text-gray-800 mb-2">Información Adicional</label>
                 <textarea
                   id="report-additionalInfo"
                   value={formData.additionalInfo}
                   onChange={(e) => handleInputChange('additionalInfo', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                   rows={4}
                   placeholder="Circunstancias de la pérdida, comportamiento, salud, etc..."
                 />
@@ -409,7 +409,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     type="checkbox"
                     checked={formData.urgency}
                     onChange={(e) => handleInputChange('urgency', e.target.checked)}
-                    className="rounded text-primary focus:ring-primary border-accent-teal/20"
+                    className="rounded text-primary focus:ring-urgent-red border-gray-800/20"
                   />
                   <span className="font-medium">Marcar como búsqueda urgente</span>
                 </label>
@@ -419,19 +419,19 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     type="checkbox"
                     checked={formData.hasReward}
                     onChange={(e) => handleInputChange('hasReward', e.target.checked)}
-                    className="rounded text-primary focus:ring-primary border-accent-teal/20"
+                    className="rounded text-primary focus:ring-urgent-red border-gray-800/20"
                   />
                   <span className="font-medium">Ofrecer recompensa</span>
                 </label>
 
                 {formData.hasReward && (
                   <div>
-                    <label className="block text-sm font-bold text-accent-teal mb-2">Monto de la recompensa</label>
+                    <label className="block text-sm font-bold text-gray-800 mb-2">Monto de la recompensa</label>
                     <input
                       type="text"
                       value={formData.rewardAmount}
                       onChange={(e) => handleInputChange('rewardAmount', e.target.value)}
-                      className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                      className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                       placeholder="Ej: $5000"
                     />
                   </div>
@@ -447,36 +447,36 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Tu Nombre *</label>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Tu Nombre *</label>
                   <input
                     type="text"
                     required
                     value={formData.contactName}
                     onChange={(e) => handleInputChange('contactName', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                     placeholder="Tu nombre completo"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Teléfono *</label>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Teléfono *</label>
                   <input
                     type="tel"
                     required
                     value={formData.contactPhone}
                     onChange={(e) => handleInputChange('contactPhone', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                     placeholder="Ej: +54 9 11 2345-6789"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Email</label>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Email</label>
                   <input
                     type="email"
                     value={formData.contactEmail}
                     onChange={(e) => handleInputChange('contactEmail', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
                     placeholder="tu@email.com"
                   />
                 </div>
@@ -486,7 +486,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 <div className="flex gap-3">
                   <div>
                     <h4 className="font-bold mb-2">Importante</h4>
-                    <ul className="text-sm text-accent-teal space-y-1">
+                    <ul className="text-sm text-gray-800 space-y-1">
                       <li>• Tu información será visible para quienes vean el reporte</li>
                       <li>• Te contactaremos directamente si alguien tiene información</li>
                       <li>• Puedes actualizar o eliminar el reporte en cualquier momento</li>
@@ -498,15 +498,15 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between items-center mt-8 pt-6 border-t border-accent-teal/10">
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-800/10">
             <button
               type="button"
               onClick={prevStep}
               disabled={currentStep === 1}
               className={`px-6 py-3 rounded-xl font-bold transition-all ${
                 currentStep === 1
-                  ? 'text-accent-teal/40 cursor-not-allowed'
-                  : 'text-accent-teal hover:text-primary'
+                  ? 'text-gray-800/40 cursor-not-allowed'
+                  : 'text-gray-800 hover:text-primary'
               }`}
             >
               Anterior
@@ -517,7 +517,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 type="button"
                 onClick={nextStep}
                 disabled={currentStep === 1 && !canProceedStep1}
-                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-3 bg-urgent-red text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Siguiente
               </button>
@@ -525,7 +525,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-3 bg-urgent-red text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Publicando...' : 'Publicar Reporte'}
               </button>
