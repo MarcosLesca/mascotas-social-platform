@@ -83,7 +83,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
               {pet.description && (
                 <div>
                   <h3 className="text-xl font-bold mb-3">Descripción</h3>
-                  <p className="text-accent-teal leading-relaxed">{pet.description}</p>
+                  <p className="text-gray-800 leading-relaxed">{pet.description}</p>
                 </div>
               )}
 
@@ -92,9 +92,9 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                 <h3 className="text-xl font-bold mb-3">
                   {isLost ? 'Última Vez Visto' : 'Ubicación'}
                 </h3>
-                <p className="text-accent-teal font-medium">{pet.location}</p>
+                <p className="text-gray-800 font-medium">{pet.location}</p>
                 {pet.distance && (
-                  <p className="text-sm text-accent-teal/80 mt-1">A {pet.distance} de tu ubicación</p>
+                  <p className="text-sm text-gray-800/80 mt-1">A {pet.distance} de tu ubicación</p>
                 )}
               </div>
 
@@ -131,7 +131,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                             href={waHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium text-accent-teal hover:text-primary transition-colors underline"
+                            className="font-medium text-gray-800 hover:text-primary transition-colors underline"
                           >
                             {pet.contactPhone}
                           </a>
@@ -145,7 +145,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                         {mailHref ? (
                           <a
                             href={mailHref}
-                            className="font-medium text-accent-teal hover:text-primary transition-colors underline"
+                            className="font-medium text-gray-800 hover:text-primary transition-colors underline"
                           >
                             {pet.contactEmail}
                           </a>
@@ -155,7 +155,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                       </div>
                     )}
                     {!hasContact && !isLost && (
-                      <p className="text-sm text-accent-teal">Contacto disponible en la publicación.</p>
+                      <p className="text-sm text-gray-800">Contacto disponible en la publicación.</p>
                     )}
                   </div>
                 </div>
@@ -203,21 +203,21 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                 <h4 className="font-bold mb-4">Características</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-sm text-accent-teal">Especie</span>
+                    <span className="text-sm text-gray-800">Especie</span>
                     <span className="text-sm font-bold capitalize">{pet.species}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm text-accent-teal">Género</span>
+                    <span className="text-sm text-gray-800">Género</span>
                     <span className="text-sm font-bold">{pet.gender === 'male' ? 'Macho' : 'Hembra'}</span>
                   </div>
                   {pet.age && (
                     <div className="flex justify-between">
-                      <span className="text-sm text-accent-teal">Edad</span>
+                      <span className="text-sm text-gray-800">Edad</span>
                       <span className="text-sm font-bold">{pet.age}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
-                    <span className="text-sm text-accent-teal">Estado</span>
+                    <span className="text-sm text-gray-800">Estado</span>
                     <span className="text-sm font-bold capitalize">{pet.status}</span>
                   </div>
                 </div>
@@ -228,7 +228,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                 <div className="flex gap-3">
                   <div>
                     <h5 className="font-bold text-sm mb-1">Seguridad Primero</h5>
-                    <p className="text-xs text-accent-teal">
+                    <p className="text-xs text-gray-800">
                       {isLost 
                         ? 'Nunca envíes dinero por adelantado. Encuéntrate en un lugar público.' 
                         : 'Verifica la información del refugio. Pedí certificados veterinarios.'

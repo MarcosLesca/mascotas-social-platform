@@ -178,7 +178,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
     <div className="flex flex-col gap-10">
       <div className="max-w-3xl mx-auto text-center mt-6">
         <h1 className="text-5xl font-black tracking-tight mb-4">Algunos todavía esperan su primera oportunidad</h1>
-        <p className="text-xl text-accent-teal font-sans italic">
+        <p className="text-xl text-gray-800 font-sans italic">
           Adopción
         </p>
       </div>
@@ -213,7 +213,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             
             <div className="space-y-8">
               <div>
-                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Especie</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
                   {['Perros', 'Gatos', 'Aves', 'Otros'].map(s => (
                     <button 
@@ -222,7 +222,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                       className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                         filters.species.includes(s) 
                           ? 'bg-primary text-background-dark' 
-                          : 'bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/10'
+                          : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
                       {s}
@@ -232,7 +232,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Edad</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Edad</p>
                 <div className="space-y-3">
                   {['Cachorro', 'Joven', 'Adulto', 'Senior'].map(age => (
                     <label key={age} className="flex items-center gap-3 cursor-pointer group">
@@ -249,7 +249,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Energía</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Energía</p>
                 <div className="grid grid-cols-3 gap-2">
                   {['Bajo', 'Medio', 'Alto'].map(e => (
                     <button 
@@ -258,7 +258,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                       className={`py-2 rounded-xl text-[10px] font-black uppercase tracking-tighter transition-all ${
                         filters.energy === e 
                           ? 'bg-primary text-background-dark' 
-                          : 'bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/10'
+                          : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
                       {e}
@@ -277,7 +277,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         <div className="col-span-12 lg:col-span-9">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
-              <p className="text-accent-teal font-medium">Cargando mascotas en adopción…</p>
+              <p className="text-gray-800 font-medium">Cargando mascotas en adopción…</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -295,7 +295,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                 onClick={handleOpenReportModal}
               >
                 <h3 className="text-xl font-bold mb-3">Publicar en adopción</h3>
-                <p className="text-sm text-accent-teal mb-8 max-w-[220px]">
+                <p className="text-sm text-gray-800 mb-8 max-w-[220px]">
                   Ayuda a encontrar un hogar definitivo. Creá una publicación ahora.
                 </p>
                 <button
@@ -315,7 +315,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
           {!loading && filteredPets.length === 0 && (
             <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
               <h3 className="text-2xl font-bold mb-2">No encontramos mascotas con esos filtros</h3>
-              <p className="text-accent-teal mb-6">Intenta ajustar los filtros para ver más opciones</p>
+              <p className="text-gray-800 mb-6">Intenta ajustar los filtros para ver más opciones</p>
               <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>

@@ -283,7 +283,7 @@ const FAQSection: React.FC = () => {
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-black mb-4 text-black">
-          Preguntas <span className="text-primary">Frecuentes</span>
+          Preguntas Frecuentes
         </h1>
         <p className="text-lg text-accent-teal max-w-2xl mx-auto">
           Todo lo que necesitás saber para usar Mascotas SJ.

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { DonationCampaign } from '../types';
-import { MOCK_CAMPAIGNS } from '../constants';
-import DonationModal from '../components/DonationModal';
+import React, { useState } from "react";
+import { DonationCampaign } from "../types";
+import { MOCK_CAMPAIGNS } from "../constants";
+import DonationModal from "../components/DonationModal";
 
 const Donations: React.FC = () => {
-  const [selectedCampaign, setSelectedCampaign] = useState<DonationCampaign | null>(null);
+  const [selectedCampaign, setSelectedCampaign] =
+    useState<DonationCampaign | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCampaignClick = (campaign: DonationCampaign) => {
@@ -24,22 +25,29 @@ const Donations: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-black text-black">
           Cuando ayudás, ellos sienten esperanza
         </h1>
-        <p className="text-xl text-accent-teal">
-          Donaciones
-        </p>
+        <p className="text-xl text-gray-800">Donaciones</p>
       </div>
 
       {/* Transparency Notice */}
       <div className="bg-red-50 dark:bg-red-900/20 rounded-3xl p-4 border border-red-200 dark:border-red-800">
         <div className="flex items-start gap-4">
           <div className="size-12 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <span className="material-symbols-outlined text-2xl text-red-500">warning</span>
+            <span className="material-symbols-outlined text-2xl text-red-500">
+              warning
+            </span>
           </div>
           <div>
-            <h3 className="text-xl font-black mb-2 text-red-600 dark:text-red-400">IMPORTANTE</h3>
+            <h3 className="text-xl font-black mb-2 text-red-600 dark:text-red-400">
+              IMPORTANTE
+            </h3>
             <p className="text-black leading-relaxed">
-              En Mascotas SJ <strong className="text-red-500">no administramos el dinero</strong> de las donaciones. Solo publicamos las necesidades
-              y proporcionamos toda la información necesaria para que puedas donate directamente a los responsables de las mascotas.
+              En Mascotas SJ{" "}
+              <strong className="text-red-500">
+                no administramos el dinero
+              </strong>{" "}
+              de las donaciones. Solo publicamos las necesidades y
+              proporcionamos toda la información necesaria para que puedas
+              donate directamente a los responsables de las mascotas.
             </p>
           </div>
         </div>
@@ -67,14 +75,15 @@ const Donations: React.FC = () => {
 
                   {campaign.urgency && (
                     <div className="absolute top-4 right-4 px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full flex items-center gap-1">
-                      <span className="material-symbols-outlined text-sm">emergency</span>
                       URGENTE
                     </div>
                   )}
 
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center gap-2 text-white/90 text-xs font-medium mb-1">
-                      <span className="material-symbols-outlined text-sm">pets</span>
+                      <span className="material-symbols-outlined text-sm">
+                        pets
+                      </span>
                       {campaign.petName}
                     </div>
                   </div>
@@ -83,22 +92,35 @@ const Donations: React.FC = () => {
                 {/* Content */}
                 <div className="p-6 space-y-4">
                   <div>
-                    <h3 className="text-xl font-black mb-2 line-clamp-2">{campaign.title}</h3>
-                    <p className="text-sm text-accent-teal line-clamp-2">{campaign.description}</p>
+                    <h3 className="text-xl font-black mb-2 line-clamp-2">
+                      {campaign.title}
+                    </h3>
+                    <p className="text-sm text-gray-800 line-clamp-2">
+                      {campaign.description}
+                    </p>
                   </div>
 
                   {/* Goal */}
-                  <div className="bg-accent-teal/5 rounded-xl p-3">
+                  <div className="bg-gray-100 rounded-xl p-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-accent-teal font-medium">Meta:</span>
-                      <span className="text-lg font-black text-primary">${campaign.goal.toLocaleString('es-AR')}</span>
+                      <span className="text-xs text-gray-800 font-medium">
+                        Meta:
+                      </span>
+                      <span className="text-lg font-black text-urgent-red">
+                        ${campaign.goal.toLocaleString("es-AR")}
+                      </span>
                     </div>
                   </div>
 
                   {/* Deadline */}
-                  <div className="flex items-center gap-2 text-xs text-accent-teal pt-2 border-t border-accent-teal/10">
-                    <span className="material-symbols-outlined text-sm">event</span>
-                    <span className="font-medium">Hasta: {campaign.deadline}</span>
+                  <div className="flex items-center gap-2 text-xs pt-2 border-t border-gray-200">
+                    <span className="material-symbols-outlined text-sm">
+                      event
+                    </span>
+                    <span className="font-medium text-gray-800">Hasta: </span>
+                    <span className="font-medium text-urgent-red">
+                      {campaign.deadline}
+                    </span>
                   </div>
 
                   {/* CTA */}
@@ -112,8 +134,6 @@ const Donations: React.FC = () => {
           })}
         </div>
       </div>
-
-
 
       {/* Donation Modal */}
       <DonationModal

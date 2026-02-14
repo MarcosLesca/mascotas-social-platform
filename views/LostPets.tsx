@@ -177,7 +177,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     <div className="flex flex-col gap-10">
       <div className="max-w-3xl mx-auto text-center mt-6">
         <h2 className="text-4xl font-extrabold mb-2">Ellos te siguen buscando</h2>
-        <p className="text-accent-teal text-lg">
+        <p className="text-gray-800 text-lg">
           Mascotas perdidas
         </p>
       </div>
@@ -212,7 +212,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
             
             <div className="space-y-8">
               <div>
-                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Especie</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
                   {['Perros', 'Gatos', 'Aves'].map(s => (
                     <button 
@@ -221,7 +221,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                       className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                         filters.species.includes(s) 
                           ? 'bg-primary text-background-dark' 
-                          : 'bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/10'
+                          : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
                       {s}
@@ -231,7 +231,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Edad</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Edad</p>
                 <div className="space-y-3">
                   {['Cachorro', 'Joven', 'Adulto', 'Senior'].map(age => (
                     <label key={age} className="flex items-center gap-3 cursor-pointer group">
@@ -248,7 +248,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-accent-teal uppercase tracking-widest mb-4">Urgencia</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Urgencia</p>
                 <label className="flex items-center gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
@@ -272,7 +272,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         <div className="col-span-12 lg:col-span-9">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
-              <p className="text-accent-teal font-medium">Cargando mascotas perdidas…</p>
+              <p className="text-gray-800 font-medium">Cargando mascotas perdidas…</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -305,7 +305,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
           {!loading && hasActiveFilters && filteredPets.length === 0 && (
             <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
               <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
-              <p className="text-accent-teal mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
+              <p className="text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
               <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>
@@ -318,7 +318,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       {!loading && hasActiveFilters && filteredPets.length === 0 && (
         <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center">
           <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
-          <p className="text-accent-teal mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
+          <p className="text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
           <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
             Limpiar filtros
           </button>

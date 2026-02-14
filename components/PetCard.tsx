@@ -125,14 +125,14 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         >
           <div>
             <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{pet.name}</h3>
-            <p className="text-xs text-accent-teal font-semibold uppercase tracking-wide">{pet.breed} • {pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
+            <p className="text-xs text-gray-600 font-semibold uppercase tracking-wide">{pet.breed} • {pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
           </div>
         </div>
 
         <div className="flex items-start gap-2 mb-6">
           <div>
             <p className="text-sm font-bold">{isLost ? `Visto: ${pet.location}` : pet.location}</p>
-            {pet.distance && <p className="text-xs text-accent-teal">{pet.distance} de distancia</p>}
+            {pet.distance && <p className="text-xs text-gray-500">{pet.distance} de distancia</p>}
           </div>
         </div>
 

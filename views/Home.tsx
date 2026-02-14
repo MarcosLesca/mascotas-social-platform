@@ -141,7 +141,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
           </section>
 
           {loading && mixedRecentCards.length === 0 ? (
-            <p className="text-accent-teal text-sm">
+            <p className="text-gray-800 text-sm">
               Cargando publicaciones recientes...
             </p>
           ) : mixedRecentCards.length === 0 ? (
@@ -149,7 +149,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
               <h3 className="text-xl font-black">
                 Sin publicaciones recientes
               </h3>
-              <p className="text-accent-teal text-sm mt-2">
+              <p className="text-gray-800 text-sm mt-2">
                 Todavia no hay datos para mostrar en el feed.
               </p>
             </div>
@@ -185,10 +185,10 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                         <h3 className="text-lg font-black leading-tight">
                           {campaign.title}
                         </h3>
-                        <p className="text-sm text-accent-teal line-clamp-3">
+                        <p className="text-sm text-gray-800 line-clamp-3">
                           {campaign.description}
                         </p>
-                        <div className="pt-2 border-t border-accent-teal/10 text-xs text-accent-teal mt-auto">
+                        <div className="pt-2 border-t border-accent-teal/10 text-xs text-gray-800 mt-auto">
                           <p className="font-bold">
                             Meta: ${campaign.goal.toLocaleString("es-AR")}
                           </p>
@@ -235,15 +235,15 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
                     <div className="p-5 space-y-2 flex-1 flex flex-col">
                       <h3 className="text-lg font-black">{pet.name}</h3>
-                      <p className="text-sm text-accent-teal">
+                      <p className="text-sm text-gray-800">
                         {pet.breed} - {pet.location}
                       </p>
                       {pet.description && (
-                        <p className="text-sm text-accent-teal line-clamp-3">
+                        <p className="text-sm text-gray-800 line-clamp-3">
                           {pet.description}
                         </p>
                       )}
-                      <div className="pt-2 border-t border-accent-teal/10 text-xs text-accent-teal mt-auto">
+                      <div className="pt-2 border-t border-accent-teal/10 text-xs text-gray-800 mt-auto">
                         {isLost ? (
                           <p>{pet.timeLabel || "Reporte reciente"}</p>
                         ) : (

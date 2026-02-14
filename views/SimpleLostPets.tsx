@@ -17,7 +17,7 @@ const LostPets: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-4xl font-extrabold mb-2">Mascotas Perdidas</h1>
-        <p className="text-lg text-accent-teal">
+        <p className="text-lg text-gray-800">
           Ayuda a reunir hoy a <span className="text-primary font-bold">{searchFiltered.length}</span> mascotas con sus familias.
         </p>
       </div>
@@ -96,7 +96,7 @@ const LostPets: React.FC = () => {
         {/* Botón para agregar */}
         <div className="bg-primary/10 rounded-2xl p-8 text-center">
           <h3 className="text-xl font-bold mb-4">¿Perdiste a alguien?</h3>
-          <p className="text-accent-teal mb-4">
+          <p className="text-gray-800 mb-4">
             Publica ahora mismo para que la comunidad pueda ayudar
           </p>
           <button 
