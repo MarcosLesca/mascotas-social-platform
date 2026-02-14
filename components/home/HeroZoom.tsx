@@ -240,43 +240,37 @@ export default function HeroZoom() {
               onClick={() => setCurrentView('lost_pets')}
               className={styles.actionButton + ' ' + styles.lostPetButton}
             >
-              <span className={styles.buttonIcon} aria-hidden="true">
-                <svg viewBox="0 0 24 24" className={styles.buttonSvg} role="img">
-                  <path
-                    d="M12 4.5c-4.6 0-8 3.6-8 8.2 0 3.6 2.5 6.5 6 7.6 1.2.4 2.8.4 4 0 3.5-1.1 6-4 6-7.6 0-4.6-3.4-8.2-8-8.2Zm-5.2 8.7c-.9 0-1.7-.8-1.7-1.8s.8-1.8 1.7-1.8 1.7.8 1.7 1.8-.8 1.8-1.7 1.8Zm3.2-3.2c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm4.2 3.2c-.9 0-1.7-.8-1.7-1.8s.8-1.8 1.7-1.8 1.7.8 1.7 1.8-.8 1.8-1.7 1.8Zm3.2-3.2c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"
-                    fill="currentColor"
-                  />
-                </svg>
+              <span className={styles.toe + ' ' + styles.toe1}></span>
+              <span className={styles.toe + ' ' + styles.toe2}></span>
+              <span className={styles.toe + ' ' + styles.toe3}></span>
+              <span className={styles.toe + ' ' + styles.toe4}></span>
+              <span className={styles.pad}>
+                <span className={styles.buttonText}>Publicar Mascota Perdida</span>
               </span>
-              <span className={styles.buttonText}>Publicar Mascota Perdida</span>
             </button>
             <button
               onClick={() => setCurrentView('adoption')}
               className={styles.actionButton + ' ' + styles.adoptionButton}
             >
-              <span className={styles.buttonIcon} aria-hidden="true">
-                <svg viewBox="0 0 24 24" className={styles.buttonSvg} role="img">
-                  <path
-                    d="M12 21s-7.2-4.7-9.5-8.2C.9 9.8 2 6.8 4.9 6.1c1.9-.4 3.7.4 5 2 1.3-1.6 3.1-2.4 5-2 2.9.7 4 3.7 2.4 6.7C19.2 16.3 12 21 12 21Z"
-                    fill="currentColor"
-                  />
-                </svg>
+              <span className={styles.toe + ' ' + styles.toe1}></span>
+              <span className={styles.toe + ' ' + styles.toe2}></span>
+              <span className={styles.toe + ' ' + styles.toe3}></span>
+              <span className={styles.toe + ' ' + styles.toe4}></span>
+              <span className={styles.pad}>
+                <span className={styles.buttonText}>Adoptar una Mascota</span>
               </span>
-              <span className={styles.buttonText}>Adoptar una Mascota</span>
             </button>
             <button
               onClick={() => setCurrentView('donations')}
               className={styles.actionButton + ' ' + styles.donationButton}
             >
-              <span className={styles.buttonIcon} aria-hidden="true">
-                <svg viewBox="0 0 24 24" className={styles.buttonSvg} role="img">
-                  <path
-                    d="M7.5 7.5c1.4 0 2.7.7 3.5 1.8.8-1.1 2.1-1.8 3.5-1.8 2.2 0 4 1.8 4 4 0 3.4-3.2 5.8-7.5 9-4.3-3.2-7.5-5.6-7.5-9 0-2.2 1.8-4 4-4Zm8 2.1c-1.2 0-2.3.7-2.9 1.8l-.6 1-.6-1c-.6-1.1-1.7-1.8-2.9-1.8-1.5 0-2.8 1.3-2.8 2.9 0 2.3 2.5 4.4 6.3 7.1 3.8-2.7 6.3-4.8 6.3-7.1 0-1.6-1.3-2.9-2.8-2.9Z"
-                    fill="currentColor"
-                  />
-                </svg>
+              <span className={styles.toe + ' ' + styles.toe1}></span>
+              <span className={styles.toe + ' ' + styles.toe2}></span>
+              <span className={styles.toe + ' ' + styles.toe3}></span>
+              <span className={styles.toe + ' ' + styles.toe4}></span>
+              <span className={styles.pad}>
+                <span className={styles.buttonText}>Ayudar/Donar</span>
               </span>
-              <span className={styles.buttonText}>Ayudar/Donar</span>
             </button>
           </div>
         </div>
