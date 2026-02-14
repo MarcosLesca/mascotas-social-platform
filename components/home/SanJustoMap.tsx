@@ -21,7 +21,7 @@ const SanJustoMap: React.FC = () => {
   }, [mapUrl]);
 
   return (
-    <section className="w-full py-12">
+    <section className="w-full pb-16">
       <div className="max-w-7xl mx-auto px-4">
         {/* Contenedor del mapa */}
         <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20">
@@ -36,13 +36,6 @@ const SanJustoMap: React.FC = () => {
               referrerPolicy="no-referrer-when-downgrade"
               style={{ minHeight: "400px" }}
             />
-          </div>
-
-          {/* Badge de ubicación */}
-          <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-            <span className="text-sm font-bold text-gray-700">
-              🗺️ San Justo, Santa Fe
-            </span>
           </div>
         </div>
       </div>
