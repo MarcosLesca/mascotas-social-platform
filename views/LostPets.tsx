@@ -286,11 +286,11 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               ))}
               
               {/* Report Placeholder Card */}
-              <div className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[400px]"
+              <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[400px]"
                    onClick={handleOpenReportModal}>
-                <h3 className="text-xl font-bold mb-3">¿Has perdido a alguien?</h3>
-                <p className="text-sm text-accent-teal mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
-                <button className="bg-primary text-background-dark px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all" 
+                <h3 className="text-xl font-bold mb-3 text-gray-800">¿Has perdido a alguien?</h3>
+                <p className="text-sm text-gray-600 mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
+                <button className="bg-urgent-red text-white px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all" 
                         onClick={(e) => {
                           e.stopPropagation();
                           handleOpenReportModal();
