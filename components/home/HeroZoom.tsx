@@ -229,54 +229,197 @@ export default function HeroZoom() {
     <div ref={containerRef} className={styles.scrollContainer}>
       <div className={styles.zoomContainer}>
         {/* SVG Sprite */}
-        <svg id="svg-sprite" style={{ display: 'none' }}>
+        <svg id="svg-sprite" style={{ display: "none" }}>
           <symbol id="paw" viewBox="0 0 249 209.32">
-            <ellipse cx="27.917" cy="106.333" strokeWidth="0" rx="27.917" ry="35.833"/>
-            <ellipse cx="84.75" cy="47.749" strokeWidth="0" rx="34.75" ry="47.751"/>
-            <ellipse cx="162" cy="47.749" strokeWidth="0" rx="34.75" ry="47.751"/>
-            <ellipse cx="221.083" cy="106.333" strokeWidth="0" rx="27.917" ry="35.833"/>
-            <path strokeWidth="0" d="M43.98 165.39s9.76-63.072 76.838-64.574c0 0 71.082-6.758 83.096 70.33 0 0 2.586 19.855-12.54 31.855 0 0-15.75 17.75-43.75-6.25 0 0-7.124-8.374-24.624-7.874 0 0-12.75-.125-21.5 6.625 0 0-16.375 18.376-37.75 12.75 0 0-28.29-7.72-19.77-42.86z"/>
+            <ellipse
+              cx="27.917"
+              cy="106.333"
+              strokeWidth="0"
+              rx="27.917"
+              ry="35.833"
+            />
+            <ellipse
+              cx="84.75"
+              cy="47.749"
+              strokeWidth="0"
+              rx="34.75"
+              ry="47.751"
+            />
+            <ellipse
+              cx="162"
+              cy="47.749"
+              strokeWidth="0"
+              rx="34.75"
+              ry="47.751"
+            />
+            <ellipse
+              cx="221.083"
+              cy="106.333"
+              strokeWidth="0"
+              rx="27.917"
+              ry="35.833"
+            />
+            <path
+              strokeWidth="0"
+              d="M43.98 165.39s9.76-63.072 76.838-64.574c0 0 71.082-6.758 83.096 70.33 0 0 2.586 19.855-12.54 31.855 0 0-15.75 17.75-43.75-6.25 0 0-7.124-8.374-24.624-7.874 0 0-12.75-.125-21.5 6.625 0 0-16.375 18.376-37.75 12.75 0 0-28.29-7.72-19.77-42.86z"
+            />
           </symbol>
         </svg>
 
         {/* Paw Prints Animation - Behind images */}
         <div className={`${styles.pawContainer} paw-container`}>
           {/* Row 1 - Top */}
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
           {/* Row 2 */}
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
           {/* Row 3 */}
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
           {/* Row 4 */}
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
           {/* Row 5 */}
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
           {/* Row 6 - Bottom */}
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
           {/* Extra scattered */}
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
-          <div className={styles.paw}><svg className="icon" style={{ fill: '#4c9a66' }}><use href="#paw" /></svg></div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
+          <div className={styles.paw}>
+            <svg className="icon" style={{ fill: "#4c9a66" }}>
+              <use href="#paw" />
+            </svg>
+          </div>
         </div>
 
         {/* Titulo animado - inicialmente oculto/pequeno */}
@@ -284,51 +427,53 @@ export default function HeroZoom() {
           <h1 className={styles.heroTitle}>
             <span className={styles.titleText}>Porque volver a casa</span>
             <br />
-            <span className={styles.titleText}>tambien es un </span>
+            <span className={styles.titleText}>también es un </span>
             <span className={styles.titleHighlight}>derecho</span>
           </h1>
           <p className={styles.heroDescription}>
-            Mascotas SJ es una plataforma creada para ayudar a reencontrar
-            mascotas perdidas, visibilizar mascotas encontradas y brindar apoyo
-            a quienes lo necesitan. Un espacio digital desarrollado por L&M
-            Desarrollo Web, pensado para generar un impacto real en la
-            comunidad.
+            Mascotas SJ es una plataforma creada para publicar mascotas
+            perdidas, promover la adopción responsable y facilitar donaciones
+            para quienes más lo necesitan. Un espacio digital desarrollado por
+            L&M Desarrollo Web, pensado para generar un impacto real en San
+            Justo.
           </p>
 
           {/* Botones de accion estilo moderno */}
           <div className={styles.buttonContainer}>
             <button
-              onClick={() => setCurrentView('lost_pets')}
-              className={styles.actionButton + ' ' + styles.lostPetButton}
+              onClick={() => setCurrentView("lost_pets")}
+              className={styles.actionButton + " " + styles.lostPetButton}
             >
-              <span className={styles.toe + ' ' + styles.toe1}></span>
-              <span className={styles.toe + ' ' + styles.toe2}></span>
-              <span className={styles.toe + ' ' + styles.toe3}></span>
-              <span className={styles.toe + ' ' + styles.toe4}></span>
+              <span className={styles.toe + " " + styles.toe1}></span>
+              <span className={styles.toe + " " + styles.toe2}></span>
+              <span className={styles.toe + " " + styles.toe3}></span>
+              <span className={styles.toe + " " + styles.toe4}></span>
               <span className={styles.pad}>
-                <span className={styles.buttonText}>Publicar Mascota Perdida</span>
+                <span className={styles.buttonText}>
+                  Publicar Mascota Perdida
+                </span>
               </span>
             </button>
             <button
-              onClick={() => setCurrentView('adoption')}
-              className={styles.actionButton + ' ' + styles.adoptionButton}
+              onClick={() => setCurrentView("adoption")}
+              className={styles.actionButton + " " + styles.adoptionButton}
             >
-              <span className={styles.toe + ' ' + styles.toe1}></span>
-              <span className={styles.toe + ' ' + styles.toe2}></span>
-              <span className={styles.toe + ' ' + styles.toe3}></span>
-              <span className={styles.toe + ' ' + styles.toe4}></span>
+              <span className={styles.toe + " " + styles.toe1}></span>
+              <span className={styles.toe + " " + styles.toe2}></span>
+              <span className={styles.toe + " " + styles.toe3}></span>
+              <span className={styles.toe + " " + styles.toe4}></span>
               <span className={styles.pad}>
                 <span className={styles.buttonText}>Adoptar una Mascota</span>
               </span>
             </button>
             <button
-              onClick={() => setCurrentView('donations')}
-              className={styles.actionButton + ' ' + styles.donationButton}
+              onClick={() => setCurrentView("donations")}
+              className={styles.actionButton + " " + styles.donationButton}
             >
-              <span className={styles.toe + ' ' + styles.toe1}></span>
-              <span className={styles.toe + ' ' + styles.toe2}></span>
-              <span className={styles.toe + ' ' + styles.toe3}></span>
-              <span className={styles.toe + ' ' + styles.toe4}></span>
+              <span className={styles.toe + " " + styles.toe1}></span>
+              <span className={styles.toe + " " + styles.toe2}></span>
+              <span className={styles.toe + " " + styles.toe3}></span>
+              <span className={styles.toe + " " + styles.toe4}></span>
               <span className={styles.pad}>
                 <span className={styles.buttonText}>Ayudar/Donar</span>
               </span>

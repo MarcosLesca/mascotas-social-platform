@@ -62,7 +62,7 @@ const AppContent: React.FC = () => {
 
       <main className="flex-1">{renderView()}</main>
 
-      <footer className="border-t border-accent-teal/10 py-8 px-6 lg:px-20 mt-auto bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm">
+      <footer className="border-t border-white/20 py-8 px-6 lg:px-20 mt-auto bg-accent-teal">
         <div className="max-w-[1440px] mx-auto flex items-center justify-center gap-8 flex-wrap">
           <div className="flex items-center gap-2">
             <img 
@@ -70,7 +70,7 @@ const AppContent: React.FC = () => {
               alt="LyM Desarrollo Web" 
               className="h-8 w-auto"
             />
-            <span className="text-lg font-black">Mascotas SJ</span>
+            <span className="text-lg font-black text-white">Mascotas SJ</span>
           </div>
           <a 
             href="https://lymdesarrolloweb.com.ar/" 
@@ -80,7 +80,7 @@ const AppContent: React.FC = () => {
           >
             © 2026 LyM Desarrollo Web. Todos los derechos reservados.
           </a>
-          <Link to="/admin" className="text-sm font-bold text-accent-teal hover:text-primary transition-colors">
+          <Link to="/admin" className="text-sm font-bold text-white hover:text-white/80 transition-colors">
             Admin
           </Link>
         </div>
