@@ -8,6 +8,7 @@ import AboutUs from "./views/AboutUs";
 import Donations from "./views/Donations";
 import FAQSection from "./components/FAQSection";
 import ToastContainer from "./components/Toast";
+import SanJustoMap from "./components/home/SanJustoMap";
 import { AppProvider, useApp } from "./context/AppContext";
 import { View } from "./types";
 
@@ -61,6 +62,14 @@ const AppContent: React.FC = () => {
       <Navbar currentView={currentView} setView={setCurrentView} />
 
       <main className="flex-1">{renderView()}</main>
+
+      {currentView === View.HOME && (
+        <section className="px-4 md:px-10 lg:px-20 py-8">
+          <div className="max-w-[1440px] mx-auto">
+            <SanJustoMap />
+          </div>
+        </section>
+      )}
 
       <footer className="border-t border-white/20 py-8 px-6 lg:px-20 mt-auto bg-accent-teal">
         <div className="max-w-[1440px] mx-auto flex items-center justify-center gap-8 flex-wrap">

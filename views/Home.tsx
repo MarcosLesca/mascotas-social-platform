@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { MOCK_CAMPAIGNS } from "../constants";
 import HeroZoom from "../components/home/HeroZoom";
-import SanJustoMap from "../components/home/SanJustoMap";
 import { fetchApprovedLostPets } from "../services/lostPetsService";
 import { fetchApprovedAdoptionPets } from "../services/adoptionPetsService";
 import { useApp } from "../context/AppContext";
@@ -111,9 +110,6 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
         className="relative px-4 md:px-10 lg:px-20 py-12"
         style={{ marginTop: "200vh" }}
       >
-        {/* Mapa de San Justo, Santa Fe - Entre el Hero y las publicaciones */}
-        <SanJustoMap />
-
         <div className="max-w-[1440px] mx-auto space-y-8">
           <section className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
             <div>
@@ -122,7 +118,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 w-full lg:w-auto">
+<div className="grid grid-cols-3 gap-2 w-full lg:w-auto">
               <button
                 onClick={() => setCurrentView(View.LOST_PETS)}
                 className="rounded-xl border border-accent-teal/20 px-4 py-3 text-xs font-black uppercase hover:border-primary"
@@ -267,3 +263,4 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 };
 
 export default Home;
+

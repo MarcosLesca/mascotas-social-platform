@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useApp } from "../../context/AppContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -135,7 +135,79 @@ const zoomItems: ZoomItem[] = [
 
 export default function HeroZoom() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const redirectTimeoutRef = useRef<number | null>(null);
   const { setCurrentView } = useApp();
+
+  const resetPawState = (button: HTMLButtonElement) => {
+    const pawButton = button.querySelector(".paw-button") as HTMLElement | null;
+    if (!pawButton) return pawButton;
+
+    pawButton.classList.remove("animation", "confetti", "liked");
+    pawButton
+      .querySelectorAll("i")
+      .forEach((node) => (node as HTMLElement).remove());
+
+    return pawButton;
+  };
+
+  const handleCtaHover = (event: React.MouseEvent<HTMLButtonElement>) => {
+    resetPawState(event.currentTarget);
+  };
+
+  const handleCtaClick = (
+    nextView: "lost_pets" | "adoption" | "donations",
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    const button = event.currentTarget;
+    const target = event.target as HTMLElement;
+    const pawButton = resetPawState(button);
+
+    // Si el click fue sobre el texto, forzamos click en la patita para ejecutar su animacion.
+    if (pawButton && !target.closest(".paw-button")) {
+      pawButton.dispatchEvent(
+        new MouseEvent("click", { bubbles: true, cancelable: true }),
+      );
+    }
+
+    if (redirectTimeoutRef.current !== null) {
+      window.clearTimeout(redirectTimeoutRef.current);
+    }
+
+    // La animacion de clap dura ~500ms.
+    redirectTimeoutRef.current = window.setTimeout(() => {
+      setCurrentView(nextView);
+    }, 650);
+  };
+
+  useEffect(() => {
+    const cssId = "wsol-components-css";
+    if (!document.getElementById(cssId)) {
+      const link = document.createElement("link");
+      link.id = cssId;
+      link.rel = "stylesheet";
+      link.href =
+        "https://brand.workingsolutions.com/components/css/wsol-components.css";
+      document.head.appendChild(link);
+    }
+
+    const existingScript = document.getElementById("wsol-react-embed");
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement("script");
+    script.id = "wsol-react-embed";
+    script.src =
+      "https://brand.workingsolutions.com/components/js/react-embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (redirectTimeoutRef.current !== null) {
+        window.clearTimeout(redirectTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -441,42 +513,31 @@ export default function HeroZoom() {
           {/* Botones de accion estilo moderno */}
           <div className={styles.buttonContainer}>
             <button
-              onClick={() => setCurrentView("lost_pets")}
-              className={styles.actionButton + " " + styles.lostPetButton}
+              onClick={(event) => handleCtaClick("lost_pets", event)}
+              onMouseEnter={handleCtaHover}
+              className={styles.embedButton}
+              type="button"
             >
-              <span className={styles.toe + " " + styles.toe1}></span>
-              <span className={styles.toe + " " + styles.toe2}></span>
-              <span className={styles.toe + " " + styles.toe3}></span>
-              <span className={styles.toe + " " + styles.toe4}></span>
-              <span className={styles.pad}>
-                <span className={styles.buttonText}>
-                  Publicar Mascota Perdida
-                </span>
-              </span>
+              <div className="cmpt-paw-clap position-paw-clap" />
+              <span className={styles.embedLabel}>Publicar Mascotas</span>
             </button>
             <button
-              onClick={() => setCurrentView("adoption")}
-              className={styles.actionButton + " " + styles.adoptionButton}
+              onClick={(event) => handleCtaClick("adoption", event)}
+              onMouseEnter={handleCtaHover}
+              className={styles.embedButton}
+              type="button"
             >
-              <span className={styles.toe + " " + styles.toe1}></span>
-              <span className={styles.toe + " " + styles.toe2}></span>
-              <span className={styles.toe + " " + styles.toe3}></span>
-              <span className={styles.toe + " " + styles.toe4}></span>
-              <span className={styles.pad}>
-                <span className={styles.buttonText}>Adoptar una Mascota</span>
-              </span>
+              <div className="cmpt-paw-clap position-paw-clap" />
+              <span className={styles.embedLabel}>Adoptar una Mascota</span>
             </button>
             <button
-              onClick={() => setCurrentView("donations")}
-              className={styles.actionButton + " " + styles.donationButton}
+              onClick={(event) => handleCtaClick("donations", event)}
+              onMouseEnter={handleCtaHover}
+              className={styles.embedButton}
+              type="button"
             >
-              <span className={styles.toe + " " + styles.toe1}></span>
-              <span className={styles.toe + " " + styles.toe2}></span>
-              <span className={styles.toe + " " + styles.toe3}></span>
-              <span className={styles.toe + " " + styles.toe4}></span>
-              <span className={styles.pad}>
-                <span className={styles.buttonText}>Ayudar/Donar</span>
-              </span>
+              <div className="cmpt-paw-clap position-paw-clap" />
+              <span className={styles.embedLabel}>Ayudar/Donar</span>
             </button>
           </div>
         </div>
