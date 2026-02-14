@@ -21,7 +21,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta específica sobre cómo reportar mascota perdida
   if (content.includes('Reportar Mascota Perdida')) {
     return (
-      <div className="text-accent-teal leading-relaxed">
+      <div className="text-black leading-relaxed pt-[8px]">
         <p className="mb-3">Es muy fácil:</p>
         {renderCustomList([
           'Hacé clic en el botón "Reportar Mascota Perdida"',
@@ -38,7 +38,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre qué hacer si veo una mascota perdida
   if (content.includes('Mascotas Encontradas')) {
     return (
-      <div className="text-accent-teal leading-relaxed">
+      <div className="text-black leading-relaxed pt-[8px]">
         <p className="mb-3">¡Gracias por ayudar! Podés:</p>
         {renderCustomList([
           'Tomar una foto',
@@ -54,7 +54,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre cómo adoptar
   if (content.includes('Contactá directamente al refugio')) {
     return (
-      <div className="text-accent-teal leading-relaxed">
+      <div className="text-black leading-relaxed pt-[8px]">
         {renderCustomList([
           'Buscá en la sección "Adopción"',
           'Contactá directamente al refugio/responsable vía WhatsApp o Email',
@@ -69,7 +69,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre cómo donar
   if (content.includes('Entrá a la campaña que querés apoyar')) {
     return (
-      <div className="text-accent-teal leading-relaxed">
+      <div className="text-black leading-relaxed pt-[8px]">
         <p className="mb-3">Es muy fácil:</p>
         {renderCustomList([
           'Entrá a la campaña que querés apoyar',
@@ -77,7 +77,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
           'Seleccioná el método de pago',
           'Completá tus datos'
         ])}
-        <p className="mt-3">Podés donar con tarjeta, transferencia, Mercado Pago o incluso cripto.</p>
+        <p className="mt-3">Podés donate con tarjeta, transferencia, Mercado Pago o incluso cripto.</p>
       </div>
     );
   }
@@ -85,7 +85,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Para otras respuestas, usamos el HTML normal
   return (
     <div 
-      className="text-accent-teal leading-relaxed faq-answer"
+      className="text-black leading-relaxed faq-answer pt-[8px]"
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );
@@ -250,7 +250,7 @@ const FAQSection: React.FC = () => {
           Preguntas <span className="text-primary">Frecuentes</span>
         </h1>
         <p className="text-lg text-accent-teal max-w-2xl mx-auto">
-          Todo lo que necesitás saber para usar Mascotas SJ. ¡Guía paso a paso para encontrar a tu mejor amigo!
+          Todo lo que necesitás saber para usar Mascotas SJ.
         </p>
       </div>
 
