@@ -33,17 +33,16 @@ const Donations: React.FC = () => {
       </div>
 
       {/* Transparency Notice */}
-      <div className="bg-gradient-to-br from-primary/5 to-accent-teal/5 rounded-3xl p-8 border border-accent-teal/10">
+      <div className="bg-red-50 dark:bg-red-900/20 rounded-3xl p-8 border border-red-200 dark:border-red-800">
         <div className="flex items-start gap-4">
-          <div className="size-12 bg-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <span className="material-symbols-outlined text-2xl text-primary">verified</span>
+          <div className="size-12 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <span className="material-symbols-outlined text-2xl text-red-500">warning</span>
           </div>
           <div>
-            <h3 className="text-xl font-black mb-2">Donaciones Directas y Transparentes</h3>
-            <p className="text-accent-teal leading-relaxed">
-              En Mascotas SJ <strong>no administramos el dinero</strong> de las donaciones. Solo publicamos las necesidades
-              y proporcionamos toda la información necesaria para que puedas donar directamente a los responsables de las mascotas.
-              Cada campaña incluye el CBU/Alias, titular de la cuenta y datos de contacto verificados.
+            <h3 className="text-xl font-black mb-2 text-red-600 dark:text-red-400">IMPORTANTE</h3>
+            <p className="text-black leading-relaxed">
+              En Mascotas SJ <strong className="text-red-500">no administramos el dinero</strong> de las donaciones. Solo publicamos las necesidades
+              y proporcionamos toda la información necesaria para que puedas donate directamente a los responsables de las mascotas.
             </p>
           </div>
         </div>
@@ -51,7 +50,7 @@ const Donations: React.FC = () => {
 
       {/* Campaigns Grid */}
       <div>
-        <h2 className="text-3xl font-black mb-8">Campañas Activas</h2>
+        <h2 className="text-3xl font-black mb-8">Donaciones Activas</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {MOCK_CAMPAIGNS.map((campaign) => {
             return (
