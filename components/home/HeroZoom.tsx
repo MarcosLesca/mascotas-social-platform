@@ -431,11 +431,7 @@ export default function HeroZoom() {
             <span className={styles.titleHighlight}>derecho</span>
           </h1>
           <p className={styles.heroDescription}>
-            Mascotas SJ es una plataforma creada para publicar mascotas
-            perdidas, promover la adopción responsable y facilitar donaciones
-            para quienes más lo necesitan. Un espacio digital desarrollado por
-            L&M Desarrollo Web, pensado para generar un impacto real en San
-            Justo.
+            Mascotas SJ es una plataforma creada para publicar mascotas perdidas, promover la adopción responsable y facilitar donaciones para quienes más lo necesitan. Un espacio digital desarrollado por L&M Desarrollo Web, pensado para generar un impacto real en la comunidad y ayudar a que cada historia tenga una segunda oportunidad.
           </p>
 
           {/* Botones de accion estilo moderno */}
