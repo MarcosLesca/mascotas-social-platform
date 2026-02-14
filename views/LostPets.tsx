@@ -175,13 +175,10 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="max-w-3xl">
-        <h2 className="text-4xl font-extrabold mb-2">Búsqueda de Mascotas Perdidas</h2>
+      <div className="max-w-3xl mx-auto text-center mt-6">
+        <h2 className="text-4xl font-extrabold mb-2">Ellos te siguen buscando</h2>
         <p className="text-accent-teal text-lg">
-          Ayuda a reunir hoy a <span className="text-primary font-bold">{pets.length}</span> mascotas con sus familias.
-          {hasActiveFilters && (
-            <span className="ml-2 text-sm">({filteredPets.length} resultados)</span>
-          )}
+          Mascotas perdidas
         </p>
       </div>
 

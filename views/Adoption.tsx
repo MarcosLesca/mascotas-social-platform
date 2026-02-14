@@ -176,13 +176,10 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="max-w-3xl">
-        <h1 className="text-5xl font-black tracking-tight mb-4">Encuentra a tu mejor amigo</h1>
+      <div className="max-w-3xl mx-auto text-center mt-6">
+        <h1 className="text-5xl font-black tracking-tight mb-4">Algunos todavía esperan su primera oportunidad</h1>
         <p className="text-xl text-accent-teal font-display italic">
-          Descubre mascotas amorosas listas para un hogar definitivo. Cada adopción salva una vida.
-          {hasActiveFilters && (
-            <span className="ml-2 text-sm">({filteredPets.length} resultados)</span>
-          )}
+          Adopción
         </p>
       </div>
 

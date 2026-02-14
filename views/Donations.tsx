@@ -18,22 +18,19 @@ const Donations: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-16 space-y-12">
+    <div className="max-w-7xl mx-auto px-6 py-2 space-y-12">
       {/* Header */}
-      <div className="text-center space-y-4">
-        <div className="inline-flex items-center justify-center size-20 bg-primary/10 rounded-3xl mb-4">
-          <span className="material-symbols-outlined text-5xl text-primary">volunteer_activism</span>
-        </div>
-        <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary to-accent-teal bg-clip-text text-transparent">
-          Donaciones y Solidaridad
+      <div className="text-center mt-6">
+        <h1 className="text-4xl md:text-5xl font-black text-black">
+          Cuando ayudás, ellos sienten esperanza
         </h1>
-        <p className="text-xl text-accent-teal max-w-3xl mx-auto leading-relaxed">
-          Ayuda directamente a mascotas que necesitan tu apoyo. Todas las donaciones van directo a los responsables.
+        <p className="text-xl text-accent-teal">
+          Donaciones
         </p>
       </div>
 
       {/* Transparency Notice */}
-      <div className="bg-red-50 dark:bg-red-900/20 rounded-3xl p-8 border border-red-200 dark:border-red-800">
+      <div className="bg-red-50 dark:bg-red-900/20 rounded-3xl p-4 border border-red-200 dark:border-red-800">
         <div className="flex items-start gap-4">
           <div className="size-12 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0">
             <span className="material-symbols-outlined text-2xl text-red-500">warning</span>
