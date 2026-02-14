@@ -62,58 +62,72 @@ const AppContent: React.FC = () => {
 
       <main className="flex-1">{renderView()}</main>
 
-      <footer className="border-t border-accent-teal/10 py-12 px-6 lg:px-20 mt-auto bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm">
+      <footer className="border-t border-accent-teal/10 py-8 px-6 lg:px-20 mt-auto bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-4">
-            <div className="bg-primary p-2 rounded-lg text-white">
-              <span className="material-symbols-outlined block text-2xl">
-                pets
-              </span>
-            </div>
-            <div>
-              <h2 className="text-xl font-black">Mascotas SJ</h2>
-              <p className="text-xs text-accent-teal font-medium tracking-tight">
-                Comunidad de Bienestar Animal © 2024
-              </p>
-            </div>
-          </div>
+          <button
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setCurrentView(View.HOME)}
+          >
+            <img 
+              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png" 
+              alt="LyM Desarrollo Web" 
+              className="h-10 w-auto"
+            />
+            <h2 className="text-xl font-black">Mascotas SJ</h2>
+          </button>
 
           <nav className="flex flex-wrap justify-center gap-8 text-sm font-bold text-accent-teal">
+            <button
+              onClick={() => setCurrentView(View.HOME)}
+              className="hover:text-primary transition-colors"
+            >
+              Inicio
+            </button>
+            <button
+              onClick={() => setCurrentView(View.LOST_PETS)}
+              className="hover:text-primary transition-colors"
+            >
+              Mascotas Perdidas
+            </button>
+            <button
+              onClick={() => setCurrentView(View.ADOPTION)}
+              className="hover:text-primary transition-colors"
+            >
+              Adopción
+            </button>
+            <button
+              onClick={() => setCurrentView(View.DONATIONS)}
+              className="hover:text-primary transition-colors"
+            >
+              Donaciones
+            </button>
             <button
               onClick={() => setCurrentView(View.FAQ)}
               className="hover:text-primary transition-colors"
             >
-              Preguntas Frecuentes
+              Preguntas
             </button>
-            <a href="#" className="hover:text-primary transition-colors">
-              Política de Privacidad
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Términos de Servicio
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Soporte
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Contacto
-            </a>
+            <button
+              onClick={() => setCurrentView(View.ABOUT_US)}
+              className="hover:text-primary transition-colors"
+            >
+              Nosotros
+            </button>
             <Link to="/admin" className="hover:text-primary transition-colors">
               Admin
             </Link>
           </nav>
+        </div>
 
-          <div className="flex gap-4">
-            {["public", "share", "forum"].map((icon) => (
-              <button
-                key={icon}
-                className="size-10 rounded-xl bg-accent-teal/10 flex items-center justify-center hover:bg-primary transition-all"
-              >
-                <span className="material-symbols-outlined text-lg">
-                  {icon}
-                </span>
-              </button>
-            ))}
-          </div>
+        <div className="text-center mt-4">
+          <a 
+            href="https://lymdesarrolloweb.com.ar/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-sm font-bold text-[#203553] hover:text-[#203553]/80 hover:underline transition-colors"
+          >
+            © 2026 LyM Desarrollo Web. Todos los derechos reservados.
+          </a>
         </div>
       </footer>
 

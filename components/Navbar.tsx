@@ -15,6 +15,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
             className="flex items-center gap-3 cursor-pointer"
             onClick={() => setView(View.HOME)}
           >
+            <img 
+              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png" 
+              alt="LyM Desarrollo Web" 
+              className="h-10 w-auto"
+            />
             <h2 className="text-lg font-bold tracking-tight">Mascotas SJ</h2>
           </button>
 
@@ -59,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="hidden md:block bg-primary hover:bg-primary/90 text-background-dark px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm">
+          <button className="hidden md:block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm">
             Reportar Mascota
           </button>
         </div>
