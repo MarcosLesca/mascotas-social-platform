@@ -101,6 +101,30 @@ export interface DonationCampaign {
   deadline: string; // Fecha límite de donación
 }
 
+export type DonationCampaignStatus = "pending" | "approved" | "rejected";
+
+export interface DonationCampaignReportRow {
+  id: string;
+  status: DonationCampaignStatus;
+  title: string;
+  description: string;
+  goal: number;
+  image_url: string;
+  urgency: boolean;
+  type: "medical" | "food" | "infrastructure";
+  pet_name: string;
+  cbu: string;
+  alias: string;
+  account_holder: string;
+  responsible_name: string;
+  contact_info: string;
+  deadline: string;
+  submitted_at: string;
+  reviewed_at: string | null;
+  reviewed_by: string | null;
+  rejection_reason: string | null;
+}
+
 export interface Message {
   role: "user" | "model";
   content: string;

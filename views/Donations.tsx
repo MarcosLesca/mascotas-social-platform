@@ -1,12 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DonationCampaign } from "../types";
-import { MOCK_CAMPAIGNS } from "../constants";
 import DonationModal from "../components/DonationModal";
+import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsService";
+import ReportDonationCampaignModal from "../components/ReportDonationCampaignModal";
 
 const Donations: React.FC = () => {
   const [selectedCampaign, setSelectedCampaign] =
     useState<DonationCampaign | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [campaigns, setCampaigns] = useState<DonationCampaign[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+
+  const loadCampaigns = () => {
+    let cancelled = false;
+    fetchApprovedDonationCampaigns().then(({ data, error: e }) => {
+      if (cancelled) return;
+      if (e) {
+        setError(e.message);
+        setLoading(false);
+        return;
+      }
+      setCampaigns(data);
+      setLoading(false);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  };
+
+  useEffect(() => {
+    const cancel = loadCampaigns();
+    return cancel;
+  }, []);
 
   const handleCampaignClick = (campaign: DonationCampaign) => {
     setSelectedCampaign(campaign);
@@ -53,11 +82,53 @@ const Donations: React.FC = () => {
         </div>
       </div>
 
+      {/* Report CTA */}
+      <div className="rounded-3xl border border-primary/20 bg-primary/5 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h3 className="text-2xl font-black">Publicar campana de donacion</h3>
+          <p className="text-sm text-gray-800 mt-1">
+            Carga los datos y la imagen. Se publicara una vez aprobada por admin.
+          </p>
+        </div>
+        <button
+          onClick={() => setShowReportModal(true)}
+          className="bg-primary hover:bg-primary/90 text-background-dark font-black px-8 py-3 rounded-xl transition-colors"
+        >
+          COMENZAR
+        </button>
+      </div>
+
       {/* Campaigns Grid */}
       <div>
         <h2 className="text-3xl font-black mb-8">Donaciones Activas</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {MOCK_CAMPAIGNS.map((campaign) => {
+
+        {submitMessage && (
+          <div className="mb-6 rounded-2xl border border-primary/30 bg-primary/10 p-4 text-accent-teal">
+            {submitMessage}
+          </div>
+        )}
+
+        {error && (
+          <div
+            role="alert"
+            className="mb-6 rounded-2xl border border-urgent-red/30 bg-urgent-red/10 p-4 text-urgent-red"
+          >
+            {error}
+          </div>
+        )}
+
+        {loading ? (
+          <p className="text-accent-teal font-medium">Cargando campaÃ±as...</p>
+        ) : campaigns.length === 0 ? (
+          <div className="rounded-2xl border border-accent-teal/10 bg-white dark:bg-white/5 p-8 text-center">
+            <h3 className="text-xl font-black">No hay campaÃ±as aprobadas</h3>
+            <p className="text-sm text-gray-800 mt-2">
+              Las nuevas campaÃ±as aparecerÃ¡n aquÃ­ cuando sean aprobadas.
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {campaigns.map((campaign) => {
             return (
               <div
                 key={campaign.id}
@@ -132,7 +203,8 @@ const Donations: React.FC = () => {
               </div>
             );
           })}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Donation Modal */}
@@ -140,6 +212,22 @@ const Donations: React.FC = () => {
         campaign={selectedCampaign}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+      />
+
+      <ReportDonationCampaignModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        onSubmit={() => {
+          setSubmitMessage(
+            "Campana enviada. Un administrador la revisara y, si se aprueba, aparecera en esta lista."
+          );
+          setShowReportModal(false);
+          setTimeout(() => setSubmitMessage(null), 6000);
+        }}
+        onError={(message) => {
+          setSubmitMessage(null);
+          setError(message);
+        }}
       />
     </div>
   );

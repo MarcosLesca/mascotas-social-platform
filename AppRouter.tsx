@@ -6,6 +6,7 @@ import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboard from './views/admin/AdminDashboard';
 import AdminLostPets from './views/admin/AdminLostPets';
 import AdminAdoptionPets from './views/admin/AdminAdoptionPets';
+import AdminDonationCampaigns from './views/admin/AdminDonationCampaigns';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 const AppRouter: React.FC = () => {
@@ -25,6 +26,7 @@ const AppRouter: React.FC = () => {
           <Route index element={<AdminDashboard />} />
           <Route path="lost-pets" element={<AdminLostPets />} />
           <Route path="adoption" element={<AdminAdoptionPets />} />
+          <Route path="donations" element={<AdminDonationCampaigns />} />
           <Route path="*" element={<Navigate to="/admin" replace />} />
         </Route>
       </Routes>

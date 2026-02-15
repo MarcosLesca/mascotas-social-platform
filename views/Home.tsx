@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { MOCK_CAMPAIGNS } from "../constants";
 import HeroZoom from "../components/home/HeroZoom";
 import { fetchApprovedLostPets } from "../services/lostPetsService";
 import { fetchApprovedAdoptionPets } from "../services/adoptionPetsService";
+import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsService";
 import { useApp } from "../context/AppContext";
 import type { Pet, DonationCampaign } from "../types";
 import { View } from "../types";
@@ -23,6 +23,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
   const { setCurrentView } = useApp();
   const [lostPets, setLostPets] = useState<Pet[]>([]);
   const [adoptionPets, setAdoptionPets] = useState<Pet[]>([]);
+  const [donationCampaigns, setDonationCampaigns] = useState<DonationCampaign[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -30,9 +31,10 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
     const load = async () => {
       setLoading(true);
-      const [lostRes, adoptionRes] = await Promise.all([
+      const [lostRes, adoptionRes, donationRes] = await Promise.all([
         fetchApprovedLostPets(),
         fetchApprovedAdoptionPets(),
+        fetchApprovedDonationCampaigns(),
       ]);
 
       if (cancelled) return;
@@ -52,6 +54,12 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
         setAdoptionPets(adoptionRes.data);
       }
 
+      if (donationRes.error) {
+        onToast("No se pudieron cargar las campanas de donacion.", "error");
+      } else {
+        setDonationCampaigns(donationRes.data);
+      }
+
       setLoading(false);
     };
 
@@ -64,7 +72,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
   const latestLost = lostPets.slice(0, 6);
   const latestAdoption = adoptionPets.slice(0, 6);
-  const latestDonations = MOCK_CAMPAIGNS.slice(0, 6);
+  const latestDonations = donationCampaigns.slice(0, 6);
 
   const mixedRecentCards = useMemo(() => {
     const cards: MixedCard[] = [];

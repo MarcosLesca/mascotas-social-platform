@@ -45,3 +45,12 @@ El panel de administración usa **Supabase** para autenticación y base de datos
    - La publicaci??n se guarda con estado `pending`. Solo las aprobadas se publican.
    - Admin en **Admin ??? Adopci??n**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
    - Si aprueba, la publicaci??n pasa a `approved` y se muestra en la vista p??blica de Adopci??n.
+
+## Donaciones (ABM + aprobacion)
+
+1. **Supabase Storage:** Dashboard -> Storage -> New bucket -> nombre `donation-campaign-images`, **publico**.
+2. **SQL:** En Supabase -> SQL Editor, ejecuta [scripts/init-donation-campaigns.sql](scripts/init-donation-campaigns.sql) (tabla `donation_campaign_reports`, RLS y politicas de Storage).
+3. **Flujo:**
+   - Una campana se guarda con estado `pending`.
+   - Admin en **Admin -> Donaciones**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
+   - Si aprueba, la campana pasa a `approved` y se muestra en la vista publica de Donaciones.

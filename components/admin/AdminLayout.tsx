@@ -34,6 +34,12 @@ const AdminLayout: React.FC = () => {
               >
                 AdopciÃ³n
               </Link>
+              <Link
+                to="/admin/donations"
+                className="px-3 py-1.5 rounded-lg text-sm font-bold text-accent-teal hover:bg-accent-teal/10 transition-colors"
+              >
+                Donaciones
+              </Link>
             </nav>
           </div>
           <div className="flex items-center gap-3">
