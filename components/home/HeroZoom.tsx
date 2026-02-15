@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { useApp } from "../../context/AppContext";
+import { View } from "../../types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -135,79 +136,7 @@ const zoomItems: ZoomItem[] = [
 
 export default function HeroZoom() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const redirectTimeoutRef = useRef<number | null>(null);
   const { setCurrentView } = useApp();
-
-  const resetPawState = (button: HTMLButtonElement) => {
-    const pawButton = button.querySelector(".paw-button") as HTMLElement | null;
-    if (!pawButton) return pawButton;
-
-    pawButton.classList.remove("animation", "confetti", "liked");
-    pawButton
-      .querySelectorAll("i")
-      .forEach((node) => (node as HTMLElement).remove());
-
-    return pawButton;
-  };
-
-  const handleCtaHover = (event: React.MouseEvent<HTMLButtonElement>) => {
-    resetPawState(event.currentTarget);
-  };
-
-  const handleCtaClick = (
-    nextView: "lost_pets" | "adoption" | "donations",
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    const button = event.currentTarget;
-    const target = event.target as HTMLElement;
-    const pawButton = resetPawState(button);
-
-    // Si el click fue sobre el texto, forzamos click en la patita para ejecutar su animacion.
-    if (pawButton && !target.closest(".paw-button")) {
-      pawButton.dispatchEvent(
-        new MouseEvent("click", { bubbles: true, cancelable: true }),
-      );
-    }
-
-    if (redirectTimeoutRef.current !== null) {
-      window.clearTimeout(redirectTimeoutRef.current);
-    }
-
-    // La animacion de clap dura ~500ms.
-    redirectTimeoutRef.current = window.setTimeout(() => {
-      setCurrentView(nextView);
-    }, 650);
-  };
-
-  useEffect(() => {
-    const cssId = "wsol-components-css";
-    if (!document.getElementById(cssId)) {
-      const link = document.createElement("link");
-      link.id = cssId;
-      link.rel = "stylesheet";
-      link.href =
-        "https://brand.workingsolutions.com/components/css/wsol-components.css";
-      document.head.appendChild(link);
-    }
-
-    const existingScript = document.getElementById("wsol-react-embed");
-    if (existingScript) {
-      existingScript.remove();
-    }
-
-    const script = document.createElement("script");
-    script.id = "wsol-react-embed";
-    script.src =
-      "https://brand.workingsolutions.com/components/js/react-embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      if (redirectTimeoutRef.current !== null) {
-        window.clearTimeout(redirectTimeoutRef.current);
-      }
-    };
-  }, []);
 
   useGSAP(
     () => {
@@ -306,35 +235,115 @@ export default function HeroZoom() {
             Justo.
           </p>
 
-          {/* Botones de accion estilo moderno */}
+          {/* Botones de acción con animación de perrito */}
           <div className={styles.buttonContainer}>
-            <button
-              onClick={(event) => handleCtaClick("lost_pets", event)}
-              onMouseEnter={handleCtaHover}
-              className={styles.embedButton}
-              type="button"
-            >
-              <div className="cmpt-paw-clap position-paw-clap" />
-              <span className={styles.embedLabel}>Publicar Mascotas</span>
-            </button>
-            <button
-              onClick={(event) => handleCtaClick("adoption", event)}
-              onMouseEnter={handleCtaHover}
-              className={styles.embedButton}
-              type="button"
-            >
-              <div className="cmpt-paw-clap position-paw-clap" />
-              <span className={styles.embedLabel}>Adoptar una Mascota</span>
-            </button>
-            <button
-              onClick={(event) => handleCtaClick("donations", event)}
-              onMouseEnter={handleCtaHover}
-              className={styles.embedButton}
-              type="button"
-            >
-              <div className="cmpt-paw-clap position-paw-clap" />
-              <span className={styles.embedLabel}>Ayudar/Donar</span>
-            </button>
+            {/* Botón Publicar Mascotas */}
+            <div className={`${styles.buttonWrapper} ${styles.buttonPublish}`}>
+              <div className={styles.dog}>
+                <div className={styles.tail}></div>
+                <div className={styles.body}></div>
+                <div className={styles.head}>
+                  <div className={styles.eyes}>
+                    <div className={styles.left}></div>
+                    <div className={styles.right}></div>
+                  </div>
+                  <div className={styles.nuzzle}>
+                    <div className={styles.mouth}>
+                      <div className={styles.tongue}></div>
+                    </div>
+                    <div className={styles.nose}>
+                      <div className={styles.nostrils}></div>
+                      <div className={styles.highlight}></div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.ears}>
+                  <div className={styles.left}></div>
+                  <div className={styles.right}></div>
+                </div>
+              </div>
+              <button
+                onClick={() => setCurrentView(View.LOST_PETS)}
+                className={styles.dogButton}
+                type="button"
+              >
+                Publicar Mascotas
+              </button>
+              <div className={styles.paw}></div>
+              <div className={`${styles.paw} ${styles.top}`}></div>
+            </div>
+
+            {/* Botón Adoptar una Mascota */}
+            <div className={`${styles.buttonWrapper} ${styles.buttonAdopt}`}>
+              <div className={styles.dog}>
+                <div className={styles.tail}></div>
+                <div className={styles.body}></div>
+                <div className={styles.head}>
+                  <div className={styles.eyes}>
+                    <div className={styles.left}></div>
+                    <div className={styles.right}></div>
+                  </div>
+                  <div className={styles.nuzzle}>
+                    <div className={styles.mouth}>
+                      <div className={styles.tongue}></div>
+                    </div>
+                    <div className={styles.nose}>
+                      <div className={styles.nostrils}></div>
+                      <div className={styles.highlight}></div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.ears}>
+                  <div className={styles.left}></div>
+                  <div className={styles.right}></div>
+                </div>
+              </div>
+              <button
+                onClick={() => setCurrentView(View.ADOPTION)}
+                className={styles.dogButton}
+                type="button"
+              >
+                Adoptar una Mascota
+              </button>
+              <div className={styles.paw}></div>
+              <div className={`${styles.paw} ${styles.top}`}></div>
+            </div>
+
+            {/* Botón Ayudar/Donar */}
+            <div className={`${styles.buttonWrapper} ${styles.buttonDonate}`}>
+              <div className={styles.dog}>
+                <div className={styles.tail}></div>
+                <div className={styles.body}></div>
+                <div className={styles.head}>
+                  <div className={styles.eyes}>
+                    <div className={styles.left}></div>
+                    <div className={styles.right}></div>
+                  </div>
+                  <div className={styles.nuzzle}>
+                    <div className={styles.mouth}>
+                      <div className={styles.tongue}></div>
+                    </div>
+                    <div className={styles.nose}>
+                      <div className={styles.nostrils}></div>
+                      <div className={styles.highlight}></div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.ears}>
+                  <div className={styles.left}></div>
+                  <div className={styles.right}></div>
+                </div>
+              </div>
+              <button
+                onClick={() => setCurrentView(View.DONATIONS)}
+                className={styles.dogButton}
+                type="button"
+              >
+                Ayudar / Donar
+              </button>
+              <div className={styles.paw}></div>
+              <div className={`${styles.paw} ${styles.top}`}></div>
+            </div>
           </div>
         </div>
 
