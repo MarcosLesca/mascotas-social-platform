@@ -1,8 +1,26 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Pet } from '../types';
 
 function digitsOnly(s: string): string {
   return s.replace(/\D/g, '');
+}
+
+function normalizePhoneNumber(phone: string): string {
+  const digits = digitsOnly(phone);
+  // Si ya tiene 54 (código Argentina), usarlo tal cual
+  if (digits.startsWith('54')) {
+    return '54' + digits.slice(2);
+  }
+  // Si empieza con 0 (código de área), quitarlo y agregar 54
+  if (digits.startsWith('0')) {
+    return '54' + digits.slice(1);
+  }
+  // Si ya tiene 11 dígitos (sin 0), agregar 54
+  if (digits.length === 11) {
+    return '54' + digits;
+  }
+  // Cualquier otro caso, agregar 54
+  return '54' + digits;
 }
 
 interface PetCardProps {
@@ -21,17 +39,17 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   const hasPhone = !!pet.contactPhone?.trim();
   const hasEmail = !!pet.contactEmail?.trim();
   const hasContact = hasPhone || hasEmail;
-  const waNumber = hasPhone ? digitsOnly(pet.contactPhone!) : '';
+  const waNumber = hasPhone ? normalizePhoneNumber(pet.contactPhone!) : '';
   const waHref = waNumber
-    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicaciÃ³n sobre ${pet.name} y me interesa. Â¿PodrÃ­amos conversar?`)}`
+    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`
     : null;
   const mailHref = hasEmail
-    ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicaciÃ³n sobre ${pet.name} y me gustarÃ­a obtener mÃ¡s informaciÃ³n.`)}`
+    ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
     : null;
 
   const handleShare = (platform: string) => {
     const shareData = {
-      title: `${isLost ? 'Mascota Perdida' : 'Mascota en AdopciÃ³n'}: ${pet.name}`,
+      title: `${isLost ? 'Mascota Perdida' : 'Mascota en Adopción'}: ${pet.name}`,
       text: `${isLost ? 'Ayuda a encontrar' : 'Conoce a'} ${pet.name}, ${pet.breed}${isLost ? ` - visto en ${pet.location}` : ' - busca un hogar'}`,
       url: window.location.href
     };
@@ -133,7 +151,13 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
             Ver Detalles
           </button>
           <button 
-            onClick={() => onAction?.(pet, isLost ? 'seen' : 'adopt')}
+            onClick={() => {
+              if (waHref) {
+                window.open(waHref, '_blank');
+              } else {
+                onAction?.(pet, 'seen');
+              }
+            }}
             className="flex-1 bg-[#22c55e] hover:bg-[#16a34a] text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200"
           >
             {isLost ? 'La vi' : 'Adoptar'}
