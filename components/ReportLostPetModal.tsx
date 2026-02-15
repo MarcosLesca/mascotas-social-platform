@@ -486,7 +486,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 <div className="flex gap-3">
                   <div>
                     <h4 className="font-bold mb-2">Importante</h4>
-                    <ul className="text-sm text-gray-800 space-y-1">
+                    <ul className="text-sm text-black space-y-1">
                       <li>• Tu información será visible para quienes vean el reporte</li>
                       <li>• Te contactaremos directamente si alguien tiene información</li>
                       <li>• Puedes actualizar o eliminar el reporte en cualquier momento</li>

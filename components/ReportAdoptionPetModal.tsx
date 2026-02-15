@@ -477,7 +477,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                 <div className="flex gap-3">
                   <div>
                     <h4 className="font-bold mb-2">Importante</h4>
-                    <ul className="text-sm text-accent-teal space-y-1">
+                    <ul className="text-sm text-black space-y-1">
                       <li>• Tu información será visible en la publicación aprobada</li>
                       <li>• Los interesados te contactarán directamente</li>
                       <li>• Podemos pausar o eliminar la publicación si lo solicitás</li>
