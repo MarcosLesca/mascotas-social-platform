@@ -26,6 +26,9 @@ export interface Pet {
   contactName?: string;
   contactPhone?: string;
   contactEmail?: string;
+  /** Datos de última vez que se vio la mascota */
+  lastSeenDate?: string;
+  lastSeenLocation?: string;
 }
 
 export type LostPetStatus = "pending" | "approved" | "rejected";

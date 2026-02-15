@@ -39,6 +39,8 @@ function rowToPet(r: LostPetReportRow): Pet {
     contactName: r.contact_name,
     contactPhone: r.contact_phone,
     contactEmail: r.contact_email ?? undefined,
+    lastSeenDate: r.last_seen_date,
+    lastSeenLocation: r.last_seen_location,
   };
 }
 

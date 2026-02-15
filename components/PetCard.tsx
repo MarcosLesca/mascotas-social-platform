@@ -40,8 +40,12 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   const hasEmail = !!pet.contactEmail?.trim();
   const hasContact = hasPhone || hasEmail;
   const waNumber = hasPhone ? normalizePhoneNumber(pet.contactPhone!) : '';
+  const seenMessage = pet.lastSeenDate || pet.lastSeenLocation
+    ? `Hola, creo haber visto a ${pet.name} publicada en Mascotas SJ.\nLa vi en ${pet.lastSeenLocation || pet.location}, aproximadamente el ${pet.lastSeenDate || 'día de hoy'}.\nSi necesitan más información puedo ayudar.`
+    : `Hola, creo haber visto a ${pet.name} publicada en Mascotas SJ.\nLa vi en ${pet.location}.\nSi necesitan más información puedo ayudar.`;
+  const adoptMessage = `Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`;
   const waHref = waNumber
-    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`
+    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(isLost ? seenMessage : adoptMessage)}`
     : null;
   const mailHref = hasEmail
     ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
