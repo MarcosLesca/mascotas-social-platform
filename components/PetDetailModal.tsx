@@ -5,6 +5,20 @@ function digitsOnly(s: string): string {
   return s.replace(/\D/g, '');
 }
 
+function normalizePhoneNumber(phone: string): string {
+  const digits = digitsOnly(phone);
+  if (digits.startsWith('54')) {
+    return '54' + digits.slice(2);
+  }
+  if (digits.startsWith('0')) {
+    return '54' + digits.slice(1);
+  }
+  if (digits.length === 11) {
+    return '54' + digits;
+  }
+  return '54' + digits;
+}
+
 interface PetDetailModalProps {
   pet: Pet | null;
   isOpen: boolean;
@@ -19,9 +33,11 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
   const hasPhone = !!pet.contactPhone?.trim();
   const hasEmail = !!pet.contactEmail?.trim();
   const hasContact = hasPhone || hasEmail || !!pet.contactName?.trim();
-  const waNumber = hasPhone ? digitsOnly(pet.contactPhone!) : '';
+  const waNumber = hasPhone ? normalizePhoneNumber(pet.contactPhone!) : '';
+  const seenMessage = `Hola, creo haber visto a ${pet.name} publicada en Mascotas SJ.\nLa vi en ___________, aproximadamente el ___/___/____.\nSi necesitan más información puedo ayudar.`;
+  const adoptMessage = `Hola! Vi tu publicación sobre ${pet.name} y me gustaría saber más detalles y cómo iniciar el proceso de adopción.`;
   const waHref = waNumber
-    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`
+    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(isLost ? seenMessage : adoptMessage)}`
     : null;
   const mailHref = hasEmail
     ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
@@ -83,7 +99,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
               {pet.description && (
                 <div>
                   <h3 className="text-xl font-bold mb-3">Descripción</h3>
-                  <p className="text-gray-800 leading-relaxed">{pet.description}</p>
+                  <p className="text-black leading-relaxed">{pet.description}</p>
                 </div>
               )}
 
@@ -92,9 +108,9 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                 <h3 className="text-xl font-bold mb-3">
                   {isLost ? 'Última Vez Visto' : 'Ubicación'}
                 </h3>
-                <p className="text-gray-800 font-medium">{pet.location}</p>
+                <p className="text-black font-medium">{pet.location}</p>
                 {pet.distance && (
-                  <p className="text-sm text-gray-800/80 mt-1">A {pet.distance} de tu ubicación</p>
+                  <p className="text-sm text-black/80 mt-1">A {pet.distance} de tu ubicación</p>
                 )}
               </div>
 
@@ -106,7 +122,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {pet.medStatus.map((status, idx) => (
-                      <span key={idx} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">
+                      <span key={idx} className="bg-primary/10 text-black px-3 py-1 rounded-full text-sm font-bold">
                         {status}
                       </span>
                     ))}
@@ -121,17 +137,19 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   <div className="space-y-3">
                     {pet.contactName && (
                       <div className="flex items-center gap-3">
-                        <span className="font-medium">{isLost ? 'Reportante' : 'Contacto'}: {pet.contactName}</span>
+                        <span className="font-bold">Contacto:</span>
+                        <span className="font-medium">{pet.contactName}</span>
                       </div>
                     )}
                     {hasPhone && (
                       <div className="flex items-center gap-3">
+                        <span className="font-bold">Número:</span>
                         {waHref ? (
                           <a
                             href={waHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium text-gray-800 hover:text-primary transition-colors underline"
+                            className="font-medium text-black hover:text-primary transition-colors"
                           >
                             {pet.contactPhone}
                           </a>
@@ -142,10 +160,11 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                     )}
                     {hasEmail && (
                       <div className="flex items-center gap-3">
+                        <span className="font-bold">Email:</span>
                         {mailHref ? (
                           <a
                             href={mailHref}
-                            className="font-medium text-gray-800 hover:text-primary transition-colors underline"
+                            className="font-medium text-black hover:text-primary transition-colors"
                           >
                             {pet.contactEmail}
                           </a>
@@ -155,7 +174,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                       </div>
                     )}
                     {!hasContact && !isLost && (
-                      <p className="text-sm text-gray-800">Contacto disponible en la publicación.</p>
+                      <p className="text-sm text-black">Contacto disponible en la publicación.</p>
                     )}
                   </div>
                 </div>
@@ -167,7 +186,13 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
               {/* Acciones principales */}
               <div className="space-y-3">
                 <button 
-                  onClick={() => onAction?.(pet, isLost ? 'seen' : 'adopt')}
+                  onClick={() => {
+                    if (waHref) {
+                      window.open(waHref, '_blank');
+                    } else {
+                      onAction?.(pet, isLost ? 'seen' : 'adopt');
+                    }
+                  }}
                   className="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
                 >
                   {isLost ? '¡He visto a esta mascota!' : 'Quiero Adoptar'}
@@ -192,10 +217,6 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                     Enviar Email
                   </a>
                 )}
-
-                <button className="w-full bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all">
-                  Compartir
-                </button>
               </div>
 
               {/* Información adicional */}
@@ -203,37 +224,22 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                 <h4 className="font-bold mb-4">Características</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-sm text-gray-800">Especie</span>
+                    <span className="text-sm text-black">Especie</span>
                     <span className="text-sm font-bold capitalize">{pet.species}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm text-gray-800">Género</span>
+                    <span className="text-sm text-black">Género</span>
                     <span className="text-sm font-bold">{pet.gender === 'male' ? 'Macho' : 'Hembra'}</span>
                   </div>
                   {pet.age && (
                     <div className="flex justify-between">
-                      <span className="text-sm text-gray-800">Edad</span>
+                      <span className="text-sm text-black">Edad</span>
                       <span className="text-sm font-bold">{pet.age}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
-                    <span className="text-sm text-gray-800">Estado</span>
+                    <span className="text-sm text-black">Estado</span>
                     <span className="text-sm font-bold capitalize">{pet.status}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Alerta de seguridad */}
-              <div className="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-4 border border-orange-200 dark:border-orange-800/30">
-                <div className="flex gap-3">
-                  <div>
-                    <h5 className="font-bold text-sm mb-1">Seguridad Primero</h5>
-                    <p className="text-xs text-gray-800">
-                      {isLost 
-                        ? 'Nunca envíes dinero por adelantado. Encuéntrate en un lugar público.' 
-                        : 'Verifica la información del refugio. Pedí certificados veterinarios.'
-                      }
-                    </p>
                   </div>
                 </div>
               </div>
