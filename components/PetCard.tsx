@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Pet } from '../types';
 
 function digitsOnly(s: string): string {
@@ -14,20 +14,24 @@ interface PetCardProps {
 const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   const [showShareMenu, setShowShareMenu] = useState(false);
   const isLost = pet.status === 'lost';
+  const urgentBadgeClass =
+    'bg-urgent-red text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-lg';
+  const topBadgeClass =
+    'px-2.5 sm:px-3 py-1 rounded-full bg-white text-slate-800 text-[11px] sm:text-xs font-bold';
   const hasPhone = !!pet.contactPhone?.trim();
   const hasEmail = !!pet.contactEmail?.trim();
   const hasContact = hasPhone || hasEmail;
   const waNumber = hasPhone ? digitsOnly(pet.contactPhone!) : '';
   const waHref = waNumber
-    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`)}`
+    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola! Vi tu publicaciÃ³n sobre ${pet.name} y me interesa. Â¿PodrÃ­amos conversar?`)}`
     : null;
   const mailHref = hasEmail
-    ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
+    ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicaciÃ³n sobre ${pet.name} y me gustarÃ­a obtener mÃ¡s informaciÃ³n.`)}`
     : null;
 
   const handleShare = (platform: string) => {
     const shareData = {
-      title: `${isLost ? 'Mascota Perdida' : 'Mascota en Adopción'}: ${pet.name}`,
+      title: `${isLost ? 'Mascota Perdida' : 'Mascota en AdopciÃ³n'}: ${pet.name}`,
       text: `${isLost ? 'Ayuda a encontrar' : 'Conoce a'} ${pet.name}, ${pet.breed}${isLost ? ` - visto en ${pet.location}` : ' - busca un hogar'}`,
       url: window.location.href
     };
@@ -50,7 +54,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   };
 
   return (
-    <div className="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 card-hover stagger-item">
+    <div className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 card-hover stagger-item flex flex-col">
       <div className="relative aspect-square overflow-hidden">
         <img 
           src={pet.image} 
@@ -59,10 +63,10 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         />
         <div className="absolute top-3 left-3 flex gap-2">
           {pet.urgency && (
-            <span className="bg-urgent-red text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider shadow-lg">Urgente</span>
+            <span className={urgentBadgeClass}>Urgente</span>
           )}
           {pet.timeLabel && (
-            <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">{pet.timeLabel}</span>
+            <span className={topBadgeClass}>{pet.timeLabel}</span>
           )}
         </div>
         <div className="absolute top-3 right-3 flex gap-2">
@@ -72,13 +76,13 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                 e.stopPropagation();
                 setShowShareMenu(!showShareMenu);
               }}
-              className="px-3 py-1 rounded-full bg-white/40 text-slate-800 text-xs font-bold hover:bg-white/60 transition-colors"
+              className="px-2.5 sm:px-3 py-1 rounded-full bg-white/40 text-slate-800 text-[11px] sm:text-xs font-bold hover:bg-white/60 transition-colors"
             >
               Compartir
             </button>
             
             {showShareMenu && (
-              <div className="absolute top-10 right-0 bg-white dark:bg-background-dark rounded-xl shadow-xl border border-accent-teal/10 p-2 min-w-[180px] z-50">
+              <div className="absolute top-10 right-0 bg-white dark:bg-background-dark rounded-xl shadow-xl border border-accent-teal/10 p-2 min-w-[160px] sm:min-w-[180px] z-50">
                 {[
                   { label: 'Copiar link', action: 'copy_link' },
                   { label: 'Compartir por WhatsApp', action: 'whatsapp' },
@@ -103,25 +107,25 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         </div>
       </div>
 
-      <div className="p-5">
+      <div className="p-4 sm:p-5 flex flex-col flex-1">
         <div 
           className="flex justify-between items-start mb-2 cursor-pointer"
           onClick={() => onViewDetails?.(pet)}
         >
           <div>
-            <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{pet.name}</h3>
-            <p className="text-xs text-gray-600 font-semibold uppercase tracking-wide">{pet.breed} • {pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
+            <h3 className="text-lg sm:text-xl leading-tight font-bold group-hover:text-primary transition-colors">{pet.name}</h3>
+            <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[220px] sm:max-w-none">{pet.breed} • {pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
           </div>
         </div>
 
-        <div className="flex items-start gap-2 mb-6">
+        <div className="flex items-start gap-2 mb-4 sm:mb-6">
           <div>
-            <p className="text-sm font-bold">{isLost ? `Visto: ${pet.location}` : pet.location}</p>
+            <p className="text-sm font-bold leading-snug">{isLost ? `Visto: ${pet.location}` : pet.location}</p>
             {pet.distance && <p className="text-xs text-gray-500">{pet.distance} de distancia</p>}
           </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <button 
             onClick={() => onAction?.(pet, 'view')}
             className="flex-1 bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all btn-primary"
@@ -139,7 +143,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         {/* Quick Contact (solo si hay contacto y es perdida) */}
         {isLost && hasContact && (
           <div className="pt-3 border-t border-accent-teal/10">
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               {waHref && (
                 <a
                   href={waHref}
@@ -167,3 +171,5 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
 };
 
 export default PetCard;
+
+

@@ -175,7 +175,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   const hasActiveFilters = filters.species.length > 0 || filters.age.length > 0 || filters.searchTerm;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 flex flex-col gap-10">
       <div className="max-w-3xl mx-auto text-center mt-6">
         <h1 className="text-5xl font-black tracking-tight mb-4">Algunos todavía esperan su primera oportunidad</h1>
         <p className="text-xl text-gray-800 font-sans italic">
@@ -183,7 +183,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         </p>
       </div>
 
-      <div className="grid grid-cols-12 gap-10">
+      <div className="grid grid-cols-12 gap-6 lg:gap-10">
         <aside className="col-span-12 lg:col-span-3">
           <div className="bg-white dark:bg-white/5 p-8 rounded-3xl border border-accent-teal/5 sticky top-24">
             <div className="flex justify-between items-center mb-8">

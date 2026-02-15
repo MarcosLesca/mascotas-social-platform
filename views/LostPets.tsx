@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+﻿import React, { useState, useMemo, useEffect } from 'react';
 import { fetchApprovedLostPets } from '../services/lostPetsService';
 import PetCard from '../components/PetCard';
 import PetDetailModal from '../components/PetDetailModal';
@@ -36,7 +36,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       if (cancelled) return;
       setLoading(false);
       if (error) {
-        onToast('No se pudieron cargar las mascotas perdidas. Revisa la conexión.', 'error');
+        onToast('No se pudieron cargar las mascotas perdidas. Revisa la conexiÃ³n.', 'error');
         return;
       }
       setPets(data);
@@ -48,7 +48,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   const filteredPets = useMemo(() => {
     let filtered = pets;
 
-    // Búsqueda por texto
+    // BÃºsqueda por texto
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
       filtered = filtered.filter(pet => 
@@ -79,13 +79,13 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         return filters.age.some(filterAge => {
           switch (filterAge) {
             case 'Cachorro':
-              return ageLower.includes('año') && parseInt(ageLower) <= 2 || ageLower.includes('mes');
+              return ageLower.includes('aÃ±o') && parseInt(ageLower) <= 2 || ageLower.includes('mes');
             case 'Joven':
-              return ageLower.includes('año') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
+              return ageLower.includes('aÃ±o') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
             case 'Adulto':
-              return ageLower.includes('año') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
+              return ageLower.includes('aÃ±o') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
             case 'Senior':
-              return ageLower.includes('año') && parseInt(ageLower) > 10;
+              return ageLower.includes('aÃ±o') && parseInt(ageLower) > 10;
             default:
               return false;
           }
@@ -144,7 +144,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         onToast(`Gracias por reportar a ${pet.name}. Te contactaremos pronto.`, 'success');
         break;
       default:
-        console.log('Acción:', action, 'para:', pet.name);
+        console.log('AcciÃ³n:', action, 'para:', pet.name);
     }
   };
 
@@ -167,7 +167,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   const handleReportSubmit = () => {
-    onToast('Reporte enviado. Un administrador lo revisará pronto; si lo aprueba, se publicará aquí.', 'success');
+    onToast('Reporte enviado. Un administrador lo revisarÃ¡ pronto; si lo aprueba, se publicarÃ¡ aquÃ­.', 'success');
   };
 
   const handleReportError = (msg: string) => {
@@ -175,43 +175,43 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="max-w-3xl mx-auto text-center mt-6">
-        <h2 className="text-4xl font-extrabold mb-2">Ellos te siguen buscando</h2>
-        <p className="text-gray-800 text-lg">
+    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 pb-6 sm:pb-10 flex flex-col gap-6 sm:gap-8 lg:gap-10">
+      <div className="max-w-3xl mx-auto text-center mt-4 sm:mt-6 px-2">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-2">Ellos te siguen buscando</h2>
+        <p className="text-gray-800 text-base sm:text-lg">
           Mascotas perdidas
         </p>
       </div>
 
-      <div className="grid grid-cols-12 gap-10">
-        <aside className="col-span-12 lg:col-span-3">
-          <div className="bg-white dark:bg-white/5 p-8 rounded-3xl border border-accent-teal/5 sticky top-24">
-            <div className="flex justify-between items-center mb-8">
-              <h3 className="text-xl font-bold">Filtros</h3>
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+        <aside className="col-span-1 xl:col-span-3">
+          <div className="bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-accent-teal/5 xl:sticky xl:top-24">
+            <div className="flex justify-between items-center mb-6 sm:mb-8">
+              <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
                 <button 
                   onClick={clearFilters}
-                  className="text-xs font-bold text-primary hover:underline"
+                  className="text-[11px] sm:text-xs font-bold text-primary hover:underline"
                 >
                   LIMPIAR
                 </button>
               )}
             </div>
 
-            {/* Búsqueda */}
-            <div className="mb-8">
+            {/* BÃºsqueda */}
+            <div className="mb-6 sm:mb-8">
               <div className="relative">
                 <input 
                   type="text" 
                   placeholder="Buscar por nombre, raza o zona..."
-                  className="w-full px-4 py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
+                  className="w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
                   value={filters.searchTerm}
                   onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
                 />
               </div>
             </div>
             
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               <div>
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
@@ -264,19 +264,19 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               </div>
             </div>
 
-            <button className="w-full mt-10 bg-primary text-background-dark py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+            <button className="w-full mt-8 sm:mt-10 bg-primary text-background-dark py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
               {filteredPets.length} Mascotas
             </button>
           </div>
         </aside>
 
-        <div className="col-span-12 lg:col-span-9">
+        <div className="col-span-1 xl:col-span-9">
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-4">
-              <p className="text-gray-800 font-medium">Cargando mascotas perdidas…</p>
+            <div className="flex flex-col items-center justify-center py-16 sm:py-20 gap-4">
+              <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando mascotas perdidasâ€¦</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredPets.map(pet => (
                 <PetCard 
                   key={pet.id} 
@@ -287,11 +287,11 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               ))}
               
               {/* Report Placeholder Card */}
-              <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[400px]"
+              <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[320px] sm:min-h-[360px] lg:min-h-[400px]"
                    onClick={handleOpenReportModal}>
-                <h3 className="text-xl font-bold mb-3 text-gray-800">¿Has perdido a alguien?</h3>
-                <p className="text-sm text-gray-600 mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
-                <button className="bg-urgent-red text-white px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all" 
+                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">Â¿Has perdido a alguien?</h3>
+                <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">Reporta ahora y activa la red de bÃºsqueda en tu zona.</p>
+                <button className="bg-urgent-red text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all" 
                         onClick={(e) => {
                           e.stopPropagation();
                           handleOpenReportModal();
@@ -304,10 +304,10 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
           {/* Sin resultados (solo con filtros activos) */}
           {!loading && hasActiveFilters && filteredPets.length === 0 && (
-            <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
-              <h3 className="text-2xl font-bold mb-2">No encontramos resultados</h3>
-              <p className="text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
-              <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
+            <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-accent-teal/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">No encontramos resultados</h3>
+              <p className="text-sm sm:text-base text-gray-800 mb-6">Intenta ajustar los filtros o el tÃ©rmino de bÃºsqueda</p>
+              <button onClick={clearFilters} className="bg-primary text-background-dark w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>
             </div>
@@ -336,3 +336,4 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 };
 
 export default LostPets;
+
