@@ -134,7 +134,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         >
           <div>
             <h3 className="text-lg sm:text-xl leading-tight font-bold group-hover:text-primary transition-colors">{pet.name}</h3>
-            <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[220px] sm:max-w-none">{pet.breed} • {pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
+            <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[220px] sm:max-w-none">{isLost ? pet.breed + ' • ' + (pet.gender === 'male' ? 'Macho' : 'Hembra') : (pet.gender === 'male' ? 'Macho' : 'Hembra')}</p>
           </div>
         </div>
 
