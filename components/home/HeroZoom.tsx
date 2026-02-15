@@ -134,7 +134,7 @@ export default function HeroZoom() {
               mainColor="#ffffff"
               hoverColor="#e8f8ee"
               textColor="#111827"
-              dogColor="#6b8e23"
+              dogColor="#e1a46e"
               onClick={() => setCurrentView(View.ADOPTION)}
             />
             <CuteDogButton
@@ -142,7 +142,7 @@ export default function HeroZoom() {
               mainColor="#ffffff"
               hoverColor="#feecec"
               textColor="#111827"
-              dogColor="#e53e3e"
+              dogColor="#e1a46e"
               onClick={() => setCurrentView(View.DONATIONS)}
             />
           </div>
