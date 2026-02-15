@@ -30,7 +30,7 @@ const SanJustoMap: React.FC = () => {
               ref={mapFrameRef}
               src={mapUrl}
               title="Mapa de San Justo, Santa Fe"
-              className="w-full h-full border-0"
+              className="w-full h-full border-0 pointer-events-none"
               allowFullCell
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
