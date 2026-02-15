@@ -36,7 +36,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       if (cancelled) return;
       setLoading(false);
       if (error) {
-        onToast('No se pudieron cargar las mascotas perdidas. Revisa la conexiÃ³n.', 'error');
+        onToast('No se pudieron cargar las mascotas perdidas. Revisa la conexión.', 'error');
         return;
       }
       setPets(data);
@@ -48,7 +48,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   const filteredPets = useMemo(() => {
     let filtered = pets;
 
-    // BÃºsqueda por texto
+    // Búsqueda por texto
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
       filtered = filtered.filter(pet => 
@@ -79,13 +79,13 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         return filters.age.some(filterAge => {
           switch (filterAge) {
             case 'Cachorro':
-              return ageLower.includes('aÃ±o') && parseInt(ageLower) <= 2 || ageLower.includes('mes');
+              return ageLower.includes('año') && parseInt(ageLower) <= 2 || ageLower.includes('mes');
             case 'Joven':
-              return ageLower.includes('aÃ±o') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
+              return ageLower.includes('año') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
             case 'Adulto':
-              return ageLower.includes('aÃ±o') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
+              return ageLower.includes('año') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
             case 'Senior':
-              return ageLower.includes('aÃ±o') && parseInt(ageLower) > 10;
+              return ageLower.includes('año') && parseInt(ageLower) > 10;
             default:
               return false;
           }
@@ -144,7 +144,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         onToast(`Gracias por reportar a ${pet.name}. Te contactaremos pronto.`, 'success');
         break;
       default:
-        console.log('AcciÃ³n:', action, 'para:', pet.name);
+        console.log('Acción:', action, 'para:', pet.name);
     }
   };
 
@@ -167,7 +167,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   const handleReportSubmit = () => {
-    onToast('Reporte enviado. Un administrador lo revisarÃ¡ pronto; si lo aprueba, se publicarÃ¡ aquÃ­.', 'success');
+    onToast('Reporte enviado. Un administrador lo revisará pronto; si lo aprueba, se publicará aquí.', 'success');
   };
 
   const handleReportError = (msg: string) => {
@@ -198,7 +198,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               )}
             </div>
 
-            {/* BÃºsqueda */}
+            {/* Búsqueda */}
             <div className="mb-6 sm:mb-8">
               <div className="relative">
                 <input 
@@ -273,7 +273,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         <div className="col-span-1 xl:col-span-9">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-16 sm:py-20 gap-4">
-              <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando mascotas perdidasâ€¦</p>
+              <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando mascotas perdidas...</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
@@ -289,8 +289,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               {/* Report Placeholder Card */}
               <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[320px] sm:min-h-[360px] lg:min-h-[400px]"
                    onClick={handleOpenReportModal}>
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">Â¿Has perdido a alguien?</h3>
-                <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">Reporta ahora y activa la red de bÃºsqueda en tu zona.</p>
+                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Has perdido a alguien?</h3>
+                <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
                 <button className="bg-urgent-red text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all" 
                         onClick={(e) => {
                           e.stopPropagation();
@@ -306,7 +306,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
           {!loading && hasActiveFilters && filteredPets.length === 0 && (
             <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-accent-teal/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
               <h3 className="text-xl sm:text-2xl font-bold mb-2">No encontramos resultados</h3>
-              <p className="text-sm sm:text-base text-gray-800 mb-6">Intenta ajustar los filtros o el tÃ©rmino de bÃºsqueda</p>
+              <p className="text-sm sm:text-base text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
               <button onClick={clearFilters} className="bg-primary text-background-dark w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>
@@ -336,4 +336,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 };
 
 export default LostPets;
+
+
 

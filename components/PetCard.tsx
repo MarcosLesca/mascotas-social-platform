@@ -76,7 +76,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                 e.stopPropagation();
                 setShowShareMenu(!showShareMenu);
               }}
-              className="px-2.5 sm:px-3 py-1 rounded-full bg-white/40 text-slate-800 text-[11px] sm:text-xs font-bold hover:bg-white/60 transition-colors"
+              className="px-2.5 sm:px-3 py-1 rounded-full bg-white text-slate-800 text-[11px] sm:text-xs font-bold hover:bg-white transition-colors"
             >
               Compartir
             </button>
@@ -125,16 +125,16 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-col sm:flex-row gap-2.5">
           <button 
             onClick={() => onAction?.(pet, 'view')}
-            className="flex-1 bg-white dark:bg-white/5 border border-accent-teal/20 hover:border-primary text-primary font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all btn-primary"
+            className="flex-1 bg-accent-teal hover:bg-primary text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200"
           >
             Ver Detalles
           </button>
           <button 
             onClick={() => onAction?.(pet, isLost ? 'seen' : 'adopt')}
-            className="flex-1 bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm btn-primary"
+            className="flex-1 bg-[#22c55e] hover:bg-[#16a34a] text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200"
           >
             {isLost ? 'La vi' : 'Adoptar'}
           </button>
@@ -143,13 +143,13 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         {/* Quick Contact (solo si hay contacto y es perdida) */}
         {isLost && hasContact && (
           <div className="pt-3 border-t border-accent-teal/10">
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-2.5">
               {waHref && (
                 <a
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
+                  className="flex-1 bg-[#22c55e] hover:bg-[#16a34a] text-white text-sm font-bold py-2.5 rounded-full flex items-center justify-center gap-1 transition-colors duration-200"
                 >
                   WhatsApp
                 </a>
@@ -157,7 +157,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
               {mailHref && (
                 <a
                   href={mailHref}
-                  className="flex-1 bg-accent-teal hover:bg-primary text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition-all"
+                  className="flex-1 bg-accent-teal hover:bg-primary text-white text-sm font-bold py-2.5 rounded-full flex items-center justify-center gap-1 transition-colors duration-200"
                 >
                   Email
                 </a>
