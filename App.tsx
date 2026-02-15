@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+﻿import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
@@ -71,7 +71,7 @@ const AppContent: React.FC = () => {
         </section>
       )}
 
-      <footer className="border-t border-white/20 py-8 px-6 lg:px-20 mt-auto bg-accent-teal">
+      <footer className="border-t border-[#ecdbbd]/30 py-8 px-6 lg:px-20 mt-auto bg-[#203553]">
         <div className="max-w-[1440px] mx-auto flex items-center justify-center gap-8 flex-wrap">
           <div className="flex items-center gap-2">
             <img 
@@ -79,17 +79,17 @@ const AppContent: React.FC = () => {
               alt="LyM Desarrollo Web" 
               className="h-8 w-auto"
             />
-            <span className="text-lg font-black text-white">Mascotas SJ</span>
+            <span className="text-lg font-black text-[#ecdbbd]">Mascotas SJ</span>
           </div>
           <a 
             href="https://lymdesarrolloweb.com.ar/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-sm font-bold text-[#203553] hover:text-[#203553]/80 hover:underline transition-colors"
+            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 hover:underline transition-colors"
           >
             © 2026 LyM Desarrollo Web. Todos los derechos reservados.
           </a>
-          <Link to="/admin" className="text-sm font-bold text-white hover:text-white/80 transition-colors">
+          <Link to="/admin" className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors">
             Admin
           </Link>
         </div>
@@ -125,7 +125,7 @@ const AppContent: React.FC = () => {
         </button>
         <button
           onClick={() => {
-            addToast("Función de reporte próximamente", "info");
+            addToast("FunciÃ³n de reporte prÃ³ximamente", "info");
           }}
           className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05]"
         >
@@ -176,3 +176,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
