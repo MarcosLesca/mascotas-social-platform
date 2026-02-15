@@ -41,7 +41,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   const hasContact = hasPhone || hasEmail;
   const waNumber = hasPhone ? normalizePhoneNumber(pet.contactPhone!) : '';
   const seenMessage = `Hola, creo haber visto a ${pet.name} publicada en Mascotas SJ.\nLa vi en ___________, aproximadamente el ___/___/____.\nSi necesitan más información puedo ayudar.`;
-  const adoptMessage = `Hola! Vi tu publicación sobre ${pet.name} y me interesa. ¿Podríamos conversar?`;
+  const adoptMessage = `Hola! Vi tu publicación sobre ${pet.name} y me gustaría saber más detalles y cómo iniciar el proceso de adopción.`;
   const waHref = waNumber
     ? `https://wa.me/${waNumber}?text=${encodeURIComponent(isLost ? seenMessage : adoptMessage)}`
     : null;
