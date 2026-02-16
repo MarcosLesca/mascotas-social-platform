@@ -9,7 +9,8 @@ import { Pet } from '../types';
 interface AdoptionFilters {
   species: string[];
   age: string[];
-  energy: string;
+  size: string[];
+  gender: string[];
   searchTerm: string;
 }
 
@@ -23,7 +24,8 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   const [filters, setFilters] = useState<AdoptionFilters>({
     species: [],
     age: [],
-    energy: 'Medio',
+    size: [],
+    gender: [],
     searchTerm: ''
   });
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
@@ -92,6 +94,22 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
       });
     }
 
+    // Filtro por tamaño
+    if (filters.size.length > 0) {
+      filtered = filtered.filter(pet => {
+        if (!pet.size) return false;
+        return filters.size.includes(pet.size);
+      });
+    }
+
+    // Filtro por género
+    if (filters.gender.length > 0) {
+      filtered = filtered.filter(pet => {
+        if (!pet.gender) return false;
+        return filters.gender.includes(pet.gender);
+      });
+    }
+
     // Filtro por búsqueda
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
@@ -149,7 +167,8 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
     setFilters({
       species: [],
       age: [],
-      energy: 'Medio',
+      size: [],
+      gender: [],
       searchTerm: ''
     });
   };
@@ -249,19 +268,54 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Energía</p>
-                <div className="grid grid-cols-3 gap-2">
-                  {['Bajo', 'Medio', 'Alto'].map(e => (
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Tamaño</p>
+                <div className="flex flex-wrap gap-2">
+                  {['Pequeño', 'Mediano', 'Grande'].map(s => (
                     <button
-                      key={e}
-                      onClick={() => setFilters({...filters, energy: e})}
-                      className={`py-2 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-tight transition-all ${
-                        filters.energy === e
+                      key={s}
+                      onClick={() => {
+                        const sizeMap: { [key: string]: string } = { 'Pequeño': 'small', 'Mediano': 'medium', 'Grande': 'large' };
+                        setFilters(prev => ({
+                          ...prev,
+                          size: prev.size.includes(sizeMap[s])
+                            ? prev.size.filter(sz => sz !== sizeMap[s])
+                            : [...prev.size, sizeMap[s]]
+                        }));
+                      }}
+                      className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
+                        filters.size.includes(s === 'Pequeño' ? 'small' : s === 'Mediano' ? 'medium' : 'large')
                           ? 'bg-primary text-background-dark'
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
-                      {e}
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Género</p>
+                <div className="flex flex-wrap gap-2">
+                  {['Macho', 'Hembra'].map(g => (
+                    <button
+                      key={g}
+                      onClick={() => {
+                        const genderMap: { [key: string]: string } = { 'Macho': 'male', 'Hembra': 'female' };
+                        setFilters(prev => ({
+                          ...prev,
+                          gender: prev.gender.includes(genderMap[g])
+                            ? prev.gender.filter(gn => gn !== genderMap[g])
+                            : [...prev.gender, genderMap[g]]
+                        }));
+                      }}
+                      className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
+                        filters.gender.includes(g === 'Macho' ? 'male' : 'female')
+                          ? 'bg-primary text-background-dark'
+                          : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
+                      }`}
+                    >
+                      {g}
                     </button>
                   ))}
                 </div>

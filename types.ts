@@ -14,6 +14,7 @@ export interface Pet {
   species: "dog" | "cat" | "bird" | "other";
   gender: "male" | "female";
   age?: string;
+  size?: "small" | "medium" | "large";
   status: "lost" | "found" | "adoption";
   urgency?: boolean;
   timeLabel?: string;

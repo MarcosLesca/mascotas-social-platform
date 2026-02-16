@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { DonationCampaign } from "../types";
 import DonationModal from "../components/DonationModal";
 import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsService";
 import ReportDonationCampaignModal from "../components/ReportDonationCampaignModal";
+
+interface DonationFilters {
+  urgency: boolean;
+  searchTerm: string;
+}
 
 const Donations: React.FC = () => {
   const [selectedCampaign, setSelectedCampaign] =
@@ -13,6 +18,10 @@ const Donations: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [showReportModal, setShowReportModal] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [filters, setFilters] = useState<DonationFilters>({
+    urgency: false,
+    searchTerm: ''
+  });
 
   const loadCampaigns = () => {
     let cancelled = false;
@@ -36,6 +45,37 @@ const Donations: React.FC = () => {
     const cancel = loadCampaigns();
     return cancel;
   }, []);
+
+  // Filtrar campañas según los filtros seleccionados
+  const filteredCampaigns = useMemo(() => {
+    let filtered = campaigns;
+
+    // Filtro por búsqueda
+    if (filters.searchTerm) {
+      const searchLower = filters.searchTerm.toLowerCase();
+      filtered = filtered.filter(campaign =>
+        campaign.title.toLowerCase().includes(searchLower) ||
+        campaign.description.toLowerCase().includes(searchLower) ||
+        campaign.petName.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Filtro por urgencia
+    if (filters.urgency) {
+      filtered = filtered.filter(campaign => campaign.urgency);
+    }
+
+    return filtered;
+  }, [campaigns, filters]);
+
+  const clearFilters = () => {
+    setFilters({
+      urgency: false,
+      searchTerm: ''
+    });
+  };
+
+  const hasActiveFilters = filters.urgency || filters.searchTerm;
 
   const handleCampaignClick = (campaign: DonationCampaign) => {
     setSelectedCampaign(campaign);
@@ -111,7 +151,52 @@ const Donations: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+          <>
+            {/* Filtros */}
+            <div className="bg-white dark:bg-white/5 p-5 sm:p-6 rounded-2xl border border-sky-500/10 mb-6">
+              <div className="flex flex-wrap justify-between items-center gap-4 mb-4">
+                <h3 className="text-lg font-bold">Filtros</h3>
+                {hasActiveFilters && (
+                  <button
+                    onClick={clearFilters}
+                    className="text-xs font-bold text-sky-500 hover:underline"
+                  >
+                    LIMPIAR
+                  </button>
+                )}
+              </div>
+
+              {/* Búsqueda */}
+              <div className="mb-4">
+                <input
+                  type="text"
+                  placeholder="Buscar por nombre, descripción o mascota..."
+                  className="w-full px-4 py-3 bg-white dark:bg-white/10 border border-sky-500/10 rounded-xl focus:ring-2 focus:ring-sky-500 text-sm"
+                  value={filters.searchTerm}
+                  onChange={(e) => setFilters({...filters, searchTerm: e.target.value})}
+                />
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={filters.urgency}
+                      onChange={(e) => setFilters({ ...filters, urgency: e.target.checked })}
+                      className="rounded text-sky-500 focus:ring-sky-500 border-sky-500/20"
+                    />
+                    <span className="text-sm font-medium">Solo urgentes</span>
+                  </label>
+                </div>
+              </div>
+
+              <button className="w-full mt-4 bg-sky-500 text-white py-3 rounded-xl font-black shadow-lg shadow-sky-500/20">
+                {filteredCampaigns.length} Campañas
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {/* Report Campaign Card - First Position */}
             <div
               className="bg-sky-500/5 dark:bg-sky-500/10 border-4 border-dashed border-sky-500/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-sky-500/10 transition-all min-h-[300px] sm:min-h-[380px]"
@@ -132,7 +217,7 @@ const Donations: React.FC = () => {
               </button>
             </div>
 
-            {campaigns.map((campaign) => {
+            {filteredCampaigns.map((campaign) => {
             return (
               <div
                 key={campaign.id}
@@ -208,6 +293,7 @@ const Donations: React.FC = () => {
             );
           })}
           </div>
+          </>
         )}
       </div>
 
