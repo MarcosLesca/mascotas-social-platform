@@ -45,8 +45,8 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
   const isFullscreen = variant === 'fullscreen';
 
   const containerClasses = isFullscreen
-    ? "fixed inset-0 z-50 bg-white dark:bg-background-dark overflow-y-auto"
-    : "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm";
+    ? "fixed inset-0 z-[100] bg-white dark:bg-background-dark overflow-y-auto !mt-0 m-0 p-0"
+    : "fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm !mt-0";
 
   const contentClasses = isFullscreen
     ? "w-full min-h-screen bg-white dark:bg-background-dark"
