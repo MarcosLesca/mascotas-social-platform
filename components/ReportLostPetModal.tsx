@@ -202,7 +202,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
         </div>
 
         {/* Form Content */}
-        <form onSubmit={handleSubmit} className="p-8 max-h-[60vh] overflow-y-auto">
+        <form onSubmit={handleSubmit} className="p-8 pb-24 max-h-[60vh] overflow-y-auto">
           {/* Step 1: Pet Information */}
           {submitError && (
             <div

@@ -58,11 +58,11 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
 
   const containerClasses = isFullscreen
     ? "fixed inset-0 z-50 bg-white dark:bg-background-dark overflow-y-auto"
-    : "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm";
+    : "fixed inset-0 z-50 p-4 pb-24 bg-black/50 backdrop-blur-sm overflow-y-auto";
 
   const contentClasses = isFullscreen
     ? "w-full min-h-screen bg-white dark:bg-background-dark"
-    : "bg-white dark:bg-background-dark rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl";
+    : "bg-white dark:bg-background-dark rounded-3xl w-full shadow-2xl";
 
   return (
     <>
@@ -122,7 +122,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
           </div>
 
           {/* Contenido */}
-          <div className={`p-6 sm:p-8 ${!isFullscreen ? 'max-h-[50vh] overflow-y-auto' : ''}`}>
+          <div className="p-6 sm:p-8 max-w-4xl mx-auto pb-40 md:pb-32 lg:pb-28">
             <h2 className="text-2xl font-black mb-6">{pet.name}</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Información principal */}

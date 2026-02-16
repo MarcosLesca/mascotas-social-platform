@@ -134,16 +134,6 @@ const AppContent: React.FC = () => {
           </span>
         </button>
         <button
-          onClick={() => {
-            addToast("Función de reporte próximamente", "info");
-          }}
-          className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05]"
-        >
-          <span className="material-symbols-outlined font-bold text-3xl">
-            add
-          </span>
-        </button>
-        <button
           onClick={() => setCurrentView(View.FAQ)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.FAQ
@@ -154,6 +144,19 @@ const AppContent: React.FC = () => {
           <span className="material-symbols-outlined">help</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">
             Ayuda
+          </span>
+        </button>
+        <button
+          onClick={() => setCurrentView(View.DONATIONS)}
+          className={`flex flex-col items-center gap-1 transition-colors ${
+            currentView === View.DONATIONS
+              ? "text-primary"
+              : "text-accent-teal/60 hover:text-primary"
+          }`}
+        >
+          <span className="material-symbols-outlined">favorite</span>
+          <span className="text-[10px] font-bold uppercase tracking-tighter">
+            Donar
           </span>
         </button>
         <button

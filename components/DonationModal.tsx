@@ -113,7 +113,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
           </div>
 
           {/* Contenido */}
-          <div className={`p-6 sm:p-8 ${!isFullscreen ? 'max-h-[50vh] overflow-y-auto' : ''}`}>
+          <div className={`p-6 sm:p-8 pb-24 ${!isFullscreen ? 'max-h-[50vh] overflow-y-auto' : ''}`}>
             <h2 className="text-2xl font-black mb-6">{campaign.title}</h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
