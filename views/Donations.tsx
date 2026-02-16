@@ -212,6 +212,7 @@ const Donations: React.FC = () => {
         campaign={selectedCampaign}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+        variant="fullscreen"
       />
 
       <ReportDonationCampaignModal

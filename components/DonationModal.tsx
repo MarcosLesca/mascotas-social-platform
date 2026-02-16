@@ -5,18 +5,29 @@ interface DonationModalProps {
   campaign: DonationCampaign | null;
   isOpen: boolean;
   onClose: () => void;
+  variant?: 'modal' | 'fullscreen';
 }
 
-const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose }) => {
+const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose, variant = 'modal' }) => {
   const normalizedWhatsapp = (campaign?.whatsappNumber || '').replace(/\D/g, '');
   const hasWhatsapp = normalizedWhatsapp.length > 0;
   const hasEmail = Boolean(campaign?.contactEmail);
 
   if (!isOpen || !campaign) return null;
 
+  const isFullscreen = variant === 'fullscreen';
+
+  const containerClasses = isFullscreen
+    ? "fixed inset-0 z-50 bg-white dark:bg-background-dark overflow-y-auto"
+    : "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm";
+
+  const contentClasses = isFullscreen
+    ? "w-full min-h-screen bg-white dark:bg-background-dark"
+    : "bg-white dark:bg-background-dark rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl";
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white dark:bg-background-dark rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+    <div className={containerClasses} onClick={!isFullscreen ? onClose : undefined}>
+      <div className={contentClasses} onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="relative h-48 overflow-hidden">
           <img
@@ -28,9 +39,12 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
 
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-colors"
+            className={`absolute top-4 ${isFullscreen ? 'left-4' : 'right-4'} p-2 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-colors flex items-center gap-2 px-4`}
           >
-            <span className="material-symbols-outlined text-xl">close</span>
+            {isFullscreen && <span className="material-symbols-outlined text-xl">arrow_back</span>}
+            <span className={isFullscreen ? "font-bold text-sm" : "material-symbols-outlined text-xl"}>
+              {isFullscreen ? 'Volver' : 'close'}
+            </span>
           </button>
 
           <div className="absolute bottom-6 left-6 right-6">
@@ -50,7 +64,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
         </div>
 
         {/* Donation Information */}
-        <div className="p-6 max-h-[50vh] overflow-y-auto space-y-6">
+        <div className={`p-6 space-y-6 ${!isFullscreen ? 'max-h-[50vh] overflow-y-auto' : ''}`}>
           {/* Pet Information */}
           <div className="bg-gradient-to-br from-primary/5 to-accent-teal/5 rounded-2xl p-6 border border-accent-teal/10">
             <div className="flex items-center gap-3 mb-4">
