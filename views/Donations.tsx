@@ -48,28 +48,28 @@ const Donations: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-2 space-y-6">
+    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-2 space-y-5 sm:space-y-6">
       {/* Header */}
-      <div className="text-center mt-6">
-        <h1 className="text-4xl md:text-5xl font-black text-black">
+      <div className="text-center mt-4 sm:mt-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-black">
           Cuando ayudás, ellos sienten esperanza
         </h1>
-        <p className="text-xl text-gray-800">Donaciones</p>
+        <p className="text-lg sm:text-xl text-gray-800">Donaciones</p>
       </div>
 
       {/* Transparency Notice */}
-      <div className="bg-red-50 dark:bg-red-900/20 rounded-3xl p-4 border border-red-200 dark:border-red-800">
-        <div className="flex items-start gap-4">
-          <div className="size-12 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0">
+      <div className="bg-red-50 dark:bg-red-900/20 rounded-3xl p-4 sm:p-5 border border-red-200 dark:border-red-800">
+        <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+          <div className="size-10 sm:size-12 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0">
             <span className="material-symbols-outlined text-2xl text-red-500">
               warning
             </span>
           </div>
           <div>
-            <h3 className="text-xl font-black mb-2 text-red-600 dark:text-red-400">
+            <h3 className="text-lg sm:text-xl font-black mb-2 text-red-600 dark:text-red-400">
               IMPORTANTE
             </h3>
-            <p className="text-black leading-relaxed">
+            <p className="text-sm sm:text-base text-black leading-relaxed">
               En Mascotas SJ{" "}
               <strong className="text-red-500">
                 no administramos el dinero
@@ -83,16 +83,16 @@ const Donations: React.FC = () => {
       </div>
 
       {/* Report CTA */}
-      <div className="rounded-3xl border border-primary/20 bg-primary/5 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="rounded-3xl border border-primary/20 bg-primary/5 p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h3 className="text-2xl font-black">Publicar campana de donacion</h3>
+          <h3 className="text-xl sm:text-2xl font-black">Publicar campana de donacion</h3>
           <p className="text-sm text-gray-800 mt-1">
             Carga los datos y la imagen. Se publicara una vez aprobada por admin.
           </p>
         </div>
         <button
           onClick={() => setShowReportModal(true)}
-          className="bg-primary hover:bg-primary/90 text-background-dark font-black px-8 py-3 rounded-xl transition-colors"
+          className="w-full md:w-auto bg-primary hover:bg-primary/90 text-background-dark font-black px-8 py-3 rounded-xl transition-colors"
         >
           COMENZAR
         </button>
@@ -100,7 +100,7 @@ const Donations: React.FC = () => {
 
       {/* Campaigns Grid */}
       <div>
-        <h2 className="text-3xl font-black mb-8">Donaciones Activas</h2>
+        <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">Donaciones Activas</h2>
 
         {submitMessage && (
           <div className="mb-6 rounded-2xl border border-primary/30 bg-primary/10 p-4 text-accent-teal">
@@ -120,14 +120,14 @@ const Donations: React.FC = () => {
         {loading ? (
           <p className="text-accent-teal font-medium">Cargando campaÃ±as...</p>
         ) : campaigns.length === 0 ? (
-          <div className="rounded-2xl border border-accent-teal/10 bg-white dark:bg-white/5 p-8 text-center">
+          <div className="rounded-2xl border border-accent-teal/10 bg-white dark:bg-white/5 p-6 sm:p-8 text-center">
             <h3 className="text-xl font-black">No hay campaÃ±as aprobadas</h3>
             <p className="text-sm text-gray-800 mt-2">
               Las nuevas campaÃ±as aparecerÃ¡n aquÃ­ cuando sean aprobadas.
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {campaigns.map((campaign) => {
             return (
               <div
@@ -136,7 +136,7 @@ const Donations: React.FC = () => {
                 className="bg-white dark:bg-white/5 rounded-3xl overflow-hidden border border-accent-teal/10 hover:border-primary/30 transition-all hover:shadow-2xl cursor-pointer group"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-44 sm:h-48 overflow-hidden">
                   <img
                     src={campaign.image}
                     alt={campaign.title}
@@ -161,9 +161,9 @@ const Donations: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-4">
+                <div className="p-5 sm:p-6 space-y-4">
                   <div>
-                    <h3 className="text-xl font-black mb-2 line-clamp-2">
+                    <h3 className="text-lg sm:text-xl font-black mb-2 line-clamp-2">
                       {campaign.title}
                     </h3>
                     <p className="text-sm text-gray-800 line-clamp-2">
@@ -177,7 +177,7 @@ const Donations: React.FC = () => {
                       <span className="text-xs text-gray-800 font-medium">
                         Meta:
                       </span>
-                      <span className="text-lg font-black text-urgent-red">
+                      <span className="text-base sm:text-lg font-black text-urgent-red">
                         ${campaign.goal.toLocaleString("es-AR")}
                       </span>
                     </div>
@@ -195,8 +195,8 @@ const Donations: React.FC = () => {
                   </div>
 
                   {/* CTA */}
-                  <button className="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 group-hover:scale-105">
-                    <span className="material-symbols-outlined">info</span>
+                  <button className="w-full bg-primary hover:bg-primary/90 text-background-dark text-sm sm:text-base font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 group-hover:scale-105">
+                    <span className="material-symbols-outlined text-lg">info</span>
                     Ver Información para Donar
                   </button>
                 </div>

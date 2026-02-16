@@ -175,19 +175,19 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   const hasActiveFilters = filters.species.length > 0 || filters.age.length > 0 || filters.searchTerm;
 
   return (
-    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 flex flex-col gap-10">
-      <div className="max-w-3xl mx-auto text-center mt-6">
-        <h1 className="text-5xl font-black tracking-tight mb-4">Algunos todavía esperan su primera oportunidad</h1>
-        <p className="text-xl text-gray-800 font-sans italic">
+    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 flex flex-col gap-8 sm:gap-10">
+      <div className="max-w-3xl mx-auto text-center mt-4 sm:mt-6">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-3 sm:mb-4">Algunos todavía esperan su primera oportunidad</h1>
+        <p className="text-lg sm:text-xl text-gray-800 font-sans italic">
           Adopción
         </p>
       </div>
 
-      <div className="grid grid-cols-12 gap-6 lg:gap-10">
+      <div className="grid grid-cols-12 gap-5 sm:gap-6 lg:gap-10">
         <aside className="col-span-12 lg:col-span-3">
-          <div className="bg-white dark:bg-white/5 p-8 rounded-3xl border border-accent-teal/5 sticky top-24">
-            <div className="flex justify-between items-center mb-8">
-              <h3 className="text-xl font-bold">Filtros</h3>
+          <div className="bg-white dark:bg-white/5 p-5 sm:p-6 lg:p-8 rounded-3xl border border-accent-teal/5 lg:sticky lg:top-24">
+            <div className="flex justify-between items-center mb-6 sm:mb-8">
+              <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
                 <button 
                   onClick={clearFilters}
@@ -199,7 +199,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             </div>
 
             {/* Búsqueda */}
-            <div className="mb-8">
+            <div className="mb-6 sm:mb-8">
               <div className="relative">
                 <input 
                   type="text" 
@@ -211,7 +211,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               </div>
             </div>
             
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               <div>
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
@@ -219,7 +219,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                     <button 
                       key={s} 
                       onClick={() => toggleSpecies(s)}
-                      className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                      className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                         filters.species.includes(s) 
                           ? 'bg-primary text-background-dark' 
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
@@ -242,7 +242,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                         onChange={() => toggleAge(age)}
                         className="rounded text-primary focus:ring-primary border-accent-teal/20" 
                       />
-                      <span className="text-sm font-medium group-hover:text-primary transition-colors">{age}</span>
+                      <span className="text-sm sm:text-[15px] font-medium group-hover:text-primary transition-colors">{age}</span>
                     </label>
                   ))}
                 </div>
@@ -255,7 +255,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                     <button 
                       key={e} 
                       onClick={() => setFilters({...filters, energy: e})}
-                      className={`py-2 rounded-xl text-[10px] font-black uppercase tracking-tighter transition-all ${
+                      className={`py-2 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-tight transition-all ${
                         filters.energy === e 
                           ? 'bg-primary text-background-dark' 
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
@@ -268,7 +268,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               </div>
             </div>
 
-            <button className="w-full mt-10 bg-primary text-background-dark py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+            <button className="w-full mt-8 sm:mt-10 bg-primary text-background-dark py-3 sm:py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
               {filteredPets.length} Mascotas
             </button>
           </div>
@@ -276,11 +276,11 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
 
         <div className="col-span-12 lg:col-span-9">
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-4">
+            <div className="flex flex-col items-center justify-center py-14 sm:py-20 gap-4">
               <p className="text-gray-800 font-medium">Cargando mascotas en adopción…</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
               {filteredPets.map(pet => (
                 <PetCard 
                   key={pet.id} 
@@ -291,7 +291,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               ))}
 
               <div
-                className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[380px]"
+                className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[300px] sm:min-h-[380px]"
                 onClick={handleOpenReportModal}
               >
                 <h3 className="text-xl font-bold mb-3">Publicar en adopción</h3>
@@ -299,7 +299,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                   Ayuda a encontrar un hogar definitivo. Creá una publicación ahora.
                 </p>
                 <button
-                  className="bg-primary text-background-dark px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
+                  className="w-full sm:w-auto bg-primary text-background-dark px-8 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleOpenReportModal();
@@ -313,8 +313,8 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
 
           {/* Sin resultados */}
           {!loading && filteredPets.length === 0 && (
-            <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-12 text-center mt-8">
-              <h3 className="text-2xl font-bold mb-2">No encontramos mascotas con esos filtros</h3>
+            <div className="bg-white dark:bg-white/5 rounded-3xl border border-accent-teal/5 p-6 sm:p-12 text-center mt-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">No encontramos mascotas con esos filtros</h3>
               <p className="text-gray-800 mb-6">Intenta ajustar los filtros para ver más opciones</p>
               <button onClick={clearFilters} className="bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros

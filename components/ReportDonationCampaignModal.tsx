@@ -109,6 +109,14 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     onClose();
   };
 
+  const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    // Evita envios implicitos al presionar Enter en inputs.
+    if (e.key !== "Enter") return;
+    const target = e.target as HTMLElement;
+    if (target.tagName === "TEXTAREA") return;
+    e.preventDefault();
+  };
+
   useEffect(() => {
     if (!isOpen) {
       setFormData({
@@ -147,7 +155,11 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 max-h-[75vh] overflow-y-auto space-y-5">
+        <form
+          onSubmit={handleSubmit}
+          onKeyDown={handleFormKeyDown}
+          className="p-6 max-h-[75vh] overflow-y-auto space-y-5"
+        >
           {submitError && (
             <div
               role="alert"
