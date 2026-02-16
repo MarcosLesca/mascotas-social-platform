@@ -112,6 +112,26 @@ const Donations: React.FC = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+            {/* Report Campaign Card - First Position */}
+            <div
+              className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[300px] sm:min-h-[380px]"
+              onClick={() => setShowReportModal(true)}
+            >
+              <h3 className="text-xl font-bold mb-3">Publicar campaña de donación</h3>
+              <p className="text-sm text-gray-800 mb-8 max-w-[220px]">
+                Carga los datos y la imagen. Se publicará una vez aprobada.
+              </p>
+              <button
+                className="w-full sm:w-auto bg-primary text-background-dark px-8 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowReportModal(true);
+                }}
+              >
+                COMENZAR
+              </button>
+            </div>
+
             {campaigns.map((campaign) => {
             return (
               <div
@@ -187,26 +207,6 @@ const Donations: React.FC = () => {
               </div>
             );
           })}
-
-          {/* Report Campaign Card */}
-          <div
-            className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[300px] sm:min-h-[380px]"
-            onClick={() => setShowReportModal(true)}
-          >
-            <h3 className="text-xl font-bold mb-3">Publicar campaña de donación</h3>
-            <p className="text-sm text-gray-800 mb-8 max-w-[220px]">
-              Carga los datos y la imagen. Se publicará una vez aprobada.
-            </p>
-            <button
-              className="w-full sm:w-auto bg-primary text-background-dark px-8 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowReportModal(true);
-              }}
-            >
-              COMENZAR
-            </button>
-          </div>
           </div>
         )}
       </div>

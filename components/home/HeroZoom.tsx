@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { useApp } from "../../context/AppContext";
 import { View } from "../../types";

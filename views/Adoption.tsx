@@ -281,15 +281,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-              {filteredPets.map(pet => (
-                <PetCard
-                  key={pet.id}
-                  pet={pet}
-                  onAction={handlePetAction}
-                  onViewDetails={handleViewDetails}
-                />
-              ))}
-
+              {/* Publicar Card - First Position */}
               <div
                 className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[300px] sm:min-h-[380px]"
                 onClick={handleOpenReportModal}
@@ -308,6 +300,15 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                   COMENZAR
                 </button>
               </div>
+
+              {filteredPets.map(pet => (
+                <PetCard
+                  key={pet.id}
+                  pet={pet}
+                  onAction={handlePetAction}
+                  onViewDetails={handleViewDetails}
+                />
+              ))}
             </div>
           )}
 

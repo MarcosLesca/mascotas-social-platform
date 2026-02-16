@@ -277,16 +277,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-              {filteredPets.map(pet => (
-                <PetCard
-                  key={pet.id}
-                  pet={pet}
-                  onAction={handlePetAction}
-                  onViewDetails={handleViewDetails}
-                />
-              ))}
-
-              {/* Report Placeholder Card */}
+              {/* Report Card - First Position */}
               <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[300px] sm:min-h-[380px]"
                    onClick={handleOpenReportModal}>
                 <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Has perdido a alguien?</h3>
@@ -299,6 +290,15 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                   COMENZAR
                 </button>
               </div>
+
+              {filteredPets.map(pet => (
+                <PetCard
+                  key={pet.id}
+                  pet={pet}
+                  onAction={handlePetAction}
+                  onViewDetails={handleViewDetails}
+                />
+              ))}
             </div>
           )}
 
