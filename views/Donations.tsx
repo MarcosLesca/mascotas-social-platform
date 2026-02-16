@@ -239,9 +239,9 @@ const Donations: React.FC = () => {
                 className="bg-sky-500/5 dark:bg-sky-500/10 border-4 border-dashed border-sky-500/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-sky-500/10 transition-all min-h-[300px] sm:min-h-[380px]"
                 onClick={() => setShowReportModal(true)}
               >
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">Publicar campaña</h3>
-                <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">
-                  Carga los datos y la imagen. Se publicará una vez aprobada.
+                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Necesitás ayuda para una mascota?</h3>
+                <p className="text-sm text-gray-900 mb-6 sm:mb-8 max-w-[220px]">
+                  Creá una publicación y permití que la comunidad colabore.
                 </p>
                 <button
                   className="bg-sky-500 text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-sky-500/30 transition-all"

@@ -300,9 +300,9 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                 className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[300px] sm:min-h-[380px]"
                 onClick={handleOpenReportModal}
               >
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">Publicar en adopción</h3>
-                <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">
-                  Ayuda a encontrar un hogar definitivo. Creá una publicación ahora.
+                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Tenés una mascota que necesita un hogar?</h3>
+                <p className="text-sm text-gray-900 mb-6 sm:mb-8 max-w-[220px]">
+                  Publicá su información y ayudá a que encuentre una familia responsable.
                 </p>
                 <button
                   className="bg-primary text-background-dark w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
