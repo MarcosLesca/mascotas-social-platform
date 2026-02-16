@@ -70,7 +70,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!imageFile) {
-      setSubmitError('Debes subir una imagen de la campana.');
+      setSubmitError('Debes subir una imagen de la donación.');
       return;
     }
 
@@ -149,7 +149,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     <div className="fixed inset-0 z-50 flex items-center justify-center p-1 sm:p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white dark:bg-background-dark rounded-2xl sm:rounded-3xl max-w-3xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl">
         <div className="bg-sky-500 text-white p-4 sm:p-6 flex items-center justify-between">
-          <h2 className="text-lg sm:text-2xl font-black">Publicar campaña</h2>
+          <h2 className="text-lg sm:text-2xl font-black">Publicar Donación</h2>
           <button
             onClick={onClose}
             className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors"
@@ -173,14 +173,14 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
           )}
 
           <div>
-            <label className="block text-sm font-bold text-gray-900 mb-2">Imagen de la campana *</label>
+            <label className="block text-sm font-bold text-gray-900 mb-2">Imagen de la donación *</label>
             <input
               ref={fileInputRef}
               type="file"
               accept={ACCEPT_IMAGES}
               onChange={handleImageChange}
               className="hidden"
-              aria-label="Subir imagen de campana"
+              aria-label="Subir imagen de donación"
             />
             {imagePreview ? (
               <div className="relative inline-block">

@@ -88,7 +88,7 @@ const AdminDonationCampaigns: React.FC = () => {
               Donaciones (pendientes)
             </h1>
             <p className="text-accent-teal font-medium mt-1">
-              Revisa y aprueba o rechaza campañas antes de publicarlas.
+              Revisa y aprueba o rechaza donaciones antes de publicarlas.
             </p>
           </div>
           <Link
@@ -110,14 +110,14 @@ const AdminDonationCampaigns: React.FC = () => {
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
-            <p className="text-accent-teal font-medium">Cargando campañas pendientes...</p>
+            <p className="text-accent-teal font-medium">Cargando donaciones pendientes...</p>
           </div>
         ) : reports.length === 0 ? (
           <div className="bg-white dark:bg-slate-900/80 rounded-2xl border border-accent-teal/10 p-12 text-center">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-              No hay campañas pendientes
+              No hay donaciones pendientes
             </h2>
-            <p className="text-accent-teal">Las nuevas campañas aparecerán aquí. Revisa más tarde.</p>
+            <p className="text-accent-teal">Las nuevas donaciones aparecerán aquí. Revisa más tarde.</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -184,7 +184,7 @@ const AdminDonationCampaigns: React.FC = () => {
               onClick={e => e.stopPropagation()}
             >
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                Rechazar campana: {rejectModal.title}
+                Rechazar Donación: {rejectModal.title}
               </h3>
               <p className="text-sm text-accent-teal mb-4">
                 Opcional: indica un motivo para el responsable.

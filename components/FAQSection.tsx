@@ -83,12 +83,12 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   }
 
   // Respuesta sobre cómo donar
-  if (content.includes("Entrá a la campaña que querés apoyar")) {
+  if (content.includes("Entrá a la sección Donaciones")) {
     return (
       <div className="text-[#203553] leading-relaxed pt-[8px]">
         <p className="mb-3">Es muy fácil:</p>
         {renderCustomList([
-          "Entrá a la campaña que querés apoyar",
+          "Entrá a la sección Donaciones",
           "Elegí el monto",
           "Seleccioná el método de pago",
           "Completá tus datos",
@@ -140,7 +140,7 @@ const FAQSection: React.FC = () => {
       id: "2",
       question: "¿Es gratis usar la plataforma?",
       answer:
-        "Sí, es 100% GRATIS. Publicar mascotas perdidas, buscar, adoptar y compartir no cuesta nada. Solo las donaciones a campañas son opcionales y van directamente a los refugios.",
+        "Sí, es 100% GRATIS. Publicar mascotas perdidas, buscar, adoptar y compartir no cuesta nada. Solo las donaciones son opcionales y van directamente a los refugios.",
       category: "general",
       icon: "savings",
     },
@@ -226,7 +226,7 @@ const FAQSection: React.FC = () => {
       id: "12",
       question: "¿Cómo hago una donación?",
       answer:
-        "<p>Es muy fácil:</p><ol><li>Entrá a la campaña que querés apoyar</li><li>Elegí el monto</li><li>Seleccioná el método de pago</li><li>Completá tus datos</li></ol><p>Podés donar con tarjeta, transferencia, Mercado Pago o incluso cripto.</p>",
+        "<p>Es muy fácil:</p><ol><li>Entrá a la sección Donaciones</li><li>Elegí el monto</li><li>Seleccioná el método de pago</li><li>Completá tus datos</li></ol><p>Podés doar con tarjeta, transferencia, Mercado Pago o incluso cripto.</p>",
       category: "donaciones",
       icon: "payments",
     },
@@ -234,7 +234,7 @@ const FAQSection: React.FC = () => {
       id: "13",
       question: "¿A dónde va el dinero de las donaciones?",
       answer:
-        'El 100% va directamente a los refugios y organizaciones. Podés ver exactamente para qué es cada campaña (ej: "cirugía de Max", "alimento para 15 cachorros"). Todo es transparente.',
+        'El 100% va directamente a los refugios y organizaciones. Podés ver exactamente para qué es cada donación (ej: "cirugía de Max", "alimento para 15 cachorros"). Todo es transparente.',
       category: "donaciones",
       icon: "account_balance",
     },

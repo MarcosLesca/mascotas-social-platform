@@ -72,7 +72,7 @@ export interface SubmitDonationCampaignInput {
   imageFile: File;
 }
 
-/** Subir imagen a Storage y crear campana de donacion pendiente. */
+/** Subir imagen a Storage y crear Donation de donacion pendiente. */
 export async function submitDonationCampaign(
   input: SubmitDonationCampaignInput
 ): Promise<{ error: Error | null }> {
@@ -111,7 +111,7 @@ export async function submitDonationCampaign(
   return { error: null };
 }
 
-/** Listar solo campanas aprobadas (publico). */
+/** Listar solo donaciones aprobadas (publico). */
 export async function fetchApprovedDonationCampaigns(): Promise<{
   data: DonationCampaign[];
   error: Error | null;
@@ -142,7 +142,7 @@ export async function fetchPendingDonationCampaignReports(): Promise<{
   return { data: (data ?? []) as DonationCampaignReportRow[], error: null };
 }
 
-/** Aprobar campana (admin). */
+/** Aprobar donacion (admin). */
 export async function approveDonationCampaignReport(
   id: string,
   userId: string
@@ -160,7 +160,7 @@ export async function approveDonationCampaignReport(
   return { error: error ? new Error(error.message) : null };
 }
 
-/** Rechazar campana (admin). */
+/** Rechazar donacion (admin). */
 export async function rejectDonationCampaignReport(
   id: string,
   userId: string,

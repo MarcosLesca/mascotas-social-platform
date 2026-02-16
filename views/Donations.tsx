@@ -240,7 +240,7 @@ const Donations: React.FC = () => {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-16 sm:py-20 gap-4">
-              <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando campañas...</p>
+              <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando donaciones...</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-8">

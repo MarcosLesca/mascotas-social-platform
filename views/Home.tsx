@@ -58,7 +58,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
       }
 
       if (donationRes.error) {
-        onToast("No se pudieron cargar las campañas de donación.", "error");
+        onToast("No se pudieron cargar las donaciones.", "error");
       } else {
         setDonationCampaigns(donationRes.data);
       }
