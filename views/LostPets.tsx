@@ -276,7 +276,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando mascotas perdidas...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
               {filteredPets.map(pet => (
                 <PetCard
                   key={pet.id}
@@ -287,7 +287,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               ))}
 
               {/* Report Placeholder Card */}
-              <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[320px] sm:min-h-[360px] lg:min-h-[400px]"
+              <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[300px] sm:min-h-[380px]"
                    onClick={handleOpenReportModal}>
                 <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Has perdido a alguien?</h3>
                 <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
