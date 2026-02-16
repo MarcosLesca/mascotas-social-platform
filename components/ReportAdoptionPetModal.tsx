@@ -339,7 +339,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     value={formData.age}
                     onChange={(e) => handleInputChange('age', e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
-                    placeholder="Ej: 3 aÃ±os"
+                    placeholder="Ej: 3 años"
                   />
                 </div>
 

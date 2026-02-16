@@ -377,7 +377,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
               disabled={isSubmitting}
               className="px-6 py-3 rounded-xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-colors disabled:opacity-50"
             >
-              {isSubmitting ? 'Enviando...' : 'Enviar para revision'}
+              {isSubmitting ? 'Enviando...' : 'Enviar para revisión'}
             </button>
           </div>
         </form>

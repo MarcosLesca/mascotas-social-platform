@@ -37,7 +37,19 @@ interface AppState {
   selectedPet: Pet | null;
   loading: boolean;
   notifications: Notification[];
+  modals: Record<string, boolean>;
 }
+
+// Estado inicial
+const initialState: AppState = {
+  pets: [],
+  campaigns: [],
+  currentView: 'home',
+  selectedPet: null,
+  loading: false,
+  notifications: [],
+  modals: {}
+};
 
 interface Notification {
   id: string;
@@ -49,7 +61,6 @@ interface Notification {
 interface AppContextType {
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
-  notifications: Notification[];
 }
 
 // Acciones simples
@@ -85,11 +96,11 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
     case 'SELECT_PET':
       return { ...state, selectedPet: action.payload };
     
-    context case 'SET_LOADING':
+    case 'SET_LOADING':
       return { ...state, loading: action.payload };
     
     case 'ADD_NOTIFICATION':
-      return { ...state, notifications: [action.payload, ...state.notifications] };
+      return { ...state, notifications: [{ ...action.payload, id: crypto.randomUUID() }, ...state.notifications] };
     
     case 'REMOVE_NOTIFICATION':
       return { ...state, notifications: state.notifications.filter(n => n.id !== action.payload) };
@@ -124,5 +135,5 @@ const useApp = () => {
   return context;
 };
 
-export { AppProvider, useApp, AppAction };
-export type { AppContextType };
+export { AppProvider, useApp };
+export type { AppAction, AppContextType };

@@ -47,7 +47,7 @@ export interface SubmitAdoptionReportInput {
   imageFile: File;
 }
 
-/** Subir imagen a Storage y crear publicaciÃ³n de adopciÃ³n pendiente. */
+/** Subir imagen a Storage y crear publicación de adopción pendiente. */
 export async function submitAdoptionPetReport(
   input: SubmitAdoptionReportInput
 ): Promise<{ error: Error | null }> {
@@ -88,7 +88,7 @@ export async function submitAdoptionPetReport(
   return { error: null };
 }
 
-/** Listar solo publicaciones aprobadas (pÃºblico). */
+/** Listar solo publicaciones aprobadas (público). */
 export async function fetchApprovedAdoptionPets(): Promise<{ data: Pet[]; error: Error | null }> {
   const { data, error } = await supabase
     .from('adoption_pet_reports')
@@ -116,7 +116,7 @@ export async function fetchPendingAdoptionPetReports(): Promise<{
   return { data: (data ?? []) as AdoptionPetReportRow[], error: null };
 }
 
-/** Aprobar publicaciÃ³n (admin). */
+/** Aprobar publicación (admin). */
 export async function approveAdoptionPetReport(
   id: string,
   userId: string
@@ -134,7 +134,7 @@ export async function approveAdoptionPetReport(
   return { error: error ? new Error(error.message) : null };
 }
 
-/** Rechazar publicaciÃ³n (admin). */
+/** Rechazar publicación (admin). */
 export async function rejectAdoptionPetReport(
   id: string,
   userId: string,

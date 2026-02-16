@@ -43,7 +43,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
       if (lostRes.error) {
         onToast(
-          "No se pudieron cargar las ultimas mascotas perdidas.",
+          "No se pudieron cargar las últimas mascotas perdidas.",
           "error",
         );
       } else {
@@ -51,13 +51,13 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
       }
 
       if (adoptionRes.error) {
-        onToast("No se pudieron cargar las mascotas en adopcion.", "error");
+        onToast("No se pudieron cargar las mascotas en adopción.", "error");
       } else {
         setAdoptionPets(adoptionRes.data);
       }
 
       if (donationRes.error) {
-        onToast("No se pudieron cargar las campanas de donacion.", "error");
+        onToast("No se pudieron cargar las campañas de donación.", "error");
       } else {
         setDonationCampaigns(donationRes.data);
       }

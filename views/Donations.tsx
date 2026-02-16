@@ -310,7 +310,7 @@ const Donations: React.FC = () => {
         onClose={() => setShowReportModal(false)}
         onSubmit={() => {
           setSubmitMessage(
-            "Campana enviada. Un administrador la revisara y, si se aprueba, aparecera en esta lista."
+            "Campaña enviada. Un administrador la revisará y, si se aprueba, aparecerá en esta lista."
           );
           setShowReportModal(false);
           setTimeout(() => setSubmitMessage(null), 6000);

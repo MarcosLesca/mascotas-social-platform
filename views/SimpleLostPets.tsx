@@ -64,8 +64,7 @@ const LostPets: React.FC = () => {
                   URGENTE
                 </span>
               </div>
-            </div>
-              
+               
               {pet.description && (
                 <p className="text-gray-600 text-sm mb-4">{pet.description}</p>
               )}
