@@ -85,8 +85,6 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               return ageLower.includes('año') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
             case 'Adulto':
               return ageLower.includes('año') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
-            case 'Senior':
-              return ageLower.includes('año') && parseInt(ageLower) > 10;
             default:
               return false;
           }
@@ -253,7 +251,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               <div>
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Edad</p>
                 <div className="space-y-3">
-                  {['Cachorro', 'Joven', 'Adulto', 'Senior'].map(age => (
+                  {['Cachorro', 'Joven', 'Adulto'].map(age => (
                     <label key={age} className="flex items-center gap-3 cursor-pointer group">
                       <input
                         type="checkbox"
