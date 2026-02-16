@@ -19,12 +19,13 @@ const AppContent: React.FC = () => {
 
   // Scroll to top when view changes (mobile only)
   useEffect(() => {
-    const isMobile = window.innerWidth < 640;
-    if (isMobile) {
+    if (window.innerWidth < 640) {
       setTimeout(() => {
         document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
       }, 100);
     }
+    // Intentionally only depends on currentView
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentView]);
 
   // Initialize animations on mount
@@ -42,12 +43,16 @@ const AppContent: React.FC = () => {
       { threshold: 0.1 },
     );
 
-    cards.forEach((card) => observer.observe(card));
+    for (const card of cards) {
+      observer.observe(card);
+    }
 
     return () => {
-      cards.forEach((card) => observer.unobserve(card));
+      for (const card of cards) {
+        observer.unobserve(card);
+      }
     };
-  }, [currentView]); // Re-run when view changes
+  }, []);
 
   const renderView = () => {
     switch (currentView) {
@@ -83,7 +88,7 @@ const AppContent: React.FC = () => {
       )}
 
       <footer className="border-t border-[#ecdbbd]/30 py-8 px-6 lg:px-20 mt-auto bg-[#203553]">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-center gap-8 flex-wrap">
+        <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-8">
           <div className="flex items-center gap-2">
             <img 
               src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png" 
@@ -109,6 +114,7 @@ const AppContent: React.FC = () => {
       {/* Mobile Bottom Nav */}
       <div className="lg:hidden sticky bottom-0 z-50 bg-[#203553] border-t border-[#ecdbbd]/30 flex items-center justify-around py-4 px-2 backdrop-blur-md">
         <button
+          type="button"
           onClick={() => setCurrentView(View.HOME)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.HOME
@@ -122,6 +128,7 @@ const AppContent: React.FC = () => {
           </span>
         </button>
         <button
+          type="button"
           onClick={() => setCurrentView(View.LOST_PETS)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.LOST_PETS
@@ -135,6 +142,7 @@ const AppContent: React.FC = () => {
           </span>
         </button>
         <button
+          type="button"
           onClick={() => setCurrentView(View.ADOPTION)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.ADOPTION
@@ -148,6 +156,7 @@ const AppContent: React.FC = () => {
           </span>
         </button>
         <button
+          type="button"
           onClick={() => setCurrentView(View.DONATIONS)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.DONATIONS
@@ -162,6 +171,7 @@ const AppContent: React.FC = () => {
         </button>
         <div className="relative">
           <button
+            type="button"
             onClick={() => setShowMoreMenu(!showMoreMenu)}
             className={`flex flex-col items-center gap-1 transition-colors ${
               currentView === View.FAQ || currentView === View.ABOUT_US
@@ -177,6 +187,7 @@ const AppContent: React.FC = () => {
           {showMoreMenu && (
             <div className="absolute bottom-full mb-2 right-0 bg-[#203553] border border-[#ecdbbd]/30 rounded-xl shadow-xl overflow-hidden min-w-[160px]">
               <button
+                type="button"
                 onClick={() => {
                   setCurrentView(View.FAQ);
                   setShowMoreMenu(false);
@@ -191,6 +202,7 @@ const AppContent: React.FC = () => {
                 Preguntas Frecuentes
               </button>
               <button
+                type="button"
                 onClick={() => {
                   setCurrentView(View.ABOUT_US);
                   setShowMoreMenu(false);
