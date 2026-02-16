@@ -207,13 +207,13 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
         <aside className="col-span-1 xl:col-span-3">
-          <div className="bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-accent-teal/5 xl:sticky xl:top-24">
+          <div className="bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-red-400/5 xl:sticky xl:top-24">
             <div className="flex justify-between items-center mb-6 sm:mb-8">
               <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="text-[11px] sm:text-xs font-bold text-primary hover:underline"
+                  className="text-[11px] sm:text-xs font-bold text-red-400 hover:underline"
                 >
                   LIMPIAR
                 </button>
@@ -226,7 +226,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                 <input
                   type="text"
                   placeholder="Buscar por nombre, raza o zona..."
-                  className="w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
+                  className="w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-white/10 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400 text-sm"
                   value={filters.searchTerm}
                   onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
                 />
@@ -243,7 +243,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                       onClick={() => toggleSpecies(s)}
                       className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                         filters.species.includes(s)
-                          ? 'bg-primary text-background-dark'
+                          ? 'bg-red-400 text-white'
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
@@ -262,9 +262,9 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                         type="checkbox"
                         checked={filters.age.includes(age)}
                         onChange={() => toggleAge(age)}
-                        className="rounded text-primary focus:ring-primary border-accent-teal/20"
+                        className="rounded text-red-400 focus:ring-red-400 border-red-400/20"
                       />
-                      <span className="text-sm font-medium group-hover:text-primary transition-colors">{age}</span>
+                      <span className="text-sm font-medium group-hover:text-red-400 transition-colors">{age}</span>
                     </label>
                   ))}
                 </div>
@@ -288,7 +288,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                         filters.size.includes(s === 'Pequeño' ? 'small' : s === 'Mediano' ? 'medium' : 'large')
                           ? 'bg-red-400 text-white'
-                          : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                          : 'bg-red-50 text-red-400 hover:bg-red-100'
                       }`}
                     >
                       {s}
@@ -315,7 +315,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                         filters.gender.includes(g === 'Macho' ? 'male' : 'female')
                           ? 'bg-red-400 text-white'
-                          : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                          : 'bg-red-50 text-red-400 hover:bg-red-100'
                       }`}
                     >
                       {g}
@@ -331,16 +331,16 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                     type="checkbox"
                     checked={filters.urgency}
                     onChange={(e) => setFilters({ ...filters, urgency: e.target.checked })}
-                    className="rounded text-primary focus:ring-primary border-accent-teal/20"
+                    className="rounded text-red-400 focus:ring-red-400 border-red-400/20"
                   />
-                  <span className="text-sm font-medium group-hover:text-primary transition-colors">
+                  <span className="text-sm font-medium group-hover:text-red-400 transition-colors">
                     Mostrar solo casos urgentes
                   </span>
                 </label>
               </div>
             </div>
 
-            <button className="w-full mt-8 sm:mt-10 bg-primary text-background-dark py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+            <button className="w-full mt-8 sm:mt-10 bg-red-400 text-white py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-red-400/20 hover:scale-[1.02] transition-all">
               {filteredPets.length} Mascotas
             </button>
           </div>
@@ -380,10 +380,10 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
           {/* Sin resultados (solo con filtros activos) */}
           {!loading && hasActiveFilters && filteredPets.length === 0 && (
-            <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-accent-teal/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
+            <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-red-400/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
               <h3 className="text-xl sm:text-2xl font-bold mb-2">No encontramos resultados</h3>
               <p className="text-sm sm:text-base text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
-              <button onClick={clearFilters} className="bg-primary text-background-dark w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
+              <button onClick={clearFilters} className="bg-red-400 text-white w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>
             </div>
