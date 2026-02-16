@@ -14,7 +14,7 @@ interface AdoptionFilters {
 }
 
 interface AdoptionProps {
-  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info') => void;
+  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info', duration?: number, showAcceptButton?: boolean) => void;
 }
 
 const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
@@ -112,7 +112,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         setShowModal(true);
         break;
       case 'adopt':
-        onToast(`Solicitud de adopción para ${pet.name} enviada. Te contactaremos pronto.`, 'success');
+        onToast(`Tu solicitud de adopción para ${pet.name} fue enviada correctamente. El dueño te contactará pronto.`, 'success', 0, true);
         break;
       default:
         console.log('Acción:', action, 'para:', pet.name);
@@ -138,7 +138,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   };
 
   const handleReportSubmit = () => {
-    onToast('PublicaciÃ³n enviada. Un administrador la revisarÃ¡ pronto; si la aprueba, se publicarÃ¡ aquÃ­.', 'success');
+    onToast('Tu publicación fue enviada correctamente.\n\nSerá revisada por LyM desarrollo web antes de hacerse visible en Mascotas SJ.\n\nPodrás verla publicada una vez que sea aprobada.', 'success', 0, true);
   };
 
   const handleReportError = (msg: string) => {

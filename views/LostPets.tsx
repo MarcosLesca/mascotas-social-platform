@@ -1,4 +1,4 @@
-﻿import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { fetchApprovedLostPets } from '../services/lostPetsService';
 import PetCard from '../components/PetCard';
 import PetDetailModal from '../components/PetDetailModal';
@@ -13,7 +13,7 @@ interface FilterState {
 }
 
 interface LostPetsProps {
-  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info') => void;
+  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info', duration?: number, showAcceptButton?: boolean) => void;
 }
 
 const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
@@ -167,7 +167,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   const handleReportSubmit = () => {
-    onToast('Reporte enviado. Un administrador lo revisará pronto; si lo aprueba, se publicará aquí.', 'success');
+    onToast('Tu publicación fue enviada correctamente.\n\nSerá revisada por LyM desarrollo web antes de hacerse visible en Mascotas SJ.\n\nPodrás verla publicada una vez que sea aprobada.', 'success', 0, true);
   };
 
   const handleReportError = (msg: string) => {

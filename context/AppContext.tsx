@@ -7,13 +7,14 @@ export interface Toast {
   message: string;
   type: 'success' | 'error' | 'warning' | 'info';
   duration?: number;
+  showAcceptButton?: boolean;
 }
 
 export interface AppContextType {
   currentView: View;
   setCurrentView: (view: View) => void;
   toasts: Toast[];
-  addToast: (message: string, type?: Toast['type'], duration?: number) => void;
+  addToast: (message: string, type?: Toast['type'], duration?: number, showAcceptButton?: boolean) => void;
   removeToast: (id: string) => void;
   favorites: string[];
   toggleFavorite: (petId: string) => void;
@@ -36,9 +37,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<string[]>([]);
 
-  const addToast = useCallback((message: string, type: Toast['type'] = 'info', duration?: number) => {
+  const addToast = useCallback((message: string, type: Toast['type'] = 'info', duration?: number, showAcceptButton?: boolean) => {
     const id = Date.now().toString();
-    const toast: Toast = { id, message, type, duration };
+    const toast: Toast = { id, message, type, duration, showAcceptButton };
     setToasts(prev => [...prev, toast]);
   }, []);
 

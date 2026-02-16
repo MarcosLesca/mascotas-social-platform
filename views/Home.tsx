@@ -11,6 +11,8 @@ interface HomeProps {
   onToast: (
     message: string,
     type?: "success" | "error" | "warning" | "info",
+    duration?: number,
+    showAcceptButton?: boolean,
   ) => void;
 }
 
