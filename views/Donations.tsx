@@ -23,7 +23,7 @@ const Donations: React.FC = () => {
   const [filters, setFilters] = useState<DonationFilters>({
     type: [],
     urgency: false,
-    searchTerm: ''
+    searchTerm: "",
   });
 
   const loadCampaigns = () => {
@@ -54,19 +54,22 @@ const Donations: React.FC = () => {
 
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter(campaign =>
-        campaign.title.toLowerCase().includes(searchLower) ||
-        campaign.description.toLowerCase().includes(searchLower) ||
-        campaign.petName.toLowerCase().includes(searchLower)
+      filtered = filtered.filter(
+        (campaign) =>
+          campaign.title.toLowerCase().includes(searchLower) ||
+          campaign.description.toLowerCase().includes(searchLower) ||
+          campaign.petName.toLowerCase().includes(searchLower),
       );
     }
 
     if (filters.type.length > 0) {
-      filtered = filtered.filter(campaign => filters.type.includes(campaign.type));
+      filtered = filtered.filter((campaign) =>
+        filters.type.includes(campaign.type),
+      );
     }
 
     if (filters.urgency) {
-      filtered = filtered.filter(campaign => campaign.urgency);
+      filtered = filtered.filter((campaign) => campaign.urgency);
     }
 
     return filtered;
@@ -76,11 +79,12 @@ const Donations: React.FC = () => {
     setFilters({
       type: [],
       urgency: false,
-      searchTerm: ''
+      searchTerm: "",
     });
   };
 
-  const hasActiveFilters = filters.type.length > 0 || filters.urgency || !!filters.searchTerm;
+  const hasActiveFilters =
+    filters.type.length > 0 || filters.urgency || !!filters.searchTerm;
 
   const handleCampaignClick = (campaign: DonationCampaign) => {
     setSelectedCampaign(campaign);
@@ -93,11 +97,11 @@ const Donations: React.FC = () => {
   };
 
   const toggleType = (type: string) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
       type: prev.type.includes(type)
-        ? prev.type.filter(t => t !== type)
-        : [...prev.type, type]
+        ? prev.type.filter((t) => t !== type)
+        : [...prev.type, type],
     }));
   };
 
@@ -129,8 +133,8 @@ const Donations: React.FC = () => {
                 no administramos el dinero
               </strong>{" "}
               de las donaciones. Solo publicamos las necesidades y
-              proporcionamos toda la información necesaria para que puedas
-              donar directamente a los responsables de las mascotas.
+              proporcionamos toda la información necesaria para que puedas donar
+              directamente a los responsables de las mascotas.
             </p>
           </div>
         </div>
@@ -145,10 +149,14 @@ const Donations: React.FC = () => {
             className="xl:hidden w-full bg-white dark:bg-white/5 p-4 rounded-2xl border border-sky-500/10 flex items-center justify-between"
           >
             <span className="text-lg font-bold">Filtros</span>
-            <span className="material-symbols-outlined">{showFilters ? 'expand_less' : 'expand_more'}</span>
+            <span className="material-symbols-outlined">
+              {showFilters ? "expand_less" : "expand_more"}
+            </span>
           </button>
 
-          <div className={`bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-sky-500/10 xl:sticky xl:top-24 ${showFilters ? 'block' : 'hidden'} xl:block`}>
+          <div
+            className={`bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-sky-500/10 xl:sticky xl:top-24 ${showFilters ? "block" : "hidden"} xl:block`}
+          >
             <div className="flex justify-between items-center mb-6 sm:mb-8">
               <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
@@ -169,17 +177,35 @@ const Donations: React.FC = () => {
                   placeholder="Buscar..."
                   className="w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-white/10 border border-sky-500/20 rounded-xl focus:ring-2 focus:ring-sky-500 text-sm"
                   value={filters.searchTerm}
-                  onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
+                  onChange={(e) =>
+                    setFilters({ ...filters, searchTerm: e.target.value })
+                  }
                 />
               </div>
             </div>
 
             <div className="space-y-6 sm:space-y-8">
               <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Tipo</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">
+                  Tipo
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Médica', 'Alimento', 'Refugio', 'Esterilización', 'Emergencia', 'Otro'].map(t => {
-                    const typeMap: { [key: string]: string } = { 'Médica': 'medical', 'Alimento': 'food', 'Refugio': 'shelter', 'Esterilización': 'spay_neuter', 'Emergencia': 'emergency', 'Otro': 'other' };
+                  {[
+                    "Médica",
+                    "Alimento",
+                    "Refugio",
+                    "Esterilización",
+                    "Emergencia",
+                    "Otro",
+                  ].map((t) => {
+                    const typeMap: { [key: string]: string } = {
+                      Médica: "medical",
+                      Alimento: "food",
+                      Refugio: "shelter",
+                      Esterilización: "spay_neuter",
+                      Emergencia: "emergency",
+                      Otro: "other",
+                    };
                     const typeValue = typeMap[t];
                     const isSelected = filters.type.includes(typeValue);
                     return (
@@ -188,8 +214,8 @@ const Donations: React.FC = () => {
                         onClick={() => toggleType(typeValue)}
                         className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                           isSelected
-                            ? 'bg-sky-500 text-white'
-                            : 'bg-sky-500/5 text-gray-800 hover:bg-sky-500/10'
+                            ? "bg-sky-500 text-white"
+                            : "bg-sky-500/5 text-gray-800 hover:bg-sky-500/10"
                         }`}
                       >
                         {t}
@@ -200,12 +226,16 @@ const Donations: React.FC = () => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Urgencia</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">
+                  Urgencia
+                </p>
                 <label className="flex items-center gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
                     checked={filters.urgency}
-                    onChange={(e) => setFilters({ ...filters, urgency: e.target.checked })}
+                    onChange={(e) =>
+                      setFilters({ ...filters, urgency: e.target.checked })
+                    }
                     className="rounded text-sky-500 focus:ring-sky-500 border-sky-500/20"
                   />
                   <span className="text-sm font-medium group-hover:text-sky-500 transition-colors">
@@ -216,7 +246,7 @@ const Donations: React.FC = () => {
             </div>
 
             <button className="w-full mt-8 sm:mt-10 bg-sky-500 text-white py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-sky-500/20 hover:scale-[1.02] transition-all">
-              {filteredCampaigns.length} Campañas
+              {filteredCampaigns.length} Donaciones
             </button>
           </div>
         </aside>
@@ -240,7 +270,9 @@ const Donations: React.FC = () => {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-16 sm:py-20 gap-4">
-              <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando donaciones...</p>
+              <p className="text-gray-800 text-sm sm:text-base font-medium">
+                Cargando donaciones...
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-8">
@@ -249,7 +281,9 @@ const Donations: React.FC = () => {
                 className="col-span-2 sm:col-span-1 bg-sky-500/5 dark:bg-sky-500/10 border-4 border-dashed border-sky-500/20 rounded-2xl flex flex-col items-center justify-center p-4 sm:p-8 text-center group cursor-pointer hover:bg-sky-500/10 transition-all min-h-[180px] sm:min-h-[380px]"
                 onClick={() => setShowReportModal(true)}
               >
-                <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800">¿Necesitás ayuda para una mascota?</h3>
+                <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800">
+                  ¿Necesitás ayuda para una mascota?
+                </h3>
                 <p className="text-xs sm:text-sm text-gray-900 mb-4 sm:mb-8 max-w-[180px] sm:max-w-[220px]">
                   Creá una publicación y permití que la comunidad colabore.
                 </p>
@@ -293,7 +327,13 @@ const Donations: React.FC = () => {
                     </h3>
                     <p className="text-[10px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate mb-2 sm:mb-3">
                       {/* Using goal as secondary info akin to breed/gender if needed, else description */}
-                      {campaign.type === 'medical' ? 'Médica' : campaign.type === 'food' ? 'Alimento' : campaign.type === 'shelter' ? 'Refugio' : 'Campaña'}
+                      {campaign.type === "medical"
+                        ? "Médica"
+                        : campaign.type === "food"
+                          ? "Alimento"
+                          : campaign.type === "shelter"
+                            ? "Refugio"
+                            : "Campaña"}
                     </p>
 
                     <p className="text-xs sm:text-sm text-black mb-2 sm:mb-4 line-clamp-2 leading-relaxed">
@@ -302,12 +342,18 @@ const Donations: React.FC = () => {
 
                     <div className="mt-auto space-y-2 sm:space-y-3">
                       <div className="bg-sky-50 rounded-lg sm:rounded-xl p-2 sm:p-3 flex justify-between items-center">
-                        <span className="text-[10px] sm:text-xs font-bold text-sky-700">Meta</span>
-                        <span className="text-sm sm:text-base font-black text-sky-600">${campaign.goal.toLocaleString("es-AR")}</span>
+                        <span className="text-[10px] sm:text-xs font-bold text-sky-700">
+                          Meta
+                        </span>
+                        <span className="text-sm sm:text-base font-black text-sky-600">
+                          ${campaign.goal.toLocaleString("es-AR")}
+                        </span>
                       </div>
 
                       <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-gray-500">
-                        <span className="material-symbols-outlined text-xs sm:text-sm">event</span>
+                        <span className="material-symbols-outlined text-xs sm:text-sm">
+                          event
+                        </span>
                         <span>Hasta: {campaign.deadline}</span>
                       </div>
 
@@ -323,9 +369,16 @@ const Donations: React.FC = () => {
 
           {!loading && hasActiveFilters && filteredCampaigns.length === 0 && (
             <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-sky-500/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">No encontramos resultados</h3>
-              <p className="text-sm sm:text-base text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
-              <button onClick={clearFilters} className="bg-sky-500 text-white w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                No encontramos resultados
+              </h3>
+              <p className="text-sm sm:text-base text-gray-800 mb-6">
+                Intenta ajustar los filtros o el término de búsqueda
+              </p>
+              <button
+                onClick={clearFilters}
+                className="bg-sky-500 text-white w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all"
+              >
                 Limpiar filtros
               </button>
             </div>
@@ -345,7 +398,7 @@ const Donations: React.FC = () => {
         onClose={() => setShowReportModal(false)}
         onSubmit={() => {
           setSubmitMessage(
-            "Campaña enviada. Un administrador la revisará y, si se aprueba, aparecerá en esta lista."
+            "Donacion enviada. Un administrador la revisará y, si se aprueba, aparecerá en esta lista.",
           );
           setShowReportModal(false);
           setTimeout(() => setSubmitMessage(null), 6000);

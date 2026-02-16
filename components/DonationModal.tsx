@@ -315,7 +315,7 @@ const DonationModal: React.FC<DonationModalProps> = ({
                 {/* Información adicional */}
                 <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-sky-500/10">
                   <h4 className="font-bold mb-4 text-lg">
-                    Detalles de la Campaña
+                    Detalles de la donación
                   </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-white/5">
