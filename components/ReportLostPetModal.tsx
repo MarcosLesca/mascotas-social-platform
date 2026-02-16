@@ -378,7 +378,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 </div>
 
                 <div>
-                  <label htmlFor="report-lastSeenLocation" className="block text-sm font-bold text-gray-800 mb-2">Ubicación donde se perdió *</label>
+                  <label htmlFor="report-lastSeenLocation" className="block text-sm font-bold text-gray-800 mb-2">Zona/Barrio donde se perdió *</label>
                   <input
                     id="report-lastSeenLocation"
                     type="text"

@@ -9,6 +9,8 @@ function rowToPet(r: AdoptionPetReportRow): Pet {
   if (r.description) parts.push(r.description);
   if (r.adoption_requirements) parts.push(`Requisitos: ${r.adoption_requirements}`);
   const description = parts.length ? parts.join('\n\n') : undefined;
+  // Siempre mostrar San Justo como ubicación base
+  const fullLocation = r.location ? `San Justo - ${r.location}` : 'San Justo';
   return {
     id: r.id,
     name: r.pet_name,
@@ -17,7 +19,7 @@ function rowToPet(r: AdoptionPetReportRow): Pet {
     gender: r.gender,
     age: r.age ?? undefined,
     status: 'adoption',
-    location: r.location,
+    location: fullLocation,
     image: r.image_url,
     description,
     medStatus: r.med_status ?? undefined,

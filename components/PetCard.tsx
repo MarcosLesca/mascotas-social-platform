@@ -134,7 +134,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         >
           <div>
             <h3 className="text-lg sm:text-xl leading-tight font-bold group-hover:text-primary transition-colors">{pet.name}</h3>
-            <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[220px] sm:max-w-none">{isLost ? pet.breed + ' • ' + (pet.gender === 'male' ? 'Macho' : 'Hembra') : (pet.gender === 'male' ? 'Macho' : 'Hembra')}</p>
+            <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[220px] sm:max-w-none">{pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
           </div>
         </div>
 
@@ -165,32 +165,6 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
             {isLost ? 'La vi' : 'Adoptar'}
           </button>
         </div>
-
-        {/* Quick Contact (solo si hay contacto y es perdida) */}
-        {isLost && hasContact && (
-          <div className="pt-3 border-t border-accent-teal/10">
-            <div className="flex flex-col sm:flex-row gap-2.5">
-              {waHref && (
-                <a
-                  href={waHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-[#22c55e] hover:bg-[#16a34a] text-white text-sm font-bold py-2.5 rounded-full flex items-center justify-center gap-1 transition-colors duration-200"
-                >
-                  WhatsApp
-                </a>
-              )}
-              {mailHref && (
-                <a
-                  href={mailHref}
-                  className="flex-1 bg-accent-teal hover:bg-primary text-white text-sm font-bold py-2.5 rounded-full flex items-center justify-center gap-1 transition-colors duration-200"
-                >
-                  Email
-                </a>
-              )}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

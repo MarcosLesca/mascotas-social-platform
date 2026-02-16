@@ -23,6 +23,8 @@ function rowToPet(r: LostPetReportRow): Pet {
   if (r.additional_info) parts.push(r.additional_info);
   if (r.has_reward && r.reward_amount) parts.push(`Recompensa: ${r.reward_amount}`);
   const description = parts.length ? parts.join('\n\n') : undefined;
+  // Siempre mostrar San Justo como ubicación base
+  const fullLocation = r.last_seen_location ? `San Justo - ${r.last_seen_location}` : 'San Justo';
   return {
     id: r.id,
     name: r.pet_name,
@@ -33,7 +35,7 @@ function rowToPet(r: LostPetReportRow): Pet {
     status: 'lost',
     urgency: r.urgency,
     timeLabel: timeLabelFromDate(r.last_seen_date),
-    location: r.last_seen_location,
+    location: fullLocation,
     image: r.image_url,
     description,
     contactName: r.contact_name,

@@ -37,6 +37,14 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Scroll al inicio cuando cambia el paso
+  useEffect(() => {
+    if (formRef.current) {
+      formRef.current.scrollTop = 0;
+    }
+  }, [currentStep]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -209,7 +217,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
         </div>
 
         {/* Form Content */}
-        <form onSubmit={handleSubmit} className="p-8 max-h-[60vh] overflow-y-auto">
+        <form ref={formRef} onSubmit={handleSubmit} className="p-8 max-h-[60vh] overflow-y-auto">
           {submitError && (
             <div
               role="alert"
@@ -372,7 +380,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
               <div>
                 <label htmlFor="adopt-location" className="block text-sm font-bold text-accent-teal mb-2">
-                  Ubicación *
+                  Zona/Barrio *
                 </label>
                 <input
                   id="adopt-location"
@@ -381,7 +389,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
                   className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
-                  placeholder="Ej: Córdoba, Barrio Nueva Córdoba"
+                  placeholder="Ej: Barrio Las Palmeras"
                 />
               </div>
 
