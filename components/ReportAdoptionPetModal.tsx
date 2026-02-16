@@ -232,7 +232,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               <h3 className="text-xl font-bold mb-4">Información de la Mascota</h3>
 
               <div>
-                <label className="block text-sm font-bold text-accent-teal mb-2">
+                <label className="block text-sm font-bold text-gray-900 mb-2">
                   Foto de la mascota *
                 </label>
                 <input
@@ -248,7 +248,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     <img
                       src={imagePreview}
                       alt="Vista previa"
-                      className="w-40 h-40 object-cover rounded-xl border-2 border-accent-teal/20"
+                      className="w-40 h-40 object-cover rounded-xl border-2 border-primary/20"
                     />
                     <button
                       type="button"
@@ -262,19 +262,19 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-accent-teal"
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-primary/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-gray-900"
                   >
                     Subir foto
                   </button>
                 )}
-                <p className="mt-1 text-xs text-accent-teal">
+                <p className="mt-1 text-xs text-gray-900">
                   JPEG, PNG o WebP. Máx. {MAX_MB} MB.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="adopt-petName" className="block text-sm font-bold text-accent-teal mb-2">
+                  <label htmlFor="adopt-petName" className="block text-sm font-bold text-gray-900 mb-2">
                     Nombre de la Mascota *
                   </label>
                   <input
@@ -283,20 +283,20 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     required
                     value={formData.petName}
                     onChange={(e) => handleInputChange('petName', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                     placeholder="Ej: Buddy"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="adopt-species" className="block text-sm font-bold text-accent-teal mb-2">
+                  <label htmlFor="adopt-species" className="block text-sm font-bold text-gray-900 mb-2">
                     Especie *
                   </label>
                   <select
                     id="adopt-species"
                     value={formData.species}
                     onChange={(e) => handleInputChange('species', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   >
                     <option value="dog">Perro</option>
                     <option value="cat">Gato</option>
@@ -306,26 +306,26 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Raza *</label>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">Raza *</label>
                   <input
                     type="text"
                     required
                     value={formData.breed}
                     onChange={(e) => handleInputChange('breed', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                     placeholder="Ej: Golden Retriever"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="adopt-gender" className="block text-sm font-bold text-accent-teal mb-2">
+                  <label htmlFor="adopt-gender" className="block text-sm font-bold text-gray-900 mb-2">
                     Género *
                   </label>
                   <select
                     id="adopt-gender"
                     value={formData.gender}
                     onChange={(e) => handleInputChange('gender', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   >
                     <option value="male">Macho</option>
                     <option value="female">Hembra</option>
@@ -333,25 +333,25 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Edad Aproximada</label>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">Edad Aproximada</label>
                   <input
                     type="text"
                     value={formData.age}
                     onChange={(e) => handleInputChange('age', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                     placeholder="Ej: 3 aÃ±os"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="adopt-size" className="block text-sm font-bold text-accent-teal mb-2">
+                  <label htmlFor="adopt-size" className="block text-sm font-bold text-gray-900 mb-2">
                     Tamaño
                   </label>
                   <select
                     id="adopt-size"
                     value={formData.size}
                     onChange={(e) => handleInputChange('size', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   >
                     <option value="small">Pequeño</option>
                     <option value="medium">Mediano</option>
@@ -361,13 +361,13 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-accent-teal mb-2">Color/Colores *</label>
+                <label className="block text-sm font-bold text-gray-900 mb-2">Color/Colores *</label>
                 <input
                   type="text"
                   required
                   value={formData.color}
                   onChange={(e) => handleInputChange('color', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   placeholder="Ej: Dorado con manchas blancas"
                 />
               </div>
@@ -379,7 +379,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               <h3 className="text-xl font-bold mb-4">Detalles de Adopción</h3>
 
               <div>
-                <label htmlFor="adopt-location" className="block text-sm font-bold text-accent-teal mb-2">
+                <label htmlFor="adopt-location" className="block text-sm font-bold text-gray-900 mb-2">
                   Zona/Barrio *
                 </label>
                 <input
@@ -388,27 +388,27 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   required
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   placeholder="Ej: Barrio Las Palmeras"
                 />
               </div>
 
               <div>
-                <label htmlFor="adopt-description" className="block text-sm font-bold text-accent-teal mb-2">
+                <label htmlFor="adopt-description" className="block text-sm font-bold text-gray-900 mb-2">
                   Descripción
                 </label>
                 <textarea
                   id="adopt-description"
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   rows={4}
                   placeholder="Personalidad, historia, convivencia, etc..."
                 />
               </div>
 
               <div>
-                <p className="text-sm font-bold text-accent-teal mb-3">Estado Médico</p>
+                <p className="text-sm font-bold text-gray-900 mb-3">Estado Médico</p>
                 <div className="flex flex-wrap gap-3">
                   {MED_STATUS_OPTIONS.map(option => (
                     <label key={option} className="flex items-center gap-2 cursor-pointer">
@@ -416,7 +416,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                         type="checkbox"
                         checked={formData.medStatus.includes(option)}
                         onChange={() => toggleMedStatus(option)}
-                        className="rounded text-primary focus:ring-primary border-accent-teal/20"
+                        className="rounded text-primary focus:ring-primary border-primary/20"
                       />
                       <span className="text-sm font-medium">{option}</span>
                     </label>
@@ -425,14 +425,14 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               </div>
 
               <div>
-                <label htmlFor="adopt-requirements" className="block text-sm font-bold text-accent-teal mb-2">
+                <label htmlFor="adopt-requirements" className="block text-sm font-bold text-gray-900 mb-2">
                   Requisitos de adopción
                 </label>
                 <textarea
                   id="adopt-requirements"
                   value={formData.adoptionRequirements}
                   onChange={(e) => handleInputChange('adoptionRequirements', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   rows={3}
                   placeholder="Ej: Contrato, visita previa, patio cerrado..."
                 />
@@ -446,36 +446,36 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Tu Nombre *</label>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">Tu Nombre *</label>
                   <input
                     type="text"
                     required
                     value={formData.contactName}
                     onChange={(e) => handleInputChange('contactName', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                     placeholder="Tu nombre completo"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Teléfono *</label>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">Teléfono *</label>
                   <input
                     type="tel"
                     required
                     value={formData.contactPhone}
                     onChange={(e) => handleInputChange('contactPhone', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                     placeholder="Ej: +54 9 11 2345-6789"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-accent-teal mb-2">Email</label>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">Email</label>
                   <input
                     type="email"
                     value={formData.contactEmail}
                     onChange={(e) => handleInputChange('contactEmail', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                     placeholder="tu@email.com"
                   />
                 </div>
@@ -496,13 +496,13 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
             </div>
           )}
 
-          <div className="flex justify-between items-center mt-8 pt-6 border-t border-accent-teal/10">
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-primary/10">
             <button
               type="button"
               onClick={prevStep}
               disabled={currentStep === 1}
               className={`px-6 py-3 rounded-xl font-bold transition-all ${
-                currentStep === 1 ? 'text-accent-teal/40 cursor-not-allowed' : 'text-accent-teal hover:text-primary'
+                currentStep === 1 ? 'text-gray-900/40 cursor-not-allowed' : 'text-gray-900 hover:text-primary'
               }`}
             >
               Anterior
