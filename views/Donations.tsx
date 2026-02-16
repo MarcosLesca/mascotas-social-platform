@@ -82,22 +82,6 @@ const Donations: React.FC = () => {
         </div>
       </div>
 
-      {/* Report CTA */}
-      <div className="rounded-3xl border border-primary/20 bg-primary/5 p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h3 className="text-xl sm:text-2xl font-black">Publicar campana de donacion</h3>
-          <p className="text-sm text-gray-800 mt-1">
-            Carga los datos y la imagen. Se publicara una vez aprobada por admin.
-          </p>
-        </div>
-        <button
-          onClick={() => setShowReportModal(true)}
-          className="w-full md:w-auto bg-primary hover:bg-primary/90 text-background-dark font-black px-8 py-3 rounded-xl transition-colors"
-        >
-          COMENZAR
-        </button>
-      </div>
-
       {/* Campaigns Grid */}
       <div>
         <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">Donaciones Activas</h2>
@@ -118,7 +102,7 @@ const Donations: React.FC = () => {
         )}
 
         {loading ? (
-          <p className="text-accent-teal font-medium">Cargando campaÃ±as...</p>
+          <p className="text-accent-teal font-medium">Cargando campañas...</p>
         ) : campaigns.length === 0 ? (
           <div className="rounded-2xl border border-accent-teal/10 bg-white dark:bg-white/5 p-6 sm:p-8 text-center">
             <h3 className="text-xl font-black">No hay campañas aprobadas</h3>
@@ -127,7 +111,7 @@ const Donations: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {campaigns.map((campaign) => {
             return (
               <div
@@ -203,6 +187,26 @@ const Donations: React.FC = () => {
               </div>
             );
           })}
+
+          {/* Report Campaign Card */}
+          <div
+            className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[300px] sm:min-h-[380px]"
+            onClick={() => setShowReportModal(true)}
+          >
+            <h3 className="text-xl font-bold mb-3">Publicar campaña de donación</h3>
+            <p className="text-sm text-gray-800 mb-8 max-w-[220px]">
+              Carga los datos y la imagen. Se publicará una vez aprobada.
+            </p>
+            <button
+              className="w-full sm:w-auto bg-primary text-background-dark px-8 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowReportModal(true);
+              }}
+            >
+              COMENZAR
+            </button>
+          </div>
           </div>
         )}
       </div>
