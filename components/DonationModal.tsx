@@ -213,7 +213,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
                {/* Resumen de Meta (Destacado) */}
                <div className="bg-gradient-to-br from-primary/10 to-accent-teal/10 rounded-2xl p-6 border border-primary/10 text-center">
                     <p className="text-sm text-gray-600 font-bold mb-1 uppercase tracking-wider">Meta a recaudar</p>
-                    <p className="text-3xl font-black text-sky-600 mb-2">${campaign.goal.toLocaleString('es-AR')}</p>
+                    <p className="text-3xl font-black text-green-700 mb-2">${campaign.goal.toLocaleString('es-AR')}</p>
                     <p className="text-xs text-black/60 font-medium">
                         Tu aporte hace la diferencia para {campaign.petName}
                     </p>
