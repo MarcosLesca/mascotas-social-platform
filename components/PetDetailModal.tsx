@@ -105,10 +105,18 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                 </div>
               )}
 
+              {/* Requisitos de adopción */}
+              {pet.status === 'adoption' && pet.requirements && (
+                <div>
+                  <h3 className="text-xl font-bold mb-3">Requisitos:</h3>
+                  <p className="text-black leading-relaxed">{pet.requirements}</p>
+                </div>
+              )}
+
               {/* Ubicación */}
               <div>
                 <h3 className="text-xl font-bold mb-3">
-                  {isLost ? 'Última Vez Visto:' : 'Ubicación:'}
+                  {isLost ? 'Visto por última vez:' : 'Ubicación:'}
                 </h3>
                 <p className="text-black font-medium">{pet.location}</p>
                 {pet.distance && (

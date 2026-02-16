@@ -10,7 +10,7 @@ interface ReportAdoptionPetModalProps {
 
 const ACCEPT_IMAGES = 'image/jpeg,image/png,image/webp';
 const MAX_MB = 5;
-const MED_STATUS_OPTIONS = ['Vacunado', 'Esterilizado', 'Desparasitado', 'Microchip'];
+const MED_STATUS_OPTIONS = ['Vacunado', 'Esterilizado', 'Desparasitado'];
 
 const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
   isOpen,

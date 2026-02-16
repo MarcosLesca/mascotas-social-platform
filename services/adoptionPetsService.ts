@@ -7,7 +7,6 @@ const BUCKET = 'adoption-pet-images';
 function rowToPet(r: AdoptionPetReportRow): Pet {
   const parts: string[] = [];
   if (r.description) parts.push(r.description);
-  if (r.adoption_requirements) parts.push(`Requisitos: ${r.adoption_requirements}`);
   const description = parts.length ? parts.join('\n\n') : undefined;
   // Siempre mostrar San Justo como ubicación base
   const fullLocation = r.location ? `San Justo - ${r.location}` : 'San Justo';
@@ -26,6 +25,7 @@ function rowToPet(r: AdoptionPetReportRow): Pet {
     contactName: r.contact_name,
     contactPhone: r.contact_phone,
     contactEmail: r.contact_email ?? undefined,
+    requirements: r.adoption_requirements ?? undefined,
   };
 }
 
