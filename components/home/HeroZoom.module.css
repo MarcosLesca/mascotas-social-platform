@@ -642,7 +642,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 3rem;
+  margin-top: 6rem;
   justify-content: center;
   align-items: center;
   padding: 0 1rem;
@@ -1658,4 +1658,3 @@
 .buttonDonate .dog .ears .right {
   background-color: #e53e3e;
 }
-
