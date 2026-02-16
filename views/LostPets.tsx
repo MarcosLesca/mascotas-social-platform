@@ -223,7 +223,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Buscar por nombre, raza o zona..."
+                  placeholder="Buscar..."
                   className="w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-white/10 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400 text-sm"
                   value={filters.searchTerm}
                   onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}

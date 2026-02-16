@@ -220,7 +220,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Buscar por nombre, raza..."
+                  placeholder="Buscar..."
                   className="w-full px-4 py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
                   value={filters.searchTerm}
                   onChange={(e) => setFilters({...filters, searchTerm: e.target.value})}
