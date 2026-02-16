@@ -74,27 +74,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       filtered = filtered.filter(pet => selectedSpecies.includes(pet.species));
     }
 
-    // Filtro por edad (si el reporte tiene edad)
-    if (filters.age.length > 0) {
-      filtered = filtered.filter(pet => {
-        if (!pet.age) return false;
-
-        const ageLower = pet.age.toLowerCase();
-        return filters.age.some(filterAge => {
-          switch (filterAge) {
-            case 'Cachorro':
-              return ageLower.includes('año') && parseInt(ageLower) <= 2 || ageLower.includes('mes');
-            case 'Joven':
-              return ageLower.includes('año') && parseInt(ageLower) > 2 && parseInt(ageLower) <= 5;
-            case 'Adulto':
-              return ageLower.includes('año') && parseInt(ageLower) > 5 && parseInt(ageLower) <= 10;
-            default:
-              return false;
-          }
-        });
-      });
-    }
-
     // Filtro por tamaño
     if (filters.size.length > 0) {
       filtered = filtered.filter(pet => {
@@ -132,7 +111,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
   const hasActiveFilters =
     filters.species.length > 0 ||
-    filters.age.length > 0 ||
+    filters.size.length > 0 ||
+    filters.gender.length > 0 ||
     filters.urgency ||
     !!filters.searchTerm;
 
@@ -247,23 +227,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                     >
                       {s}
                     </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Edad</p>
-                <div className="space-y-3">
-                  {['Cachorro', 'Joven', 'Adulto'].map(age => (
-                    <label key={age} className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={filters.age.includes(age)}
-                        onChange={() => toggleAge(age)}
-                        className="rounded text-red-400 focus:ring-red-400 border-red-400/20"
-                      />
-                      <span className="text-sm font-medium group-hover:text-red-400 transition-colors">{age}</span>
-                    </label>
                   ))}
                 </div>
               </div>

@@ -255,9 +255,12 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 onChange={e => handleInputChange('type', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               >
-                <option value="medical">Medica</option>
+                <option value="medical">Médica</option>
                 <option value="food">Alimento</option>
-                <option value="infrastructure">Infraestructura</option>
+                <option value="shelter">Refugio</option>
+                <option value="spay_neuter">Esterilización</option>
+                <option value="emergency">Emergencia</option>
+                <option value="other">Otro</option>
               </select>
             </div>
 

@@ -5,6 +5,7 @@ import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsSer
 import ReportDonationCampaignModal from "../components/ReportDonationCampaignModal";
 
 interface DonationFilters {
+  type: string[];
   urgency: boolean;
   searchTerm: string;
 }
@@ -19,6 +20,7 @@ const Donations: React.FC = () => {
   const [showReportModal, setShowReportModal] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
   const [filters, setFilters] = useState<DonationFilters>({
+    type: [],
     urgency: false,
     searchTerm: ''
   });
@@ -60,6 +62,11 @@ const Donations: React.FC = () => {
       );
     }
 
+    // Filtro por tipo
+    if (filters.type.length > 0) {
+      filtered = filtered.filter(campaign => filters.type.includes(campaign.type));
+    }
+
     // Filtro por urgencia
     if (filters.urgency) {
       filtered = filtered.filter(campaign => campaign.urgency);
@@ -70,12 +77,13 @@ const Donations: React.FC = () => {
 
   const clearFilters = () => {
     setFilters({
+      type: [],
       urgency: false,
       searchTerm: ''
     });
   };
 
-  const hasActiveFilters = filters.urgency || filters.searchTerm;
+  const hasActiveFilters = filters.type.length > 0 || filters.urgency || filters.searchTerm;
 
   const handleCampaignClick = (campaign: DonationCampaign) => {
     setSelectedCampaign(campaign);
@@ -178,6 +186,33 @@ const Donations: React.FC = () => {
               </div>
 
               <div className="space-y-4">
+                <div>
+                  <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-3">Tipo</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Médica', 'Alimento', 'Refugio', 'Esterilización', 'Emergencia', 'Otro'].map(t => (
+                      <button
+                        key={t}
+                        onClick={() => {
+                          const typeMap: { [key: string]: string } = { 'Médica': 'medical', 'Alimento': 'food', 'Refugio': 'shelter', 'Esterilización': 'spay_neuter', 'Emergencia': 'emergency', 'Otro': 'other' };
+                          setFilters(prev => ({
+                            ...prev,
+                            type: prev.type.includes(typeMap[t])
+                              ? prev.type.filter(ty => ty !== typeMap[t])
+                              : [...prev.type, typeMap[t]]
+                          }));
+                        }}
+                        className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
+                          filters.type.includes(t === 'Médica' ? 'medical' : t === 'Alimento' ? 'food' : t === 'Refugio' ? 'shelter' : t === 'Esterilización' ? 'spay_neuter' : t === 'Emergencia' ? 'emergency' : 'other')
+                            ? 'bg-sky-500 text-white'
+                            : 'bg-sky-500/5 text-gray-800 hover:bg-sky-500/10'
+                        }`}
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div>
                   <label className="flex items-center gap-3 cursor-pointer">
                     <input
