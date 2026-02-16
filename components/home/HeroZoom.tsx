@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { useApp } from "../../context/AppContext";
 import { View } from "../../types";
@@ -145,8 +145,8 @@ export default function HeroZoom() {
       const mobileConfig = {
         trigger: containerRef.current,
         start: "top top",
-        end: "bottom top",
-        pin: false,
+        end: "+=150%",
+        pin: true,
         scrub: 1,
         pinSpacing: false,
       };

@@ -116,31 +116,31 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
       {/* Hero Section con GSAP Animation - Full Width */}
       <HeroZoom />
 
-      <div className="relative mt-0 px-4 py-10 sm:mt-0 sm:py-12 md:px-10 lg:px-20">
+      <div className="relative mt-0 px-4 py-10 sm:mt-0 sm:py-12 md:px-10 lg:px-20 pt-[100vh] sm:pt-0">
         <div className="max-w-[1440px] mx-auto space-y-8">
           <section className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
             <div>
-              <h2 className="text-3xl md:text-5xl font-black leading-tight">
+              <h2 className="text-2xl md:text-5xl font-black leading-tight">
                 Publicaciones recientes:
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full lg:w-auto">
+            <div className="grid grid-cols-3 sm:grid-cols-3 gap-1.5 sm:gap-2 w-full lg:w-auto">
               <button
                 onClick={() => setCurrentView(View.LOST_PETS)}
-                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-[11px] sm:text-xs font-black uppercase hover:border-primary"
+                className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Perdidos
               </button>
               <button
                 onClick={() => setCurrentView(View.ADOPTION)}
-                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-[11px] sm:text-xs font-black uppercase hover:border-primary"
+                className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Adopcion
               </button>
               <button
                 onClick={() => setCurrentView(View.DONATIONS)}
-                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-[11px] sm:text-xs font-black uppercase hover:border-primary"
+                className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Donaciones
               </button>
