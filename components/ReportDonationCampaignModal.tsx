@@ -259,14 +259,14 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Fecha limite *</label>
+              <label className="block text-sm font-bold text-accent-teal mb-2">Fecha límite *</label>
               <input
-                type="text"
+                type="date"
                 required
+                min={new Date(Date.now() + 86400000).toISOString().split('T')[0]}
                 value={formData.deadline}
                 onChange={e => handleInputChange('deadline', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
-                placeholder="Ej: 28 de Febrero, 2026"
               />
             </div>
 

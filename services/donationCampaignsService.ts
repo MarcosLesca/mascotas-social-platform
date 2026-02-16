@@ -4,6 +4,11 @@ import type { DonationCampaign, DonationCampaignReportRow } from '../types';
 const BUCKET = 'donation-campaign-images';
 
 function rowToDonationCampaign(row: DonationCampaignReportRow): DonationCampaign {
+  // Extraer teléfono y email del campo contact_info (formato: "Tel: ... | Email: ...")
+  const contactInfo = row.contact_info || '';
+  const phoneMatch = contactInfo.match(/Tel:\s*([^|]+)/);
+  const emailMatch = contactInfo.match(/Email:\s*(.+)/);
+  
   return {
     id: row.id,
     title: row.title,
@@ -17,7 +22,8 @@ function rowToDonationCampaign(row: DonationCampaignReportRow): DonationCampaign
     alias: row.alias,
     accountHolder: row.account_holder,
     responsibleName: row.responsible_name,
-    contactInfo: row.contact_info,
+    contactPhone: phoneMatch ? phoneMatch[1].trim() : undefined,
+    contactEmail: emailMatch ? emailMatch[1].trim() : undefined,
     deadline: row.deadline,
   };
 }
@@ -33,7 +39,8 @@ export interface SubmitDonationCampaignInput {
   alias: string;
   accountHolder: string;
   responsibleName: string;
-  contactInfo: string;
+  contactPhone: string;
+  contactEmail: string;
   deadline: string;
   imageFile: File;
 }
@@ -69,7 +76,7 @@ export async function submitDonationCampaign(
     alias: input.alias.trim(),
     account_holder: input.accountHolder.trim(),
     responsible_name: input.responsibleName.trim(),
-    contact_info: input.contactInfo.trim(),
+    contact_info: `Tel: ${input.contactPhone} | Email: ${input.contactEmail}`,
     deadline: input.deadline.trim(),
   });
 
