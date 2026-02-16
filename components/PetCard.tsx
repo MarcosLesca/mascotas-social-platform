@@ -76,9 +76,9 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   return (
     <div className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 card-hover stagger-item flex flex-col">
       <div className="relative aspect-square overflow-hidden">
-        <img 
-          src={pet.image} 
-          alt={pet.name} 
+        <img
+          src={pet.image}
+          alt={pet.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute top-3 left-3 flex gap-2">
@@ -91,7 +91,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         </div>
         <div className="absolute bottom-3 right-3 flex gap-2">
           <div className="relative">
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 setShowShareMenu(!showShareMenu);
@@ -100,7 +100,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
             >
               Compartir
             </button>
-            
+
             {showShareMenu && (
               <div className="absolute top-10 right-0 bg-white dark:bg-background-dark rounded-xl shadow-xl border border-accent-teal/10 p-2 min-w-[160px] sm:min-w-[180px] z-50">
                 {[
@@ -128,12 +128,14 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
       </div>
 
       <div className="p-4 sm:p-5 flex flex-col flex-1">
-        <div 
+        <div
           className="flex justify-between items-start mb-2 cursor-pointer"
           onClick={() => onViewDetails?.(pet)}
         >
           <div>
-            <h3 className="text-lg sm:text-xl leading-tight font-bold group-hover:text-primary transition-colors">{pet.name}</h3>
+            <h3 className={`text-lg sm:text-xl leading-tight font-bold transition-colors ${
+              isLost ? 'group-hover:text-red-500' : 'group-hover:text-primary'
+            }`}>{pet.name}</h3>
             <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[220px] sm:max-w-none">{pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
           </div>
         </div>
@@ -146,17 +148,17 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-2.5 mt-auto">
-          <button 
+          <button
             onClick={() => onAction?.(pet, 'view')}
             className={`flex-1 text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
-              isLost 
-                ? 'bg-red-400 hover:bg-red-500' 
+              isLost
+                ? 'bg-red-400 hover:bg-red-500'
                 : 'bg-accent-teal hover:bg-primary'
             }`}
           >
             Ver Detalles
           </button>
-          <button 
+          <button
             onClick={() => {
               if (waHref) {
                 window.open(waHref, '_blank');
@@ -165,8 +167,8 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
               }
             }}
             className={`flex-1 text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
-              isLost 
-                ? 'bg-red-500 hover:bg-red-600' 
+              isLost
+                ? 'bg-red-500 hover:bg-red-600'
                 : 'bg-[#22c55e] hover:bg-[#16a34a]'
             }`}
           >
@@ -179,5 +181,3 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
 };
 
 export default PetCard;
-
-

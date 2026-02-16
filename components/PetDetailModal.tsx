@@ -68,7 +68,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header con imagen */}
-        <div className="relative aspect-[21/9] overflow-hidden">
+        <div className="relative h-56 sm:h-72 overflow-hidden">
           <img
             src={pet.image}
             alt={pet.name}
@@ -145,7 +145,9 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {pet.medStatus.map((status, idx) => (
-                      <span key={idx} className="bg-primary/10 text-black px-3 py-1 rounded-full text-sm font-bold">
+                      <span key={idx} className={`${
+                        isLost ? 'bg-red-100 text-red-800' : 'bg-primary/10 text-primary-dark'
+                      } px-3 py-1 rounded-full text-sm font-bold`}>
                         {status}
                       </span>
                     ))}
@@ -174,7 +176,9 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                             href={waHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium text-black hover:text-red-500 transition-colors"
+                            className={`font-medium text-black transition-colors ${
+                              isLost ? 'hover:text-red-500' : 'hover:text-primary'
+                            }`}
                           >
                             {pet.contactPhone}
                           </a>
@@ -189,7 +193,9 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                         {mailHref ? (
                           <a
                             href={mailHref}
-                            className="font-medium text-black hover:text-red-500 transition-colors"
+                            className={`font-medium text-black transition-colors ${
+                              isLost ? 'hover:text-red-500' : 'hover:text-primary'
+                            }`}
                           >
                             {pet.contactEmail}
                           </a>
@@ -219,8 +225,8 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                     }
                   }}
                   className={`w-full font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg ${
-                    isLost 
-                      ? 'bg-red-400 hover:bg-red-500 text-white' 
+                    isLost
+                      ? 'bg-red-400 hover:bg-red-500 text-white'
                       : 'bg-primary hover:bg-primary/90 text-background-dark'
                   }`}
                 >
@@ -232,7 +238,11 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                     href={waHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
+                    className={`w-full font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg text-white ${
+                      isLost
+                        ? 'bg-red-500 hover:bg-red-600'
+                        : 'bg-green-500 hover:bg-green-600'
+                    }`}
                   >
                     Contactar por WhatsApp
                   </a>
@@ -261,7 +271,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   {isLost && pet.reward && (
                     <div className="flex justify-between">
                       <span className="text-sm text-black">Recompensa:</span>
-                      <span className="text-sm font-bold text-green-600">{pet.reward}</span>
+                      <span className={`text-sm font-bold ${isLost ? 'text-red-600' : 'text-green-600'}`}>{pet.reward}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
