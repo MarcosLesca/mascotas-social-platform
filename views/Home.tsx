@@ -6,6 +6,7 @@ import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsSer
 import { useApp } from "../context/AppContext";
 import type { Pet, DonationCampaign } from "../types";
 import { View } from "../types";
+import PetCard from "../components/PetCard";
 
 interface HomeProps {
   onToast: (
@@ -146,37 +147,55 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                     <article
                       key={item.id}
                       onClick={() => setCurrentView(View.DONATIONS)}
-                      className="rounded-3xl overflow-hidden border border-accent-teal/15 bg-white dark:bg-white/5 cursor-pointer hover:border-primary/40 hover:shadow-xl transition-all flex flex-col"
+                      className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-sky-500/10 hover:shadow-xl transition-all duration-300 flex flex-col"
                     >
-                      <div className="relative h-52 overflow-hidden flex-shrink-0">
+                      <div className="relative aspect-square overflow-hidden">
                         <img
                           src={campaign.image}
                           alt={campaign.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                        <span className="absolute top-3 left-3 bg-primary text-background-dark text-[10px] px-2 py-1 rounded-full font-black uppercase">
-                          Donacion
-                        </span>
-                        {campaign.urgency && (
-                          <span className="absolute top-3 right-3 bg-red-500 text-white text-[10px] px-2 py-1 rounded-full font-black uppercase">
-                            Urgente
-                          </span>
-                        )}
+                        <div className="absolute top-3 left-3 flex gap-2">
+                          {campaign.urgency && (
+                            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                              URGENTE
+                            </span>
+                          )}
+                        </div>
+                        <div className="absolute bottom-3 right-3">
+                          <div className="bg-white text-slate-800 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                            <span className="material-symbols-outlined text-xs">pets</span>
+                            {campaign.petName}
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="p-5 space-y-2 flex-1 flex flex-col">
-                        <h3 className="text-lg font-black leading-tight">
+                      <div className="p-4 sm:p-5 flex flex-col flex-1">
+                        <h3 className="text-lg sm:text-xl leading-tight font-bold group-hover:text-sky-500 transition-colors mb-2 line-clamp-2">
                           {campaign.title}
                         </h3>
-                        <p className="text-sm text-gray-800 line-clamp-3">
+                        <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate mb-3">
+                          {campaign.type === 'medical' ? 'Médica' : campaign.type === 'food' ? 'Alimento' : campaign.type === 'shelter' ? 'Refugio' : 'Campaña'}
+                        </p>
+
+                        <p className="text-sm text-black mb-4 line-clamp-2 leading-relaxed">
                           {campaign.description}
                         </p>
-                        <div className="pt-2 border-t border-accent-teal/10 text-xs text-gray-800 mt-auto">
-                          <p className="font-bold">
-                            Meta: ${campaign.goal.toLocaleString("es-AR")}
-                          </p>
-                          <p>Hasta: {campaign.deadline}</p>
+
+                        <div className="mt-auto space-y-3">
+                          <div className="bg-sky-50 rounded-xl p-3 flex justify-between items-center">
+                            <span className="text-xs font-bold text-sky-700">Meta</span>
+                            <span className="text-base font-black text-sky-600">${campaign.goal.toLocaleString("es-AR")}</span>
+                          </div>
+
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <span className="material-symbols-outlined text-sm">event</span>
+                            <span>Hasta: {campaign.deadline}</span>
+                          </div>
+
+                          <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold py-3 rounded-full transition-all flex items-center justify-center gap-2">
+                            Ver Detalles
+                          </button>
                         </div>
                       </div>
                     </article>
@@ -187,55 +206,13 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 const isLost = item.kind === "lost";
 
                 return (
-                  <article
+                  <PetCard
                     key={item.id}
-                    onClick={() =>
+                    pet={pet}
+                    onViewDetails={() =>
                       setCurrentView(isLost ? View.LOST_PETS : View.ADOPTION)
                     }
-                    className="rounded-3xl overflow-hidden border border-accent-teal/15 bg-white dark:bg-white/5 cursor-pointer hover:border-primary/40 hover:shadow-xl transition-all flex flex-col"
-                  >
-                    <div className="relative h-52 overflow-hidden flex-shrink-0">
-                      <img
-                        src={pet.image}
-                        alt={pet.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
-                      <span
-                        className={`absolute top-3 left-3 text-[10px] px-2 py-1 rounded-full font-black uppercase ${
-                          isLost
-                            ? "bg-rose-500 text-white"
-                            : "bg-emerald-500 text-white"
-                        }`}
-                      >
-                        {isLost ? "Perdido" : "Adopcion"}
-                      </span>
-                      {isLost && pet.urgency && (
-                        <span className="absolute top-3 right-3 bg-red-500 text-white text-[10px] px-2 py-1 rounded-full font-black uppercase">
-                          Urgente
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="p-5 space-y-2 flex-1 flex flex-col">
-                      <h3 className="text-lg font-black">{pet.name}</h3>
-                      <p className="text-sm text-gray-800">
-                        {pet.breed} - {pet.location}
-                      </p>
-                      {pet.description && (
-                        <p className="text-sm text-gray-800 line-clamp-3">
-                          {pet.description}
-                        </p>
-                      )}
-                      <div className="pt-2 border-t border-accent-teal/10 text-xs text-gray-800 mt-auto">
-                        {isLost ? (
-                          <p>{pet.timeLabel || "Reporte reciente"}</p>
-                        ) : (
-                          <p>{pet.age || "Edad no especificada"}</p>
-                        )}
-                      </div>
-                    </div>
-                  </article>
+                  />
                 );
               })}
             </section>
