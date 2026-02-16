@@ -371,6 +371,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     id="report-lastSeenDate"
                     type="date"
                     required
+                    max={new Date().toISOString().split('T')[0]}
                     value={formData.lastSeenDate}
                     onChange={(e) => handleInputChange('lastSeenDate', e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-800/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
