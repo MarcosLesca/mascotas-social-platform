@@ -58,7 +58,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="layout-container flex flex-col min-h-screen selection:bg-primary selection:text-background-dark">
+    <div className="layout-container flex flex-col min-h-screen">
       <Navbar currentView={currentView} setView={setCurrentView} />
 
       <main className="flex-1">{renderView()}</main>
