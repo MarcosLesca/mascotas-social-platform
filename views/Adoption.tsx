@@ -73,7 +73,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
     if (filters.age.length > 0) {
       filtered = filtered.filter(pet => {
         if (!pet.age) return false;
-        
+
         const ageLower = pet.age.toLowerCase();
         return filters.age.some(filterAge => {
           switch (filterAge) {
@@ -95,7 +95,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
     // Filtro por búsqueda
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter(pet => 
+      filtered = filtered.filter(pet =>
         pet.name.toLowerCase().includes(searchLower) ||
         pet.breed.toLowerCase().includes(searchLower) ||
         pet.description?.toLowerCase().includes(searchLower)
@@ -189,7 +189,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             <div className="flex justify-between items-center mb-6 sm:mb-8">
               <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
-                <button 
+                <button
                   onClick={clearFilters}
                   className="text-xs font-bold text-primary hover:underline"
                 >
@@ -201,8 +201,8 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             {/* Búsqueda */}
             <div className="mb-6 sm:mb-8">
               <div className="relative">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="Buscar por nombre, raza..."
                   className="w-full px-4 py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
                   value={filters.searchTerm}
@@ -210,18 +210,18 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                 />
               </div>
             </div>
-            
+
             <div className="space-y-6 sm:space-y-8">
               <div>
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
                   {['Perros', 'Gatos', 'Aves', 'Otros'].map(s => (
-                    <button 
-                      key={s} 
+                    <button
+                      key={s}
                       onClick={() => toggleSpecies(s)}
                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
-                        filters.species.includes(s) 
-                          ? 'bg-primary text-background-dark' 
+                        filters.species.includes(s)
+                          ? 'bg-primary text-background-dark'
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
@@ -236,11 +236,11 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                 <div className="space-y-3">
                   {['Cachorro', 'Joven', 'Adulto', 'Senior'].map(age => (
                     <label key={age} className="flex items-center gap-3 cursor-pointer group">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         checked={filters.age.includes(age)}
                         onChange={() => toggleAge(age)}
-                        className="rounded text-primary focus:ring-primary border-accent-teal/20" 
+                        className="rounded text-primary focus:ring-primary border-accent-teal/20"
                       />
                       <span className="text-sm sm:text-[15px] font-medium group-hover:text-primary transition-colors">{age}</span>
                     </label>
@@ -252,12 +252,12 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Energía</p>
                 <div className="grid grid-cols-3 gap-2">
                   {['Bajo', 'Medio', 'Alto'].map(e => (
-                    <button 
-                      key={e} 
+                    <button
+                      key={e}
                       onClick={() => setFilters({...filters, energy: e})}
                       className={`py-2 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-tight transition-all ${
-                        filters.energy === e 
-                          ? 'bg-primary text-background-dark' 
+                        filters.energy === e
+                          ? 'bg-primary text-background-dark'
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
@@ -282,9 +282,9 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
               {filteredPets.map(pet => (
-                <PetCard 
-                  key={pet.id} 
-                  pet={pet} 
+                <PetCard
+                  key={pet.id}
+                  pet={pet}
                   onAction={handlePetAction}
                   onViewDetails={handleViewDetails}
                 />
@@ -330,6 +330,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             isOpen={showModal}
             onClose={handleCloseModal}
             onAction={handlePetAction}
+            variant="fullscreen"
           />
 
           {/* Modal de publicación */}
