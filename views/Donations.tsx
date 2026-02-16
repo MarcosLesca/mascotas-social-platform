@@ -142,7 +142,7 @@ const Donations: React.FC = () => {
         )}
 
         {loading ? (
-          <p className="text-accent-teal font-medium">Cargando campañas...</p>
+          <p className="text-gray-900 font-medium">Cargando campañas...</p>
         ) : campaigns.length === 0 ? (
           <div className="rounded-2xl border border-accent-teal/10 bg-white dark:bg-white/5 p-6 sm:p-8 text-center">
             <h3 className="text-xl font-black">No hay campañas aprobadas</h3>
