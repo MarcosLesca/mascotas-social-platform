@@ -1,9 +1,9 @@
-﻿/* HeroZoom.module.css */
+/* HeroZoom.module.css */
 .scrollContainer {
   height: 100vh;
   /* Solo una pantalla de alto */
   position: relative;
-  z-index: 10;
+  z-index: 1;
 }
 
 .zoomContainer {

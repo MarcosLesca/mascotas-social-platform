@@ -116,7 +116,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
       {/* Hero Section con GSAP Animation - Full Width */}
       <HeroZoom />
 
-      <div className="relative mt-0 px-4 py-10 sm:mt-0 sm:py-12 md:px-10 lg:px-20 pt-[100vh] sm:pt-0">
+      <div className="relative mt-[100vh] sm:mt-0 px-4 py-10 sm:py-12 md:px-10 lg:px-20 lg:mt-[200vh]">
         <div className="max-w-[1440px] mx-auto space-y-8">
           <section className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
             <div>
