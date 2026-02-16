@@ -35,7 +35,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta específica sobre cómo reportar mascota perdida
   if (content.includes("Reportar Mascota Perdida")) {
     return (
-      <div className="text-black leading-relaxed pt-[8px]">
+      <div className="text-[#203553] leading-relaxed pt-[8px]">
         <p className="mb-3">Es muy fácil:</p>
         {renderCustomList([
           'Hacé clic en el botón "Reportar Mascota Perdida"',
@@ -52,7 +52,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre qué hacer si veo una mascota perdida
   if (content.includes("Mascotas Encontradas")) {
     return (
-      <div className="text-black leading-relaxed pt-[8px]">
+      <div className="text-[#203553] leading-relaxed pt-[8px]">
         <p className="mb-3">¡Gracias por ayudar! Podés:</p>
         {renderCustomList([
           "Tomar una foto",
@@ -70,7 +70,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre cómo adoptar
   if (content.includes("Contactá directamente al refugio")) {
     return (
-      <div className="text-black leading-relaxed pt-[8px]">
+      <div className="text-[#203553] leading-relaxed pt-[8px]">
         {renderCustomList([
           'Buscá en la sección "Adopción"',
           "Contactá directamente al refugio/responsable vía WhatsApp o Email",
@@ -85,7 +85,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre cómo donar
   if (content.includes("Entrá a la campaña que querés apoyar")) {
     return (
-      <div className="text-black leading-relaxed pt-[8px]">
+      <div className="text-[#203553] leading-relaxed pt-[8px]">
         <p className="mb-3">Es muy fácil:</p>
         {renderCustomList([
           "Entrá a la campaña que querés apoyar",
@@ -282,10 +282,10 @@ const FAQSection: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in">
-        <h1 className="text-4xl md:text-5xl font-black mb-4 text-black">
+        <h1 className="text-4xl md:text-5xl font-black mb-4 text-[#203553]">
           Preguntas Frecuentes
         </h1>
-        <p className="text-lg text-accent-teal max-w-2xl mx-auto">
+        <p className="text-lg font-bold text-[#203553]/80 max-w-2xl mx-auto">
           Todo lo que necesitás saber para usar Mascotas SJ.
         </p>
       </div>
@@ -300,8 +300,8 @@ const FAQSection: React.FC = () => {
           >
             {/* Título de la categoría */}
             <div className="mb-6">
-              <div className="pb-4 border-b-4 border-primary">
-                <h2 className="text-2xl md:text-3xl font-bold text-black">
+              <div className="pb-4 border-b-4 border-[#ecdbbd]">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#203553]">
                   {categoryTitles[category as keyof typeof categoryTitles]}
                 </h2>
               </div>
@@ -312,22 +312,22 @@ const FAQSection: React.FC = () => {
               {items.map((item, itemIndex) => (
                 <div
                   key={item.id}
-                  className="bg-white dark:bg-white/5 rounded-2xl border border-accent-teal/5 overflow-hidden stagger-item"
+                  className="bg-white dark:bg-white/5 rounded-2xl border border-[#ecdbbd]/30 overflow-hidden stagger-item"
                   style={{
                     animationDelay: `${categoryIndex * 0.2 + itemIndex * 0.1}s`,
                   }}
                 >
                   <button
                     onClick={() => toggleExpanded(item.id)}
-                    className="w-full px-6 py-5 text-left flex items-center gap-4 hover:bg-accent-teal/5 transition-colors"
+                    className="w-full px-6 py-5 text-left flex items-center gap-4 hover:bg-[#ecdbbd]/20 transition-colors"
                   >
                     <div className="flex-1 pt-4">
-                      <h3 className="font-bold text-lg text-black">
+                      <h3 className="font-bold text-lg text-[#203553]">
                         {item.question}
                       </h3>
                     </div>
                     <span
-                      className={`text-accent-teal transition-transform text-xl font-bold ${
+                      className={`text-[#203553] transition-transform text-xl font-bold ${
                         expandedItems.has(item.id) ? "rotate-180" : ""
                       }`}
                     >
@@ -351,7 +351,7 @@ const FAQSection: React.FC = () => {
       <div className="mt-16 text-center">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="bg-primary text-white px-8 py-3 rounded-xl font-bold mx-auto hover:opacity-90 transition-all inline-flex items-center gap-2"
+          className="bg-[#203553] text-[#ecdbbd] px-8 py-3 rounded-xl font-bold mx-auto hover:opacity-90 transition-all inline-flex items-center gap-2"
         >
           <span>↑</span> Volver al principio
         </button>
