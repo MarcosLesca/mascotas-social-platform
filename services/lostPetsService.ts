@@ -21,10 +21,13 @@ function rowToPet(r: LostPetReportRow): Pet {
   const parts: string[] = [];
   if (r.distinctive_features) parts.push(r.distinctive_features);
   if (r.additional_info) parts.push(r.additional_info);
-  if (r.has_reward && r.reward_amount) parts.push(`Recompensa: ${r.reward_amount}`);
   const description = parts.length ? parts.join('\n\n') : undefined;
   // Siempre mostrar San Justo como ubicación base
   const fullLocation = r.last_seen_location ? `San Justo - ${r.last_seen_location}` : 'San Justo';
+  // Formatear recompensa con $ y puntos
+  const formattedReward = r.has_reward && r.reward_amount 
+    ? '$' + parseInt(r.reward_amount).toLocaleString('es-AR')
+    : undefined;
   return {
     id: r.id,
     name: r.pet_name,
@@ -43,6 +46,7 @@ function rowToPet(r: LostPetReportRow): Pet {
     contactEmail: r.contact_email ?? undefined,
     lastSeenDate: r.last_seen_date,
     lastSeenLocation: r.last_seen_location,
+    reward: formattedReward,
   };
 }
 

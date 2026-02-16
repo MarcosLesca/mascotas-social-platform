@@ -93,6 +93,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
 
         {/* Contenido */}
         <div className="p-8 max-h-[50vh] overflow-y-auto">
+          <h2 className="text-2xl font-black mb-6">{pet.name}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Información principal */}
             <div className="lg:col-span-2 space-y-6">
@@ -196,7 +197,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
                   }}
                   className="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
                 >
-                  {isLost ? '¡He visto a esta mascota!' : 'Quiero Adoptar'}
+                  {isLost ? 'Vi la mascota' : 'Quiero Adoptar'}
                 </button>
 
                 {waHref && (
@@ -224,6 +225,12 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
               <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/5">
                 <h4 className="font-bold mb-4">Características</h4>
                 <div className="space-y-3">
+                  {isLost && pet.reward && (
+                    <div className="flex justify-between">
+                      <span className="text-sm text-black">Recompensa:</span>
+                      <span className="text-sm font-bold text-green-600">{pet.reward}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <span className="text-sm text-black">Especie:</span>
                     <span className="text-sm font-bold">{speciesLabel}</span>

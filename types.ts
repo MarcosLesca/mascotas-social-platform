@@ -22,6 +22,7 @@ export interface Pet {
   image: string;
   description?: string;
   medStatus?: string[];
+  reward?: string;
   /** Contacto del reportante (mascotas perdidas desde Supabase) */
   contactName?: string;
   contactPhone?: string;

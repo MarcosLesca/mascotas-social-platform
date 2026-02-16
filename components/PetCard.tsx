@@ -89,7 +89,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
             <span className={topBadgeClass}>{pet.timeLabel}</span>
           )}
         </div>
-        <div className="absolute top-3 right-3 flex gap-2">
+        <div className="absolute bottom-3 right-3 flex gap-2">
           <div className="relative">
             <button 
               onClick={(e) => {
@@ -145,7 +145,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2.5">
+        <div className="flex flex-col sm:flex-row gap-2.5 mt-auto">
           <button 
             onClick={() => onAction?.(pet, 'view')}
             className="flex-1 bg-accent-teal hover:bg-primary text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200"
