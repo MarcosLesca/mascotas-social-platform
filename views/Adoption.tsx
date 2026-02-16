@@ -37,7 +37,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
       if (cancelled) return;
       setLoading(false);
       if (error) {
-        onToast('No se pudieron cargar las mascotas en adopciÃ³n. Revisa la conexiÃ³n.', 'error');
+        onToast('No se pudieron cargar las mascotas en adopción. Revisa la conexión.', 'error');
         return;
       }
       setPets(data);
@@ -332,7 +332,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             onAction={handlePetAction}
           />
 
-          {/* Modal de publicaciÃ³n */}
+          {/* Modal de publicación */}
           <ReportAdoptionPetModal
             isOpen={showReportModal}
             onClose={handleCloseReportModal}

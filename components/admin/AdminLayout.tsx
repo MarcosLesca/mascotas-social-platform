@@ -32,7 +32,7 @@ const AdminLayout: React.FC = () => {
                 to="/admin/adoption"
                 className="px-3 py-1.5 rounded-lg text-sm font-bold text-accent-teal hover:bg-accent-teal/10 transition-colors"
               >
-                AdopciÃ³n
+                Adopción
               </Link>
               <Link
                 to="/admin/donations"

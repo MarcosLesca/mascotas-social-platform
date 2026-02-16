@@ -58,7 +58,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
     const f = e.target.files?.[0];
     if (!f) return;
     if (!f.type.match(/^image\/(jpeg|png|webp)$/i)) {
-      onError?.('Solo se permiten imÃ¡genes JPEG, PNG o WebP.');
+      onError?.('Solo se permiten imágenes JPEG, PNG o WebP.');
       return;
     }
     if (f.size > MAX_MB * 1024 * 1024) {
@@ -185,8 +185,8 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
           {/* Progress Steps */}
           <div className="flex items-center justify-between">
             {[
-              { step: 1, label: 'InformaciÃ³n de la Mascota' },
-              { step: 2, label: 'Detalles de AdopciÃ³n' },
+              { step: 1, label: 'Información de la Mascota' },
+              { step: 2, label: 'Detalles de Adopción' },
               { step: 3, label: 'Contacto' },
             ].map(({ step, label }) => (
               <div key={step} className="flex items-center flex-1">
@@ -268,7 +268,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   </button>
                 )}
                 <p className="mt-1 text-xs text-accent-teal">
-                  JPEG, PNG o WebP. MÃ¡x. {MAX_MB} MB.
+                  JPEG, PNG o WebP. Máx. {MAX_MB} MB.
                 </p>
               </div>
 
@@ -458,7 +458,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-accent-teal mb-2">TelÃ©fono *</label>
+                  <label className="block text-sm font-bold text-accent-teal mb-2">Teléfono *</label>
                   <input
                     type="tel"
                     required

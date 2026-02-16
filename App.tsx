@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
@@ -125,7 +125,7 @@ const AppContent: React.FC = () => {
         </button>
         <button
           onClick={() => {
-            addToast("FunciÃ³n de reporte prÃ³ximamente", "info");
+            addToast("Función de reporte próximamente", "info");
           }}
           className="flex flex-col items-center justify-center -mt-10 bg-primary text-background-dark size-14 rounded-full shadow-2xl border-4 border-white dark:border-background-dark active:scale-90 transition-transform hover:scale-[1.05]"
         >

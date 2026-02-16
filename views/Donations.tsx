@@ -121,9 +121,9 @@ const Donations: React.FC = () => {
           <p className="text-accent-teal font-medium">Cargando campaÃ±as...</p>
         ) : campaigns.length === 0 ? (
           <div className="rounded-2xl border border-accent-teal/10 bg-white dark:bg-white/5 p-6 sm:p-8 text-center">
-            <h3 className="text-xl font-black">No hay campaÃ±as aprobadas</h3>
+            <h3 className="text-xl font-black">No hay campañas aprobadas</h3>
             <p className="text-sm text-gray-800 mt-2">
-              Las nuevas campaÃ±as aparecerÃ¡n aquÃ­ cuando sean aprobadas.
+              Las nuevas campañas aparecerán aquí cuando sean aprobadas.
             </p>
           </div>
         ) : (

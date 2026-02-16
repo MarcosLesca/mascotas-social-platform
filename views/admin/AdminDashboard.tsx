@@ -44,10 +44,10 @@ const AdminDashboard: React.FC = () => {
             className="bg-white dark:bg-slate-900/80 rounded-2xl border border-accent-teal/10 p-6 shadow-sm hover:border-primary/30 hover:shadow-md transition-all block"
           >
             <div className="flex items-center gap-3 mb-3">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">AdopciÃ³n</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Adopción</h2>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              Publicaciones de adopciÃ³n. AprobÃ¡ o rechazÃ¡ antes de publicar.
+              Publicaciones de adopción. Aprobá o rechazá antes de publicar.
             </p>
             <span className="inline-flex items-center gap-1 text-primary font-bold text-sm mt-2">
               Ir →
