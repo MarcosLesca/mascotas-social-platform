@@ -114,10 +114,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
       {/* Hero Section con GSAP Animation - Full Width */}
       <HeroZoom />
 
-      <div
-        className="relative px-4 md:px-10 lg:px-20 py-12"
-        style={{ marginTop: "200vh" }}
-      >
+      <div className="relative mt-0 px-4 py-10 sm:mt-[200vh] sm:py-12 md:px-10 lg:px-20">
         <div className="max-w-[1440px] mx-auto space-y-8">
           <section className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
             <div>
@@ -126,22 +123,22 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
               </h2>
             </div>
 
-<div className="grid grid-cols-3 gap-2 w-full lg:w-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full lg:w-auto">
               <button
                 onClick={() => setCurrentView(View.LOST_PETS)}
-                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-xs font-black uppercase hover:border-primary"
+                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-[11px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Perdidos
               </button>
               <button
                 onClick={() => setCurrentView(View.ADOPTION)}
-                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-xs font-black uppercase hover:border-primary"
+                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-[11px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Adopcion
               </button>
               <button
                 onClick={() => setCurrentView(View.DONATIONS)}
-                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-xs font-black uppercase hover:border-primary"
+                className="rounded-xl border border-accent-teal/20 px-4 py-3 text-[11px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Donaciones
               </button>
@@ -163,7 +160,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
             </div>
           ) : (
             <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {mixedRecentCards.map((item, index) => {
+              {mixedRecentCards.map((item) => {
                 if (item.kind === "donation") {
                   const campaign = item.campaign;
                   return (
