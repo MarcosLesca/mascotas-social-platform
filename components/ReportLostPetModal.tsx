@@ -157,52 +157,47 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white dark:bg-background-dark rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-1 sm:p-4 bg-black/50 backdrop-blur-sm">
+      <div className="bg-white dark:bg-background-dark rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl">
         {/* Header */}
-        <div className="bg-red-400 text-white p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-black">Reportar Mascota Perdida</h2>
+        <div className="bg-red-400 text-white p-4 sm:p-6">
+          <div className="flex justify-between items-center mb-3 sm:mb-4">
+            <h2 className="text-lg sm:text-2xl font-black">Reportar Mascota Perdida</h2>
             <button 
               onClick={onClose}
-              className="px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-sm font-bold transition-colors"
+              className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors"
             >
               Cerrar
             </button>
           </div>
           
           {/* Progress Steps */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center overflow-x-auto gap-2 sm:gap-4">
             {[
-              { step: 1, label: 'Información de la Mascota' },
-              { step: 2, label: 'Detalles de la Pérdida' },
+              { step: 1, label: 'Información' },
+              { step: 2, label: 'Detalles' },
               { step: 3, label: 'Contacto' }
             ].map(({ step, label }) => (
-              <div key={step} className="flex items-center flex-1">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+              <div key={step} className="flex items-center flex-1 min-w-0 justify-center">
+                <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all ${
                   currentStep >= step 
-                    ? 'bg-white text-red-400' 
-                    : 'bg-white/20 text-white/60'
+                    ? 'bg-black text-white' 
+                    : 'bg-white/30 text-black'
                 }`}>
                   {step}
                 </div>
-                <span className={`ml-2 text-sm font-medium ${
-                  currentStep >= step ? 'text-white' : 'text-white/60'
+                <span className={`ml-1 sm:ml-2 text-[10px] sm:text-sm font-medium truncate ${
+                  currentStep >= step ? 'text-white' : 'text-black'
                 }`}>
                   {label}
                 </span>
-                {step < 3 && (
-                  <div className={`flex-1 h-1 mx-4 transition-all ${
-                    currentStep > step ? 'bg-white' : 'bg-white/20'
-                  }`} />
-                )}
               </div>
             ))}
           </div>
         </div>
 
         {/* Form Content */}
-        <form onSubmit={handleSubmit} className="p-8 pb-24 max-h-[60vh] overflow-y-auto">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-8 pb-24 max-h-[70vh] sm:max-h-[60vh] overflow-y-auto">
           {/* Step 1: Pet Information */}
           {submitError && (
             <div
@@ -499,12 +494,12 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between items-center mt-8 pt-6 border-t border-red-400/10">
+          <div className="flex justify-between items-center mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-red-400/10">
             <button
               type="button"
               onClick={prevStep}
               disabled={currentStep === 1}
-              className={`px-6 py-3 rounded-xl font-bold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-bold transition-all text-sm ${
                 currentStep === 1
                   ? 'text-gray-800/40 cursor-not-allowed'
                   : 'text-gray-800 hover:text-primary'
@@ -518,7 +513,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 type="button"
                 onClick={nextStep}
                 disabled={currentStep === 1 && !canProceedStep1}
-                className="px-8 py-3 bg-red-400 text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-red-400 text-white rounded-lg sm:rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 Siguiente
               </button>
@@ -526,9 +521,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-red-400 text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-red-400 text-white rounded-lg sm:rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
-                {isSubmitting ? 'Publicando...' : 'Publicar Reporte'}
+                {isSubmitting ? 'Publicando...' : 'Publicar'}
               </button>
             )}
           </div>

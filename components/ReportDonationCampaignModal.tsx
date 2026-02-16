@@ -146,13 +146,13 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white dark:bg-background-dark rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-        <div className="bg-sky-500 text-white p-6 flex items-center justify-between">
-          <h2 className="text-2xl font-black">Publicar campana de donacion</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-1 sm:p-4 bg-black/50 backdrop-blur-sm">
+      <div className="bg-white dark:bg-background-dark rounded-2xl sm:rounded-3xl max-w-3xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl">
+        <div className="bg-sky-500 text-white p-4 sm:p-6 flex items-center justify-between">
+          <h2 className="text-lg sm:text-2xl font-black">Publicar campaña</h2>
           <button
             onClick={onClose}
-            className="px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-sm font-bold transition-colors"
+            className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors"
           >
             Cerrar
           </button>
@@ -161,7 +161,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
         <form
           onSubmit={handleSubmit}
           onKeyDown={handleFormKeyDown}
-          className="p-6 max-h-[75vh] overflow-y-auto space-y-5"
+          className="p-4 sm:p-6 max-h-[80vh] sm:max-h-[75vh] overflow-y-auto space-y-4 sm:space-y-5 mb-8 sm:mb-4"
         >
           {submitError && (
             <div
@@ -367,20 +367,20 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             <span className="text-sm font-medium">Marcar como urgente</span>
           </label>
 
-          <div className="flex justify-end gap-3 pt-2">
+          <div className="flex justify-end gap-2 sm:gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 rounded-xl border border-sky-500/20 text-gray-900 font-bold hover:bg-sky-500/10 transition-colors"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-sky-500/20 text-gray-900 font-bold hover:bg-sky-500/10 transition-colors text-sm"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-3 rounded-xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-colors disabled:opacity-50"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-colors disabled:opacity-50 text-sm"
             >
-              {isSubmitting ? 'Enviando...' : 'Enviar para revisión'}
+              {isSubmitting ? 'Enviando...' : 'Enviar'}
             </button>
           </div>
         </form>
