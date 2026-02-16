@@ -86,7 +86,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
                 Urgente
               </span>
             )}
-            <span className="bg-primary text-black text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
+            <span className="bg-sky-500 text-white text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
               Campaña Solidaria
             </span>
              <span className="bg-black/60 backdrop-blur-md text-white text-xs font-black px-3 py-1 rounded-full uppercase">
@@ -110,9 +110,9 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
               </div>
 
                {/* Información Bancaria */}
-              <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/10 shadow-sm">
+                <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-sky-500/10 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="material-symbols-outlined text-2xl text-primary">account_balance</span>
+                  <span className="material-symbols-outlined text-2xl text-sky-500">account_balance</span>
                   <h3 className="text-xl font-bold text-black">Datos Bancarios</h3>
                 </div>
 
@@ -163,7 +163,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
 
               {/* Información de Contacto */}
               {(hasWhatsapp || hasEmail) && (
-                <div className="bg-accent-teal/5 rounded-2xl p-6">
+                <div className="bg-sky-500/5 rounded-2xl p-6">
                   <h3 className="text-xl font-bold mb-4">Información de Contacto</h3>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
@@ -178,7 +178,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
                             href={waHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium text-black hover:text-primary transition-colors"
+                            className="font-medium text-black hover:text-sky-500 transition-colors"
                           >
                             {campaign.whatsappNumber}
                           </a>
@@ -193,7 +193,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
                         {mailHref ? (
                           <a
                             href={mailHref}
-                            className="font-medium text-black hover:text-primary transition-colors"
+                            className="font-medium text-black hover:text-sky-500 transition-colors"
                           >
                             {campaign.contactEmail}
                           </a>
@@ -234,7 +234,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
                 {mailHref && (
                   <a
                     href={mailHref}
-                    className="w-full bg-white dark:bg-white/5 border-2 border-primary/20 hover:border-primary text-primary font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all hover:bg-primary/5"
+                    className="w-full bg-white dark:bg-white/5 border-2 border-sky-500/20 hover:border-sky-500 text-sky-500 font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all hover:bg-sky-500/5"
                   >
                      <span className="material-symbols-outlined text-xl">mail</span>
                     Enviar Email
@@ -243,7 +243,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
               </div>
 
               {/* Información adicional */}
-              <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-accent-teal/5">
+              <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-sky-500/5">
                 <h4 className="font-bold mb-4 text-lg">Detalles de la Campaña</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-white/5">

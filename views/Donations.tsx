@@ -284,7 +284,7 @@ const Donations: React.FC = () => {
                   </div>
 
                   {/* CTA */}
-                  <button className="w-full bg-primary hover:bg-primary/90 text-background-dark text-sm sm:text-base font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 group-hover:scale-105">
+                  <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-sm sm:text-base font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 group-hover:scale-105">
                     <span className="material-symbols-outlined text-lg">info</span>
                     Ver Información para Donar
                   </button>

@@ -60,7 +60,7 @@ const LostPets: React.FC = () => {
                   <h3 className="text-lg font-bold">{pet.name}</h3>
                   <p className="text-sm text-gray-600">{pet.breed}</p>
                 </div>
-                <span className="bg-urgent-red text-white text-xs px-2 py-1 rounded-full font-bold">
+                <span className="bg-red-400 text-white text-xs px-2 py-1 rounded-full font-bold">
                   URGENTE
                 </span>
               </div>
@@ -81,7 +81,7 @@ const LostPets: React.FC = () => {
                       }
                     });
                   }}
-                  className="flex-1 bg-urgent-red text-white py-3 rounded-xl font-bold text-center transition-colors"
+                  className="flex-1 bg-red-400 text-white py-3 rounded-xl font-bold text-center transition-colors"
                 >
                   🐾 He visto a {pet.name}
                 </button>

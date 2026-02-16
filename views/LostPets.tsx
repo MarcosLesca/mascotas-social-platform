@@ -287,7 +287,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                       }}
                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                         filters.size.includes(s === 'Pequeño' ? 'small' : s === 'Mediano' ? 'medium' : 'large')
-                          ? 'bg-urgent-red text-white'
+                          ? 'bg-red-400 text-white'
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
@@ -314,7 +314,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                       }}
                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                         filters.gender.includes(g === 'Macho' ? 'male' : 'female')
-                          ? 'bg-urgent-red text-white'
+                          ? 'bg-red-400 text-white'
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
@@ -354,11 +354,11 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
               {/* Report Card - First Position */}
-              <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[300px] sm:min-h-[380px]"
+              <div className="bg-red-400/5 dark:bg-red-400/10 border-4 border-dashed border-red-400/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-red-400/10 transition-all min-h-[300px] sm:min-h-[380px]"
                    onClick={handleOpenReportModal}>
                 <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Has perdido a alguien?</h3>
                 <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
-                <button className="bg-urgent-red text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all"
+                <button className="bg-red-400 text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleOpenReportModal();

@@ -33,7 +33,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
   const [showShareMenu, setShowShareMenu] = useState(false);
   const isLost = pet.status === 'lost';
   const urgentBadgeClass =
-    'bg-urgent-red text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-lg';
+    'bg-red-400 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-lg';
   const topBadgeClass =
     'px-2.5 sm:px-3 py-1 rounded-full bg-white text-slate-800 text-[11px] sm:text-xs font-bold';
   const hasPhone = !!pet.contactPhone?.trim();
@@ -148,7 +148,11 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         <div className="flex flex-col sm:flex-row gap-2.5 mt-auto">
           <button 
             onClick={() => onAction?.(pet, 'view')}
-            className="flex-1 bg-accent-teal hover:bg-primary text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200"
+            className={`flex-1 text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
+              isLost 
+                ? 'bg-red-400 hover:bg-red-500' 
+                : 'bg-accent-teal hover:bg-primary'
+            }`}
           >
             Ver Detalles
           </button>
@@ -160,7 +164,11 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                 onAction?.(pet, 'seen');
               }
             }}
-            className="flex-1 bg-[#22c55e] hover:bg-[#16a34a] text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200"
+            className={`flex-1 text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
+              isLost 
+                ? 'bg-red-500 hover:bg-red-600' 
+                : 'bg-[#22c55e] hover:bg-[#16a34a]'
+            }`}
           >
             {isLost ? 'La vi' : 'Adoptar'}
           </button>

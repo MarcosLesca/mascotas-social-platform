@@ -160,7 +160,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white dark:bg-background-dark rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
         {/* Header */}
-        <div className="bg-urgent-red text-white p-6">
+        <div className="bg-red-400 text-white p-6">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-black">Reportar Mascota Perdida</h2>
             <button 
@@ -181,7 +181,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               <div key={step} className="flex items-center flex-1">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                   currentStep >= step 
-                    ? 'bg-white text-urgent-red' 
+                    ? 'bg-white text-red-400' 
                     : 'bg-white/20 text-white/60'
                 }`}>
                   {step}
@@ -207,7 +207,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
           {submitError && (
             <div
               role="alert"
-              className="flex items-center gap-2 p-3 rounded-xl bg-urgent-red/10 dark:bg-urgent-red/20 border border-urgent-red/30 text-urgent-red text-sm"
+              className="flex items-center gap-2 p-3 rounded-xl bg-red-400/10 dark:bg-red-400/20 border border-red-400/30 text-red-400 text-sm"
             >
               <span>{submitError}</span>
             </div>
@@ -232,12 +232,12 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     <img
                       src={imagePreview}
                       alt="Vista previa"
-                      className="w-40 h-40 object-cover rounded-xl border-2 border-urgent-red/20"
+                      className="w-40 h-40 object-cover rounded-xl border-2 border-red-400/20"
                     />
                     <button
                       type="button"
                       onClick={clearImage}
-                      className="absolute -top-2 -right-2 px-2 py-1 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90 text-xs font-bold"
+                      className="absolute -top-2 -right-2 px-2 py-1 bg-red-400 text-white rounded-full hover:bg-red-400/90 text-xs font-bold"
                     >
                       X
                     </button>
@@ -246,7 +246,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-urgent-red/30 hover:border-urgent-red hover:bg-urgent-red/5 transition-colors text-sm font-bold text-gray-800"
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-red-400/30 hover:border-red-400 hover:bg-red-400/5 transition-colors text-sm font-bold text-gray-800"
                   >
                     Subir foto
                   </button>
@@ -263,7 +263,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     required
                     value={formData.petName}
                     onChange={(e) => handleInputChange('petName', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                     placeholder="Ej: Buddy"
                   />
                 </div>
@@ -274,7 +274,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     id="report-species"
                     value={formData.species}
                     onChange={(e) => handleInputChange('species', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   >
                     <option value="dog">Perro</option>
                     <option value="cat">Gato</option>
@@ -290,7 +290,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     required
                     value={formData.breed}
                     onChange={(e) => handleInputChange('breed', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                     placeholder="Ej: Golden Retriever"
                   />
                 </div>
@@ -301,7 +301,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     id="report-gender"
                     value={formData.gender}
                     onChange={(e) => handleInputChange('gender', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   >
                     <option value="male">Macho</option>
                     <option value="female">Hembra</option>
@@ -314,7 +314,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     type="text"
                     value={formData.age}
                     onChange={(e) => handleInputChange('age', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                     placeholder="Ej: 3 años"
                   />
                 </div>
@@ -325,7 +325,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     id="report-size"
                     value={formData.size}
                     onChange={(e) => handleInputChange('size', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   >
                     <option value="small">Pequeño</option>
                     <option value="medium">Mediano</option>
@@ -341,7 +341,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                   required
                   value={formData.color}
                   onChange={(e) => handleInputChange('color', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   placeholder="Ej: Dorado con manchas blancas"
                 />
               </div>
@@ -351,7 +351,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 <textarea
                   value={formData.distinctiveFeatures}
                   onChange={(e) => handleInputChange('distinctiveFeatures', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   rows={3}
                   placeholder="Ej: Cicatriz en la oreja izquierda, collar rojo con placa..."
                 />
@@ -374,7 +374,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     max={new Date().toISOString().split('T')[0]}
                     value={formData.lastSeenDate}
                     onChange={(e) => handleInputChange('lastSeenDate', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   />
                 </div>
 
@@ -386,7 +386,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     required
                     value={formData.lastSeenLocation}
                     onChange={(e) => handleInputChange('lastSeenLocation', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                     placeholder="Ej: Parque Oakwood, entrada Calle 5"
                   />
                 </div>
@@ -398,7 +398,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                   id="report-additionalInfo"
                   value={formData.additionalInfo}
                   onChange={(e) => handleInputChange('additionalInfo', e.target.value)}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   rows={4}
                   placeholder="Circunstancias de la pérdida, comportamiento, salud, etc..."
                 />
@@ -410,7 +410,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     type="checkbox"
                     checked={formData.urgency}
                     onChange={(e) => handleInputChange('urgency', e.target.checked)}
-                    className="rounded text-primary focus:ring-urgent-red border-urgent-red/20"
+                    className="rounded text-primary focus:ring-red-400 border-red-400/20"
                   />
                   <span className="font-medium">Marcar como búsqueda urgente</span>
                 </label>
@@ -420,7 +420,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     type="checkbox"
                     checked={formData.hasReward}
                     onChange={(e) => handleInputChange('hasReward', e.target.checked)}
-                    className="rounded text-primary focus:ring-urgent-red border-urgent-red/20"
+                    className="rounded text-primary focus:ring-red-400 border-red-400/20"
                   />
                   <span className="font-medium">Ofrecer recompensa</span>
                 </label>
@@ -432,7 +432,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                       type="text"
                       value={formData.rewardAmount}
                       onChange={(e) => handleInputChange('rewardAmount', e.target.value)}
-                      className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                      className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                       placeholder="Ej: $5000"
                     />
                   </div>
@@ -454,7 +454,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     required
                     value={formData.contactName}
                     onChange={(e) => handleInputChange('contactName', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                     placeholder="Tu nombre completo"
                   />
                 </div>
@@ -466,7 +466,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     required
                     value={formData.contactPhone}
                     onChange={(e) => handleInputChange('contactPhone', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                     placeholder="Ej: +54 9 11 2345-6789"
                   />
                 </div>
@@ -477,7 +477,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     type="email"
                     value={formData.contactEmail}
                     onChange={(e) => handleInputChange('contactEmail', e.target.value)}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-urgent-red/10 rounded-xl focus:ring-2 focus:ring-urgent-red"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                     placeholder="tu@email.com"
                   />
                 </div>
@@ -499,7 +499,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between items-center mt-8 pt-6 border-t border-urgent-red/10">
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-red-400/10">
             <button
               type="button"
               onClick={prevStep}
@@ -518,7 +518,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 type="button"
                 onClick={nextStep}
                 disabled={currentStep === 1 && !canProceedStep1}
-                className="px-8 py-3 bg-urgent-red text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-3 bg-red-400 text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Siguiente
               </button>
@@ -526,7 +526,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-urgent-red text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-3 bg-red-400 text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Publicando...' : 'Publicar Reporte'}
               </button>

@@ -70,7 +70,7 @@ const Home: React.FC = () => {
                       <p className="text-sm text-gray-600">{pet.breed}</p>
                     </div>
                     <span className={`text-xs px-2 py-1 rounded-full font-bold ${
-                        pet.status === 'lost' ? 'bg-urgent-red text-white' :
+                        pet.status === 'lost' ? 'bg-red-400 text-white' :
                         pet.status === 'found' ? 'bg-green-500 text-white' :
                         'bg-blue-500 text-white'
                       }`}>
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
                         }
                       }}
                       className={`flex-1 py-2 rounded-lg font-bold text-center transition-colors text-sm ${
-                        pet.status === 'lost' ? 'bg-urgent-red text-white' : 
+                        pet.status === 'lost' ? 'bg-red-400 text-white' : 
                         pet.status === 'found' ? 'bg-green-500 text-white' : 
                         'bg-blue-500 text-white'
                       }`}
