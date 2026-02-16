@@ -24,6 +24,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
     species: [],
     age: [],
@@ -185,7 +186,16 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
         <aside className="col-span-1 xl:col-span-3">
-          <div className="bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-red-400/5 xl:sticky xl:top-24">
+          {/* Botón para mostrar filtros en móvil */}
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="xl:hidden w-full bg-white dark:bg-white/5 p-4 rounded-2xl border border-red-400/5 flex items-center justify-between"
+          >
+            <span className="text-lg font-bold">Filtros</span>
+            <span className="material-symbols-outlined">{showFilters ? 'expand_less' : 'expand_more'}</span>
+          </button>
+
+          <div className={`bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-red-400/5 xl:sticky xl:top-24 ${showFilters ? 'block' : 'hidden'} xl:block`}>
             <div className="flex justify-between items-center mb-6 sm:mb-8">
               <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
