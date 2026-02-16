@@ -233,18 +233,18 @@ const Donations: React.FC = () => {
               <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando campañas...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-8">
               {/* Report Campaign Card - First Position */}
               <div
-                className="bg-sky-500/5 dark:bg-sky-500/10 border-4 border-dashed border-sky-500/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-sky-500/10 transition-all min-h-[300px] sm:min-h-[380px]"
+                className="col-span-2 sm:col-span-1 bg-sky-500/5 dark:bg-sky-500/10 border-4 border-dashed border-sky-500/20 rounded-2xl flex flex-col items-center justify-center p-4 sm:p-8 text-center group cursor-pointer hover:bg-sky-500/10 transition-all min-h-[180px] sm:min-h-[380px]"
                 onClick={() => setShowReportModal(true)}
               >
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Necesitás ayuda para una mascota?</h3>
-                <p className="text-sm text-gray-900 mb-6 sm:mb-8 max-w-[220px]">
+                <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800">¿Necesitás ayuda para una mascota?</h3>
+                <p className="text-xs sm:text-sm text-gray-900 mb-4 sm:mb-8 max-w-[180px] sm:max-w-[220px]">
                   Creá una publicación y permití que la comunidad colabore.
                 </p>
                 <button
-                  className="bg-sky-500 text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-sky-500/30 transition-all"
+                  className="bg-sky-500 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-sky-500/30 transition-all text-xs sm:text-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowReportModal(true);
@@ -261,53 +261,53 @@ const Donations: React.FC = () => {
                   className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-sky-500/10 hover:shadow-xl transition-all duration-300 card-hover flex flex-col"
                 >
                   {/* Image */}
-                  <div className="relative aspect-square overflow-hidden">
+                  <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
                     <img
                       src={campaign.image}
                       alt={campaign.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute top-3 left-3 flex gap-2">
+                    <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex gap-1.5 sm:gap-2">
                       {campaign.urgency && (
-                        <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                        <span className="bg-red-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-lg">
                           URGENTE
                         </span>
                       )}
                     </div>
-                    <div className="absolute bottom-3 right-3">
-                      <div className="bg-white text-slate-800 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                        <span className="material-symbols-outlined text-xs">pets</span>
+                    <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3">
+                      <div className="bg-white text-slate-800 text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full flex items-center gap-1 shadow-sm">
+                        <span className="material-symbols-outlined text-[10px] sm:text-xs">pets</span>
                         {campaign.petName}
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="p-4 sm:p-5 flex flex-col flex-1">
-                    <h3 className="text-lg sm:text-xl leading-tight font-bold group-hover:text-sky-500 transition-colors mb-2 line-clamp-2">
+                  <div className="p-3 sm:p-5 flex flex-col flex-1">
+                    <h3 className="text-sm sm:text-xl leading-tight font-bold group-hover:text-sky-500 transition-colors mb-1 sm:mb-2 line-clamp-2">
                       {campaign.title}
                     </h3>
-                    <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate mb-3">
+                    <p className="text-[10px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate mb-2 sm:mb-3">
                       {/* Using goal as secondary info akin to breed/gender if needed, else description */}
                       {campaign.type === 'medical' ? 'Médica' : campaign.type === 'food' ? 'Alimento' : campaign.type === 'shelter' ? 'Refugio' : 'Campaña'}
                     </p>
 
-                    <p className="text-sm text-black mb-4 line-clamp-2 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-black mb-2 sm:mb-4 line-clamp-2 leading-relaxed">
                       {campaign.description}
                     </p>
 
-                    <div className="mt-auto space-y-3">
-                      <div className="bg-sky-50 rounded-xl p-3 flex justify-between items-center">
-                        <span className="text-xs font-bold text-sky-700">Meta</span>
-                        <span className="text-base font-black text-sky-600">${campaign.goal.toLocaleString("es-AR")}</span>
+                    <div className="mt-auto space-y-2 sm:space-y-3">
+                      <div className="bg-sky-50 rounded-lg sm:rounded-xl p-2 sm:p-3 flex justify-between items-center">
+                        <span className="text-[10px] sm:text-xs font-bold text-sky-700">Meta</span>
+                        <span className="text-sm sm:text-base font-black text-sky-600">${campaign.goal.toLocaleString("es-AR")}</span>
                       </div>
 
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <span className="material-symbols-outlined text-sm">event</span>
+                      <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-gray-500">
+                        <span className="material-symbols-outlined text-xs sm:text-sm">event</span>
                         <span>Hasta: {campaign.deadline}</span>
                       </div>
 
-                      <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold py-3 rounded-full transition-all flex items-center justify-center gap-2">
+                      <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-xs sm:text-sm font-bold py-2 sm:py-3 rounded-full transition-all flex items-center justify-center gap-2">
                         Ver Detalles
                       </button>
                     </div>

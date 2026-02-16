@@ -75,7 +75,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
 
   return (
     <div className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 card-hover stagger-item flex flex-col">
-      <div className="relative aspect-square overflow-hidden">
+      <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
         <img
           src={pet.image}
           alt={pet.name}
@@ -127,30 +127,30 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
         </div>
       </div>
 
-      <div className="p-4 sm:p-5 flex flex-col flex-1">
+      <div className="p-3 sm:p-5 flex flex-col flex-1">
         <div
-          className="flex justify-between items-start mb-2 cursor-pointer"
+          className="flex justify-between items-start mb-1 sm:mb-2 cursor-pointer"
           onClick={() => onViewDetails?.(pet)}
         >
           <div>
-            <h3 className={`text-lg sm:text-xl leading-tight font-bold transition-colors ${
+            <h3 className={`text-base sm:text-xl leading-tight font-bold transition-colors ${
               isLost ? 'group-hover:text-red-500' : 'group-hover:text-primary'
             }`}>{pet.name}</h3>
-            <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[220px] sm:max-w-none">{pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
+            <p className="text-[10px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[180px] sm:max-w-none">{pet.gender === 'male' ? 'Macho' : 'Hembra'}</p>
           </div>
         </div>
 
-        <div className="flex items-start gap-2 mb-4 sm:mb-6">
+        <div className="flex items-start gap-2 mb-2 sm:mb-6">
           <div>
-            <p className="text-sm font-bold leading-snug">{isLost ? `Visto: ${pet.location}` : pet.location}</p>
-            {pet.distance && <p className="text-xs text-gray-500">{pet.distance} de distancia</p>}
+            <p className="text-xs sm:text-sm font-bold leading-snug">{isLost ? `Visto: ${pet.location}` : pet.location}</p>
+            {pet.distance && <p className="text-[10px] sm:text-xs text-gray-500">{pet.distance} de distancia</p>}
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2.5 mt-auto">
+        <div className="flex flex-col sm:flex-row gap-2 mt-auto">
           <button
             onClick={() => onAction?.(pet, 'view')}
-            className={`flex-1 text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
+            className={`flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
               isLost
                 ? 'bg-red-400 hover:bg-red-500'
                 : 'bg-accent-teal hover:bg-primary'
@@ -166,7 +166,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                 onAction?.(pet, 'seen');
               }
             }}
-            className={`flex-1 text-white text-sm font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
+            className={`flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
               isLost
                 ? 'bg-red-500 hover:bg-red-600'
                 : 'bg-[#22c55e] hover:bg-[#16a34a]'

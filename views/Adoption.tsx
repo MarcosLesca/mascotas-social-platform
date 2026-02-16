@@ -294,18 +294,18 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando mascotas en adopción...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-8">
               {/* Publicar Card - First Position */}
               <div
-                className="bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[300px] sm:min-h-[380px]"
+                className="col-span-2 sm:col-span-1 bg-primary/5 dark:bg-primary/10 border-4 border-dashed border-primary/20 rounded-2xl flex flex-col items-center justify-center p-4 sm:p-8 text-center group cursor-pointer hover:bg-primary/10 transition-all min-h-[180px] sm:min-h-[380px]"
                 onClick={handleOpenReportModal}
               >
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Tenés una mascota que necesita un hogar?</h3>
-                <p className="text-sm text-gray-900 mb-6 sm:mb-8 max-w-[220px]">
+                <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800">¿Tenés una mascota que necesita un hogar?</h3>
+                <p className="text-xs sm:text-sm text-gray-900 mb-4 sm:mb-8 max-w-[180px] sm:max-w-[220px]">
                   Publicá su información y ayudá a que encuentre una familia responsable.
                 </p>
                 <button
-                  className="bg-primary text-background-dark w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all"
+                  className="bg-primary text-background-dark w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all text-xs sm:text-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleOpenReportModal();
