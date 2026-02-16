@@ -51,7 +51,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     // Búsqueda por texto
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter(pet => 
+      filtered = filtered.filter(pet =>
         pet.name.toLowerCase().includes(searchLower) ||
         pet.breed.toLowerCase().includes(searchLower) ||
         pet.location.toLowerCase().includes(searchLower)
@@ -189,7 +189,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
             <div className="flex justify-between items-center mb-6 sm:mb-8">
               <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
-                <button 
+                <button
                   onClick={clearFilters}
                   className="text-[11px] sm:text-xs font-bold text-primary hover:underline"
                 >
@@ -201,8 +201,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
             {/* Búsqueda */}
             <div className="mb-6 sm:mb-8">
               <div className="relative">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="Buscar por nombre, raza o zona..."
                   className="w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-white/10 border border-accent-teal/10 rounded-xl focus:ring-2 focus:ring-primary text-sm"
                   value={filters.searchTerm}
@@ -210,18 +210,18 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                 />
               </div>
             </div>
-            
+
             <div className="space-y-6 sm:space-y-8">
               <div>
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
                   {['Perros', 'Gatos', 'Aves', 'Otros'].map(s => (
-                    <button 
-                      key={s} 
+                    <button
+                      key={s}
                       onClick={() => toggleSpecies(s)}
                       className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
-                        filters.species.includes(s) 
-                          ? 'bg-primary text-background-dark' 
+                        filters.species.includes(s)
+                          ? 'bg-primary text-background-dark'
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
                       }`}
                     >
@@ -236,11 +236,11 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                 <div className="space-y-3">
                   {['Cachorro', 'Joven', 'Adulto', 'Senior'].map(age => (
                     <label key={age} className="flex items-center gap-3 cursor-pointer group">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         checked={filters.age.includes(age)}
                         onChange={() => toggleAge(age)}
-                        className="rounded text-primary focus:ring-primary border-accent-teal/20" 
+                        className="rounded text-primary focus:ring-primary border-accent-teal/20"
                       />
                       <span className="text-sm font-medium group-hover:text-primary transition-colors">{age}</span>
                     </label>
@@ -278,20 +278,20 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredPets.map(pet => (
-                <PetCard 
-                  key={pet.id} 
-                  pet={pet} 
+                <PetCard
+                  key={pet.id}
+                  pet={pet}
                   onAction={handlePetAction}
                   onViewDetails={handleViewDetails}
                 />
               ))}
-              
+
               {/* Report Placeholder Card */}
               <div className="bg-urgent-red/5 dark:bg-urgent-red/10 border-4 border-dashed border-urgent-red/30 rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 text-center group cursor-pointer hover:bg-urgent-red/10 transition-all min-h-[320px] sm:min-h-[360px] lg:min-h-[400px]"
                    onClick={handleOpenReportModal}>
                 <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">¿Has perdido a alguien?</h3>
                 <p className="text-sm text-gray-600 mb-6 sm:mb-8 max-w-[220px]">Reporta ahora y activa la red de búsqueda en tu zona.</p>
-                <button className="bg-urgent-red text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all" 
+                <button className="bg-urgent-red text-white w-full md:w-auto px-6 sm:px-10 py-3 rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleOpenReportModal();
@@ -322,6 +322,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         isOpen={showDetailModal}
         onClose={handleCloseDetailModal}
         onAction={handlePetAction}
+        variant="fullscreen"
       />
 
       {/* Modal de reporte */}
@@ -336,6 +337,3 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 };
 
 export default LostPets;
-
-
-

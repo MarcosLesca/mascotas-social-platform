@@ -24,9 +24,10 @@ interface PetDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAction?: (pet: Pet, action: string) => void;
+  variant?: 'modal' | 'fullscreen';
 }
 
-const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, onAction }) => {
+const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, onAction, variant = 'modal' }) => {
   if (!isOpen || !pet) return null;
 
   const isLost = pet.status === 'lost';
@@ -50,27 +51,39 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
     other: 'Otro'
   }[pet.species] || pet.species;
 
+  const isFullscreen = variant === 'fullscreen';
+
+  const containerClasses = isFullscreen
+    ? "fixed inset-0 z-50 bg-white dark:bg-background-dark overflow-y-auto"
+    : "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm";
+
+  const contentClasses = isFullscreen
+    ? "w-full min-h-screen bg-white dark:bg-background-dark"
+    : "bg-white dark:bg-background-dark rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl";
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
-      <div 
-        className="bg-white dark:bg-background-dark rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+    <div className={containerClasses} onClick={!isFullscreen ? onClose : undefined}>
+      <div
+        className={contentClasses}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header con imagen */}
         <div className="relative aspect-[21/9] overflow-hidden">
-          <img 
-            src={pet.image} 
-            alt={pet.name} 
+          <img
+            src={pet.image}
+            alt={pet.name}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-          
+
           {/* Botón cerrar */}
-          <button 
+          {/* Botón cerrar / volver */}
+          <button
             onClick={onClose}
-            className="absolute top-4 right-4 px-3 py-1 bg-white/80 hover:bg-white text-slate-800 rounded-full text-xs font-bold transition-colors"
+            className={`absolute top-4 ${isFullscreen ? 'left-4' : 'right-4'} z-10 px-4 py-2 bg-white/90 hover:bg-white text-slate-900 rounded-full text-sm font-black transition-all shadow-lg flex items-center gap-2`}
           >
-            Cerrar
+            {isFullscreen && <span className="material-symbols-outlined text-lg">arrow_back</span>}
+            {isFullscreen ? 'Volver' : 'Cerrar'}
           </button>
 
           {/* Badges */}
@@ -92,7 +105,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
         </div>
 
         {/* Contenido */}
-        <div className="p-8 max-h-[50vh] overflow-y-auto">
+        <div className={`p-6 sm:p-8 ${!isFullscreen ? 'max-h-[50vh] overflow-y-auto' : ''}`}>
           <h2 className="text-2xl font-black mb-6">{pet.name}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Información principal */}
@@ -195,7 +208,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({ pet, isOpen, onClose, o
             <div className="space-y-6">
               {/* Acciones principales */}
               <div className="space-y-3">
-                <button 
+                <button
                   onClick={() => {
                     if (waHref) {
                       window.open(waHref, '_blank');
