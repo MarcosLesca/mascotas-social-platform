@@ -16,6 +16,16 @@ const AppContent: React.FC = () => {
   const { currentView, setCurrentView, toasts, removeToast, addToast } =
     useApp();
 
+  // Scroll to top when view changes (mobile only)
+  useEffect(() => {
+    const isMobile = window.innerWidth < 640;
+    if (isMobile) {
+      setTimeout(() => {
+        document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    }
+  }, [currentView]);
+
   // Initialize animations on mount
   useEffect(() => {
     // Add stagger animation to cards

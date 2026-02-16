@@ -127,19 +127,28 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
             <div className="grid grid-cols-3 sm:grid-cols-3 gap-1.5 sm:gap-2 w-full lg:w-auto">
               <button
-                onClick={() => setCurrentView(View.LOST_PETS)}
+                onClick={() => {
+                  setCurrentView(View.LOST_PETS);
+                  setTimeout(() => document.documentElement.scrollTo(0, 0), 50);
+                }}
                 className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Perdidos
               </button>
               <button
-                onClick={() => setCurrentView(View.ADOPTION)}
+                onClick={() => {
+                  setCurrentView(View.ADOPTION);
+                  setTimeout(() => document.documentElement.scrollTo(0, 0), 50);
+                }}
                 className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Adopcion
               </button>
               <button
-                onClick={() => setCurrentView(View.DONATIONS)}
+                onClick={() => {
+                  setCurrentView(View.DONATIONS);
+                  setTimeout(() => document.documentElement.scrollTo(0, 0), 50);
+                }}
                 className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
               >
                 Donaciones
