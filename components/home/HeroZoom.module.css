@@ -1,4 +1,4 @@
-﻿/* HeroZoom.module.css */
+/* HeroZoom.module.css */
 .scrollContainer {
   height: 100vh;
   /* Solo una pantalla de alto */
@@ -329,17 +329,16 @@
 
 /* Mobile: < 640px - ajustado y mejorado */
 @media (max-width: 639px) {
-  /* Dar mÃ¡s altura para que la animaciÃ³n se aprecie */
+  /* En mobile, comportamiento normal sin fixed para que se pueda hacer scroll */
   .scrollContainer {
-    height: 200vh;
-    /* El doble para dar espacio al scroll */
+    height: 100vh;
+    position: relative;
   }
 
   .zoomContainer {
-    position: fixed;
-    /* Fijar el contenedor */
-    top: 0;
-    left: 0;
+    position: relative;
+    /* top: 0;
+    left: 0; */
     height: 100vh;
   }
 
