@@ -1,17 +1,36 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SanJustoMap: React.FC = () => {
   const mapFrameRef = useRef<HTMLIFrameElement>(null);
+  const [zoom, setZoom] = useState(0.012);
+  const [centerOffset, setCenterOffset] = useState(0.005);
 
   // Coordenadas de San Justo, Santa Fe, Argentina
   const lat = -30.7872;
   const lng = -60.5838;
 
-  // URL del mapa - centro desplazado a la izquierda para que San Justo aparezca a la derecha
-  const centerLng = lng - 0.005;
-  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${centerLng - 0.012}%2C${lat - 0.012}%2C${centerLng + 0.012}%2C${lat + 0.012}&layer=mapnik`;
+  useEffect(() => {
+    // Detectar tamaño de pantalla
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setZoom(0.015); // Menos zoom (más cerca) en móvil
+        setCenterOffset(0.01); // Un poco a la izquierda en móvil
+      } else {
+        setZoom(0.012); // Normal en PC
+        setCenterOffset(0.005); // Normal en PC
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // URL del mapa - centro desplazado para que San Justo aparezca en la posición correcta
+  const centerLng = lng - centerOffset;
+  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${centerLng - zoom}%2C${lat - zoom}%2C${centerLng + zoom}%2C${lat + zoom}&layer=mapnik`;
 
   useEffect(() => {
     // Actualizar el iframe cuando cargue
