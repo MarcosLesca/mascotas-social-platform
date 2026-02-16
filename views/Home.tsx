@@ -118,42 +118,10 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
       <div className="relative mt-[100vh] sm:mt-0 px-4 py-10 sm:py-12 md:px-10 lg:px-20 lg:mt-[200vh]">
         <div className="max-w-[1440px] mx-auto space-y-8">
-          <section className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-            <div>
-              <h2 className="text-2xl md:text-5xl font-black leading-tight">
-                Publicaciones recientes:
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-3 sm:grid-cols-3 gap-1.5 sm:gap-2 w-full lg:w-auto">
-              <button
-                onClick={() => {
-                  setCurrentView(View.LOST_PETS);
-                  setTimeout(() => document.documentElement.scrollTo(0, 0), 50);
-                }}
-                className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
-              >
-                Perdidos
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentView(View.ADOPTION);
-                  setTimeout(() => document.documentElement.scrollTo(0, 0), 50);
-                }}
-                className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
-              >
-                Adopcion
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentView(View.DONATIONS);
-                  setTimeout(() => document.documentElement.scrollTo(0, 0), 50);
-                }}
-                className="rounded-lg sm:rounded-xl border border-accent-teal/20 px-2 py-1.5 sm:px-4 sm:py-3 text-[9px] sm:text-xs font-black uppercase hover:border-primary"
-              >
-                Donaciones
-              </button>
-            </div>
+          <section>
+            <h2 className="text-2xl md:text-5xl font-black leading-tight">
+              Publicaciones recientes:
+            </h2>
           </section>
 
           {loading && mixedRecentCards.length === 0 ? (
