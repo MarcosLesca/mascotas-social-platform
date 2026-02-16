@@ -165,12 +165,6 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                             </span>
                           )}
                         </div>
-                        <div className="absolute bottom-2 right-2">
-                          <div className="bg-white text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
-                            <span className="material-symbols-outlined text-[10px]">pets</span>
-                            {campaign.petName}
-                          </div>
-                        </div>
                       </div>
 
                       <div className="p-3 sm:p-4 flex flex-col flex-1">

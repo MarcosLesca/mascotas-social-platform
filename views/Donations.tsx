@@ -274,12 +274,6 @@ const Donations: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3">
-                      <div className="bg-white text-slate-800 text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full flex items-center gap-1 shadow-sm">
-                        <span className="material-symbols-outlined text-[10px] sm:text-xs">pets</span>
-                        {campaign.petName}
-                      </div>
-                    </div>
                   </div>
 
                   {/* Content */}
