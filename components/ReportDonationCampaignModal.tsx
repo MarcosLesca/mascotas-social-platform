@@ -187,7 +187,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 <img
                   src={imagePreview}
                   alt="Vista previa"
-                  className="w-44 h-44 object-cover rounded-xl border-2 border-accent-teal/20"
+                  className="w-44 h-44 object-cover rounded-xl border-2 border-sky-500/20"
                 />
                 <button
                   type="button"
@@ -201,7 +201,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="flex items-center justify-center w-44 h-44 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-gray-900"
+                className="flex items-center justify-center w-44 h-44 rounded-xl border-2 border-dashed border-sky-500/30 hover:border-sky-500 hover:bg-sky-500/5 transition-colors text-sm font-bold text-gray-900"
               >
                 Subir imagen
               </button>
@@ -217,7 +217,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.title}
                 onChange={e => handleInputChange('title', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
                 placeholder="Ej: Cirugia para Max"
               />
             </div>
@@ -229,7 +229,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.petName}
                 onChange={e => handleInputChange('petName', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
                 placeholder="Ej: Max"
               />
             </div>
@@ -243,7 +243,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.goal}
                 onChange={e => handleInputChange('goal', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
                 placeholder="Ej: 200000"
               />
             </div>
@@ -253,7 +253,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
               <select
                 value={formData.type}
                 onChange={e => handleInputChange('type', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               >
                 <option value="medical">Medica</option>
                 <option value="food">Alimento</option>
@@ -269,7 +269,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 min={new Date(Date.now() + 86400000).toISOString().split('T')[0]}
                 value={formData.deadline}
                 onChange={e => handleInputChange('deadline', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               />
             </div>
 
@@ -279,7 +279,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.description}
                 onChange={e => handleInputChange('description', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
                 rows={3}
                 placeholder="Explica para que es la donacion."
               />
@@ -292,7 +292,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.cbu}
                 onChange={e => handleInputChange('cbu', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               />
             </div>
 
@@ -303,7 +303,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.alias}
                 onChange={e => handleInputChange('alias', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               />
             </div>
 
@@ -314,7 +314,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.accountHolder}
                 onChange={e => handleInputChange('accountHolder', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               />
             </div>
 
@@ -325,7 +325,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.responsibleName}
                 onChange={e => handleInputChange('responsibleName', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               />
             </div>
 
@@ -336,7 +336,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.whatsappNumber}
                 onChange={e => handleInputChange('whatsappNumber', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
                 placeholder="Ej: +54 9 11 1234 5678"
               />
             </div>
@@ -348,7 +348,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 required
                 value={formData.contactEmail}
                 onChange={e => handleInputChange('contactEmail', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
                 placeholder="Ej: contacto@ejemplo.com"
               />
             </div>
@@ -359,7 +359,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
               type="checkbox"
               checked={formData.urgency}
               onChange={e => handleInputChange('urgency', e.target.checked)}
-              className="rounded text-primary focus:ring-primary border-accent-teal/20"
+              className="rounded text-sky-500 focus:ring-sky-500 border-sky-500/20"
             />
             <span className="text-sm font-medium">Marcar como urgente</span>
           </label>
@@ -368,14 +368,14 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 rounded-xl border border-accent-teal/20 text-gray-900 font-bold hover:bg-accent-teal/10 transition-colors"
+              className="px-6 py-3 rounded-xl border border-sky-500/20 text-gray-900 font-bold hover:bg-sky-500/10 transition-colors"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-3 rounded-xl bg-primary text-background-dark font-bold hover:bg-primary/90 transition-colors disabled:opacity-50"
+              className="px-6 py-3 rounded-xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-colors disabled:opacity-50"
             >
               {isSubmitting ? 'Enviando...' : 'Enviar para revision'}
             </button>
