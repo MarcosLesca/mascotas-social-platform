@@ -11,8 +11,12 @@ const CuteDogButton = ({
   hoverColor = "#f5f7fb",
   textColor = "#111827",
   dogColor = "#e1a46e",
-  href,
-  onClick,
+  borderWidth = "4px",
+  borderColor = "#374151",
+  hoverTextColor = undefined,
+  hoverBorderColor = undefined,
+  href = undefined,
+  onClick = undefined,
   className = "",
 }) => {
   const colorVars = {
@@ -20,6 +24,10 @@ const CuteDogButton = ({
     "--cute-btn-hover-bg": hoverColor,
     "--cute-btn-text": textColor,
     "--cute-dog-color": dogColor,
+    "--cute-btn-border-width": borderWidth,
+    "--cute-btn-border-color": borderColor,
+    "--cute-btn-hover-text": hoverTextColor || textColor,
+    "--cute-btn-hover-border-color": hoverBorderColor || borderColor,
   };
 
   const commonProps = {
