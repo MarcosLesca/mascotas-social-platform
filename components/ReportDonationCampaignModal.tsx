@@ -148,7 +148,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white dark:bg-background-dark rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-        <div className="bg-primary text-background-dark p-6 flex items-center justify-between">
+        <div className="bg-sky-500 text-white p-6 flex items-center justify-between">
           <h2 className="text-2xl font-black">Publicar campana de donacion</h2>
           <button
             onClick={onClose}
@@ -173,7 +173,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
           )}
 
           <div>
-            <label className="block text-sm font-bold text-accent-teal mb-2">Imagen de la campana *</label>
+            <label className="block text-sm font-bold text-gray-900 mb-2">Imagen de la campana *</label>
             <input
               ref={fileInputRef}
               type="file"
@@ -201,17 +201,17 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="flex items-center justify-center w-44 h-44 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-accent-teal"
+                className="flex items-center justify-center w-44 h-44 rounded-xl border-2 border-dashed border-accent-teal/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-gray-900"
               >
                 Subir imagen
               </button>
             )}
-            <p className="mt-1 text-xs text-accent-teal">JPEG, PNG o WebP. Max. {MAX_MB} MB.</p>
+            <p className="mt-1 text-xs text-gray-900">JPEG, PNG o WebP. Max. {MAX_MB} MB.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="md:col-span-2">
-              <label className="block text-sm font-bold text-accent-teal mb-2">Titulo *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Titulo *</label>
               <input
                 type="text"
                 required
@@ -223,7 +223,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Mascota *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Mascota *</label>
               <input
                 type="text"
                 required
@@ -235,7 +235,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Meta (ARS) *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Meta (ARS) *</label>
               <input
                 type="number"
                 min="1"
@@ -249,7 +249,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Tipo *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Tipo *</label>
               <select
                 value={formData.type}
                 onChange={e => handleInputChange('type', e.target.value)}
@@ -262,7 +262,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Fecha límite *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Fecha límite *</label>
               <input
                 type="date"
                 required
@@ -274,7 +274,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-bold text-accent-teal mb-2">Descripcion *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Descripcion *</label>
               <textarea
                 required
                 value={formData.description}
@@ -286,7 +286,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">CBU *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">CBU *</label>
               <input
                 type="text"
                 required
@@ -297,7 +297,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Alias *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Alias *</label>
               <input
                 type="text"
                 required
@@ -308,7 +308,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Titular *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Titular *</label>
               <input
                 type="text"
                 required
@@ -319,7 +319,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Responsable *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Responsable *</label>
               <input
                 type="text"
                 required
@@ -330,7 +330,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">WhatsApp *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">WhatsApp *</label>
               <input
                 type="text"
                 required
@@ -342,7 +342,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-accent-teal mb-2">Email *</label>
+              <label className="block text-sm font-bold text-gray-900 mb-2">Email *</label>
               <input
                 type="email"
                 required
@@ -368,7 +368,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 rounded-xl border border-accent-teal/20 text-accent-teal font-bold hover:bg-accent-teal/10 transition-colors"
+              className="px-6 py-3 rounded-xl border border-accent-teal/20 text-gray-900 font-bold hover:bg-accent-teal/10 transition-colors"
             >
               Cancelar
             </button>

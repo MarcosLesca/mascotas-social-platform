@@ -124,37 +124,37 @@ export default function HeroZoom() {
             <CuteDogButton
               text="Publicar Mascotas"
               mainColor="#ffffff"
-              hoverColor="#F0F4F2"
+              hoverColor="#FEE2E2"
               textColor="#111827"
               borderColor="#374151"
               dogColor="#e1a46e"
               borderWidth="2px"
-              hoverTextColor="#7A8F85"
-              hoverBorderColor="#7A8F85"
+              hoverTextColor="#DC2626"
+              hoverBorderColor="#DC2626"
               onClick={() => setCurrentView(View.LOST_PETS)}
             />
             <CuteDogButton
               text="Adoptar una Mascota"
               mainColor="#ffffff"
-              hoverColor="#F4F1EC"
+              hoverColor="#DCFCE7"
               textColor="#111827"
               borderColor="#374151"
               dogColor="#e1a46e"
               borderWidth="2px"
-              hoverTextColor="#6B4E3D"
-              hoverBorderColor="#6B4E3D"
+              hoverTextColor="#16A34A"
+              hoverBorderColor="#16A34A"
               onClick={() => setCurrentView(View.ADOPTION)}
             />
             <CuteDogButton
               text="Ayudar / Donar"
               mainColor="#ffffff"
-              hoverColor="#FFF0F0"
+              hoverColor="#E0F2FE"
               textColor="#111827"
               borderColor="#374151"
               dogColor="#e1a46e"
               borderWidth="2px"
-              hoverTextColor="#B05E5E"
-              hoverBorderColor="#B05E5E"
+              hoverTextColor="#0EA5E9"
+              hoverBorderColor="#0EA5E9"
               onClick={() => setCurrentView(View.DONATIONS)}
             />
           </div>
