@@ -129,7 +129,7 @@ const AppContent: React.FC = () => {
               : "text-[#ecdbbd]/60 hover:text-[#ecdbbd]"
           }`}
         >
-          <span className="material-symbols-outlined">map</span>
+          <span className="material-symbols-outlined">search</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">
             Mascotas
           </span>
