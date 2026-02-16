@@ -139,7 +139,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
               </p>
             </div>
           ) : (
-            <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
               {mixedRecentCards.map((item) => {
                 if (item.kind === "donation") {
                   const campaign = item.campaign;
@@ -147,53 +147,48 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                     <article
                       key={item.id}
                       onClick={() => setCurrentView(View.DONATIONS)}
-                      className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-sky-500/10 hover:shadow-xl transition-all duration-300 flex flex-col"
+                      className="group h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm border border-sky-500/10 hover:shadow-xl transition-all duration-300 flex flex-col"
                     >
-                      <div className="relative aspect-square overflow-hidden">
+                      <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
                         <img
                           src={campaign.image}
                           alt={campaign.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute top-3 left-3 flex gap-2">
+                        <div className="absolute top-2 left-2 flex gap-1.5">
+                          <span className="bg-sky-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg">
+                            Donación
+                          </span>
                           {campaign.urgency && (
-                            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-lg">
-                              URGENTE
+                            <span className="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg">
+                              Urgente
                             </span>
                           )}
                         </div>
-                        <div className="absolute bottom-3 right-3">
-                          <div className="bg-white text-slate-800 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                            <span className="material-symbols-outlined text-xs">pets</span>
+                        <div className="absolute bottom-2 right-2">
+                          <div className="bg-white text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                            <span className="material-symbols-outlined text-[10px]">pets</span>
                             {campaign.petName}
                           </div>
                         </div>
                       </div>
 
-                      <div className="p-4 sm:p-5 flex flex-col flex-1">
-                        <h3 className="text-lg sm:text-xl leading-tight font-bold group-hover:text-sky-500 transition-colors mb-2 line-clamp-2">
+                      <div className="p-3 sm:p-4 flex flex-col flex-1">
+                        <h3 className="text-sm sm:text-base leading-tight font-bold group-hover:text-sky-500 transition-colors mb-1 line-clamp-2">
                           {campaign.title}
                         </h3>
-                        <p className="text-[11px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate mb-3">
-                          {campaign.type === 'medical' ? 'Médica' : campaign.type === 'food' ? 'Alimento' : campaign.type === 'shelter' ? 'Refugio' : 'Campaña'}
-                        </p>
 
-                        <p className="text-sm text-black mb-4 line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-black mb-3 line-clamp-2 leading-relaxed">
                           {campaign.description}
                         </p>
 
-                        <div className="mt-auto space-y-3">
-                          <div className="bg-sky-50 rounded-xl p-3 flex justify-between items-center">
-                            <span className="text-xs font-bold text-sky-700">Meta</span>
-                            <span className="text-base font-black text-sky-600">${campaign.goal.toLocaleString("es-AR")}</span>
+                        <div className="mt-auto space-y-2">
+                          <div className="bg-sky-50 rounded-lg p-2 flex justify-between items-center">
+                            <span className="text-[10px] font-bold text-sky-700">Meta</span>
+                            <span className="text-sm font-black text-sky-600">${campaign.goal.toLocaleString("es-AR")}</span>
                           </div>
 
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <span className="material-symbols-outlined text-sm">event</span>
-                            <span>Hasta: {campaign.deadline}</span>
-                          </div>
-
-                          <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold py-3 rounded-full transition-all flex items-center justify-center gap-2">
+                          <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold py-2 rounded-full transition-all flex items-center justify-center gap-2">
                             Ver Detalles
                           </button>
                         </div>
@@ -206,13 +201,54 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 const isLost = item.kind === "lost";
 
                 return (
-                  <PetCard
+                  <article
                     key={item.id}
-                    pet={pet}
-                    onViewDetails={() =>
-                      setCurrentView(isLost ? View.LOST_PETS : View.ADOPTION)
-                    }
-                  />
+                    onClick={() => setCurrentView(isLost ? View.LOST_PETS : View.ADOPTION)}
+                    className="group h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 flex flex-col"
+                  >
+                    <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
+                      <img
+                        src={pet.image}
+                        alt={pet.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute top-2 left-2 flex gap-1.5">
+                        <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg ${
+                          isLost ? 'bg-rose-500 text-white' : 'bg-emerald-500 text-white'
+                        }`}>
+                          {isLost ? 'Perdido' : 'Adopción'}
+                        </span>
+                        {isLost && pet.urgency && (
+                          <span className="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg">
+                            Urgente
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="p-3 sm:p-4 flex flex-col flex-1">
+                      <h3 className={`text-sm sm:text-base leading-tight font-bold transition-colors ${
+                        isLost ? 'group-hover:text-rose-500' : 'group-hover:text-emerald-500'
+                      }`}>
+                        {pet.name}
+                      </h3>
+                      <p className="text-[10px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate">
+                        {pet.gender === 'male' ? 'Macho' : 'Hembra'}
+                      </p>
+
+                      <p className="text-xs font-bold leading-snug mt-1">
+                        {isLost ? `Visto: ${pet.location}` : pet.location}
+                      </p>
+
+                      <div className="mt-auto pt-2">
+                        <button className={`w-full text-white text-xs font-bold py-2 rounded-full transition-all flex items-center justify-center gap-2 ${
+                          isLost ? 'bg-rose-500 hover:bg-rose-600' : 'bg-emerald-500 hover:bg-emerald-600'
+                        }`}>
+                          {isLost ? 'La vi' : 'Adoptar'}
+                        </button>
+                      </div>
+                    </div>
+                  </article>
                 );
               })}
             </section>
