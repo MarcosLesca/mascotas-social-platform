@@ -33,7 +33,8 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     alias: '',
     accountHolder: '',
     responsibleName: '',
-    contactInfo: '',
+    whatsappNumber: '',
+    contactEmail: '',
     deadline: '',
   });
 
@@ -93,7 +94,8 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
       alias: formData.alias,
       accountHolder: formData.accountHolder,
       responsibleName: formData.responsibleName,
-      contactInfo: formData.contactInfo,
+      whatsappNumber: formData.whatsappNumber,
+      contactEmail: formData.contactEmail,
       deadline: formData.deadline,
       imageFile,
     });
@@ -130,7 +132,8 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
         alias: '',
         accountHolder: '',
         responsibleName: '',
-        contactInfo: '',
+        whatsappNumber: '',
+        contactEmail: '',
         deadline: '',
       });
       setImageFile(null);
@@ -326,15 +329,27 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
               />
             </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-sm font-bold text-accent-teal mb-2">Contacto *</label>
+            <div>
+              <label className="block text-sm font-bold text-accent-teal mb-2">WhatsApp *</label>
               <input
                 type="text"
                 required
-                value={formData.contactInfo}
-                onChange={e => handleInputChange('contactInfo', e.target.value)}
+                value={formData.whatsappNumber}
+                onChange={e => handleInputChange('whatsappNumber', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
-                placeholder="Telefono y/o email"
+                placeholder="Ej: +54 9 11 1234 5678"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-accent-teal mb-2">Email *</label>
+              <input
+                type="email"
+                required
+                value={formData.contactEmail}
+                onChange={e => handleInputChange('contactEmail', e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-accent-teal/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary"
+                placeholder="Ej: contacto@ejemplo.com"
               />
             </div>
           </div>

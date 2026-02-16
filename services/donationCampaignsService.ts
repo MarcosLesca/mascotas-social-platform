@@ -3,12 +3,38 @@ import type { DonationCampaign, DonationCampaignReportRow } from '../types';
 
 const BUCKET = 'donation-campaign-images';
 
+function parseContactInfo(contactInfo: string): {
+  whatsappNumber?: string;
+  contactEmail?: string;
+} {
+  const text = (contactInfo || '').trim();
+  if (!text) return {};
+
+  const whatsappMatch = text.match(/whatsapp:\s*([^;|]+)/i);
+  const emailMatch = text.match(/email:\s*([^;|]+)/i);
+
+  if (whatsappMatch || emailMatch) {
+    return {
+      whatsappNumber: whatsappMatch?.[1]?.trim() || undefined,
+      contactEmail: emailMatch?.[1]?.trim() || undefined,
+    };
+  }
+
+  // Compatibilidad con datos viejos en texto libre.
+  const looseEmail = text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)?.[0];
+  const loosePhone = text.match(/(\+?\d[\d\s().-]{7,}\d)/)?.[0];
+  return {
+    whatsappNumber: loosePhone?.trim() || undefined,
+    contactEmail: looseEmail?.trim() || undefined,
+  };
+}
+
+function buildContactInfo(whatsappNumber: string, contactEmail: string): string {
+  return `whatsapp:${whatsappNumber.trim()};email:${contactEmail.trim()}`;
+}
+
 function rowToDonationCampaign(row: DonationCampaignReportRow): DonationCampaign {
-  // Extraer teléfono y email del campo contact_info (formato: "Tel: ... | Email: ...")
-  const contactInfo = row.contact_info || '';
-  const phoneMatch = contactInfo.match(/Tel:\s*([^|]+)/);
-  const emailMatch = contactInfo.match(/Email:\s*(.+)/);
-  
+  const parsedContact = parseContactInfo(row.contact_info);
   return {
     id: row.id,
     title: row.title,
@@ -22,8 +48,9 @@ function rowToDonationCampaign(row: DonationCampaignReportRow): DonationCampaign
     alias: row.alias,
     accountHolder: row.account_holder,
     responsibleName: row.responsible_name,
-    contactPhone: phoneMatch ? phoneMatch[1].trim() : undefined,
-    contactEmail: emailMatch ? emailMatch[1].trim() : undefined,
+    contactInfo: row.contact_info,
+    whatsappNumber: parsedContact.whatsappNumber,
+    contactEmail: parsedContact.contactEmail,
     deadline: row.deadline,
   };
 }
@@ -39,7 +66,7 @@ export interface SubmitDonationCampaignInput {
   alias: string;
   accountHolder: string;
   responsibleName: string;
-  contactPhone: string;
+  whatsappNumber: string;
   contactEmail: string;
   deadline: string;
   imageFile: File;
@@ -76,7 +103,7 @@ export async function submitDonationCampaign(
     alias: input.alias.trim(),
     account_holder: input.accountHolder.trim(),
     responsible_name: input.responsibleName.trim(),
-    contact_info: `Tel: ${input.contactPhone} | Email: ${input.contactEmail}`,
+    contact_info: buildContactInfo(input.whatsappNumber, input.contactEmail),
     deadline: input.deadline.trim(),
   });
 

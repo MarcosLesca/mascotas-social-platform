@@ -103,6 +103,8 @@ export interface DonationCampaign {
   accountHolder: string; // Titular de la cuenta
   responsibleName: string; // Responsable de la mascota
   contactInfo: string; // Información de contacto
+  whatsappNumber?: string; // Numero para contacto por WhatsApp
+  contactEmail?: string; // Email de contacto
   deadline: string; // Fecha límite de donación
 }
 

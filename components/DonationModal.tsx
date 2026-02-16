@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DonationCampaign } from '../types';
 
 interface DonationModalProps {
@@ -8,13 +8,9 @@ interface DonationModalProps {
 }
 
 const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose }) => {
-  const [copiedField, setCopiedField] = useState<string | null>(null);
-
-  const handleCopy = (text: string, fieldName: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedField(fieldName);
-    setTimeout(() => setCopiedField(null), 2000);
-  };
+  const normalizedWhatsapp = (campaign?.whatsappNumber || '').replace(/\D/g, '');
+  const hasWhatsapp = normalizedWhatsapp.length > 0;
+  const hasEmail = Boolean(campaign?.contactEmail);
 
   if (!isOpen || !campaign) return null;
 
@@ -88,38 +84,16 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
               {/* CBU */}
               <div>
                 <label className="block text-sm font-bold text-accent-teal mb-2">CBU</label>
-                <div className="flex gap-2">
-                  <div className="flex-1 px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl font-mono text-sm">
-                    {campaign.cbu}
-                  </div>
-                  <button
-                    onClick={() => handleCopy(campaign.cbu, 'cbu')}
-                    className="px-4 py-3 bg-primary hover:bg-primary/90 text-background-dark rounded-xl font-bold transition-colors flex items-center gap-2"
-                  >
-                    <span className="material-symbols-outlined text-lg">
-                      {copiedField === 'cbu' ? 'check' : 'content_copy'}
-                    </span>
-                    {copiedField === 'cbu' ? 'Copiado' : 'Copiar'}
-                  </button>
+                <div className="px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl font-mono text-sm">
+                  {campaign.cbu}
                 </div>
               </div>
 
               {/* Alias */}
               <div>
                 <label className="block text-sm font-bold text-accent-teal mb-2">Alias</label>
-                <div className="flex gap-2">
-                  <div className="flex-1 px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl font-mono text-sm">
-                    {campaign.alias}
-                  </div>
-                  <button
-                    onClick={() => handleCopy(campaign.alias, 'alias')}
-                    className="px-4 py-3 bg-primary hover:bg-primary/90 text-background-dark rounded-xl font-bold transition-colors flex items-center gap-2"
-                  >
-                    <span className="material-symbols-outlined text-lg">
-                      {copiedField === 'alias' ? 'check' : 'content_copy'}
-                    </span>
-                    {copiedField === 'alias' ? 'Copiado' : 'Copiar'}
-                  </button>
+                <div className="px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl font-mono text-sm">
+                  {campaign.alias}
                 </div>
               </div>
 
@@ -139,19 +113,33 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
               <span className="material-symbols-outlined text-2xl text-primary">contact_phone</span>
               <h3 className="text-xl font-black">Información de Contacto</h3>
             </div>
-            <div className="flex gap-2">
-              <div className="flex-1 px-4 py-3 bg-accent-teal/5 border border-accent-teal/10 rounded-xl">
-                {campaign.contactInfo}
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <a
+                  href={hasWhatsapp ? `https://wa.me/${normalizedWhatsapp}` : undefined}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`px-4 py-3 rounded-xl font-bold transition-colors flex items-center justify-center gap-2 ${
+                    hasWhatsapp
+                      ? 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                      : 'bg-gray-200 text-gray-500 pointer-events-none'
+                  }`}
+                >
+                  
+                  WhatsApp
+                </a>
+                <a
+                  href={hasEmail ? `mailto:${campaign.contactEmail}` : undefined}
+                  className={`px-4 py-3 rounded-xl font-bold transition-colors flex items-center justify-center gap-2 ${
+                    hasEmail
+                      ? 'bg-sky-500 hover:bg-sky-600 text-white'
+                      : 'bg-gray-200 text-gray-500 pointer-events-none'
+                  }`}
+                >
+                  
+                  Email
+                </a>
               </div>
-              <button
-                onClick={() => handleCopy(campaign.contactInfo, 'contact')}
-                className="px-4 py-3 bg-primary hover:bg-primary/90 text-background-dark rounded-xl font-bold transition-colors flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-lg">
-                  {copiedField === 'contact' ? 'check' : 'content_copy'}
-                </span>
-                {copiedField === 'contact' ? 'Copiado' : 'Copiar'}
-              </button>
             </div>
           </div>
 
