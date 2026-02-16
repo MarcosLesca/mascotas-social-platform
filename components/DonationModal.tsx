@@ -45,8 +45,8 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
   const isFullscreen = variant === 'fullscreen';
 
   const containerClasses = isFullscreen
-    ? "fixed inset-0 z-[100] bg-white dark:bg-background-dark overflow-y-auto !mt-0 m-0 p-0"
-    : "fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm !mt-0";
+    ? "fixed inset-0 z-50 bg-white dark:bg-background-dark overflow-y-auto"
+    : "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm";
 
   const contentClasses = isFullscreen
     ? "w-full min-h-screen bg-white dark:bg-background-dark"
@@ -62,7 +62,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
     <div className={containerClasses} onClick={!isFullscreen ? onClose : undefined}>
       <div className={contentClasses} onClick={(e) => e.stopPropagation()}>
         {/* Header con imagen */}
-        <div className="relative aspect-[21/9] overflow-hidden">
+        <div className="relative h-56 sm:h-72 overflow-hidden">
           <img
             src={campaign.image}
             alt={campaign.title}
@@ -82,7 +82,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
           {/* Badges */}
           <div className="absolute bottom-6 left-6 flex gap-3 flex-wrap">
             {campaign.urgency && (
-              <span className="bg-urgent-red text-white text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
+              <span className="bg-red-500 text-white text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
                 Urgente
               </span>
             )}
@@ -213,7 +213,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
                {/* Resumen de Meta (Destacado) */}
                <div className="bg-gradient-to-br from-primary/10 to-accent-teal/10 rounded-2xl p-6 border border-primary/10 text-center">
                     <p className="text-sm text-gray-600 font-bold mb-1 uppercase tracking-wider">Meta a recaudar</p>
-                    <p className="text-3xl font-black text-primary mb-2">${campaign.goal.toLocaleString('es-AR')}</p>
+                    <p className="text-3xl font-black text-sky-600 mb-2">${campaign.goal.toLocaleString('es-AR')}</p>
                     <p className="text-xs text-black/60 font-medium">
                         Tu aporte hace la diferencia para {campaign.petName}
                     </p>
@@ -234,7 +234,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
                 {mailHref && (
                   <a
                     href={mailHref}
-                    className="w-full bg-white dark:bg-white/5 border-2 border-sky-500/20 hover:border-sky-500 text-sky-500 font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all hover:bg-sky-500/5"
+                    className="w-full bg-white dark:bg-white/5 border-2 border-sky-500 hover:border-sky-600 text-sky-500 hover:text-sky-600 font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all hover:bg-sky-500/5"
                   >
                      <span className="material-symbols-outlined text-xl">mail</span>
                     Enviar Email
@@ -243,7 +243,7 @@ const DonationModal: React.FC<DonationModalProps> = ({ campaign, isOpen, onClose
               </div>
 
               {/* Información adicional */}
-              <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-sky-500/5">
+              <div className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-sky-500/10">
                 <h4 className="font-bold mb-4 text-lg">Detalles de la Campaña</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-white/5">
