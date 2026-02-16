@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
@@ -15,6 +15,7 @@ import { View } from "./types";
 const AppContent: React.FC = () => {
   const { currentView, setCurrentView, toasts, removeToast, addToast } =
     useApp();
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
 
   // Scroll to top when view changes (mobile only)
   useEffect(() => {
@@ -106,13 +107,13 @@ const AppContent: React.FC = () => {
       </footer>
 
       {/* Mobile Bottom Nav */}
-      <div className="lg:hidden sticky bottom-0 z-50 bg-background-light dark:bg-background-dark border-t border-accent-teal/10 flex items-center justify-around py-4 px-2 backdrop-blur-md">
+      <div className="lg:hidden sticky bottom-0 z-50 bg-[#203553] border-t border-[#ecdbbd]/30 flex items-center justify-around py-4 px-2 backdrop-blur-md">
         <button
           onClick={() => setCurrentView(View.HOME)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.HOME
-              ? "text-primary"
-              : "text-accent-teal/60 hover:text-primary"
+              ? "text-[#ecdbbd]"
+              : "text-[#ecdbbd]/60 hover:text-[#ecdbbd]"
           }`}
         >
           <span className="material-symbols-outlined">home</span>
@@ -124,8 +125,8 @@ const AppContent: React.FC = () => {
           onClick={() => setCurrentView(View.LOST_PETS)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.LOST_PETS
-              ? "text-primary"
-              : "text-accent-teal/60 hover:text-primary"
+              ? "text-[#ecdbbd]"
+              : "text-[#ecdbbd]/60 hover:text-[#ecdbbd]"
           }`}
         >
           <span className="material-symbols-outlined">map</span>
@@ -134,24 +135,24 @@ const AppContent: React.FC = () => {
           </span>
         </button>
         <button
-          onClick={() => setCurrentView(View.FAQ)}
+          onClick={() => setCurrentView(View.ADOPTION)}
           className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.FAQ
-              ? "text-primary"
-              : "text-accent-teal/60 hover:text-primary"
+            currentView === View.ADOPTION
+              ? "text-[#ecdbbd]"
+              : "text-[#ecdbbd]/60 hover:text-[#ecdbbd]"
           }`}
         >
-          <span className="material-symbols-outlined">help</span>
+          <span className="material-symbols-outlined">pets</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">
-            Ayuda
+            Adopción
           </span>
         </button>
         <button
           onClick={() => setCurrentView(View.DONATIONS)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.DONATIONS
-              ? "text-primary"
-              : "text-accent-teal/60 hover:text-primary"
+              ? "text-[#ecdbbd]"
+              : "text-[#ecdbbd]/60 hover:text-[#ecdbbd]"
           }`}
         >
           <span className="material-symbols-outlined">favorite</span>
@@ -159,19 +160,53 @@ const AppContent: React.FC = () => {
             Donar
           </span>
         </button>
-        <button
-          onClick={() => setCurrentView(View.ABOUT_US)}
-          className={`flex flex-col items-center gap-1 transition-colors ${
-            currentView === View.ABOUT_US
-              ? "text-primary"
-              : "text-accent-teal/60 hover:text-primary"
-          }`}
-        >
-          <span className="material-symbols-outlined">info</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">
-            Nosotros
-          </span>
-        </button>
+        <div className="relative">
+          <button
+            onClick={() => setShowMoreMenu(!showMoreMenu)}
+            className={`flex flex-col items-center gap-1 transition-colors ${
+              currentView === View.FAQ || currentView === View.ABOUT_US
+                ? "text-[#ecdbbd]"
+                : "text-[#ecdbbd]/60 hover:text-[#ecdbbd]"
+            }`}
+          >
+            <span className="material-symbols-outlined">menu</span>
+            <span className="text-[10px] font-bold uppercase tracking-tighter">
+              Más
+            </span>
+          </button>
+          {showMoreMenu && (
+            <div className="absolute bottom-full mb-2 right-0 bg-[#203553] border border-[#ecdbbd]/30 rounded-xl shadow-xl overflow-hidden min-w-[160px]">
+              <button
+                onClick={() => {
+                  setCurrentView(View.FAQ);
+                  setShowMoreMenu(false);
+                }}
+                className={`w-full px-4 py-3 text-left text-sm font-semibold transition-colors flex items-center gap-2 ${
+                  currentView === View.FAQ
+                    ? "text-[#ecdbbd] bg-[#ecdbbd]/10"
+                    : "text-[#ecdbbd]/80 hover:text-[#ecdbbd] hover:bg-[#ecdbbd]/5"
+                }`}
+              >
+                <span className="material-symbols-outlined text-lg">help</span>
+                Preguntas Frecuentes
+              </button>
+              <button
+                onClick={() => {
+                  setCurrentView(View.ABOUT_US);
+                  setShowMoreMenu(false);
+                }}
+                className={`w-full px-4 py-3 text-left text-sm font-semibold transition-colors flex items-center gap-2 ${
+                  currentView === View.ABOUT_US
+                    ? "text-[#ecdbbd] bg-[#ecdbbd]/10"
+                    : "text-[#ecdbbd]/80 hover:text-[#ecdbbd] hover:bg-[#ecdbbd]/5"
+                }`}
+              >
+                <span className="material-symbols-outlined text-lg">info</span>
+                Sobre Nosotros
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Toast Container */}
