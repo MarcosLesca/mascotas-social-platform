@@ -53,7 +53,7 @@ const AboutUs: React.FC = () => {
       {/* Nuestra Identidad y Qué Hacemos */}
       <div className="grid md:grid-cols-2 gap-8">
         {/* Nuestra Identidad */}
-        <div className="bg-[#203553] p-8">
+        <div className="bg-[#203553] p-8 rounded-3xl">
           <h2 className="text-2xl font-bold text-[#ecdbbd] mb-4">
             Nuestra identidad
           </h2>
@@ -65,7 +65,7 @@ const AboutUs: React.FC = () => {
         </div>
 
         {/* Qué hacemos */}
-        <div className="bg-[#203553] p-8">
+        <div className="bg-[#203553] p-8 rounded-3xl">
           <h2 className="text-2xl font-bold text-[#ecdbbd] mb-4">
             ¿Qué hacemos?
           </h2>
