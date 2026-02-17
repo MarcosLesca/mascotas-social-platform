@@ -99,9 +99,9 @@ const AdminLogin: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#203553] px-4">
       <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-xl border border-accent-teal/10 p-8">
+        <div className="bg-[#ecdbbd] rounded-2xl shadow-xl border border-[#203553]/20 p-8">
           <div className="flex flex-col items-center gap-2 mb-8">
             <img
               src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
@@ -155,8 +155,8 @@ const AdminLogin: React.FC = () => {
                     setErrors((prev) => ({ ...prev, email: undefined }));
                 }}
                 disabled={submitting || rateLimit.blocked}
-                className={`w-full px-4 py-3 rounded-xl ${
-                  errors.email ? "border-urgent-red" : "border-accent-teal/20"
+                className={`w-full px-4 py-3 rounded-xl bg-[#ecdbbd] focus:outline-none focus:ring-2 focus:ring-[#203553] focus:border-[#203553] ${
+                  errors.email ? "border-urgent-red" : "border-[#203553]/30"
                 }`}
                 placeholder="lymdesarrolloweb@gmail.com"
                 aria-invalid={errors.email ? "true" : "false"}
@@ -188,10 +188,10 @@ const AdminLogin: React.FC = () => {
                       setErrors((prev) => ({ ...prev, password: undefined }));
                   }}
                   disabled={submitting || rateLimit.blocked}
-                  className={`w-full px-4 py-3 pr-12 rounded-xl ${
+                  className={`w-full px-4 py-3 pr-12 rounded-xl bg-[#ecdbbd] ${
                     errors.password
                       ? "border-urgent-red"
-                      : "border-accent-teal/20"
+                      : "border-[#203553]/30"
                   }`}
                   placeholder="••••••••"
                   aria-invalid={errors.password ? "true" : "false"}
