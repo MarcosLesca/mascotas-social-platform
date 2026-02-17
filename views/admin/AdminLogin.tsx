@@ -101,7 +101,7 @@ const AdminLogin: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#203553] px-4">
       <div className="w-full max-w-md">
-        <div className="bg-[#ecdbbd] rounded-2xl shadow-xl border border-[#203553]/20 p-8">
+        <div className="bg-[#f1e4cc] rounded-2xl shadow-xl border border-[#203553]/20 p-8">
           <div className="flex flex-col items-center gap-2 mb-8">
             <img
               src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
@@ -111,7 +111,7 @@ const AdminLogin: React.FC = () => {
             <h1 className="text-2xl font-black text-center text-slate-900 dark:text-white">
               Admin LyM desarrollo web
             </h1>
-            <p className="text-sm text-center text-red-500 font-bold ">
+            <p className="text-base text-center text-red-500 font-bold ">
               Acceso exclusivo para administradores autorizados
             </p>
           </div>
@@ -188,7 +188,7 @@ const AdminLogin: React.FC = () => {
                       setErrors((prev) => ({ ...prev, password: undefined }));
                   }}
                   disabled={submitting || rateLimit.blocked}
-                  className={`w-full px-4 py-3 pr-12 rounded-xl bg-[#ecdbbd] ${
+                  className={`w-full px-4 py-3 pr-12 rounded-xl bg-[#ecdbbd] focus:outline-none focus:ring-2 focus:ring-[#203553] focus:border-[#203553] ${
                     errors.password
                       ? "border-urgent-red"
                       : "border-[#203553]/30"
@@ -223,7 +223,7 @@ const AdminLogin: React.FC = () => {
             <button
               type="submit"
               disabled={submitting || rateLimit.blocked}
-              className="w-full py-3.5 rounded-xl bg-[#203553] hover:bg-primary/90 text-[#ecdbbd] font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
+              className="w-full py-3.5 rounded-xl bg-[#203553]  text-[#ecdbbd] font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
             >
               {submitting ? (
                 <span className="inline-flex items-center justify-center gap-2">
