@@ -109,7 +109,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
       }
     }
 
-    return cards;
+    return cards.slice(0, 8);
   }, [latestLost, latestAdoption, latestDonations]);
 
   return (

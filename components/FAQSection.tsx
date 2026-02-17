@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 
+// Colores de marca
+const COLORS = {
+  bg: '#203553',
+  bgLight: '#2a4266',
+  text: '#ecdbbd',
+  muted: '#8b9cb3',
+  cream: '#ecdbbd',
+  lightBg: '#f8f6f2',
+};
+
 // Componente para renderizar respuestas con HTML
 const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Función para renderizar listas con formato 1) 2) 3)
@@ -19,7 +29,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
               style={{
                 position: "absolute",
                 left: 0,
-                color: "#13ec5b",
+                color: COLORS.bg,
                 fontWeight: "bold",
               }}
             >
@@ -35,7 +45,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta específica sobre cómo reportar mascota perdida
   if (content.includes("Reportar Mascota Perdida")) {
     return (
-      <div className="text-[#203553] leading-relaxed pt-[8px]">
+      <div className="leading-relaxed pt-[8px]" style={{ color: COLORS.bg }}>
         <p className="mb-3">Es muy fácil:</p>
         {renderCustomList([
           'Hacé clic en el botón "Reportar Mascota Perdida"',
@@ -52,7 +62,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre qué hacer si veo una mascota perdida
   if (content.includes("Mascotas Encontradas")) {
     return (
-      <div className="text-[#203553] leading-relaxed pt-[8px]">
+      <div className="leading-relaxed pt-[8px]" style={{ color: COLORS.bg }}>
         <p className="mb-3">¡Gracias por ayudar! Podés:</p>
         {renderCustomList([
           "Tomar una foto",
@@ -70,7 +80,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre cómo adoptar
   if (content.includes("Contactá directamente al refugio")) {
     return (
-      <div className="text-[#203553] leading-relaxed pt-[8px]">
+      <div className="leading-relaxed pt-[8px]" style={{ color: COLORS.bg }}>
         {renderCustomList([
           'Buscá en la sección "Adopción"',
           "Contactá directamente al refugio/responsable vía WhatsApp o Email",
@@ -85,7 +95,7 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Respuesta sobre cómo donar
   if (content.includes("Entrá a la sección Donaciones")) {
     return (
-      <div className="text-[#203553] leading-relaxed pt-[8px]">
+      <div className="leading-relaxed pt-[8px]" style={{ color: COLORS.bg }}>
         <p className="mb-3">Es muy fácil:</p>
         {renderCustomList([
           "Entrá a la sección Donaciones",
@@ -104,7 +114,8 @@ const FAQAnswer: React.FC<{ content: string }> = ({ content }) => {
   // Para otras respuestas, usamos el HTML normal
   return (
     <div
-      className="text-black leading-relaxed faq-answer pt-[8px]"
+      className="leading-relaxed faq-answer pt-[8px]"
+      style={{ color: COLORS.bg }}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );
@@ -279,82 +290,102 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="text-center mb-12 animate-fade-in">
-        <h1 className="text-4xl md:text-5xl font-black mb-4 text-[#203553]">
-          Preguntas Frecuentes
-        </h1>
-        <p className="text-lg font-bold text-[#203553]/80 max-w-2xl mx-auto">
-          Todo lo que necesitás saber para usar Mascotas SJ.
-        </p>
-      </div>
+    <div className="min-h-screen" style={{ backgroundColor: '#f8f6f2' }}>
+      <div className="max-w-3xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="inline-block mb-4">
+            <span 
+              className="inline-block w-16 h-1 rounded-full" 
+              style={{ backgroundColor: COLORS.bg }}
+            />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-black mb-3" style={{ color: COLORS.bg }}>
+            Preguntas Frecuentes
+          </h1>
+          <p className="font-medium text-base" style={{ color: COLORS.muted }}>
+            Todo lo que necesitás saber para usar Mascotas SJ
+          </p>
+        </div>
 
-      {/* FAQ Items por categoría */}
-      <div className="space-y-10">
-        {Object.entries(groupedFAQs).map(([category, items], categoryIndex) => (
-          <div
-            id={`category-${category}`}
-            key={category}
-            className="scroll-mt-8"
-          >
-            {/* Título de la categoría */}
-            <div className="mb-6">
-              <div className="pb-4 border-b-4 border-[#ecdbbd]">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#203553]">
-                  {categoryTitles[category as keyof typeof categoryTitles]}
-                </h2>
+        {/* FAQ Items por categoría */}
+        <div className="space-y-8">
+          {Object.entries(groupedFAQs).map(([category, items], categoryIndex) => (
+            <div
+              id={`category-${category}`}
+              key={category}
+              className="scroll-mt-8"
+            >
+              {/* Título de la categoría */}
+              <div className="mb-5">
+                <div className="flex items-center gap-3 pb-2">
+                  <div className="flex-1 h-px" style={{ backgroundColor: `${COLORS.bg}20` }} />
+                  <h2 className="text-lg font-bold tracking-wide uppercase" style={{ color: COLORS.bg }}>
+                    {categoryTitles[category as keyof typeof categoryTitles]}
+                  </h2>
+                  <div className="flex-1 h-px" style={{ backgroundColor: `${COLORS.bg}20` }} />
+                </div>
+              </div>
+
+              {/* Items de la categoría */}
+              <div className="space-y-3">
+                {items.map((item, itemIndex) => (
+                  <div
+                    key={item.id}
+                    className="rounded-xl border overflow-hidden"
+                    style={{ 
+                      backgroundColor: 'white', 
+                      borderColor: `${COLORS.bg}15` 
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => toggleExpanded(item.id)}
+                      className="w-full px-5 py-4 text-left flex items-center justify-between transition-all duration-200 hover:brightness-98"
+                      style={{ 
+                        backgroundColor: expandedItems.has(item.id) ? `${COLORS.bg}08` : `${COLORS.bg}05`,
+                      }}
+                    >
+                      <span className="font-bold flex-1 pr-4 text-base" style={{ color: COLORS.bg }}>
+                        {item.question}
+                      </span>
+                      <span
+                        className="text-xl font-bold flex-shrink-0"
+                        style={{ color: COLORS.bg }}
+                      >
+                        {expandedItems.has(item.id) ? '−' : '+'}
+                      </span>
+                    </button>
+
+                    {expandedItems.has(item.id) && (
+                      <div className="px-5 py-4 border-t" style={{ borderColor: `${COLORS.bg}10` }}>
+                        <div className="leading-relaxed pt-[8px]" style={{ color: COLORS.bg }}>
+                          <FAQAnswer content={item.answer} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
+          ))}
+        </div>
 
-            {/* Items de la categoría */}
-            <div className="space-y-3">
-              {items.map((item, itemIndex) => (
-                <div
-                  key={item.id}
-                  className="bg-white dark:bg-white/5 rounded-2xl border border-[#ecdbbd]/30 overflow-hidden stagger-item"
-                  style={{
-                    animationDelay: `${categoryIndex * 0.2 + itemIndex * 0.1}s`,
-                  }}
-                >
-                  <button
-                    onClick={() => toggleExpanded(item.id)}
-                    className="w-full px-6 py-5 text-left flex items-center gap-4 hover:bg-[#ecdbbd]/20 transition-colors"
-                  >
-                    <div className="flex-1 pt-4">
-                      <h3 className="font-bold text-lg text-[#203553]">
-                        {item.question}
-                      </h3>
-                    </div>
-                    <span
-                      className={`text-[#203553] transition-transform text-xl font-bold ${
-                        expandedItems.has(item.id) ? "rotate-180" : ""
-                      }`}
-                    >
-                      ▾
-                    </span>
-                  </button>
-
-                  {expandedItems.has(item.id) && (
-                    <div className="px-6 pb-5 pl-[60px] animate-fade-in">
-                      <FAQAnswer content={item.answer} />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Return to Top Button */}
-      <div className="mt-16 text-center">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="bg-[#203553] text-[#ecdbbd] px-8 py-3 rounded-xl font-bold mx-auto hover:opacity-90 transition-all inline-flex items-center gap-2"
-        >
-          <span>↑</span> Volver al principio
-        </button>
+        {/* Return to Top Button */}
+        <div className="mt-12 text-center">
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="px-8 py-3 rounded-xl font-bold transition-all duration-200 inline-flex items-center gap-2 hover:scale-105 hover:shadow-lg"
+            style={{ 
+              backgroundColor: COLORS.bg, 
+              color: COLORS.text,
+              boxShadow: '0 4px 14px rgba(32, 53, 83, 0.3)'
+            }}
+          >
+            Volver al inicio
+          </button>
+        </div>
       </div>
     </div>
   );
