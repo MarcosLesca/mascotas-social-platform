@@ -148,10 +148,10 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
           ) : mixedRecentCards.length === 0 ? (
             <div className="rounded-3xl border border-accent-teal/10 bg-white dark:bg-white/5 p-8 text-center">
               <h3 className="text-xl font-black">
-                Sin publicaciones recientes
+                Aún no hay casos publicados
               </h3>
               <p className="text-gray-800 text-sm mt-2">
-                Todavía no hay datos para mostrar en el feed.
+                Sé el primero en crear una publicación.
               </p>
             </div>
           ) : (

@@ -336,14 +336,22 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             </div>
           )}
 
-          {/* Sin resultados */}
-          {!loading && filteredPets.length === 0 && (
+          {/* Sin resultados - solo mostrar cuando hay filtros activos */}
+          {!loading && filteredPets.length === 0 && hasActiveFilters && (
             <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-accent-teal/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
               <h3 className="text-xl sm:text-2xl font-bold mb-2">No encontramos mascotas con esos filtros</h3>
               <p className="text-sm sm:text-base text-gray-800 mb-6">Intenta ajustar los filtros para ver más opciones</p>
               <button onClick={clearFilters} className="bg-primary text-background-dark w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
                 Limpiar filtros
               </button>
+            </div>
+          )}
+
+          {/* Sin mascotas en adopción (sin filtros activos) */}
+          {!loading && filteredPets.length === 0 && !hasActiveFilters && pets.length === 0 && (
+            <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-accent-teal/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">Aún no hay casos publicados</h3>
+              <p className="text-sm sm:text-base text-gray-800">Sé el primero en crear una publicación.</p>
             </div>
           )}
 

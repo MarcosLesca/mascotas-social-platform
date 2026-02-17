@@ -401,6 +401,18 @@ const Donations: React.FC = () => {
               </button>
             </div>
           )}
+
+          {/* Sin campañas de donación (sin filtros activos) */}
+          {!loading && !hasActiveFilters && filteredCampaigns.length === 0 && campaigns.length === 0 && (
+            <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-sky-500/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                Aún no hay casos publicados
+              </h3>
+              <p className="text-sm sm:text-base text-gray-800">
+                Sé el primero en crear una publicación.
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
