@@ -93,7 +93,7 @@ const AppContent: React.FC = () => {
             <img
               src="/assets/LyM-logo.png"
               alt="LyM Desarrollo Web"
-              className="h-8 w-auto"
+              className="h-12 w-auto"
             />
             <span className="text-lg font-black text-[#ecdbbd]">
               Mascotas SJ

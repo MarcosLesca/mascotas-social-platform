@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
             <img
               src="/assets/LyM-logo.png"
               alt="LyM Desarrollo Web"
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
             <h2 className="mb-0 text-lg font-bold tracking-tight text-[#ecdbbd]">
               Mascotas SJ

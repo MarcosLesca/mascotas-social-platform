@@ -98,7 +98,7 @@ const zoomItems: ZoomItem[] = [
   },
   {
     id: 12,
-    src: "../../public/assets/hero/gato- - hero-1.jpg",
+    src: "../../public/assets/hero/gato- -hero-1.jpg",
     className: styles.item12,
     text: "Alegria",
     direction: "right",
