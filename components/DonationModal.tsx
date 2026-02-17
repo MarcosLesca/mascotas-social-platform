@@ -304,9 +304,9 @@ const DonationModal: React.FC<DonationModalProps> = ({
                       onClick={() => window.open(waHref, "_blank")}
                       className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02]"
                     >
-                      <span className="material-symbols-outlined text-xl">
-                        chat
-                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.92.5 3.8 1.45 5.45L2 22l4.82-1.56a9.83 9.83 0 0 0 5.22 1.5h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2zm5.73 14.16c-.24.67-1.18 1.29-1.97 1.46-.54.11-1.24.2-3.6-.78-3.02-1.25-4.97-4.32-5.12-4.52-.14-.2-1.23-1.64-1.23-3.14 0-1.5.78-2.24 1.06-2.54.28-.3.61-.38.81-.38h.58c.18 0 .43-.07.67.51.24.58.81 2 .88 2.15.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.32.38-.46.51-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.15 1.37 2.46 1.52.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.3.41-.25.68-.15.28.1 1.75.83 2.05.98.3.15.5.22.58.34.07.12.07.69-.17 1.36z"></path>
+                      </svg>
                       Contactar por WhatsApp
                     </button>
                   )}
