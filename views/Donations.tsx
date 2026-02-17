@@ -342,7 +342,7 @@ const Donations: React.FC = () => {
 
                     <div className="mt-auto space-y-2 sm:space-y-3">
                       <div className="bg-green-50 dark:bg-green-900/20 rounded-lg sm:rounded-xl p-2 sm:p-3 flex justify-between items-center">
-                        <span className="text-[10px] sm:text-xs font-bold text-green-700 dark:text-green-400">
+                        <span className="text-base font-bold text-green-700 dark:text-green-400">
                           Meta
                         </span>
                         <span className="text-sm sm:text-base font-black text-green-600 dark:text-green-400">

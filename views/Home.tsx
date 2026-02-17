@@ -178,7 +178,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
                         <div className="mt-auto space-y-2">
                           <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2 flex justify-between items-center">
-                            <span className="text-[10px] font-bold text-green-700 dark:text-green-400">Meta</span>
+                            <span className="text-base font-bold text-green-700 dark:text-green-400">Meta</span>
                             <span className="text-sm font-black text-green-600 dark:text-green-400">${campaign.goal.toLocaleString("es-AR")}</span>
                           </div>
 
