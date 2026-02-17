@@ -3,6 +3,7 @@ import { DonationCampaign } from "../types";
 import DonationModal from "../components/DonationModal";
 import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsService";
 import ReportDonationCampaignModal from "../components/ReportDonationCampaignModal";
+import ShareModal from "../components/ShareModal";
 
 interface DonationFilters {
   type: string[];
@@ -20,6 +21,8 @@ const Donations: React.FC = () => {
   const [showReportModal, setShowReportModal] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [sharingCampaign, setSharingCampaign] = useState<DonationCampaign | null>(null);
   const [filters, setFilters] = useState<DonationFilters>({
     type: [],
     urgency: false,
@@ -318,6 +321,21 @@ const Donations: React.FC = () => {
                         </span>
                       )}
                     </div>
+                    {/* Share Button */}
+                    <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSharingCampaign(campaign);
+                          setShareModalOpen(true);
+                        }}
+                        className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold hover:opacity-90 transition-opacity"
+                        style={{ backgroundColor: '#203553', color: '#ecdbbd' }}
+                      >
+                        Compartir
+                      </button>
+                    </div>
                   </div>
 
                   {/* Content */}
@@ -407,6 +425,21 @@ const Donations: React.FC = () => {
           setSubmitMessage(null);
           setError(message);
         }}
+      />
+
+      <ShareModal
+        isOpen={shareModalOpen}
+        onClose={() => {
+          setShareModalOpen(false);
+          setSharingCampaign(null);
+        }}
+        item={sharingCampaign ? {
+          id: sharingCampaign.id,
+          image: sharingCampaign.image,
+          title: sharingCampaign.title,
+          description: sharingCampaign.description,
+        } : { id: '', image: '', title: '', description: '' }}
+        type="donation"
       />
     </div>
   );

@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Pet } from "../types";
+import ShareModal from "./ShareModal";
 
 function digitsOnly(s: string): string {
   return s.replace(/\D/g, "");
@@ -36,28 +37,9 @@ const PetCard: React.FC<PetCardProps> = ({
   onViewDetails,
   onShare,
 }) => {
-  const [showShareMenu, setShowShareMenu] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const shareMenuRef = useRef<HTMLDivElement>(null);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
   const isLost = pet.status === "lost";
-
-  // Cerrar menú cuando se hace click afuera
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        shareMenuRef.current &&
-        !shareMenuRef.current.contains(event.target as Node)
-      ) {
-        setShowShareMenu(false);
-      }
-    };
-
-    if (showShareMenu) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () =>
-        document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, [showShareMenu]);
+  
   const urgentBadgeClass =
     "bg-red-400 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-lg";
   const topBadgeClass =
@@ -74,61 +56,6 @@ const PetCard: React.FC<PetCardProps> = ({
   const mailHref = hasEmail
     ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
     : null;
-
-  const handleShare = async (platform: string) => {
-    // Construir URL según el tipo de mascota
-    const basePath = isLost ? "/lost-pets" : "/adoption";
-    const petUrl = `${window.location.origin}${basePath}?pet=${pet.id}`;
-
-    const shareData = {
-      title: `${isLost ? "Mascota Perdida" : "Mascota en Adopción"}: ${pet.name}`,
-      text: `${isLost ? "Ayuda a encontrar" : "Conoce a"} ${pet.name}, ${pet.breed}${isLost ? ` - visto en ${pet.location}` : " - busca un hogar"}. ¡Ayudanos a compartir!`,
-      url: petUrl,
-    };
-
-    // Notificar al padre
-    onShare?.(pet, platform);
-
-    // Usar Web Share API si está disponible (móvil)
-    if (platform === "native" && navigator.share) {
-      try {
-        await navigator.share(shareData);
-        return;
-      } catch (err) {
-        // Si el usuario cancela, no hacer nada
-        if ((err as Error).name === "AbortError") return;
-      }
-    }
-
-    switch (platform) {
-      case "native":
-      case "copy_link":
-        try {
-          await navigator.clipboard.writeText(petUrl);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
-          console.error("Error al copiar:", err);
-        }
-        break;
-      case "whatsapp":
-        window.open(
-          `https://wa.me/?text=${encodeURIComponent(`${shareData.text} ${shareData.url}`)}`,
-          "_blank",
-        );
-        break;
-      case "sms":
-        window.open(
-          `sms:?body=${encodeURIComponent(`${shareData.text} ${shareData.url}`)}`,
-        );
-        break;
-      case "email":
-        window.open(
-          `mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(`${shareData.text} ${shareData.url}`)}`,
-        );
-        break;
-    }
-  };
 
   return (
     <div className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 card-hover stagger-item flex flex-col">
@@ -371,6 +298,18 @@ const PetCard: React.FC<PetCardProps> = ({
           </button>
         </div>
       </div>
+
+      <ShareModal
+        isOpen={shareModalOpen}
+        onClose={() => setShareModalOpen(false)}
+        item={{
+          id: pet.id,
+          image: pet.image,
+          name: pet.name,
+          location: pet.location,
+        }}
+        type="pet"
+      />
     </div>
   );
 };
