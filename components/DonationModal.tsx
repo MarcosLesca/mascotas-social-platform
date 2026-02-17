@@ -280,7 +280,7 @@ const DonationModal: React.FC<DonationModalProps> = ({
                   <p className="text-3xl font-black text-green-700 mb-2">
                     ${campaign.goal.toLocaleString("es-AR")}
                   </p>
-                  <p className="text-xs text-black/60 font-medium">
+                  <p className="text-lg text-black/60 font-medium">
                     Tu aporte hace la diferencia para {campaign.petName}
                   </p>
                 </div>

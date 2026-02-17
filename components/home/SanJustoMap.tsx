@@ -43,14 +43,14 @@ const SanJustoMap: React.FC = () => {
     <section className="w-full pb-16">
       <div className="max-w-7xl mx-auto px-4">
         {/* Contenedor del mapa */}
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20">
+        <div className="relative rounded-2xl overflow-hidden">
           <div className="aspect-[16/9] md:aspect-[21/9] w-full">
             <iframe
               ref={mapFrameRef}
               src={mapUrl}
               title="Mapa de San Justo, Santa Fe"
               className="w-full h-full border-0 pointer-events-none"
-              allowFullCell
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               style={{ minHeight: "400px" }}

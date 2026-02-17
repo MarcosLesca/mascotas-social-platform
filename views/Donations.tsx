@@ -341,17 +341,17 @@ const Donations: React.FC = () => {
                     </p>
 
                     <div className="mt-auto space-y-2 sm:space-y-3">
-                      <div className="bg-sky-50 rounded-lg sm:rounded-xl p-2 sm:p-3 flex justify-between items-center">
-                        <span className="text-[10px] sm:text-xs font-bold text-sky-700">
+                      <div className="bg-green-50 dark:bg-green-900/20 rounded-lg sm:rounded-xl p-2 sm:p-3 flex justify-between items-center">
+                        <span className="text-[10px] sm:text-xs font-bold text-green-700 dark:text-green-400">
                           Meta
                         </span>
-                        <span className="text-sm sm:text-base font-black text-sky-600">
+                        <span className="text-sm sm:text-base font-black text-green-600 dark:text-green-400">
                           ${campaign.goal.toLocaleString("es-AR")}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-gray-500">
-                        <span className="material-symbols-outlined text-xs sm:text-sm">
+                      <div className="flex items-center gap-1.5 sm:gap-2 text-base text-red-500 font-semibold">
+                        <span className="material-symbols-outlined">
                           event
                         </span>
                         <span>Hasta: {campaign.deadline}</span>
