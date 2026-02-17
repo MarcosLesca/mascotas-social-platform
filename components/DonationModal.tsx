@@ -217,7 +217,7 @@ const DonationModal: React.FC<DonationModalProps> = ({
                 </div>
 
                 {/* Información de Contacto */}
-                {(hasWhatsapp || hasEmail) && (
+                {(hasWhatsapp || hasEmail || campaign.contactInfo) && (
                   <div className="bg-sky-500/5 rounded-2xl p-6">
                     <h3 className="text-xl font-bold mb-4">
                       Información de Contacto
@@ -229,6 +229,14 @@ const DonationModal: React.FC<DonationModalProps> = ({
                           {campaign.responsibleName}
                         </span>
                       </div>
+                      {campaign.contactInfo && (
+                        <div className="flex items-center gap-3">
+                          <span className="font-bold">Contacto:</span>
+                          <span className="font-medium">
+                            {campaign.contactInfo}
+                          </span>
+                        </div>
+                      )}
                       {hasWhatsapp && (
                         <div className="flex items-center gap-3">
                           <span className="font-bold">WhatsApp:</span>

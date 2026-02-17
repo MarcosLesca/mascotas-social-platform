@@ -61,6 +61,13 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
       other: "Otro",
     }[pet.species] || pet.species;
 
+  const sizeLabel =
+    {
+      small: "Chico",
+      medium: "Mediano",
+      large: "Grande",
+    }[pet.size || ""] || "";
+
   const isFullscreen = variant === "fullscreen";
 
   const containerClasses = isFullscreen
@@ -168,6 +175,16 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                     {isLost ? "Visto por última vez:" : "Ubicación:"}
                   </h3>
                   <p className="text-black font-medium">{pet.location}</p>
+                  {pet.lastSeenLocation && (
+                    <p className="text-sm text-black/80 mt-1">
+                      Última ubicación: {pet.lastSeenLocation}
+                    </p>
+                  )}
+                  {pet.lastSeenDate && (
+                    <p className="text-sm text-black/80">
+                      Fecha: {new Date(pet.lastSeenDate).toLocaleDateString('es-AR')}
+                    </p>
+                  )}
                   {pet.distance && (
                     <p className="text-sm text-black/80 mt-1">
                       A {pet.distance} de tu ubicación
@@ -329,6 +346,12 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                 >
                   <h4 className="font-bold mb-4">Características</h4>
                   <div className="space-y-3">
+                    {pet.breed && (
+                      <div className="flex justify-between">
+                        <span className="text-sm text-black">Raza:</span>
+                        <span className="text-sm font-bold">{pet.breed}</span>
+                      </div>
+                    )}
                     {isLost && pet.reward && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Recompensa:</span>
@@ -349,6 +372,12 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                         {pet.gender === "male" ? "Macho" : "Hembra"}
                       </span>
                     </div>
+                    {pet.size && (
+                      <div className="flex justify-between">
+                        <span className="text-sm text-black">Tamaño:</span>
+                        <span className="text-sm font-bold">{sizeLabel}</span>
+                      </div>
+                    )}
                     {pet.age && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Edad:</span>
