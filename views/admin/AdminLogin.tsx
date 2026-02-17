@@ -106,7 +106,7 @@ const AdminLogin: React.FC = () => {
             <img
               src="/assets/LyM-logo.png"
               alt="LyM Desarrollo Web"
-              className="w-16 h-16"
+              className="w-24 h-24"
             />
             <h1 className="text-2xl font-black text-center text-slate-900 dark:text-white">
               Admin LyM desarrollo web
