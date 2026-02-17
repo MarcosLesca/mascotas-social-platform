@@ -103,10 +103,15 @@ const AdminLogin: React.FC = () => {
       <div className="w-full max-w-md">
         <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-xl border border-accent-teal/10 p-8">
           <div className="flex flex-col items-center gap-2 mb-8">
+            <img
+              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
+              alt="LyM Desarrollo Web"
+              className="w-16 h-16"
+            />
             <h1 className="text-2xl font-black text-center text-slate-900 dark:text-white">
               Admin LyM desarrollo web
             </h1>
-            <p className="text-sm text-center text-red-500font-bold ">
+            <p className="text-sm text-center text-red-500 font-bold ">
               Acceso exclusivo para administradores autorizados
             </p>
           </div>
