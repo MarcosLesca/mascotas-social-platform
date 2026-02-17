@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { fetchApprovedLostPets } from '../services/lostPetsService';
-import PetCard from '../components/PetCard';
-import PetDetailModal from '../components/PetDetailModal';
-import ReportLostPetModal from '../components/ReportLostPetModal';
-import { Pet } from '../types';
+import React, { useState, useMemo, useEffect } from "react";
+import { fetchApprovedLostPets } from "../services/lostPetsService";
+import PetCard from "../components/PetCard";
+import PetDetailModal from "../components/PetDetailModal";
+import ReportLostPetModal from "../components/ReportLostPetModal";
+import { Pet } from "../types";
 
 interface FilterState {
   species: string[];
@@ -15,7 +15,12 @@ interface FilterState {
 }
 
 interface LostPetsProps {
-  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info', duration?: number, showAcceptButton?: boolean) => void;
+  onToast: (
+    message: string,
+    type?: "success" | "error" | "warning" | "info",
+    duration?: number,
+    showAcceptButton?: boolean,
+  ) => void;
 }
 
 const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
@@ -31,7 +36,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     size: [],
     gender: [],
     urgency: false,
-    searchTerm: '',
+    searchTerm: "",
   });
 
   useEffect(() => {
@@ -41,12 +46,17 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       if (cancelled) return;
       setLoading(false);
       if (error) {
-        onToast('No se pudieron cargar las mascotas perdidas. Revisa la conexión.', 'error');
+        onToast(
+          "No se pudieron cargar las mascotas perdidas. Revisa la conexión.",
+          "error",
+        );
         return;
       }
       setPets(data);
     });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [onToast]);
 
   // Filtrar y buscar mascotas
@@ -56,28 +66,33 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     // Búsqueda por texto
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter(pet =>
-        pet.name.toLowerCase().includes(searchLower) ||
-        pet.breed.toLowerCase().includes(searchLower) ||
-        pet.location.toLowerCase().includes(searchLower)
+      filtered = filtered.filter(
+        (pet) =>
+          pet.name.toLowerCase().includes(searchLower) ||
+          pet.breed.toLowerCase().includes(searchLower) ||
+          pet.location.toLowerCase().includes(searchLower),
       );
     }
 
     // Filtro por especie
     if (filters.species.length > 0) {
       const speciesMap: { [key: string]: string } = {
-        'Perros': 'dog',
-        'Gatos': 'cat',
-        'Aves': 'bird',
-        'Otros': 'other'
+        Perros: "dog",
+        Gatos: "cat",
+        Aves: "bird",
+        Otros: "other",
       };
-      const selectedSpecies = filters.species.map(s => speciesMap[s]).filter(Boolean);
-      filtered = filtered.filter(pet => selectedSpecies.includes(pet.species));
+      const selectedSpecies = filters.species
+        .map((s) => speciesMap[s])
+        .filter(Boolean);
+      filtered = filtered.filter((pet) =>
+        selectedSpecies.includes(pet.species),
+      );
     }
 
     // Filtro por tamaño
     if (filters.size.length > 0) {
-      filtered = filtered.filter(pet => {
+      filtered = filtered.filter((pet) => {
         if (!pet.size) return false;
         return filters.size.includes(pet.size);
       });
@@ -85,7 +100,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
     // Filtro por género
     if (filters.gender.length > 0) {
-      filtered = filtered.filter(pet => {
+      filtered = filtered.filter((pet) => {
         if (!pet.gender) return false;
         return filters.gender.includes(pet.gender);
       });
@@ -93,7 +108,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
 
     // Filtro por urgencia
     if (filters.urgency) {
-      filtered = filtered.filter(pet => pet.urgency);
+      filtered = filtered.filter((pet) => pet.urgency);
     }
 
     return filtered;
@@ -106,7 +121,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       size: [],
       gender: [],
       urgency: false,
-      searchTerm: ''
+      searchTerm: "",
     });
   };
 
@@ -118,34 +133,37 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     !!filters.searchTerm;
 
   const toggleSpecies = (species: string) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
       species: prev.species.includes(species)
-        ? prev.species.filter(s => s !== species)
+        ? prev.species.filter((s) => s !== species)
         : [...prev.species, species],
     }));
   };
 
   const toggleAge = (age: string) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
       age: prev.age.includes(age)
-        ? prev.age.filter(a => a !== age)
+        ? prev.age.filter((a) => a !== age)
         : [...prev.age, age],
     }));
   };
 
   const handlePetAction = (pet: Pet, action: string) => {
     switch (action) {
-      case 'view':
+      case "view":
         setSelectedPet(pet);
         setShowDetailModal(true);
         break;
-      case 'seen':
-        onToast(`Gracias por reportar a ${pet.name}. Te contactaremos pronto.`, 'success');
+      case "seen":
+        onToast(
+          `Gracias por reportar a ${pet.name}. Te contactaremos pronto.`,
+          "success",
+        );
         break;
       default:
-        console.log('Acción:', action, 'para:', pet.name);
+        console.log("Acción:", action, "para:", pet.name);
     }
   };
 
@@ -168,20 +186,25 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   const handleReportSubmit = () => {
-    onToast('Tu publicación fue enviada correctamente.\n\nSerá revisada por LyM desarrollo web antes de hacerse visible en Mascotas SJ.\n\nPodrás verla publicada una vez que sea aprobada.', 'success', 0, true);
+    onToast(
+      "Tu publicación fue enviada correctamente.\n\nSerá revisada por LyM desarrollo web antes de hacerse visible en Mascotas SJ.\n\nPodrás verla publicada una vez que sea aprobada.",
+      "success",
+      0,
+      true,
+    );
   };
 
   const handleReportError = (msg: string) => {
-    onToast(msg, 'error');
+    onToast(msg, "error");
   };
 
   return (
     <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 pb-6 sm:pb-10 flex flex-col gap-6 sm:gap-8 lg:gap-10">
       <div className="max-w-3xl mx-auto text-center mt-4 sm:mt-6 px-2">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-2">Ellos te siguen buscando</h2>
-        <p className="text-gray-800 text-base sm:text-lg">
-          Mascotas perdidas
-        </p>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-2">
+          Ellos te siguen buscando
+        </h2>
+        <p className="text-gray-800 text-base sm:text-lg">Mascotas perdidas</p>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
@@ -192,10 +215,14 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
             className="xl:hidden w-full bg-white dark:bg-white/5 p-4 rounded-2xl border border-red-400/5 flex items-center justify-between"
           >
             <span className="text-lg font-bold">Filtros</span>
-            <span className="material-symbols-outlined">{showFilters ? 'expand_less' : 'expand_more'}</span>
+            <span className="material-symbols-outlined">
+              {showFilters ? "expand_less" : "expand_more"}
+            </span>
           </button>
 
-          <div className={`bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-red-400/5 xl:sticky xl:top-24 ${showFilters ? 'block' : 'hidden'} xl:block`}>
+          <div
+            className={`bg-white dark:bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-red-400/5 xl:sticky xl:top-24 ${showFilters ? "block" : "hidden"} xl:block`}
+          >
             <div className="flex justify-between items-center mb-6 sm:mb-8">
               <h3 className="text-lg sm:text-xl font-bold">Filtros</h3>
               {hasActiveFilters && (
@@ -216,23 +243,27 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                   placeholder="Buscar..."
                   className="w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-white/10 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400 text-sm"
                   value={filters.searchTerm}
-                  onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
+                  onChange={(e) =>
+                    setFilters({ ...filters, searchTerm: e.target.value })
+                  }
                 />
               </div>
             </div>
 
             <div className="space-y-6 sm:space-y-8">
               <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">
+                  Especie
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Perros', 'Gatos', 'Aves', 'Otros'].map(s => (
+                  {["Perros", "Gatos", "Aves", "Otros"].map((s) => (
                     <button
                       key={s}
                       onClick={() => toggleSpecies(s)}
                       className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                         filters.species.includes(s)
-                          ? 'bg-red-400 text-white'
-                          : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
+                          ? "bg-red-400 text-white"
+                          : "bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10"
                       }`}
                     >
                       {s}
@@ -242,24 +273,36 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Tamaño</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">
+                  Tamaño
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Pequeño', 'Mediano', 'Grande'].map(s => (
+                  {["Pequeño", "Mediano", "Grande"].map((s) => (
                     <button
                       key={s}
                       onClick={() => {
-                        const sizeMap: { [key: string]: string } = { 'Pequeño': 'small', 'Mediano': 'medium', 'Grande': 'large' };
-                        setFilters(prev => ({
+                        const sizeMap: { [key: string]: string } = {
+                          Pequeño: "small",
+                          Mediano: "medium",
+                          Grande: "large",
+                        };
+                        setFilters((prev) => ({
                           ...prev,
                           size: prev.size.includes(sizeMap[s])
-                            ? prev.size.filter(sz => sz !== sizeMap[s])
-                            : [...prev.size, sizeMap[s]]
+                            ? prev.size.filter((sz) => sz !== sizeMap[s])
+                            : [...prev.size, sizeMap[s]],
                         }));
                       }}
                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
-                        filters.size.includes(s === 'Pequeño' ? 'small' : s === 'Mediano' ? 'medium' : 'large')
-                          ? 'bg-red-400 text-white'
-                          : 'bg-red-50 text-red-400 hover:bg-red-100'
+                        filters.size.includes(
+                          s === "Pequeño"
+                            ? "small"
+                            : s === "Mediano"
+                              ? "medium"
+                              : "large",
+                        )
+                          ? "bg-red-400 text-white"
+                          : "bg-red-50 text-red-400 hover:bg-red-100"
                       }`}
                     >
                       {s}
@@ -269,24 +312,31 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Género</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">
+                  Género
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Macho', 'Hembra'].map(g => (
+                  {["Macho", "Hembra"].map((g) => (
                     <button
                       key={g}
                       onClick={() => {
-                        const genderMap: { [key: string]: string } = { 'Macho': 'male', 'Hembra': 'female' };
-                        setFilters(prev => ({
+                        const genderMap: { [key: string]: string } = {
+                          Macho: "male",
+                          Hembra: "female",
+                        };
+                        setFilters((prev) => ({
                           ...prev,
                           gender: prev.gender.includes(genderMap[g])
-                            ? prev.gender.filter(gn => gn !== genderMap[g])
-                            : [...prev.gender, genderMap[g]]
+                            ? prev.gender.filter((gn) => gn !== genderMap[g])
+                            : [...prev.gender, genderMap[g]],
                         }));
                       }}
                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
-                        filters.gender.includes(g === 'Macho' ? 'male' : 'female')
-                          ? 'bg-red-400 text-white'
-                          : 'bg-red-50 text-red-400 hover:bg-red-100'
+                        filters.gender.includes(
+                          g === "Macho" ? "male" : "female",
+                        )
+                          ? "bg-red-400 text-white"
+                          : "bg-red-50 text-red-400 hover:bg-red-100"
                       }`}
                     >
                       {g}
@@ -296,12 +346,16 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
               </div>
 
               <div>
-                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Urgencia</p>
+                <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">
+                  Urgencia
+                </p>
                 <label className="flex items-center gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
                     checked={filters.urgency}
-                    onChange={(e) => setFilters({ ...filters, urgency: e.target.checked })}
+                    onChange={(e) =>
+                      setFilters({ ...filters, urgency: e.target.checked })
+                    }
                     className="rounded text-red-400 focus:ring-red-400 border-red-400/20"
                   />
                   <span className="text-sm font-medium group-hover:text-red-400 transition-colors">
@@ -320,25 +374,36 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         <div className="col-span-1 xl:col-span-9">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-16 sm:py-20 gap-4">
-              <p className="text-gray-800 text-sm sm:text-base font-medium">Cargando mascotas perdidas...</p>
+              <p className="text-gray-800 text-sm sm:text-base font-medium">
+                Cargando mascotas perdidas...
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-8">
               {/* Report Card - First Position */}
-              <div className="col-span-2 sm:col-span-1 bg-red-400/5 dark:bg-red-400/10 border-4 border-dashed border-red-400/30 rounded-2xl flex flex-col items-center justify-center p-4 sm:p-8 text-center group cursor-pointer hover:bg-red-400/10 transition-all min-h-[180px] sm:min-h-[380px]"
-                   onClick={handleOpenReportModal}>
-                <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800">¿Se perdió tu mascota?</h3>
-                <p className="text-xs sm:text-sm text-gray-900 mb-4 sm:mb-8 max-w-[180px] sm:max-w-[220px]">Publicá la información cuanto antes para aumentar las posibilidades de reencontrarte.</p>
-                <button className="bg-red-400 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all text-xs sm:text-base"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleOpenReportModal();
-                        }}>
+              <div
+                className="col-span-2 sm:col-span-1 bg-red-400/5 dark:bg-red-400/10 border-4 border-dashed border-red-400/30 rounded-2xl flex flex-col items-center justify-center p-4 sm:p-8 text-center group cursor-pointer hover:bg-red-400/10 transition-all min-h-[180px] sm:min-h-[380px]"
+                onClick={handleOpenReportModal}
+              >
+                <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800">
+                  ¿Se perdió tu mascota?
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-900 mb-4 sm:mb-8 max-w-[180px] sm:max-w-[220px]">
+                  Publicá la información cuanto antes para aumentar las
+                  posibilidades de reencontrarte.
+                </p>
+                <button
+                  className="bg-red-400 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all text-xs sm:text-base"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenReportModal();
+                  }}
+                >
                   COMENZAR
                 </button>
               </div>
 
-              {filteredPets.map(pet => (
+              {filteredPets.map((pet) => (
                 <PetCard
                   key={pet.id}
                   pet={pet}
@@ -352,16 +417,22 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
           {/* Sin resultados (solo con filtros activos) */}
           {!loading && hasActiveFilters && filteredPets.length === 0 && (
             <div className="bg-white dark:bg-white/5 rounded-2xl sm:rounded-3xl border border-red-400/5 p-6 sm:p-10 lg:p-12 text-center mt-6 sm:mt-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">No encontramos resultados</h3>
-              <p className="text-sm sm:text-base text-gray-800 mb-6">Intenta ajustar los filtros o el término de búsqueda</p>
-              <button onClick={clearFilters} className="bg-red-400 text-white w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                No encontramos resultados
+              </h3>
+              <p className="text-sm sm:text-base text-gray-800 mb-6">
+                Intenta ajustar los filtros o el término de búsqueda
+              </p>
+              <button
+                onClick={clearFilters}
+                className="bg-red-400 text-white w-full sm:w-auto px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all"
+              >
                 Limpiar filtros
               </button>
             </div>
           )}
         </div>
       </div>
-
 
       {/* Modal de detalles */}
       <PetDetailModal

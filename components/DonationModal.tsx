@@ -121,7 +121,7 @@ const DonationModal: React.FC<DonationModalProps> = ({
                 </span>
               )}
               <span className="bg-sky-500 text-white text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
-                Donacion solidaria
+                Donación solidaria
               </span>
               <span className="bg-black/60 backdrop-blur-md text-white text-xs font-black px-3 py-1 rounded-full uppercase">
                 {typeLabel}

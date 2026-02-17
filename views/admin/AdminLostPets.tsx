@@ -93,7 +93,7 @@ const AdminLostPets: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-black text-slate-900 dark:text-white">
-              Mascotas perdidas (pendientes)
+              Mascotas Perdidas (pendientes)
             </h1>
             <p className="text-accent-teal font-medium mt-1">
               Revisa y aprueba o rechaza los reportes. Solo los aprobados se muestran en el sitio.

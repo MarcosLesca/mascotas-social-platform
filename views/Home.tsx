@@ -135,7 +135,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 Sin publicaciones recientes
               </h3>
               <p className="text-gray-800 text-sm mt-2">
-                Todavia no hay datos para mostrar en el feed.
+                Todavía no hay datos para mostrar en el feed.
               </p>
             </div>
           ) : (
@@ -183,7 +183,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                           </div>
 
                           <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold py-2 rounded-full transition-all flex items-center justify-center gap-2">
-                            Ver Detalles
+                            Ver detalles
                           </button>
                         </div>
                       </div>

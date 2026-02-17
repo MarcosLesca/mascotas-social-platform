@@ -163,7 +163,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
         <div className="bg-red-400 text-white p-4 sm:p-6">
           <div className="flex justify-between items-center mb-3 sm:mb-4">
             <h2 className="text-lg sm:text-2xl font-black">
-              Reportar Mascota Perdida
+              Reportar mascota perdida
             </h2>
             <button
               type="button"
@@ -224,7 +224,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
           {currentStep === 1 && (
             <div className="space-y-6">
               <h3 className="text-xl font-bold mb-4">
-                Información de la Mascota
+                Información de la mascota
               </h3>
 
               <div>
@@ -274,7 +274,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     htmlFor="report-petName"
                     className="block text-sm font-bold text-gray-800 mb-2"
                   >
-                    Nombre de la Mascota *
+                    Nombre de la mascota *
                   </label>
                   <input
                     id="report-petName"
@@ -347,7 +347,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
 
                 <div>
                   <label className="block text-sm font-bold text-gray-800 mb-2">
-                    Edad Aproximada
+                    Edad aproximada
                   </label>
                   <input
                     type="text"
@@ -394,7 +394,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
 
               <div>
                 <label className="block text-sm font-bold text-gray-800 mb-2">
-                  Características Distintivas
+                  Características distintivas
                 </label>
                 <textarea
                   value={formData.distinctiveFeatures}
@@ -412,7 +412,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
           {/* Step 2: Loss Details */}
           {currentStep === 2 && (
             <div className="space-y-6">
-              <h3 className="text-xl font-bold mb-4">Detalles de la Pérdida</h3>
+              <h3 className="text-xl font-bold mb-4">Detalles de la pérdida</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -461,7 +461,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                   htmlFor="report-additionalInfo"
                   className="block text-sm font-bold text-gray-800 mb-2"
                 >
-                  Información Adicional
+                  Información adicional
                 </label>
                 <textarea
                   id="report-additionalInfo"
@@ -526,7 +526,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
           {currentStep === 3 && (
             <div className="space-y-6">
               <h3 className="text-xl font-bold mb-4">
-                Información de Contacto
+                Información de contacto
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -635,4 +635,3 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
 };
 
 export default ReportLostPetModal;
-

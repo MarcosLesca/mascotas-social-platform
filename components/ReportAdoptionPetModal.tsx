@@ -234,7 +234,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
           {currentStep === 1 && (
             <div className="space-y-6">
               <h3 className="text-xl font-bold mb-4">
-                Información de la Mascota
+                Información de la mascota
               </h3>
 
               <div>
@@ -284,7 +284,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     htmlFor="adopt-petName"
                     className="block text-sm font-bold text-gray-900 mb-2"
                   >
-                    Nombre de la Mascota *
+                    Nombre de la mascota *
                   </label>
                   <input
                     id="adopt-petName"
@@ -357,7 +357,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 
                 <div>
                   <label className="block text-sm font-bold text-gray-900 mb-2">
-                    Edad Aproximada
+                    Edad aproximada
                   </label>
                   <input
                     type="text"

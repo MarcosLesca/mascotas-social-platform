@@ -358,7 +358,7 @@ const Donations: React.FC = () => {
                       </div>
 
                       <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-xs sm:text-sm font-bold py-2 sm:py-3 rounded-full transition-all flex items-center justify-center gap-2">
-                        Ver Detalles
+                        Ver detalles
                       </button>
                     </div>
                   </div>
@@ -398,7 +398,7 @@ const Donations: React.FC = () => {
         onClose={() => setShowReportModal(false)}
         onSubmit={() => {
           setSubmitMessage(
-            "Donacion enviada. Un administrador la revisará y, si se aprueba, aparecerá en esta lista.",
+            "Donación enviada. Un administrador la revisará y, si se aprueba, aparecerá en esta lista.",
           );
           setShowReportModal(false);
           setTimeout(() => setSubmitMessage(null), 6000);

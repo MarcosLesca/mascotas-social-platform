@@ -1,30 +1,35 @@
-import React, { useState } from 'react';
-import { useApp } from '../context/SimpleAppContext';
-import { MOCK_CAMPAIGNS } from '../constants/SimpleConstants';
+import React, { useState } from "react";
+import { useApp } from "../context/SimpleAppContext";
+import { MOCK_CAMPAIGNS } from "../constants/SimpleConstants";
 
 const LostPets: React.FC = () => {
   const { dispatch, state } = useApp();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredPets = state.pets.filter(pet => pet.status === 'lost');
-  const searchFiltered = filteredPets.filter(pet => 
-    pet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    pet.breed.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    pet.location.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredPets = state.pets.filter((pet) => pet.status === "lost");
+  const searchFiltered = filteredPets.filter(
+    (pet) =>
+      pet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      pet.breed.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      pet.location.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-extrabold mb-2">Mascotas Perdidas</h1>
+        <h1 className="text-4xl font-extrabold mb-2">Mascotas perdidas</h1>
         <p className="text-lg text-gray-800">
-          Ayuda a reunir hoy a <span className="text-primary font-bold">{searchFiltered.length}</span> mascotas con sus familias.
+          Ayuda a reunir hoy a{" "}
+          <span className="text-primary font-bold">
+            {searchFiltered.length}
+          </span>{" "}
+          mascotas con sus familias.
         </p>
       </div>
 
       <div className="mb-6">
-        <input 
-          type="text" 
+        <input
+          type="text"
           placeholder="Busca por nombre, raza o ubicación..."
           className="w-full px-6 py-4 bg-white dark:bg-white/5 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
           value={searchTerm}
@@ -45,12 +50,15 @@ const LostPets: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {searchFiltered.map(pet => (
-          <div key={pet.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all">
+        {searchFiltered.map((pet) => (
+          <div
+            key={pet.id}
+            className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all"
+          >
             <div className="aspect-video bg-gray-200 rounded-2xl mb-4 overflow-hidden">
-              <img 
-                src={pet.image} 
-                className="w-full h-full object-cover" 
+              <img
+                src={pet.image}
+                className="w-full h-full object-cover"
                 alt={pet.name}
               />
             </div>
@@ -64,20 +72,20 @@ const LostPets: React.FC = () => {
                   URGENTE
                 </span>
               </div>
-               
+
               {pet.description && (
                 <p className="text-gray-600 text-sm mb-4">{pet.description}</p>
               )}
-              
+
               <div className="flex gap-3 mt-6">
-                <button 
+                <button
                   onClick={() => {
                     dispatch({
-                      type: 'ADD_NOTIFICATION',
+                      type: "ADD_NOTIFICATION",
                       payload: {
-                        type: 'success',
-                        message: `Gracias por reportar avistamiento de ${pet.name}. Contactaremos al dueño.`
-                      }
+                        type: "success",
+                        message: `Gracias por reportar avistamiento de ${pet.name}. Contactaremos al dueño.`,
+                      },
                     });
                   }}
                   className="flex-1 bg-red-400 text-white py-3 rounded-xl font-bold text-center transition-colors"
@@ -91,15 +99,17 @@ const LostPets: React.FC = () => {
             </div>
           </div>
         ))}
-        
+
         {/* Botón para agregar */}
         <div className="bg-primary/10 rounded-2xl p-8 text-center">
           <h3 className="text-xl font-bold mb-4">¿Perdiste a alguien?</h3>
           <p className="text-gray-800 mb-4">
             Publica ahora mismo para que la comunidad pueda ayudar
           </p>
-          <button 
-            onClick={() => dispatch({ type: 'OPEN_MODAL', payload: 'reportLostPet' })}
+          <button
+            onClick={() =>
+              dispatch({ type: "OPEN_MODAL", payload: "reportLostPet" })
+            }
             className="bg-primary text-background-dark px-6 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all"
           >
             🐾 Reportar Mascota Perdida
@@ -111,3 +121,4 @@ const LostPets: React.FC = () => {
 };
 
 export default LostPets;
+

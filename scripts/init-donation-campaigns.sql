@@ -1,9 +1,9 @@
 -- ============================================================
 -- PetWelfare: Donaciones (donation_campaign_reports)
--- Ejecutar en Supabase -> SQL Editor
+-- Ejecutar en Supabase → SQL Editor
 -- ============================================================
 
--- Tabla de campanas
+-- Tabla de campañas
 create table if not exists public.donation_campaign_reports (
   id uuid primary key default gen_random_uuid(),
   status text not null default 'pending' check (status in ('pending', 'approved', 'rejected')),
@@ -57,11 +57,11 @@ create policy "auth_update_donation_campaign_reports"
   with check (true);
 
 -- ============================================================
--- Storage: imagenes de campanas de donacion
+-- Storage: imágenes de campañas de donación
 -- 1. Dashboard -> Storage -> New bucket:
 --    Name: donation-campaign-images
 --    Public: Si
--- 2. Luego ejecutar las politicas siguientes.
+-- 2. Luego ejecutar las políticas siguientes.
 -- ============================================================
 
 create policy "anon_insert_donation_campaign_images"

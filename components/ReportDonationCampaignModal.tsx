@@ -47,7 +47,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     const file = e.target.files?.[0];
     if (!file) return;
     if (!file.type.match(/^image\/(jpeg|png|webp)$/i)) {
-      onError?.('Solo se permiten imagenes JPEG, PNG o WebP.');
+      onError?.('Solo se permiten imágenes JPEG, PNG o WebP.');
       return;
     }
     if (file.size > MAX_MB * 1024 * 1024) {
@@ -76,7 +76,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
 
     const goalValue = Number(formData.goal);
     if (!Number.isFinite(goalValue) || goalValue <= 0) {
-      setSubmitError('La meta debe ser un numero mayor a 0.');
+      setSubmitError('La meta debe ser un número mayor a 0.');
       return;
     }
 
@@ -218,7 +218,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 value={formData.title}
                 onChange={e => handleInputChange('title', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
-                placeholder="Ej: Cirugia para Max"
+                placeholder="Ej: Cirugía para Max"
               />
             </div>
 
@@ -284,7 +284,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 onChange={e => handleInputChange('description', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
                 rows={3}
-                placeholder="Explica para que es la donacion."
+                placeholder="Explica para qué es la donación."
               />
             </div>
 

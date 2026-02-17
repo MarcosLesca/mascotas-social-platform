@@ -1,5 +1,5 @@
 -- ============================================================
--- PetWelfare: Mascotas perdidas (lost_pet_reports)
+-- PetWelfare: Mascotas Perdidas (lost_pet_reports)
 -- Ejecutar en Supabase → SQL Editor
 -- ============================================================
 

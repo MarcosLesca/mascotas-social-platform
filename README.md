@@ -25,32 +25,32 @@ El panel de administración usa **Supabase** para autenticación y base de datos
 - Mensajes genéricos ante error (no se revela si el email existe).
 - Sesión persistente y refresh automático de tokens (Supabase).
 
-## Mascotas perdidas (ABM + aprobación)
+## Mascotas Perdidas (ABM + aprobación)
 
 1. **Supabase Storage:** Dashboard → Storage → New bucket → nombre `lost-pet-images`, **público**.
 2. **SQL:** En Supabase → SQL Editor, ejecuta el contenido de [scripts/init-lost-pets.sql](scripts/init-lost-pets.sql) (tabla `lost_pet_reports`, RLS y políticas de Storage).
 3. **Flujo:**
-   - Una persona reporta una mascota perdida en **Mascotas perdidas** → **COMENZAR** (formulario con foto, datos y contacto).
+   - Una persona reporta una mascota perdida en **Mascotas Perdidas** → **COMENZAR** (formulario con foto, datos y contacto).
    - El reporte se guarda con estado `pending`. Solo los aprobados se publican.
    - Admin en **Admin → Mascotas perdidas**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
-   - Si aprueba, el reporte pasa a `approved` y se muestra en la vista pública de Mascotas perdidas.
+   - Si aprueba, el reporte pasa a `approved` y se muestra en la vista pública de Mascotas Perdidas.
 
 
-## Adopci??n (ABM + aprobaci??n)
+## Adopción (ABM + aprobación)
 
-1. **Supabase Storage:** Dashboard ??? Storage ??? New bucket ??? nombre `adoption-pet-images`, **p??blico**.
-2. **SQL:** En Supabase ??? SQL Editor, ejecuta el contenido de [scripts/init-adoption-pets.sql](scripts/init-adoption-pets.sql) (tabla `adoption_pet_reports`, RLS y pol??ticas de Storage).
+1. **Supabase Storage:** Dashboard → Storage → New bucket → nombre `adoption-pet-images`, **público**.
+2. **SQL:** En Supabase → SQL Editor, ejecuta el contenido de [scripts/init-adoption-pets.sql](scripts/init-adoption-pets.sql) (tabla `adoption_pet_reports`, RLS y políticas de Storage).
 3. **Flujo:**
-   - Un responsable publica una mascota en **Adopci??n** ??? **COMENZAR** (formulario con foto, datos, ubicaci??n y contacto).
-   - La publicaci??n se guarda con estado `pending`. Solo las aprobadas se publican.
-   - Admin en **Admin ??? Adopci??n**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
-   - Si aprueba, la publicaci??n pasa a `approved` y se muestra en la vista p??blica de Adopci??n.
+   - Un responsable publica una mascota en **Adopción** → **COMENZAR** (formulario con foto, datos, ubicación y contacto).
+   - La publicación se guarda con estado `pending`. Solo las aprobadas se publican.
+   - Admin en **Admin → Adopción**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
+   - Si aprueba, la publicación pasa a `approved` y se muestra en la vista pública de Adopción.
 
-## Donaciones (ABM + aprobacion)
+## Donaciones (ABM + aprobación)
 
-1. **Supabase Storage:** Dashboard -> Storage -> New bucket -> nombre `donation-campaign-images`, **publico**.
-2. **SQL:** En Supabase -> SQL Editor, ejecuta [scripts/init-donation-campaigns.sql](scripts/init-donation-campaigns.sql) (tabla `donation_campaign_reports`, RLS y politicas de Storage).
+1. **Supabase Storage:** Dashboard → Storage → New bucket → nombre `donation-campaign-images`, **público**.
+2. **SQL:** En Supabase → SQL Editor, ejecuta [scripts/init-donation-campaigns.sql](scripts/init-donation-campaigns.sql) (tabla `donation_campaign_reports`, RLS y políticas de Storage).
 3. **Flujo:**
-   - Una campana se guarda con estado `pending`.
-   - Admin en **Admin -> Donaciones**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
-   - Si aprueba, la campana pasa a `approved` y se muestra en la vista publica de Donaciones.
+   - Una campaña se guarda con estado `pending`.
+   - Admin en **Admin → Donaciones**: ve pendientes, **Aprobar** o **Rechazar** (opcional: motivo).
+   - Si aprueba, la campaña pasa a `approved` y se muestra en la vista pública de Donaciones.

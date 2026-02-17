@@ -30,7 +30,7 @@ const AdminDashboard: React.FC = () => {
             className="bg-white dark:bg-slate-900/80 rounded-2xl border border-accent-teal/10 p-6 shadow-sm hover:border-primary/30 hover:shadow-md transition-all block"
           >
             <div className="flex items-center gap-3 mb-3">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Mascotas perdidas</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Mascotas Perdidas</h2>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400">
               Revisa, aprueba o rechaza reportes. Solo los aprobados se publican.
@@ -64,7 +64,7 @@ const AdminDashboard: React.FC = () => {
               Campañas y donaciones. Próximamente con Supabase.
             </p>
             <span className="inline-flex items-center gap-1 text-primary font-bold text-sm mt-2">
-              Ir â†’
+              Ir →
             </span>
           </Link>
           <div className="bg-white dark:bg-slate-900/80 rounded-2xl border border-accent-teal/10 p-6 shadow-sm">

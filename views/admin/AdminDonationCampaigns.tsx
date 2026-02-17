@@ -149,7 +149,7 @@ const AdminDonationCampaigns: React.FC = () => {
                       Responsable: {r.responsible_name} | Contacto: {r.contact_info}
                     </p>
                     <p className="text-sm text-slate-500 dark:text-slate-500">
-                      Meta: ${r.goal.toLocaleString('es-AR')} | Fecha limite: {r.deadline}
+                      Meta: ${r.goal.toLocaleString('es-AR')} | Fecha límite: {r.deadline}
                     </p>
                     <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                       Enviado {formatDate(r.submitted_at)}

@@ -90,22 +90,27 @@ const AppContent: React.FC = () => {
       <footer className="border-t border-[#ecdbbd]/30 py-8 px-6 lg:px-20 mt-auto bg-[#203553]">
         <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-8">
           <div className="flex items-center gap-2">
-            <img 
-              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png" 
-              alt="LyM Desarrollo Web" 
+            <img
+              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
+              alt="LyM Desarrollo Web"
               className="h-8 w-auto"
             />
-            <span className="text-lg font-black text-[#ecdbbd]">Mascotas SJ</span>
+            <span className="text-lg font-black text-[#ecdbbd]">
+              Mascotas SJ
+            </span>
           </div>
-          <a 
-            href="https://lymdesarrolloweb.com.ar/" 
-            target="_blank" 
+          <a
+            href="https://lymdesarrolloweb.com.ar/"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 hover:underline transition-colors"
           >
             © 2026 LyM Desarrollo Web. Todos los derechos reservados.
           </a>
-          <Link to="/admin" className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors">
+          <Link
+            to="/admin"
+            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors"
+          >
             Admin
           </Link>
         </div>
@@ -214,7 +219,7 @@ const AppContent: React.FC = () => {
                 }`}
               >
                 <span className="material-symbols-outlined text-lg">info</span>
-                Sobre Nosotros
+                Sobre nosotros
               </button>
             </div>
           )}
@@ -236,4 +241,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-

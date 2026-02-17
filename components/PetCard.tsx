@@ -156,7 +156,7 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onAction, onViewDetails }) => {
                 : 'bg-accent-teal hover:bg-primary'
             }`}
           >
-            Ver Detalles
+            Ver detalles
           </button>
           <button
             onClick={() => {

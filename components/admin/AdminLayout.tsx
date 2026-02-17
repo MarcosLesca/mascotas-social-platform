@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const AdminLayout: React.FC = () => {
   const { user, signOut } = useAuth();
-  const email = user?.email ?? '';
+  const email = user?.email ?? "";
   const initial = email.slice(0, 1).toUpperCase();
 
   return (
@@ -13,7 +13,9 @@ const AdminLayout: React.FC = () => {
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-6">
             <Link to="/admin" className="flex items-center gap-3">
-              <span className="font-black text-lg text-slate-900 dark:text-white">Admin Mascotas SJ</span>
+              <span className="font-black text-lg text-slate-900 dark:text-white">
+                Admin Mascotas SJ
+              </span>
             </Link>
             <nav className="hidden md:flex items-center gap-2">
               <Link

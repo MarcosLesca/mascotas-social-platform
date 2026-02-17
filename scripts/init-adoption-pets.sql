@@ -1,6 +1,6 @@
 -- ============================================================
--- PetWelfare: AdopciÃ³n (adoption_pet_reports)
--- Ejecutar en Supabase â†’ SQL Editor
+-- PetWelfare: Adopción (adoption_pet_reports)
+-- Ejecutar en Supabase → SQL Editor
 -- ============================================================
 
 -- Tabla de publicaciones
@@ -28,14 +28,14 @@ create table if not exists public.adoption_pet_reports (
   rejection_reason text
 );
 
--- Ãndices
+-- Índices
 create index if not exists idx_adoption_pet_reports_status on public.adoption_pet_reports (status);
 create index if not exists idx_adoption_pet_reports_submitted_at on public.adoption_pet_reports (submitted_at desc);
 
 -- RLS
 alter table public.adoption_pet_reports enable row level security;
 
--- AnÃ³nimos: insertar (crear publicaciÃ³n) y leer solo aprobados
+-- Anónimos: insertar (crear publicación) y leer solo aprobados
 create policy "anon_insert_adoption_pet_reports"
   on public.adoption_pet_reports for insert
   to anon, authenticated

@@ -20,7 +20,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
               alt="LyM Desarrollo Web"
               className="h-10 w-auto"
             />
-            <h2 className="mb-0 text-lg font-bold tracking-tight text-[#ecdbbd]">Mascotas SJ</h2>
+            <h2 className="mb-0 text-lg font-bold tracking-tight text-[#ecdbbd]">
+              Mascotas SJ
+            </h2>
           </button>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -34,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
               onClick={() => setView(View.LOST_PETS)}
               className={`text-sm font-semibold transition-colors ${currentView === View.LOST_PETS ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
-              Mascotas Perdidas
+              Mascotas perdidas
             </button>
             <button
               onClick={() => setView(View.ADOPTION)}
@@ -65,7 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
 
         <div className="flex items-center gap-3">
           <button className="hidden md:block bg-[#ecdbbd] hover:bg-[#ecdbbd]/90 text-[#203553] px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm">
-            Reportar Mascota
+            Reportar mascota
           </button>
         </div>
       </div>

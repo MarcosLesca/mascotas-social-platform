@@ -272,8 +272,8 @@ const FAQSection: React.FC = () => {
 
   // Títulos de las categorías
   const categoryTitles = {
-    general: "Preguntas Generales",
-    perdidas: "Mascotas Perdidas",
+    general: "Preguntas generales",
+    perdidas: "Mascotas perdidas",
     adopcion: "Adopción",
     donaciones: "Donaciones",
   };
