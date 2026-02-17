@@ -14,7 +14,7 @@ const AdminLayout: React.FC = () => {
           <div className="flex items-center gap-6">
             <Link to="/admin" className="flex items-center gap-3">
               <span className="font-black text-lg text-slate-900 dark:text-white">
-                Admin Mascotas SJ
+                Admin LyM desarrollo web
               </span>
             </Link>
             <nav className="hidden md:flex items-center gap-2">
