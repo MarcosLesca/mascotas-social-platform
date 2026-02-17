@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HeroZoom from "../components/home/HeroZoom";
 import { fetchApprovedLostPets } from "../services/lostPetsService";
 import { fetchApprovedAdoptionPets } from "../services/adoptionPetsService";
@@ -24,10 +25,25 @@ type MixedCard =
 
 const Home: React.FC<HomeProps> = ({ onToast }) => {
   const { setCurrentView } = useApp();
+  const navigate = useNavigate();
   const [lostPets, setLostPets] = useState<Pet[]>([]);
   const [adoptionPets, setAdoptionPets] = useState<Pet[]>([]);
   const [donationCampaigns, setDonationCampaigns] = useState<DonationCampaign[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Helper for navigation
+  const handleNavigate = (view: View) => {
+    const viewPaths: Record<View, string> = {
+      [View.HOME]: '/',
+      [View.LOST_PETS]: '/lost-pets',
+      [View.ADOPTION]: '/adoption',
+      [View.DONATIONS]: '/donations',
+      [View.FAQ]: '/faq',
+      [View.ABOUT_US]: '/about-us',
+    };
+    navigate(viewPaths[view]);
+    setCurrentView(view);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -146,7 +162,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                   return (
                     <article
                       key={item.id}
-                      onClick={() => setCurrentView(View.DONATIONS)}
+                      onClick={() => handleNavigate(View.DONATIONS)}
                       className="group h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm border border-sky-500/10 hover:shadow-xl transition-all duration-300 flex flex-col"
                     >
                       <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
@@ -202,7 +218,7 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
                 return (
                   <article
                     key={item.id}
-                    onClick={() => setCurrentView(isLost ? View.LOST_PETS : View.ADOPTION)}
+                    onClick={() => handleNavigate(isLost ? View.LOST_PETS : View.ADOPTION)}
                     className="group h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 flex flex-col"
                   >
                     <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">

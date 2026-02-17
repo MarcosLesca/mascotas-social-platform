@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import LostPets from "./views/LostPets";
@@ -16,6 +16,41 @@ const AppContent: React.FC = () => {
   const { currentView, setCurrentView, toasts, removeToast, addToast } =
     useApp();
   const [showMoreMenu, setShowMoreMenu] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Helper to navigate and set view
+  const handleNavigation = (view: View) => {
+    const viewPaths: Record<View, string> = {
+      [View.HOME]: '/',
+      [View.LOST_PETS]: '/lost-pets',
+      [View.ADOPTION]: '/adoption',
+      [View.DONATIONS]: '/donations',
+      [View.FAQ]: '/faq',
+      [View.ABOUT_US]: '/about-us',
+    };
+    if (location.pathname !== viewPaths[view]) {
+      navigate(viewPaths[view]);
+    }
+    setCurrentView(view);
+  };
+
+  // Sync view with URL when location changes (for back/forward navigation)
+  useEffect(() => {
+    const pathToView: Record<string, View> = {
+      '/': View.HOME,
+      '/lost-pets': View.LOST_PETS,
+      '/adoption': View.ADOPTION,
+      '/donations': View.DONATIONS,
+      '/faq': View.FAQ,
+      '/about-us': View.ABOUT_US,
+    };
+
+    const newView = pathToView[location.pathname];
+    if (newView && newView !== currentView) {
+      setCurrentView(newView);
+    }
+  }, [location.pathname, setCurrentView]);
 
   // Scroll to top when view changes (mobile only)
   useEffect(() => {
@@ -120,7 +155,7 @@ const AppContent: React.FC = () => {
       <div className="lg:hidden sticky bottom-0 z-50 bg-[#203553] border-t border-[#ecdbbd]/30 flex items-center justify-around py-4 px-2 backdrop-blur-md">
         <button
           type="button"
-          onClick={() => setCurrentView(View.HOME)}
+          onClick={() => handleNavigation(View.HOME)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.HOME
               ? "text-[#ecdbbd]"
@@ -134,7 +169,7 @@ const AppContent: React.FC = () => {
         </button>
         <button
           type="button"
-          onClick={() => setCurrentView(View.LOST_PETS)}
+          onClick={() => handleNavigation(View.LOST_PETS)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.LOST_PETS
               ? "text-[#ecdbbd]"
@@ -148,7 +183,7 @@ const AppContent: React.FC = () => {
         </button>
         <button
           type="button"
-          onClick={() => setCurrentView(View.ADOPTION)}
+          onClick={() => handleNavigation(View.ADOPTION)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.ADOPTION
               ? "text-[#ecdbbd]"
@@ -162,7 +197,7 @@ const AppContent: React.FC = () => {
         </button>
         <button
           type="button"
-          onClick={() => setCurrentView(View.DONATIONS)}
+          onClick={() => handleNavigation(View.DONATIONS)}
           className={`flex flex-col items-center gap-1 transition-colors ${
             currentView === View.DONATIONS
               ? "text-[#ecdbbd]"
@@ -194,7 +229,7 @@ const AppContent: React.FC = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setCurrentView(View.FAQ);
+                  handleNavigation(View.FAQ);
                   setShowMoreMenu(false);
                 }}
                 className={`w-full px-4 py-3 text-left text-sm font-semibold transition-colors flex items-center gap-2 ${
@@ -209,7 +244,7 @@ const AppContent: React.FC = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setCurrentView(View.ABOUT_US);
+                  handleNavigation(View.ABOUT_US);
                   setShowMoreMenu(false);
                 }}
                 className={`w-full px-4 py-3 text-left text-sm font-semibold transition-colors flex items-center gap-2 ${

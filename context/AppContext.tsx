@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useContext, createContext, ReactNode } from 'react';
+import React, { useState, useCallback, useContext, createContext, ReactNode, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { View } from '../types';
 
 // Types

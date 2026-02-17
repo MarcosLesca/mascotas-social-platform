@@ -13,7 +13,15 @@ const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public routes - all render App component which handles view switching */}
         <Route path="/" element={<App />} />
+        <Route path="/lost-pets" element={<App />} />
+        <Route path="/adoption" element={<App />} />
+        <Route path="/donations" element={<App />} />
+        <Route path="/faq" element={<App />} />
+        <Route path="/about-us" element={<App />} />
+        
+        {/* Admin routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin"
@@ -29,6 +37,9 @@ const AppRouter: React.FC = () => {
           <Route path="donations" element={<AdminDonationCampaigns />} />
           <Route path="*" element={<Navigate to="/admin" replace />} />
         </Route>
+        
+        {/* Redirect unknown routes to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
