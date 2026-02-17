@@ -12,7 +12,7 @@ const AboutUs: React.FC = () => {
 
       {/* Desarrollado por LyM - PRIMERO */}
       <div className="mb-12 text-center">
-        <div className="inline-flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-white/5 rounded-3xl p-8 border-2 border-[#ecdbbd]/50 shadow-lg">
+        <div className="inline-flex flex-col md:flex-row items-center md:items-start gap-6 bg-white dark:bg-white/5 rounded-3xl p-8 border-2 border-[#ecdbbd]/50 shadow-lg">
           {/* Logo de LyM */}
           <div className="flex-shrink-0">
             <img
@@ -22,7 +22,7 @@ const AboutUs: React.FC = () => {
             />
           </div>
 
-          <div className="text-left">
+          <div className="text-center md:text-left">
             <p className="text-lg text-[#203553] font-semibold mb-2">
               Esta plataforma fue desarrollada por
             </p>

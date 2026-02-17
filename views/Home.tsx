@@ -178,12 +178,12 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
 
                         <div className="mt-auto space-y-2">
                           <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2 flex justify-between items-center">
-                            <span className="text-base font-bold text-green-700 dark:text-green-400">Meta</span>
-                            <span className="text-sm font-black text-green-600 dark:text-green-400">${campaign.goal.toLocaleString("es-AR")}</span>
+                            <span className="text-xs sm:text-sm font-bold text-green-700 dark:text-green-400">Meta</span>
+                            <span className="text-xs sm:text-sm font-black text-green-600 dark:text-green-400">${campaign.goal.toLocaleString("es-AR")}</span>
                           </div>
 
-                          <div className="flex items-center gap-1 text-base text-red-500 font-semibold">
-                            <span className="material-symbols-outlined">event</span>
+                          <div className="flex items-center gap-1 text-xs sm:text-sm text-red-500 font-semibold">
+                            <span className="material-symbols-outlined text-xs sm:text-base">event</span>
                             <span>Hasta: {campaign.deadline}</span>
                           </div>
 

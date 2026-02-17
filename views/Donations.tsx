@@ -117,13 +117,13 @@ const Donations: React.FC = () => {
 
       {/* Transparency Notice */}
       <div className="bg-red-50 dark:bg-red-900/20 rounded-3xl p-4 sm:p-5 border border-red-200 dark:border-red-800">
-        <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4 text-center sm:text-left">
           <div className="size-10 sm:size-12 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0">
             <span className="material-symbols-outlined text-2xl text-red-500">
               warning
             </span>
           </div>
-          <div>
+          <div className="flex-1">
             <h3 className="text-lg sm:text-xl font-black mb-2 text-red-600 dark:text-red-400">
               IMPORTANTE
             </h3>
@@ -133,7 +133,7 @@ const Donations: React.FC = () => {
                 no administramos el dinero
               </strong>{" "}
               de las donaciones. Solo publicamos las necesidades y
-              proporcionamos toda la información necesaria para que puedas donar
+              proporcionamos toda la información necesaria para que puedas doar
               directamente a los responsables de las mascotas.
             </p>
           </div>
@@ -342,16 +342,16 @@ const Donations: React.FC = () => {
 
                     <div className="mt-auto space-y-2 sm:space-y-3">
                       <div className="bg-green-50 dark:bg-green-900/20 rounded-lg sm:rounded-xl p-2 sm:p-3 flex justify-between items-center">
-                        <span className="text-base font-bold text-green-700 dark:text-green-400">
+                        <span className="text-xs sm:text-sm font-bold text-green-700 dark:text-green-400">
                           Meta
                         </span>
-                        <span className="text-sm sm:text-base font-black text-green-600 dark:text-green-400">
+                        <span className="text-xs sm:text-sm font-black text-green-600 dark:text-green-400">
                           ${campaign.goal.toLocaleString("es-AR")}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1.5 sm:gap-2 text-base text-red-500 font-semibold">
-                        <span className="material-symbols-outlined">
+                      <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-red-500 font-semibold">
+                        <span className="material-symbols-outlined text-xs sm:text-base">
                           event
                         </span>
                         <span>Hasta: {campaign.deadline}</span>
