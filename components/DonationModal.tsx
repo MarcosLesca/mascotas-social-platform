@@ -134,9 +134,7 @@ const DonationModal: React.FC<DonationModalProps> = ({
           </div>
 
           {/* Contenido */}
-          <div
-            className={`p-6 sm:p-8 pb-24 ${!isFullscreen ? "max-h-[50vh] overflow-y-auto" : ""}`}
-          >
+          <div className="p-6 sm:p-8 max-w-4xl mx-auto pb-40 md:pb-32 lg:pb-28">
             <h2 className="text-2xl font-black mb-6">{campaign.title}</h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -144,7 +142,7 @@ const DonationModal: React.FC<DonationModalProps> = ({
               <div className="lg:col-span-2 space-y-6">
                 {/* Descripción */}
                 <div>
-                  <h3 className="text-xl font-bold mb-3">Descripcion:</h3>
+                  <h3 className="text-xl font-bold mb-3">Descripción:</h3>
                   <p className="text-black leading-relaxed">
                     {campaign.description}
                   </p>
