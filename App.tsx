@@ -103,7 +103,7 @@ const AppContent: React.FC = () => {
             href="https://lymdesarrolloweb.com.ar/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 hover:underline transition-colors"
+            className="text-sm font-bold text-center text-[#ecdbbd] hover:text-[#ecdbbd]/80 hover:underline transition-colors"
           >
             © 2026 LyM Desarrollo Web. Todos los derechos reservados.
           </a>
