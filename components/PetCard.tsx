@@ -71,169 +71,18 @@ const PetCard: React.FC<PetCardProps> = ({
             <span className={topBadgeClass}>{pet.timeLabel}</span>
           )}
         </div>
-        <div className="absolute bottom-3 right-3 flex gap-2 overflow-visible">
-          <div className="relative overflow-visible">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowShareMenu(!showShareMenu);
-              }}
-              className="px-2.5 sm:px-3 py-1 rounded-full bg-white text-slate-800 text-[11px] sm:text-xs font-bold hover:bg-white transition-colors"
-            >
-              Compartir
-            </button>
-
-            {showShareMenu && (
-              <>
-                {/* Backdrop */}
-                <div
-                  className="fixed inset-0 z-40"
-                  onClick={() => setShowShareMenu(false)}
-                />
-
-                {/* Modal */}
-                <div
-                  ref={shareMenuRef}
-                  className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[320px] max-w-[90vw] bg-white dark:bg-background-dark rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden"
-                >
-                  {/* Header con imagen */}
-                  <div className="relative h-32">
-                    <img
-                      src={pet.image}
-                      alt={pet.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <button
-                      type="button"
-                      onClick={() => setShowShareMenu(false)}
-                      className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-                    >
-                      <span className="material-symbols-outlined text-sm">
-                        close
-                      </span>
-                    </button>
-                    <div className="absolute bottom-2 left-3 right-3">
-                      <p className="text-white font-bold text-sm truncate">
-                        {pet.name}
-                      </p>
-                      <p className="text-white/80 text-xs truncate">
-                        {isLost ? `Perdido en ${pet.location}` : pet.location}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Opciones */}
-                  <div className="p-3 space-y-2">
-                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-1">
-                      Compartir en
-                    </p>
-
-                    <div className="grid grid-cols-2 gap-2">
-                      {navigator.share && (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleShare("native");
-                            setShowShareMenu(false);
-                          }}
-                          className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                        >
-                          <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                            <span className="material-symbols-outlined text-blue-600 dark:text-blue-400">
-                              share
-                            </span>
-                          </div>
-                          <span className="text-xs font-medium">
-                            Más opciones
-                          </span>
-                        </button>
-                      )}
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleShare("whatsapp");
-                          setShowShareMenu(false);
-                        }}
-                        className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-green-600 dark:text-green-400">
-                            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.92.5 3.8 1.45 5.45L2 22l4.82-1.56a9.83 9.83 0 0 0 5.22 1.5h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2zm5.73 14.16c-.24.67-1.18 1.29-1.97 1.46-.54.11-1.24.2-3.6-.78-3.02-1.25-4.97-4.32-5.12-4.52-.14-.2-1.23-1.64-1.23-3.14 0-1.5.78-2.24 1.06-2.54.28-.3.61-.38.81-.38h.58c.18 0 .43-.07.67.51.24.58.81 2 .88 2.15.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.32.38-.46.51-.15.15-.31.31-.13.61.18.3.79 1.31 1.7 2.12 1.17 1.04 2.15 1.37 2.46 1.52.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.3.41-.25.68-.15.28.1 1.75.83 2.05.98.3.15.5.22.58.34.07.12.07.69-.17 1.36z"></path>
-                          </svg>
-                        </div>
-                        <span className="text-xs font-medium">WhatsApp</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleShare("sms");
-                          setShowShareMenu(false);
-                        }}
-                        className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-purple-600 dark:text-purple-400">
-                            chat
-                          </span>
-                        </div>
-                        <span className="text-xs font-medium">SMS</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleShare("email");
-                          setShowShareMenu(false);
-                        }}
-                        className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-red-600 dark:text-red-400">
-                            mail
-                          </span>
-                        </div>
-                        <span className="text-xs font-medium">Email</span>
-                      </button>
-                    </div>
-
-                    {/* Copiar link */}
-                    <div className="pt-2 border-t border-gray-100 dark:border-gray-700">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleShare("copy_link");
-                        }}
-                        className="w-full flex items-center justify-between p-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                      >
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                            <span className="material-symbols-outlined text-gray-600 dark:text-gray-400 text-sm">
-                              link
-                            </span>
-                          </div>
-                          <span className="text-sm font-medium">
-                            {copied ? "¡Copiado!" : "Copiar enlace"}
-                          </span>
-                        </div>
-                        {copied && (
-                          <span className="text-green-600 text-sm">✓</span>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+        <div className="absolute bottom-3 right-3">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShareModalOpen(true);
+            }}
+            className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: '#203553', color: '#ecdbbd' }}
+          >
+            Compartir
+          </button>
         </div>
       </div>
 
