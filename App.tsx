@@ -204,7 +204,7 @@ const AppContent: React.FC = () => {
                 }`}
               >
                 <span className="material-symbols-outlined text-lg">help</span>
-                Preguntas Frecuentes
+                Preguntas frecuentes
               </button>
               <button
                 type="button"
