@@ -157,7 +157,7 @@ const AppContent: React.FC = () => {
         >
           <span className="material-symbols-outlined">pets</span>
           <span className="text-[10px] font-bold uppercase tracking-tighter">
-            Adopción
+            Adoptar
           </span>
         </button>
         <button
