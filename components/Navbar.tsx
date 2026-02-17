@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
               onClick={() => setView(View.ADOPTION)}
               className={`text-sm font-semibold transition-colors ${currentView === View.ADOPTION ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
-              Adopción
+              Adopciones
             </button>
             <button
               onClick={() => setView(View.DONATIONS)}
