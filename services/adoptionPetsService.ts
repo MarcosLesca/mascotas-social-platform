@@ -101,6 +101,21 @@ export async function fetchApprovedAdoptionPets(): Promise<{ data: Pet[]; error:
   return { data: rows.map(rowToPet), error: null };
 }
 
+/** Listar publicaciones aprobadas (admin). */
+export async function fetchApprovedAdoptionPetReports(): Promise<{
+  data: AdoptionPetReportRow[];
+  error: Error | null;
+}> {
+  const { data, error } = await supabase
+    .from('adoption_pet_reports')
+    .select('*')
+    .eq('status', 'approved')
+    .order('reviewed_at', { ascending: false });
+
+  if (error) return { data: [], error: new Error(error.message) };
+  return { data: (data ?? []) as AdoptionPetReportRow[], error: null };
+}
+
 /** Listar pendientes (admin). */
 export async function fetchPendingAdoptionPetReports(): Promise<{
   data: AdoptionPetReportRow[];

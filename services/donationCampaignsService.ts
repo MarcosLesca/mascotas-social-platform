@@ -127,6 +127,21 @@ export async function fetchApprovedDonationCampaigns(): Promise<{
   return { data: rows.map(rowToDonationCampaign), error: null };
 }
 
+/** Listar donaciones aprobadas (admin). */
+export async function fetchApprovedDonationCampaignReports(): Promise<{
+  data: DonationCampaignReportRow[];
+  error: Error | null;
+}> {
+  const { data, error } = await supabase
+    .from('donation_campaign_reports')
+    .select('*')
+    .eq('status', 'approved')
+    .order('reviewed_at', { ascending: false });
+
+  if (error) return { data: [], error: new Error(error.message) };
+  return { data: (data ?? []) as DonationCampaignReportRow[], error: null };
+}
+
 /** Listar pendientes (admin). */
 export async function fetchPendingDonationCampaignReports(): Promise<{
   data: DonationCampaignReportRow[];

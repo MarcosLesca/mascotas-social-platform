@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
   fetchPendingLostPetReports,
+  fetchApprovedLostPetReports,
   approveLostPetReport,
   rejectLostPetReport,
 } from '../../services/lostPetsService';
@@ -53,16 +54,19 @@ const sizeLabel: Record<string, string> = {
 const AdminLostPets: React.FC = () => {
   const { user } = useAuth();
   const [reports, setReports] = useState<LostPetReportRow[]>([]);
+  const [approvedReports, setApprovedReports] = useState<LostPetReportRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingApproved, setLoadingApproved] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [acting, setActing] = useState<string | null>(null);
+  const [showApproved, setShowApproved] = useState(false);
   
   // Modal de detalles
   const [selectedReport, setSelectedReport] = useState<LostPetReportRow | null>(null);
   
   // Modales de confirmación
   const [confirmAction, setConfirmAction] = useState<{
-    type: 'approve' | 'reject';
+    type: 'approve' | 'reject' | 'delete';
     reportId: string;
     reportName: string;
   } | null>(null);
@@ -77,6 +81,18 @@ const AdminLostPets: React.FC = () => {
         return;
       }
       setReports(data);
+    });
+  }, []);
+
+  const loadApproved = useCallback(() => {
+    setLoadingApproved(true);
+    fetchApprovedLostPetReports().then(({ data, error: e }) => {
+      setLoadingApproved(false);
+      if (e) {
+        setError(e.message);
+        return;
+      }
+      setApprovedReports(data);
     });
   }, []);
 
@@ -112,6 +128,15 @@ const AdminLostPets: React.FC = () => {
     }
     setReports(prev => prev.filter(r => r.id !== reportId));
     setSelectedReport(null);
+  };
+
+  const handleDeleteApproved = async (id: string, name: string) => {
+    if (!user?.id) return;
+    setConfirmAction({
+      type: 'delete',
+      reportId: id,
+      reportName: name,
+    });
   };
 
   return (
@@ -235,6 +260,126 @@ const AdminLostPets: React.FC = () => {
               ))}
             </div>
           )}
+
+          {/* Toggle ver aprobadas */}
+          <div className="mt-8 pt-6" style={{ borderTop: `1px solid ${COLORS.bg}15` }}>
+            <button
+              type="button"
+              onClick={() => {
+                if (!showApproved) {
+                  loadApproved();
+                }
+                setShowApproved(!showApproved);
+              }}
+              className="flex items-center justify-between w-full p-4 rounded-xl border shadow-sm transition-colors"
+              style={{ 
+                backgroundColor: 'white', 
+                borderColor: `${COLORS.bg}15` 
+              }}
+            >
+              <div className="text-left">
+                <h2 className="font-bold" style={{ color: COLORS.bg }}>
+                  Aprobadas
+                </h2>
+                <p className="text-sm" style={{ color: COLORS.bgLight }}>
+                  {showApproved 
+                    ? `${approvedReports.length} publicacion${approvedReports.length !== 1 ? 'es' : ''} activa${approvedReports.length !== 1 ? 's' : ''}`
+                    : 'Ver publicaciones activas'}
+                </p>
+              </div>
+              <div 
+                className={`w-10 h-6 rounded-full p-1 transition-colors ${showApproved ? '' : ''}`}
+                style={{ 
+                  backgroundColor: showApproved ? COLORS.bg : `${COLORS.bg}20` 
+                }}
+              >
+                <div 
+                  className="w-4 h-4 rounded-full transition-transform"
+                  style={{ 
+                    backgroundColor: showApproved ? COLORS.text : COLORS.bgLight,
+                    transform: showApproved ? 'translateX(100%)' : 'translateX(0)'
+                  }}
+                />
+              </div>
+            </button>
+
+            {/* Tabla de aprobadas */}
+            {showApproved && (
+              <div className="mt-4 rounded-xl border overflow-hidden" style={{ borderColor: `${COLORS.bg}15` }}>
+                {loadingApproved ? (
+                  <div className="p-8 text-center">
+                    <div 
+                      className="w-6 h-6 border-3 rounded-full animate-spin mx-auto"
+                      style={{ borderColor: COLORS.bg, borderTopColor: 'transparent' }}
+                    />
+                  </div>
+                ) : approvedReports.length === 0 ? (
+                  <div className="p-8 text-center" style={{ color: COLORS.bgLight }}>
+                    No hay publicaciones activas
+                  </div>
+                ) : (
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr style={{ backgroundColor: `${COLORS.bg}05` }}>
+                        <th className="text-left p-3 font-semibold" style={{ color: COLORS.bgLight }}>Mascota</th>
+                        <th className="text-left p-3 font-semibold hidden sm:table-cell" style={{ color: COLORS.bgLight }}>Ubicacion</th>
+                        <th className="text-left p-3 font-semibold hidden md:table-cell" style={{ color: COLORS.bgLight }}>Aprobado</th>
+                        <th className="text-right p-3 font-semibold" style={{ color: COLORS.bgLight }}>Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {approvedReports.map(r => (
+                        <tr 
+                          key={r.id} 
+                          className="border-t"
+                          style={{ borderColor: `${COLORS.bg}10` }}
+                        >
+                          <td className="p-3">
+                            <div className="flex items-center gap-3">
+                              <div 
+                                className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0"
+                                style={{ backgroundColor: `${COLORS.bg}10` }}
+                              >
+                                <img 
+                                  src={r.image_url} 
+                                  alt={r.pet_name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <div>
+                                <p className="font-bold" style={{ color: COLORS.bg }}>{r.pet_name}</p>
+                                <p className="text-xs" style={{ color: COLORS.bgLight }}>{r.breed}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="p-3 hidden sm:table-cell" style={{ color: COLORS.bg }}>
+                            {r.last_seen_location}
+                          </td>
+                          <td className="p-3 hidden md:table-cell text-xs" style={{ color: COLORS.bgLight }}>
+                            {r.reviewed_at ? formatDate(r.reviewed_at) : '-'}
+                          </td>
+                          <td className="p-3 text-right">
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteApproved(r.id, r.pet_name)}
+                              disabled={!!acting}
+                              className="px-3 py-1.5 rounded-lg font-medium text-xs transition-colors disabled:opacity-50"
+                              style={{ 
+                                backgroundColor: `${COLORS.urgent}10`, 
+                                color: COLORS.urgent 
+                              }}
+                            >
+                              Eliminar
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -451,12 +596,18 @@ const AdminLostPets: React.FC = () => {
             onClick={e => e.stopPropagation()}
           >
             <h3 className="text-lg font-bold mb-2" style={{ color: COLORS.bg }}>
-              {confirmAction.type === 'approve' ? 'Aprobar reporte' : 'Rechazar reporte'}
+              {confirmAction.type === 'approve' 
+                ? 'Aprobar reporte' 
+                : confirmAction.type === 'delete'
+                  ? 'Eliminar publicacion'
+                  : 'Rechazar reporte'}
             </h3>
             <p className="text-sm mb-6" style={{ color: COLORS.bgLight }}>
               {confirmAction.type === 'approve' 
                 ? `¿Estas seguro que deseas aprobar el reporte de "${confirmAction.reportName}"? La mascota aparecera en el sitio.` 
-                : `¿Estas seguro que deseas rechazar el reporte de "${confirmAction.reportName}"? El reportante sera notificado.`}
+                : confirmAction.type === 'delete'
+                  ? `¿Estas seguro que deseas eliminar la publicacion de "${confirmAction.reportName}"? Esta accion no se puede deshacer.`
+                  : `¿Estas seguro que deseas rechazar el reporte de "${confirmAction.reportName}"? El reportante sera notificado.`}
             </p>
             <div className="flex gap-3">
               <button
@@ -472,14 +623,37 @@ const AdminLostPets: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={confirmAction.type === 'approve' ? handleApprove : handleReject}
+                onClick={async () => {
+                  if (confirmAction.type === 'delete') {
+                    if (!user?.id) return;
+                    setActing(confirmAction.reportId);
+                    const { error: e } = await rejectLostPetReport(confirmAction.reportId, user.id);
+                    setActing(null);
+                    setConfirmAction(null);
+                    if (e) {
+                      setError(e.message);
+                      return;
+                    }
+                    setApprovedReports(prev => prev.filter(r => r.id !== confirmAction.reportId));
+                  } else if (confirmAction.type === 'approve') {
+                    handleApprove();
+                  } else {
+                    handleReject();
+                  }
+                }}
                 disabled={!!acting}
                 className="flex-1 py-2.5 rounded-xl font-bold text-sm text-white transition-colors disabled:opacity-50"
                 style={{ 
-                  backgroundColor: confirmAction.type === 'approve' ? COLORS.success : COLORS.urgent 
+                  backgroundColor: confirmAction.type === 'approve' 
+                    ? COLORS.success 
+                    : COLORS.urgent 
                 }}
               >
-                {acting ? 'Procesando...' : confirmAction.type === 'approve' ? 'Aprobar' : 'Rechazar'}
+                {acting 
+                  ? 'Procesando...' 
+                  : confirmAction.type === 'approve' 
+                    ? 'Aprobar' 
+                    : 'Eliminar'}
               </button>
             </div>
           </div>

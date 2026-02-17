@@ -128,6 +128,21 @@ export async function fetchApprovedLostPets(): Promise<{ data: Pet[]; error: Err
   return { data: rows.map(rowToPet), error: null };
 }
 
+/** Listar reportes aprobados (admin). */
+export async function fetchApprovedLostPetReports(): Promise<{
+  data: LostPetReportRow[];
+  error: Error | null;
+}> {
+  const { data, error } = await supabase
+    .from('lost_pet_reports')
+    .select('*')
+    .eq('status', 'approved')
+    .order('reviewed_at', { ascending: false });
+
+  if (error) return { data: [], error: new Error(error.message) };
+  return { data: (data ?? []) as LostPetReportRow[], error: null };
+}
+
 /** Listar pendientes (admin). */
 export async function fetchPendingLostPetReports(): Promise<{
   data: LostPetReportRow[];
