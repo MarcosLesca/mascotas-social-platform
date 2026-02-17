@@ -15,6 +15,8 @@ export interface Pet {
   gender: "male" | "female";
   age?: string;
   size?: "small" | "medium" | "large";
+  color?: string;
+  distinctiveFeatures?: string;
   status: "lost" | "found" | "adoption";
   urgency?: boolean;
   timeLabel?: string;
@@ -29,7 +31,7 @@ export interface Pet {
   contactName?: string;
   contactPhone?: string;
   contactEmail?: string;
-  /** Datos de última vez que se vio la mascota */
+  /** Datos de ultima vez que se vio la mascota */
   lastSeenDate?: string;
   lastSeenLocation?: string;
 }
@@ -96,7 +98,7 @@ export interface DonationCampaign {
   goal: number;
   image: string;
   urgency?: boolean;
-  type: "medical" | "food" | "infrastructure";
+  type: "medical" | "food" | "shelter" | "spay_neuter" | "emergency" | "other" | "infrastructure";
   // Campos para donaciones directas
   petName: string;
   cbu: string; // CBU bancario
@@ -119,7 +121,7 @@ export interface DonationCampaignReportRow {
   goal: number;
   image_url: string;
   urgency: boolean;
-  type: "medical" | "food" | "infrastructure";
+  type: "medical" | "food" | "shelter" | "spay_neuter" | "emergency" | "other" | "infrastructure";
   pet_name: string;
   cbu: string;
   alias: string;

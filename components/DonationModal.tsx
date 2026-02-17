@@ -66,6 +66,10 @@ const DonationModal: React.FC<DonationModalProps> = ({
     {
       medical: "Médica",
       food: "Alimento",
+      shelter: "Refugio",
+      spay_neuter: "Esterilización",
+      emergency: "Emergencia",
+      other: "Otro",
       infrastructure: "Infraestructura",
     }[campaign.type] || campaign.type;
 

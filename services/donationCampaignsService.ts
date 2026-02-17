@@ -60,7 +60,7 @@ export interface SubmitDonationCampaignInput {
   description: string;
   goal: number;
   urgency: boolean;
-  type: 'medical' | 'food' | 'infrastructure';
+  type: 'medical' | 'food' | 'shelter' | 'spay_neuter' | 'emergency' | 'other' | 'infrastructure';
   petName: string;
   cbu: string;
   alias: string;

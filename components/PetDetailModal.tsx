@@ -352,6 +352,12 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                         <span className="text-sm font-bold">{pet.breed}</span>
                       </div>
                     )}
+                    {pet.color && (
+                      <div className="flex justify-between">
+                        <span className="text-sm text-black">Color:</span>
+                        <span className="text-sm font-bold">{pet.color}</span>
+                      </div>
+                    )}
                     {isLost && pet.reward && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Recompensa:</span>
@@ -384,6 +390,12 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                         <span className="text-sm font-bold">
                           {pet.age} años
                         </span>
+                      </div>
+                    )}
+                    {pet.distinctiveFeatures && (
+                      <div className="flex justify-between">
+                        <span className="text-sm text-black">Marcas:</span>
+                        <span className="text-sm font-bold">{pet.distinctiveFeatures}</span>
                       </div>
                     )}
                     <div className="flex justify-between">

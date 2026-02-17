@@ -17,6 +17,7 @@ function rowToPet(r: AdoptionPetReportRow): Pet {
     species: r.species,
     gender: r.gender,
     age: r.age ?? undefined,
+    size: r.size ?? undefined,
     status: 'adoption',
     location: fullLocation,
     image: r.image_url,
