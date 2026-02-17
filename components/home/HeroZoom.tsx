@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import { useApp } from "../../context/AppContext";
 import { View } from "../../types";
@@ -215,8 +215,8 @@ export default function HeroZoom() {
             Mascotas SJ es una plataforma creada para publicar mascotas
             perdidas, promover la adopción responsable y facilitar donaciones
             para quienes más lo necesitan. Un espacio digital desarrollado por
-            L&M Desarrollo Web, pensado para generar un impacto real en San
-            Justo.
+            L&M Desarrollo Web, pensado para generar un impacto real en <strong className="text-black">San
+            Justo</strong>.
           </p>
 
           {/* Ejemplo de uso configurable del componente */}
