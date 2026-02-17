@@ -88,9 +88,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="hidden md:block bg-[#ecdbbd] hover:bg-[#ecdbbd]/90 text-[#203553] px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm">
-            Reportar mascota
-          </button>
         </div>
       </div>
     </header>
