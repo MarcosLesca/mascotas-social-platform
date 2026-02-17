@@ -82,6 +82,24 @@ const AboutUs: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Contacto y Mejoras */}
+      <div className="mt-12">
+        <div className="bg-white dark:bg-white/5 rounded-3xl p-8 border-2 border-[#ecdbbd]/50 shadow-lg text-center">
+          <p className="text-lg text-[#203553] leading-relaxed mb-6">
+            Si encontrás algún error en la plataforma o creés que podemos mejorar algo, podés comunicarte con nosotros a través de nuestro sitio web. Valoramos cada aporte para seguir mejorando la experiencia de la comunidad en San Justo, Santa Fe.
+          </p>
+          <a
+            href="https://wa.me/543498418583"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-bold transition-colors"
+          >
+            <span className="material-symbols-outlined">chat</span>
+            Escribinos por WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
