@@ -143,7 +143,7 @@ const FAQSection: React.FC = () => {
       id: "1",
       question: "¿Qué es Mascotas SJ y cómo funciona?",
       answer:
-        "Mascotas SJ es una plataforma gratuita para ayudar a encontrar mascotas perdidas, facilitar adopciones y apoyar a refugios. Funciona como una red comunitaria donde cualquiera puede publicar, buscar y colaborar. Es como tener un cartel virtual en toda la ciudad.",
+        "Mascotas SJ es una plataforma comunitaria de San Justo, Santa Fe, donde podés publicar mascotas perdidas, dar en adopción o solicitar ayuda mediante donaciones. Las publicaciones son revisadas por un administrador antes de hacerse visibles.",
       category: "general",
       icon: "pets",
     },
@@ -151,7 +151,7 @@ const FAQSection: React.FC = () => {
       id: "2",
       question: "¿Es gratis usar la plataforma?",
       answer:
-        "Sí, es 100% GRATIS. Publicar mascotas perdidas, buscar, adoptar y compartir no cuesta nada. Solo las donaciones son opcionales y van directamente a los refugios.",
+        "Sí. Publicar casos de mascotas perdidas, adopción o pedidos de ayuda es totalmente gratuito.",
       category: "general",
       icon: "savings",
     },
@@ -159,7 +159,7 @@ const FAQSection: React.FC = () => {
       id: "3",
       question: "¿Necesito registrarme para usar la página?",
       answer:
-        "No, puedes buscar y ver todas las publicaciones sin registrarte. Solo necesitas registrarte si quieres publicar una mascota perdida, solicitar una adopción o hacer una donación.",
+        "No es necesario crear una cuenta para navegar la plataforma o enviar una publicación. Solo debés completar el formulario correspondiente.",
       category: "general",
       icon: "account_circle",
     },
@@ -169,7 +169,7 @@ const FAQSection: React.FC = () => {
       id: "4",
       question: "¿Cómo reporto que perdí mi mascota?",
       answer:
-        '<p>Es muy fácil:</p><ol><li>Hacé clic en el botón "Reportar Mascota Perdida"</li><li>Completá los datos de tu mascota</li><li>Subí una foto clara</li><li>Indicá dónde y cuándo se perdió</li><li>Dejá tus datos de contacto</li></ol><p>¡Y listo! Tu publicación quedará activa.</p>',
+        "Debés ingresar a la sección \"Mascotas Perdidas\" y completar el formulario con los datos solicitados. Una vez aprobado por el administrador, se publicará en la plataforma.",
       category: "perdidas",
       icon: "search",
     },
@@ -177,7 +177,7 @@ const FAQSection: React.FC = () => {
       id: "5",
       question: "¿Qué información debo incluir en el reporte?",
       answer:
-        "Incluí: Nombre, raza, color/tamaño, características especiales (cicatrices, manchas), si tiene collar/chip, fecha y lugar aproximado de pérdida. ¡Mientras más datos, mejor!",
+        "Es importante incluir una foto reciente, nombre de la mascota, zona donde fue vista por última vez, fecha aproximada y un medio de contacto.",
       category: "perdidas",
       icon: "description",
     },
@@ -185,7 +185,7 @@ const FAQSection: React.FC = () => {
       id: "6",
       question: "¿Cómo sé si encontraron a mi mascota?",
       answer:
-        'Recibirás notificaciones por email o WhatsApp si alguien reporta una vista o contacto. También podés revisar las publicaciones de "mascotas encontradas" periódicamente.',
+        "Las personas pueden comunicarse directamente al número de contacto que indiques en la publicación si creen haberla visto.",
       category: "perdidas",
       icon: "notifications",
     },
@@ -193,7 +193,7 @@ const FAQSection: React.FC = () => {
       id: "7",
       question: "¿Qué hago si veo una mascota perdida?",
       answer:
-        '<p>¡Gracias por ayudar! Podés:</p><ol><li>Tomar una foto</li><li>Publicar en la sección "Mascotas Encontradas"</li><li>Indicar el lugar donde la viste</li><li>Dejar contacto</li></ol><p>O directamente contactar al dueño si ves un reporte que coincide.</p>',
+        "Podés comunicarte directamente con el contacto que figura en la publicación y brindar información sobre la ubicación o situación en la que la viste.",
       category: "perdidas",
       icon: "visibility",
     },
@@ -203,7 +203,7 @@ const FAQSection: React.FC = () => {
       id: "8",
       question: "¿Cómo adopto una mascota?",
       answer:
-        '<ol><li>Buscá en la sección "Adopción"</li><li>Contactá directamente al refugio/responsable vía WhatsApp o Email</li><li>Visita la mascota</li><li>Completá los requisitos del refugio</li><li>¡Lleva a tu nuevo amigo a casa!</li></ol>',
+        "Debés comunicarte mediante el botón de contacto que figura en la publicación de la mascota que te interesa para recibir más información.",
       category: "adopcion",
       icon: "favorite",
     },
@@ -211,7 +211,7 @@ const FAQSection: React.FC = () => {
       id: "9",
       question: "¿Qué necesito para adoptar?",
       answer:
-        "Generalmente te pedirán: DNI, comprobante de domicilio, prueba de ingresos (algunos refugios), y estar dispuesto a una visita posterior. Cada refugio tiene sus propios requisitos.",
+        "Dependerá de cada caso, pero generalmente se solicita compromiso, responsabilidad y condiciones adecuadas para el bienestar de la mascota.",
       category: "adopcion",
       icon: "assignment",
     },
@@ -219,7 +219,7 @@ const FAQSection: React.FC = () => {
       id: "10",
       question: "¿Tengo que pagar para adoptar?",
       answer:
-        'La mayoría de los refugios cobran una "donación de adopción" que cubre vacunas, desparasitación y castración. No es un "precio" sino un aporte para mantener el refugio ayudando a otros animales.',
+        "La plataforma no cobra por publicar ni adoptar.",
       category: "adopcion",
       icon: "volunteer_activism",
     },
@@ -227,7 +227,7 @@ const FAQSection: React.FC = () => {
       id: "11",
       question: "¿Puedo devolver la mascota si no me adapto?",
       answer:
-        "Sí, los refugios prefieren que devuelvas la mascota antes de abandonarla. Es importante hablar con ellos si tenés dificultades, hay apoyo y soluciones.",
+        "La adopción debe ser una decisión responsable. En caso de inconvenientes, se recomienda comunicarse con la persona que realizó la publicación para evaluar la situación.",
       category: "adopcion",
       icon: "home",
     },
@@ -237,7 +237,7 @@ const FAQSection: React.FC = () => {
       id: "12",
       question: "¿Cómo hago una donación?",
       answer:
-        "<p>Es muy fácil:</p><ol><li>Entrá a la sección Donaciones</li><li>Elegí el monto</li><li>Seleccioná el método de pago</li><li>Completá tus datos</li></ol><p>Podés doar con tarjeta, transferencia, Mercado Pago o incluso cripto.</p>",
+        "Podés comunicarte directamente con el contacto indicado en la publicación del caso que deseás ayudar.",
       category: "donaciones",
       icon: "payments",
     },
@@ -245,15 +245,15 @@ const FAQSection: React.FC = () => {
       id: "13",
       question: "¿A dónde va el dinero de las donaciones?",
       answer:
-        'El 100% va directamente a los refugios y organizaciones. Podés ver exactamente para qué es cada donación (ej: "cirugía de Max", "alimento para 15 cachorros"). Todo es transparente.',
+        "Las donaciones se realizan directamente a la persona o responsable que publica el caso. Mascotas SJ no intermedia ni administra el dinero.",
       category: "donaciones",
       icon: "account_balance",
     },
     {
       id: "14",
-      question: "¿Puedo donar alimentos o cosas en vez de dinero?",
+      question: "¿Puedo donor alimentos o cosas en vez de dinero?",
       answer:
-        "¡Claro que sí! Muchos refugios necesitan alimento, mantas, medicamentos. Contactalos directamente por WhatsApp para coordinar la entrega.",
+        "Sí. Si el caso lo permite, podés coordinar directamente con el contacto para colaborar con alimentos, insumos o asistencia veterinaria.",
       category: "donaciones",
       icon: "inventory_2",
     },
