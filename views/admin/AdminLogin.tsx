@@ -223,7 +223,7 @@ const AdminLogin: React.FC = () => {
             <button
               type="submit"
               disabled={submitting || rateLimit.blocked}
-              className="w-full py-3.5 rounded-xl bg-[#203553]  text-[#ecdbbd] font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
+              className="w-full py-3.5 rounded-xl bg-[#203553] text-[#ecdbbd] font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {submitting ? (
                 <span className="inline-flex items-center justify-center gap-2">
