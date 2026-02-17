@@ -91,7 +91,7 @@ const AppContent: React.FC = () => {
         <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-8">
           <div className="flex items-center gap-2">
             <img
-              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
+              src="/assets/LyM-logo.png"
               alt="LyM Desarrollo Web"
               className="h-8 w-auto"
             />

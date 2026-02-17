@@ -16,7 +16,7 @@ const AboutUs: React.FC = () => {
           {/* Logo de LyM */}
           <div className="flex-shrink-0">
             <img
-              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
+              src="/assets/LyM-logo.png"
               alt="LyM Desarrollo Web"
               className="w-20 h-20 mx-auto"
             />

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { View } from "../types";
 
 interface NavbarProps {
@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
             onClick={() => setView(View.HOME)}
           >
             <img
-              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
+              src="/assets/LyM-logo.png"
               alt="LyM Desarrollo Web"
               className="h-10 w-auto"
             />

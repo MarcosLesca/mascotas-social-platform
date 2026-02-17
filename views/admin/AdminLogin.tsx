@@ -104,7 +104,7 @@ const AdminLogin: React.FC = () => {
         <div className="bg-[#f1e4cc] rounded-2xl shadow-xl border border-[#203553]/20 p-8">
           <div className="flex flex-col items-center gap-2 mb-8">
             <img
-              src="https://lymdesarrolloweb.com.ar/assets/img/MyL.png"
+              src="/assets/LyM-logo.png"
               alt="LyM Desarrollo Web"
               className="w-16 h-16"
             />
