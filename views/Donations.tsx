@@ -11,7 +11,11 @@ interface DonationFilters {
   searchTerm: string;
 }
 
-const Donations: React.FC = () => {
+interface DonationsProps {
+  onToast: (message: string, type?: 'success' | 'error' | 'warning' | 'info', duration?: number, showAcceptButton?: boolean) => void;
+}
+
+const Donations: React.FC<DonationsProps> = ({ onToast }) => {
   const [selectedCampaign, setSelectedCampaign] =
     useState<DonationCampaign | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -427,11 +431,13 @@ const Donations: React.FC = () => {
         isOpen={showReportModal}
         onClose={() => setShowReportModal(false)}
         onSubmit={() => {
-          setSubmitMessage(
-            "Donación enviada. Un administrador la revisará y, si se aprueba, aparecerá en esta lista.",
+          onToast(
+            "Tu publicación fue enviada correctamente.\n\nSerá revisada por LyM desarrollo web antes de hacerse visible en Mascotas SJ.\n\nPodrás verla publicada una vez que sea aprobada.",
+            "success",
+            0,
+            true,
           );
           setShowReportModal(false);
-          setTimeout(() => setSubmitMessage(null), 6000);
         }}
         onError={(message) => {
           setSubmitMessage(null);

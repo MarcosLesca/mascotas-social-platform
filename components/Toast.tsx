@@ -82,19 +82,19 @@ const ToastNotification: React.FC<ToastProps> = ({ toast, onRemove }) => {
         
         {/* Modal centrado */}
         <div 
-          className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md p-6 rounded-2xl shadow-2xl border-2 ${getColors()} transition-all duration-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+          className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-sm sm:max-w-md p-4 sm:p-6 rounded-2xl shadow-2xl border-2 ${getColors()} transition-all duration-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
           style={{ transition: 'all 300ms' }}
         >
           <div className="text-center">
-            <div className={`text-4xl mb-4 ${getIconColor()}`}>
+            <div className={`text-3xl sm:text-4xl mb-3 sm:mb-4 ${getIconColor()}`}>
               {getIcon()}
             </div>
-            <p className="text-gray-800 text-lg font-medium mb-6">
+            <p className="text-gray-800 text-base sm:text-lg font-medium mb-4 sm:mb-6 whitespace-pre-line">
               {toast.message}
             </p>
             <button
               onClick={handleClose}
-              className="px-8 py-3 bg-primary text-white font-bold rounded-full hover:bg-primary/90 transition-colors"
+              className="px-6 sm:px-8 py-2 sm:py-3 bg-primary text-white font-bold rounded-full hover:bg-primary/90 transition-colors text-sm sm:text-base"
             >
               Aceptar
             </button>

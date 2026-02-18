@@ -102,7 +102,7 @@ const AppContent: React.FC = () => {
       case View.FAQ:
         return <FAQSection />;
       case View.DONATIONS:
-        return <Donations />;
+        return <Donations onToast={addToast} />;
       default:
         return <Home />;
     }
