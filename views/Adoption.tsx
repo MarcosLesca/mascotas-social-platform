@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { fetchApprovedAdoptionPets } from '../services/adoptionPetsService';
 import PetCard from '../components/PetCard';
 import PetDetailModal from '../components/PetDetailModal';
@@ -32,6 +32,8 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   const [showModal, setShowModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+  // Flag para evitar loop al cerrar modal manualmente
+  const isClosingModal = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -47,6 +49,43 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
     });
     return () => { cancelled = true; };
   }, [onToast]);
+
+  // Manejar el botón "atrás" del navegador cuando el modal está abierto
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      // Ignorar si el modal se está cerrando manualmente
+      if (isClosingModal.current) {
+        isClosingModal.current = false;
+        return;
+      }
+      
+      if (showModal) {
+        // El usuario presionó "atrás" - cerramos el modal directamente
+        setShowModal(false);
+        setSelectedPet(null);
+        // Prevenir que el navegador continúe navegando hacia atrás
+        event.preventDefault();
+        // Push al historial para mantener la página actual
+        window.history.pushState(null, '', '/adoption');
+      }
+    };
+
+    // Escuchar el evento popstate
+    window.addEventListener('popstate', handlePopState);
+
+    // Limpiar el listener al desmontar
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [showModal]);
+
+  // Sincronizar el estado del modal con el historial del navegador
+  useEffect(() => {
+    if (showModal) {
+      // Agregar una entrada al historial cuando se abre el modal
+      window.history.pushState({ modal: true }, '', '/adoption');
+    }
+  }, [showModal]);
 
   // Filtrar mascotas según los filtros seleccionados
   const filteredPets = useMemo(() => {
@@ -121,8 +160,14 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   };
 
   const handleCloseModal = () => {
+    // Flag para evitar loop en el popstate handler
+    isClosingModal.current = true;
     setShowModal(false);
     setSelectedPet(null);
+    // Hacer back para mantener consistencia con el historial
+    if (window.history.state && window.history.state.modal) {
+      window.history.back();
+    }
   };
 
   const handleOpenReportModal = () => {

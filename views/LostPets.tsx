@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { fetchApprovedLostPets } from "../services/lostPetsService";
 import PetCard from "../components/PetCard";
 import PetDetailModal from "../components/PetDetailModal";
@@ -38,6 +38,8 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
     urgency: false,
     searchTerm: "",
   });
+  // Flag para evitar loop al cerrar modal manualmente
+  const isClosingModal = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -58,6 +60,43 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       cancelled = true;
     };
   }, [onToast]);
+
+  // Manejar el botón "atrás" del navegador cuando el modal está abierto
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      // Ignorar si el modal se está cerrando manualmente
+      if (isClosingModal.current) {
+        isClosingModal.current = false;
+        return;
+      }
+
+      if (showDetailModal) {
+        // El usuario presionó "atrás" - cerramos el modal directamente
+        setShowDetailModal(false);
+        setSelectedPet(null);
+        // Prevenir que el navegador continúe navegando hacia atrás
+        event.preventDefault();
+        // Push al historial para mantener la página actual
+        window.history.pushState(null, "", "/lost-pets");
+      }
+    };
+
+    // Escuchar el evento popstate
+    window.addEventListener("popstate", handlePopState);
+
+    // Limpiar el listener al desmontar
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [showDetailModal]);
+
+  // Sincronizar el estado del modal con el historial del navegador
+  useEffect(() => {
+    if (showDetailModal) {
+      // Agregar una entrada al historial cuando se abre el modal
+      window.history.pushState({ modal: true }, "", "/lost-pets");
+    }
+  }, [showDetailModal]);
 
   // Filtrar y buscar mascotas
   const filteredPets = useMemo(() => {
@@ -173,8 +212,14 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   const handleCloseDetailModal = () => {
+    // Flag para evitar loop en el popstate handler
+    isClosingModal.current = true;
     setShowDetailModal(false);
     setSelectedPet(null);
+    // Hacer back para mantener consistencia con el historial
+    if (window.history.state && window.history.state.modal) {
+      window.history.back();
+    }
   };
 
   const handleOpenReportModal = () => {

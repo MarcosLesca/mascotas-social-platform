@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { DonationCampaign } from "../types";
 import DonationModal from "../components/DonationModal";
 import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsService";
@@ -32,6 +32,8 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
     urgency: false,
     searchTerm: "",
   });
+  // Flag para evitar loop al cerrar modal manualmente
+  const isClosingModal = useRef(false);
 
   const loadCampaigns = () => {
     let cancelled = false;
@@ -55,6 +57,43 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
     const cancel = loadCampaigns();
     return cancel;
   }, []);
+
+  // Manejar el botón "atrás" del navegador cuando el modal está abierto
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      // Ignorar si el modal se está cerrando manualmente
+      if (isClosingModal.current) {
+        isClosingModal.current = false;
+        return;
+      }
+
+      if (isModalOpen) {
+        // El usuario presionó "atrás" - cerramos el modal directamente
+        setIsModalOpen(false);
+        setSelectedCampaign(null);
+        // Prevenir que el navegador continúe navegando hacia atrás
+        event.preventDefault();
+        // Push al historial para mantener la página actual
+        window.history.pushState(null, "", "/donations");
+      }
+    };
+
+    // Escuchar el evento popstate
+    window.addEventListener("popstate", handlePopState);
+
+    // Limpiar el listener al desmontar
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [isModalOpen]);
+
+  // Sincronizar el estado del modal con el historial del navegador
+  useEffect(() => {
+    if (isModalOpen) {
+      // Agregar una entrada al historial cuando se abre el modal
+      window.history.pushState({ modal: true }, "", "/donations");
+    }
+  }, [isModalOpen]);
 
   const filteredCampaigns = useMemo(() => {
     let filtered = campaigns;
@@ -99,8 +138,14 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
   };
 
   const handleCloseModal = () => {
+    // Flag para evitar loop en el popstate handler
+    isClosingModal.current = true;
     setIsModalOpen(false);
     setSelectedCampaign(null);
+    // Hacer back para mantener consistencia con el historial
+    if (window.history.state && window.history.state.modal) {
+      window.history.back();
+    }
   };
 
   const toggleType = (type: string) => {
