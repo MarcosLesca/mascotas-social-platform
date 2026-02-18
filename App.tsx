@@ -22,12 +22,12 @@ const AppContent: React.FC = () => {
   // Helper to navigate and set view
   const handleNavigation = (view: View) => {
     const viewPaths: Record<View, string> = {
-      [View.HOME]: '/',
-      [View.LOST_PETS]: '/lost-pets',
-      [View.ADOPTION]: '/adoption',
-      [View.DONATIONS]: '/donations',
-      [View.FAQ]: '/faq',
-      [View.ABOUT_US]: '/about-us',
+      [View.HOME]: "/",
+      [View.LOST_PETS]: "/lost-pets",
+      [View.ADOPTION]: "/adoption",
+      [View.DONATIONS]: "/donations",
+      [View.FAQ]: "/faq",
+      [View.ABOUT_US]: "/about-us",
     };
     if (location.pathname !== viewPaths[view]) {
       navigate(viewPaths[view]);
@@ -38,12 +38,12 @@ const AppContent: React.FC = () => {
   // Sync view with URL when location changes (for back/forward navigation)
   useEffect(() => {
     const pathToView: Record<string, View> = {
-      '/': View.HOME,
-      '/lost-pets': View.LOST_PETS,
-      '/adoption': View.ADOPTION,
-      '/donations': View.DONATIONS,
-      '/faq': View.FAQ,
-      '/about-us': View.ABOUT_US,
+      "/": View.HOME,
+      "/lost-pets": View.LOST_PETS,
+      "/adoption": View.ADOPTION,
+      "/donations": View.DONATIONS,
+      "/faq": View.FAQ,
+      "/about-us": View.ABOUT_US,
     };
 
     const newView = pathToView[location.pathname];
