@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /admin
-Disallow: /admin/
-
-Sitemap: https://mascotas-social-platform.vercel.app/sitemap.xml
