@@ -1,18 +1,16 @@
-import React, { useEffect, useState, Suspense, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Home from "./views/Home";
+import LostPets from "./views/LostPets";
+import Adoption from "./views/Adoption";
 import AboutUs from "./views/AboutUs";
+import Donations from "./views/Donations";
 import FAQSection from "./components/FAQSection";
 import ToastContainer from "./components/Toast";
 import SanJustoMap from "./components/home/SanJustoMap";
 import { AppProvider, useApp } from "./context/AppContext";
 import { View } from "./types";
-
-// Lazy load de las vistas para mejorar performance (code splitting)
-const Home = lazy(() => import("./views/Home"));
-const LostPets = lazy(() => import("./views/LostPets"));
-const Adoption = lazy(() => import("./views/Adoption"));
-const Donations = lazy(() => import("./views/Donations"));
 
 const AppContent: React.FC = () => {
   const { currentView, setCurrentView, toasts, removeToast, addToast } =
@@ -92,36 +90,22 @@ const AppContent: React.FC = () => {
   }, []);
 
   const renderView = () => {
-    const viewContent = (() => {
-      switch (currentView) {
-        case View.HOME:
-          return <Home onToast={addToast} />;
-        case View.LOST_PETS:
-          return <LostPets onToast={addToast} />;
-        case View.ADOPTION:
-          return <Adoption onToast={addToast} />;
-        case View.ABOUT_US:
-          return <AboutUs />;
-        case View.FAQ:
-          return <FAQSection />;
-        case View.DONATIONS:
-          return <Donations onToast={addToast} />;
-        default:
-          return <Home onToast={addToast} />;
-      }
-    })();
-
-    return (
-      <Suspense
-        fallback={
-          <div className="flex items-center justify-center min-h-[50vh]">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
-          </div>
-        }
-      >
-        {viewContent}
-      </Suspense>
-    );
+    switch (currentView) {
+      case View.HOME:
+        return <Home onToast={addToast} />;
+      case View.LOST_PETS:
+        return <LostPets onToast={addToast} />;
+      case View.ADOPTION:
+        return <Adoption onToast={addToast} />;
+      case View.ABOUT_US:
+        return <AboutUs />;
+      case View.FAQ:
+        return <FAQSection />;
+      case View.DONATIONS:
+        return <Donations onToast={addToast} />;
+      default:
+        return <Home />;
+    }
   };
 
   return (

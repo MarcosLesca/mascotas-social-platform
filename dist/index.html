@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es" class="light">
   <head>
-    <!-- Google Tag Manager - cargar async para no bloquear -->
+    <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -17,62 +17,56 @@
     <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Preconnect a recursos externos para reducir latencia -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://esm.sh" />
-    
-    <!-- Preload de recursos críticos -->
-    <link rel="preload" href="/assets/LyM-logo.png" as="image" />
-    
-    <title>Mascotas SJ – Plataforma de mascotas en San Justo, Santa Fe</title>
-    
-    <!-- Meta tags básicos -->
-    <meta name="description" content="Plataforma de San Justo, Santa Fe, para publicar mascotas perdidas, promover adopciones responsables y solicitar ayuda mediante donaciones." />
-    <meta name="keywords" content="mascotas San Justo, mascotas perdidas San Justo Santa Fe, adopción de mascotas San Justo, donaciones para mascotas, plataforma mascotas Santa Fe" />
-    <meta name="author" content="LyM Desarrollo Web" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mascotas-social-platform.vercel.app/" />
-    <meta property="og:title" content="Mascotas SJ – Plataforma de mascotas en San Justo, Santa Fe" />
-    <meta property="og:description" content="Plataforma de San Justo, Santa Fe, para publicar mascotas perdidas, promover adopciones responsables y solicitar ayuda mediante donaciones." />
-    <meta property="og:image" content="https://mascotas-social-platform.vercel.app/assets/banner/banner-mascotassj.jpg" />
-    <meta property="og:image:alt" content="Mascotas SJ - Plataforma de mascotas en San Justo, Santa Fe" />
-    <meta property="og:site_name" content="Mascotas SJ" />
-    <meta property="og:locale" content="es_AR" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://mascotas-social-platform.vercel.app/" />
-    <meta name="twitter:title" content="Mascotas SJ – Plataforma de mascotas en San Justo, Santa Fe" />
-    <meta name="twitter:description" content="Plataforma de San Justo, Santa Fe, para publicar mascotas perdidas, promover adopciones responsables y solicitar ayuda mediante donaciones." />
-    <meta name="twitter:image" content="https://mascotas-social-platform.vercel.app/assets/banner/banner-mascotassj.jpg" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/LyM-logo.png" />
-    
-    <!-- Cargar fonts con display=swap para mejor performance -->
+    <title>Mascotas SJ - Ayuda Animal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
     />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
     />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#13ec5b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+              "accent-teal": "#4c9a66",
+              "urgent-red": "#ef4444",
+            },
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              xl: "0.75rem",
+              "2xl": "1rem",
+              "3xl": "1.5rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
 
     <script type="importmap">
       {
@@ -84,24 +78,22 @@
         }
       }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bgi_J57O.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-react-B0FCftpX.js">
-    <link rel="modulepreload" crossorigin href="/assets/vendor-supabase-CEYArTBl.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DlAtxkQz.css">
+    <script type="module" crossorigin src="/assets/index-DgdTc4kw.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cxw--Lso.css" />
   </head>
   <body
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-sans"
   >
-  <!-- Google Tag Manager (noscript) -->
-  <noscript
-  ><iframe
-    src="https://www.googletagmanager.com/ns.html?id=GTM-TZ823GB9"
-    height="0"
-    width="0"
-    style="display: none; visibility: hidden"
-  ></iframe
-></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-TZ823GB9"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
   </body>
 </html>
