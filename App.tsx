@@ -8,6 +8,7 @@ import AboutUs from "./views/AboutUs";
 import Donations from "./views/Donations";
 import FAQSection from "./components/FAQSection";
 import ToastContainer from "./components/Toast";
+import { PwaInstallBanner } from "./components/PwaInstallBanner";
 import SanJustoMap from "./components/home/SanJustoMap";
 import { AppProvider, useApp } from "./context/AppContext";
 import { View } from "./types";
@@ -263,6 +264,9 @@ const AppContent: React.FC = () => {
 
       {/* Toast Container */}
       <ToastContainer toasts={toasts} onRemove={removeToast} />
+      
+      {/* PWA Install Banner */}
+      <PwaInstallBanner forceShow />
     </div>
   );
 };
