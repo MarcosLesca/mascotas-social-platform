@@ -137,7 +137,7 @@ const PetCard: React.FC<PetCardProps> = ({
                 onAction?.(pet, "seen");
               }
             }}
-            className={`flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
+            className={`hidden sm:flex flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full items-center justify-center gap-2 transition-colors duration-200 ${
               isLost
                 ? "bg-red-500 hover:bg-red-600"
                 : "bg-[#22c55e] hover:bg-[#16a34a]"

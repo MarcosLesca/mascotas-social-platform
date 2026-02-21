@@ -27,7 +27,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     description: '',
     goal: '',
     urgency: false,
-    type: '' as '' | 'medical' | 'food' | 'shelter' | 'spay_neuter' | 'emergency' | 'other',
+    type: 'medical' as 'medical' | 'food' | 'shelter' | 'spay_neuter' | 'emergency' | 'other',
     petName: '',
     cbu: '',
     alias: '',
