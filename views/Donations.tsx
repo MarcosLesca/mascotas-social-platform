@@ -280,7 +280,7 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
                       <button
                         key={t}
                         onClick={() => toggleType(typeValue)}
-                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                           isSelected
                             ? "bg-sky-500 text-white"
                             : "bg-sky-500/5 text-gray-800 hover:bg-sky-500/10"
@@ -313,7 +313,7 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
               </div>
             </div>
 
-            <button className="w-full mt-8 sm:mt-10 bg-sky-500 text-white py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-sky-500/20 hover:scale-[1.02] transition-all">
+            <button className="w-full mt-8 sm:mt-10 bg-sky-500 text-white py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-sky-500/20 hover:scale-[1.02] transition-all cursor-pointer">
               {filteredCampaigns.length} Donaciones
             </button>
           </div>

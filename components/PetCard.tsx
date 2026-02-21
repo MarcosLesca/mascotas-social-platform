@@ -105,7 +105,7 @@ const PetCard: React.FC<PetCardProps> = ({
           <button
             type="button"
             onClick={handleShare}
-            className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold hover:opacity-90 transition-opacity"
+            className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold hover:opacity-90 transition-opacity cursor-pointer"
             style={{ backgroundColor: '#203553', color: '#ecdbbd' }}
           >
             Compartir
@@ -148,7 +148,7 @@ const PetCard: React.FC<PetCardProps> = ({
         <div className="flex flex-col sm:flex-row gap-2 mt-auto">
           <button
             onClick={() => onAction?.(pet, "view")}
-            className={`flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 ${
+            className={`flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full flex items-center justify-center gap-2 transition-colors duration-200 cursor-pointer ${
               isLost
                 ? "bg-red-400 hover:bg-red-500"
                 : "bg-accent-teal hover:bg-primary"
@@ -164,7 +164,7 @@ const PetCard: React.FC<PetCardProps> = ({
                 onAction?.(pet, "seen");
               }
             }}
-            className={`hidden sm:flex flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full items-center justify-center gap-2 transition-colors duration-200 ${
+            className={`hidden sm:flex flex-1 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full items-center justify-center gap-2 transition-colors duration-200 cursor-pointer ${
               isLost
                 ? "bg-red-500 hover:bg-red-600"
                 : "bg-[#22c55e] hover:bg-[#16a34a]"

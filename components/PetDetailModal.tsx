@@ -113,7 +113,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                 e.stopPropagation();
                 onClose();
               }}
-              className={`absolute top-4 ${isFullscreen ? "left-4" : "right-4"} z-10 px-4 py-2 bg-white/90 hover:bg-white text-slate-900 rounded-full text-sm font-black transition-all shadow-lg flex items-center gap-2`}
+              className={`absolute top-4 ${isFullscreen ? "left-4" : "right-4"} z-10 px-4 py-2 bg-white/90 hover:bg-white text-slate-900 rounded-full text-sm font-black transition-all shadow-lg flex items-center gap-2 cursor-pointer`}
             >
               {isFullscreen && (
                 <span className="material-symbols-outlined text-lg">
@@ -298,7 +298,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                         onAction?.(pet, isLost ? "seen" : "adopt");
                       }
                     }}
-                    className={`w-full font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg ${
+                    className={`w-full font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg cursor-pointer ${
                       isLost
                         ? "bg-red-400 hover:bg-red-500 text-white"
                         : "bg-primary hover:bg-primary/90 text-background-dark"

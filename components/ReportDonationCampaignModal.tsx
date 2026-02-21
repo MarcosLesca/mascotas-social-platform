@@ -155,7 +155,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
           <h2 className="text-lg sm:text-2xl font-black">Publicar Donación</h2>
           <button
             onClick={onClose}
-            className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors"
+            className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors cursor-pointer"
           >
             Cerrar
           </button>
@@ -195,7 +195,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 <button
                   type="button"
                   onClick={clearImage}
-                  className="absolute -top-2 -right-2 px-2 py-1 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90 text-xs font-bold"
+                  className="absolute -top-2 -right-2 px-2 py-1 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90 text-xs font-bold cursor-pointer"
                 >
                   X
                 </button>
@@ -204,7 +204,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="flex items-center justify-center w-44 h-44 rounded-xl border-2 border-dashed border-sky-500/30 hover:border-sky-500 hover:bg-sky-500/5 transition-colors text-sm font-bold text-gray-900"
+                className="flex items-center justify-center w-44 h-44 rounded-xl border-2 border-dashed border-sky-500/30 hover:border-sky-500 hover:bg-sky-500/5 transition-colors text-sm font-bold text-gray-900 cursor-pointer"
               >
                 Subir imagen
               </button>
@@ -379,14 +379,14 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             <button
               type="button"
               onClick={onClose}
-              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-sky-500/20 text-gray-900 font-bold hover:bg-sky-500/10 transition-colors text-sm"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-sky-500/20 text-gray-900 font-bold hover:bg-sky-500/10 transition-colors text-sm cursor-pointer"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-colors disabled:opacity-50 text-sm"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-colors disabled:opacity-50 text-sm cursor-pointer"
             >
               {isSubmitting ? 'Enviando...' : 'Enviar'}
             </button>

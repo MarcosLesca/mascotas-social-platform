@@ -186,7 +186,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
             </h2>
             <button
               onClick={onClose}
-              className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors"
+              className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors cursor-pointer"
             >
               Cerrar
             </button>
@@ -267,7 +267,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     <button
                       type="button"
                       onClick={clearImage}
-                      className="absolute -top-2 -right-2 px-2 py-1 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90 text-xs font-bold"
+                      className="absolute -top-2 -right-2 px-2 py-1 bg-urgent-red text-white rounded-full hover:bg-urgent-red/90 text-xs font-bold cursor-pointer"
                     >
                       X
                     </button>
@@ -276,7 +276,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-primary/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-gray-900"
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-primary/30 hover:border-primary hover:bg-primary/5 transition-colors text-sm font-bold text-gray-900 cursor-pointer"
                   >
                     Subir foto
                   </button>
@@ -591,7 +591,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               className={`px-6 py-3 rounded-xl font-bold transition-all ${
                 currentStep === 1
                   ? "text-gray-900/40 cursor-not-allowed"
-                  : "text-gray-900 hover:text-primary"
+                  : "text-gray-900 hover:text-primary cursor-pointer"
               }`}
             >
               Anterior
@@ -605,7 +605,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   (currentStep === 1 && !canProceedStep1) ||
                   (currentStep === 2 && !canProceedStep2)
                 }
-                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 Siguiente
               </button>
@@ -613,7 +613,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-3 bg-primary text-background-dark rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isSubmitting ? "Publicando..." : "Publicar"}
               </button>

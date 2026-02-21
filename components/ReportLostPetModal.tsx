@@ -176,7 +176,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors"
+              className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/40 rounded-full text-xs sm:text-sm font-bold transition-colors cursor-pointer"
             >
               Cerrar
             </button>
@@ -257,7 +257,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     <button
                       type="button"
                       onClick={clearImage}
-                      className="absolute -top-2 -right-2 px-2 py-1 bg-red-400 text-white rounded-full hover:bg-red-400/90 text-xs font-bold"
+                      className="absolute -top-2 -right-2 px-2 py-1 bg-red-400 text-white rounded-full hover:bg-red-400/90 text-xs font-bold cursor-pointer"
                     >
                       X
                     </button>
@@ -266,7 +266,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-red-400/30 hover:border-red-400 hover:bg-red-400/5 transition-colors text-sm font-bold text-gray-800"
+                    className="flex flex-col items-center justify-center gap-2 w-40 h-40 rounded-xl border-2 border-dashed border-red-400/30 hover:border-red-400 hover:bg-red-400/5 transition-colors text-sm font-bold text-gray-800 cursor-pointer"
                   >
                     Subir foto
                   </button>
@@ -628,7 +628,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-bold transition-all text-sm ${
                 currentStep === 1
                   ? "text-gray-800/40 cursor-not-allowed"
-                  : "text-gray-800 hover:text-primary"
+                  : "text-gray-800 hover:text-primary cursor-pointer"
               }`}
             >
               Anterior
@@ -639,7 +639,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                 type="button"
                 onClick={nextStep}
                 disabled={currentStep === 1 && !canProceedStep1}
-                className="px-6 sm:px-8 py-2 sm:py-3 bg-red-400 text-white rounded-lg sm:rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-red-400 text-white rounded-lg sm:rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
               >
                 Siguiente
               </button>
@@ -647,7 +647,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-6 sm:px-8 py-2 sm:py-3 bg-red-400 text-white rounded-lg sm:rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-red-400 text-white rounded-lg sm:rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm cursor-pointer"
               >
                 {isSubmitting ? "Publicando..." : "Publicar"}
               </button>

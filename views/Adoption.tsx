@@ -292,7 +292,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                     <button
                       key={s}
                       onClick={() => toggleSpecies(s)}
-                      className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                      className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                         filters.species.includes(s)
                           ? 'bg-primary text-background-dark'
                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
@@ -319,11 +319,11 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                             : [...prev.size, sizeMap[s]]
                         }));
                       }}
-                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
-                        filters.size.includes(s === 'Pequeño' ? 'small' : s === 'Mediano' ? 'medium' : 'large')
-                          ? 'bg-primary text-background-dark'
-                          : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
-                      }`}
+                     className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+                         filters.size.includes(s === 'Pequeño' ? 'small' : s === 'Mediano' ? 'medium' : 'large')
+                           ? 'bg-primary text-background-dark'
+                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
+                       }`}
                     >
                       {s}
                     </button>
@@ -346,11 +346,11 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                             : [...prev.gender, genderMap[g]]
                         }));
                       }}
-                       className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
-                        filters.gender.includes(g === 'Macho' ? 'male' : 'female')
-                          ? 'bg-primary text-background-dark'
-                          : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
-                      }`}
+                     className={`px-3 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+                         filters.gender.includes(g === 'Macho' ? 'male' : 'female')
+                           ? 'bg-primary text-background-dark'
+                           : 'bg-accent-teal/5 text-gray-800 hover:bg-accent-teal/10'
+                       }`}
                     >
                       {g}
                     </button>
@@ -359,7 +359,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               </div>
             </div>
 
-            <button className="w-full mt-8 sm:mt-10 bg-primary text-background-dark py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+            <button className="w-full mt-8 sm:mt-10 bg-primary text-background-dark py-3.5 sm:py-4 rounded-2xl font-black shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all cursor-pointer">
               {filteredPets.length} Mascotas
             </button>
           </div>
