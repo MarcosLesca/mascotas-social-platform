@@ -19,11 +19,11 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
 }) => {
   const [formData, setFormData] = useState({
     petName: "",
-    species: "dog" as "dog" | "cat" | "bird" | "other",
+    species: "" as "" | "dog" | "cat" | "bird" | "other",
     breed: "",
-    gender: "male" as "male" | "female",
+    gender: "" as "" | "male" | "female",
     age: "",
-    size: "medium" as "small" | "medium" | "large",
+    size: "" as "" | "small" | "medium" | "large",
     color: "",
     distinctiveFeatures: "",
     lastSeenDate: "",
@@ -80,13 +80,21 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
     }
     setIsSubmitting(true);
     setSubmitError(null);
+    
+    // Convertir valores vacíos a valores por defecto
+    const submitData = {
+      species: formData.species || "dog",
+      gender: formData.gender || "male",
+      size: formData.size || "medium",
+    };
+    
     const { error } = await submitLostPetReport({
       petName: formData.petName,
-      species: formData.species,
+      species: submitData.species,
       breed: formData.breed,
-      gender: formData.gender,
+      gender: submitData.gender,
       age: formData.age,
-      size: formData.size,
+      size: submitData.size,
       color: formData.color,
       distinctiveFeatures: formData.distinctiveFeatures,
       lastSeenDate: formData.lastSeenDate,
@@ -129,11 +137,11 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
     if (!isOpen) {
       setFormData({
         petName: "",
-        species: "dog",
+        species: "",
         breed: "",
-        gender: "male",
+        gender: "",
         age: "",
-        size: "medium",
+        size: "",
         color: "",
         distinctiveFeatures: "",
         lastSeenDate: "",
@@ -304,6 +312,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     }
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   >
+                    <option value="">Seleccionar...</option>
                     <option value="dog">Perro</option>
                     <option value="cat">Gato</option>
                     <option value="bird">Ave</option>
@@ -343,6 +352,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     }
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   >
+                    <option value="">Seleccionar...</option>
                     <option value="male">Macho</option>
                     <option value="female">Hembra</option>
                   </select>
@@ -381,6 +391,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     onChange={(e) => handleInputChange("size", e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
                   >
+                    <option value="">Seleccionar...</option>
                     <option value="small">Pequeño</option>
                     <option value="medium">Mediano</option>
                     <option value="large">Grande</option>

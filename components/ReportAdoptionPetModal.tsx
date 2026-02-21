@@ -21,7 +21,9 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
   const [formData, setFormData] = useState({
     petName: "",
     species: "" as "" | "dog" | "cat" | "bird" | "other",
+    breed: "",
     gender: "" as "" | "male" | "female",
+    age: "",
     size: "" as "" | "small" | "medium" | "large",
     color: "",
     location: "",
@@ -93,13 +95,21 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
     }
     setIsSubmitting(true);
     setSubmitError(null);
+    
+    // Convertir valores vacíos a valores por defecto
+    const submitData = {
+      species: formData.species || "dog",
+      gender: formData.gender || "male",
+      size: formData.size || "medium",
+    };
+    
     const { error } = await submitAdoptionPetReport({
       petName: formData.petName,
-      species: formData.species,
+      species: submitData.species,
       breed: formData.breed,
-      gender: formData.gender,
+      gender: submitData.gender,
       age: formData.age,
-      size: formData.size,
+      size: submitData.size,
       color: formData.color,
       location: formData.location,
       description: formData.description,
@@ -141,11 +151,11 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
     if (!isOpen) {
       setFormData({
         petName: "",
-        species: "dog",
+        species: "",
         breed: "",
-        gender: "male",
+        gender: "",
         age: "",
-        size: "medium",
+        size: "",
         color: "",
         location: "",
         description: "",
@@ -312,6 +322,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     }
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   >
+                    <option value="">Seleccionar...</option>
                     <option value="dog">Perro</option>
                     <option value="cat">Gato</option>
                     <option value="bird">Ave</option>
@@ -351,6 +362,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     }
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   >
+                    <option value="">Seleccionar...</option>
                     <option value="male">Macho</option>
                     <option value="female">Hembra</option>
                   </select>
@@ -389,6 +401,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     onChange={(e) => handleInputChange("size", e.target.value)}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
                   >
+                    <option value="">Seleccionar...</option>
                     <option value="small">Pequeño</option>
                     <option value="medium">Mediano</option>
                     <option value="large">Grande</option>

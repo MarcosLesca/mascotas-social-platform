@@ -27,7 +27,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     description: '',
     goal: '',
     urgency: false,
-    type: 'medical' as 'medical' | 'food' | 'infrastructure',
+    type: '' as '' | 'medical' | 'food' | 'shelter' | 'spay_neuter' | 'emergency' | 'other',
     petName: '',
     cbu: '',
     alias: '',
@@ -83,12 +83,15 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     setIsSubmitting(true);
     setSubmitError(null);
 
+    // Valor por defecto para tipo si está vacío
+    const typeValue = formData.type || 'medical';
+
     const { error } = await submitDonationCampaign({
       title: formData.title,
       description: formData.description,
       goal: goalValue,
       urgency: formData.urgency,
-      type: formData.type,
+      type: typeValue,
       petName: formData.petName,
       cbu: formData.cbu,
       alias: formData.alias,
@@ -126,7 +129,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
         description: '',
         goal: '',
         urgency: false,
-        type: 'medical',
+        type: '',
         petName: '',
         cbu: '',
         alias: '',
@@ -255,6 +258,7 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
                 onChange={e => handleInputChange('type', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
               >
+                <option value="">Seleccionar...</option>
                 <option value="medical">Médica</option>
                 <option value="food">Alimento</option>
                 <option value="shelter">Refugio</option>
@@ -335,12 +339,16 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
             <div>
               <label className="block text-sm font-bold text-gray-900 mb-2">WhatsApp *</label>
               <input
-                type="text"
+                type="tel"
+                inputMode="numeric"
                 required
                 value={formData.whatsappNumber}
-                onChange={e => handleInputChange('whatsappNumber', e.target.value)}
+                onChange={e => {
+                  const value = e.target.value.replace(/[^\d+]/g, "");
+                  handleInputChange('whatsappNumber', value);
+                }}
                 className="w-full px-4 py-3 rounded-xl border border-sky-500/20 bg-white dark:bg-white/5 focus:ring-2 focus:ring-sky-500"
-                placeholder="Ej: +54 9 11 1234 5678"
+                placeholder="Ej: 5491123456789"
               />
             </div>
 
