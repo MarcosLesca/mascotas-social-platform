@@ -7,8 +7,13 @@ interface PwaInstallBannerProps {
   forceShow?: boolean;
 }
 
-export function PwaInstallBanner({ className = "", forceShow = false }: PwaInstallBannerProps) {
-  const { isInstallable, isLoading, install, dismiss } = usePwaInstall({ forceShow });
+export function PwaInstallBanner({
+  className = "",
+  forceShow = false,
+}: PwaInstallBannerProps) {
+  const { isInstallable, isLoading, install, dismiss } = usePwaInstall({
+    forceShow,
+  });
 
   if (!isInstallable) {
     return null;
@@ -18,28 +23,16 @@ export function PwaInstallBanner({ className = "", forceShow = false }: PwaInsta
     <div className={`pwa-install-banner ${className}`.trim()}>
       <div className="pwa-install-banner__content">
         <div className="pwa-install-banner__icon">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <rect width="24" height="24" rx="6" fill="#667eea" />
-            <path
-              d="M7 12L10 15L17 8"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <img
+            src="/pwa-192x192.png"
+            alt="Logo de la app"
+            width={36}
+            height={36}
+          />
         </div>
-        
+
         <div className="pwa-install-banner__text">
           <strong>¡Instalá nuestra app!</strong>
-          <span>Accedé sin conexión y desde tu pantalla de inicio</span>
         </div>
 
         <div className="pwa-install-banner__actions">

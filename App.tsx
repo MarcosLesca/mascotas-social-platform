@@ -266,7 +266,7 @@ const AppContent: React.FC = () => {
       <ToastContainer toasts={toasts} onRemove={removeToast} />
       
       {/* PWA Install Banner */}
-      <PwaInstallBanner forceShow />
+      <PwaInstallBanner />
     </div>
   );
 };

@@ -5,9 +5,10 @@
   transform: translateX(-50%);
   z-index: 9998;
   padding: 12px 16px;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(135deg, #203553 0%, #2a4570 100%);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
+  border: 1px solid rgba(236, 219, 189, 0.15);
+  border-radius: 14px;
   animation: pwa-banner-slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   max-width: 90%;
   width: 400px;
@@ -24,17 +25,6 @@
   }
 }
 
-@keyframes pwa-banner-slide-up {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 .pwa-install-banner__content {
   display: flex;
   align-items: center;
@@ -45,9 +35,11 @@
   flex-shrink: 0;
 }
 
-.pwa-install-banner__icon svg {
-  width: 36px;
-  height: 36px;
+.pwa-install-banner__icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .pwa-install-banner__text {
@@ -59,13 +51,14 @@
 }
 
 .pwa-install-banner__text strong {
-  color: #f8fafc;
+  color: #ecdbbd;
   font-size: 14px;
   font-weight: 600;
 }
 
 .pwa-install-banner__text span {
-  color: #94a3b8;
+  color: #ecdbbd;
+  opacity: 0.75;
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
@@ -91,14 +84,14 @@
 }
 
 .pwa-install-banner__btn--install {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #ecdbbd 0%, #d4c4a0 100%);
+  color: #203553;
+  box-shadow: 0 2px 8px rgba(236, 219, 189, 0.3);
 }
 
 .pwa-install-banner__btn--install:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 4px 12px rgba(236, 219, 189, 0.4);
 }
 
 .pwa-install-banner__btn--install:disabled {
@@ -108,7 +101,8 @@
 
 .pwa-install-banner__btn--dismiss {
   background: transparent;
-  color: #94a3b8;
+  color: #ecdbbd;
+  opacity: 0.7;
   padding: 6px;
   display: flex;
   align-items: center;
@@ -116,6 +110,7 @@
 }
 
 .pwa-install-banner__btn--dismiss:hover {
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.1);
+  color: #ecdbbd;
+  opacity: 1;
+  background: rgba(236, 219, 189, 0.1);
 }
