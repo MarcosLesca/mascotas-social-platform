@@ -100,7 +100,7 @@ const PetCard: React.FC<PetCardProps> = ({
               {pet.name}
             </h3>
             <p className="text-[10px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate max-w-[180px] sm:max-w-none">
-              {pet.gender === "male" ? "Macho" : "Hembra"}
+              {pet.gender === "male" ? "Macho" : "Hembra"} - {pet.species === "dog" ? "Perro" : pet.species === "cat" ? "Gato" : pet.species === "bird" ? "Ave" : pet.species === "rabbit" ? "Conejo" : pet.species === "hamster" ? "Hámster" : pet.species === "turtle" ? "Tortuga" : "Otro"}
             </p>
           </div>
         </div>
