@@ -50,37 +50,37 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
           <nav className="hidden lg:flex items-center gap-8">
             <button
               onClick={() => handleNavigation(View.HOME)}
-              className={`lg:text-base font-semibold transition-colors ${currentView === View.HOME ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
+              className={`lg:text-base font-semibold transition-colors cursor-pointer hover:scale-105 ${currentView === View.HOME ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
               Inicio
             </button>
             <button
               onClick={() => handleNavigation(View.LOST_PETS)}
-              className={`lg:text-base font-semibold transition-colors ${currentView === View.LOST_PETS ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
+              className={`lg:text-base font-semibold transition-colors cursor-pointer hover:scale-105 ${currentView === View.LOST_PETS ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
               Mascotas perdidas
             </button>
             <button
               onClick={() => handleNavigation(View.ADOPTION)}
-              className={`lg:text-base font-semibold transition-colors ${currentView === View.ADOPTION ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
+              className={`lg:text-base font-semibold transition-colors cursor-pointer hover:scale-105 ${currentView === View.ADOPTION ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
               Adopciones
             </button>
             <button
               onClick={() => handleNavigation(View.DONATIONS)}
-              className={`lg:text-base font-semibold transition-colors ${currentView === View.DONATIONS ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
+              className={`lg:text-base font-semibold transition-colors cursor-pointer hover:scale-105 ${currentView === View.DONATIONS ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
               Donaciones
             </button>
             <button
               onClick={() => handleNavigation(View.FAQ)}
-              className={`lg:text-base font-semibold transition-colors ${currentView === View.FAQ ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
+              className={`lg:text-base font-semibold transition-colors cursor-pointer hover:scale-105 ${currentView === View.FAQ ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
               Preguntas
             </button>
             <button
               onClick={() => handleNavigation(View.ABOUT_US)}
-              className={`lg:text-base font-semibold transition-colors ${currentView === View.ABOUT_US ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
+              className={`lg:text-base font-semibold transition-colors cursor-pointer hover:scale-105 ${currentView === View.ABOUT_US ? "text-[#ecdbbd]" : "text-[#ecdbbd]/80 hover:text-[#ecdbbd]"}`}
             >
               Nosotros
             </button>
