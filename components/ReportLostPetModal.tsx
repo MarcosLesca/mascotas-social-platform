@@ -80,14 +80,14 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
     }
     setIsSubmitting(true);
     setSubmitError(null);
-    
+
     // Convertir valores vacíos a valores por defecto
     const submitData = {
       species: formData.species || "dog",
       gender: formData.gender || "male",
       size: formData.size || "medium",
     };
-    
+
     const { error } = await submitLostPetReport({
       petName: formData.petName,
       species: submitData.species,
@@ -370,7 +370,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     maxLength={2}
                     value={formData.age}
                     onChange={(e) => {
-                      const value = e.target.value.replace(/\D/g, "").slice(0, 2);
+                      const value = e.target.value
+                        .replace(/\D/g, "")
+                        .slice(0, 2);
                       handleInputChange("age", value);
                     }}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
@@ -415,7 +417,7 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
 
               <div>
                 <label className="block text-sm font-bold text-gray-800 mb-2">
-                  Características distintivas
+                  Detalles
                 </label>
                 <textarea
                   value={formData.distinctiveFeatures}
