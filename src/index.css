@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colores custom */
+  --color-primary: #13ec5b;
+  --color-background-light: #f6f8f6;
+  --color-background-dark: #102216;
+  --color-accent-teal: #4c9a66;
+  --color-urgent-red: #ef4444;
+
+  /* Border radius */
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  /* Font family */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
+/* Clases de utilidad adicionales */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

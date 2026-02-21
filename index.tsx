@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './src/index.css';
 import { AuthProvider } from './context/AuthContext';
 import AppRouter from './AppRouter';
 
