@@ -20,11 +20,9 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
 }) => {
   const [formData, setFormData] = useState({
     petName: "",
-    species: "dog" as "dog" | "cat" | "bird" | "other",
-    breed: "",
-    gender: "male" as "male" | "female",
-    age: "",
-    size: "medium" as "small" | "medium" | "large",
+    species: "" as "" | "dog" | "cat" | "bird" | "other",
+    gender: "" as "" | "male" | "female",
+    size: "" as "" | "small" | "medium" | "large",
     color: "",
     location: "",
     description: "",
@@ -363,11 +361,18 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                     Edad aproximada
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    inputMode="numeric"
+                    min="0"
+                    max="99"
+                    maxLength={2}
                     value={formData.age}
-                    onChange={(e) => handleInputChange("age", e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, "").slice(0, 2);
+                      handleInputChange("age", value);
+                    }}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
-                    placeholder="Ej: 3 años"
+                    placeholder="Ej: 3"
                   />
                 </div>
 
@@ -522,13 +527,15 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
                   </label>
                   <input
                     type="tel"
+                    inputMode="numeric"
                     required
                     value={formData.contactPhone}
-                    onChange={(e) =>
-                      handleInputChange("contactPhone", e.target.value)
-                    }
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/[^\d+]/g, "");
+                      handleInputChange("contactPhone", value);
+                    }}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary"
-                    placeholder="Ej: +54 9 11 2345-6789"
+                    placeholder="Ej: 5491123456789"
                   />
                 </div>
 

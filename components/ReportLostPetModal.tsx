@@ -353,11 +353,18 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     Edad aproximada
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    inputMode="numeric"
+                    min="0"
+                    max="99"
+                    maxLength={2}
                     value={formData.age}
-                    onChange={(e) => handleInputChange("age", e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, "").slice(0, 2);
+                      handleInputChange("age", value);
+                    }}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
-                    placeholder="Ej: 3 años"
+                    placeholder="Ej: 3"
                   />
                 </div>
 
@@ -555,13 +562,15 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                   </label>
                   <input
                     type="tel"
+                    inputMode="numeric"
                     required
                     value={formData.contactPhone}
-                    onChange={(e) =>
-                      handleInputChange("contactPhone", e.target.value)
-                    }
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/[^\d+]/g, "");
+                      handleInputChange("contactPhone", value);
+                    }}
                     className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-red-400/10 rounded-xl focus:ring-2 focus:ring-red-400"
-                    placeholder="Ej: +54 9 11 2345-6789"
+                    placeholder="Ej: 5491123456789"
                   />
                 </div>
 
