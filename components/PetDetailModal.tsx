@@ -352,20 +352,20 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                     {pet.breed && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Raza:</span>
-                        <span className="text-sm font-bold">{pet.breed}</span>
+                        <span className="text-sm font-bold text-end">{pet.breed}</span>
                       </div>
                     )}
                     {pet.color && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Color:</span>
-                        <span className="text-sm font-bold">{pet.color}</span>
+                        <span className="text-sm font-bold text-end">{pet.color}</span>
                       </div>
                     )}
                     {isLost && pet.reward && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Recompensa:</span>
                         <span
-                          className={`text-sm font-bold ${isLost ? "text-red-600" : "text-green-600"}`}
+                          className={`text-sm font-bold text-end ${isLost ? "text-red-600" : "text-green-600"}`}
                         >
                           {pet.reward}
                         </span>
@@ -373,31 +373,31 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                     )}
                     <div className="flex justify-between">
                       <span className="text-sm text-black">Especie:</span>
-                      <span className="text-sm font-bold">{speciesLabel}</span>
+                      <span className="text-sm font-bold text-end">{speciesLabel}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-black">Género:</span>
-                      <span className="text-sm font-bold">
+                      <span className="text-sm font-bold text-end">
                         {pet.gender === "male" ? "Macho" : "Hembra"}
                       </span>
                     </div>
                     {pet.size && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Tamaño:</span>
-                        <span className="text-sm font-bold">{sizeLabel}</span>
+                        <span className="text-sm font-bold text-end">{sizeLabel}</span>
                       </div>
                     )}
                     {pet.age && (
                       <div className="flex justify-between">
                         <span className="text-sm text-black">Edad:</span>
-                        <span className="text-sm font-bold">
+                        <span className="text-sm font-bold text-end">
                           {pet.age} años
                         </span>
                       </div>
                       )}
                     <div className="flex justify-between">
                       <span className="text-sm text-black">Estado:</span>
-                      <span className="text-sm font-bold">
+                      <span className="text-sm font-bold text-end">
                         {isLost ? "Perdida" : "Adopción"}
                       </span>
                     </div>
