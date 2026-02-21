@@ -307,6 +307,9 @@ const ReportLostPetModal: React.FC<ReportLostPetModalProps> = ({
                     <option value="dog">Perro</option>
                     <option value="cat">Gato</option>
                     <option value="bird">Ave</option>
+                    <option value="rabbit">Conejo</option>
+                    <option value="hamster">Hámster</option>
+                    <option value="turtle">Tortuga</option>
                     <option value="other">Otro</option>
                   </select>
                 </div>

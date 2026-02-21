@@ -119,6 +119,9 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         Perros: "dog",
         Gatos: "cat",
         Aves: "bird",
+        Conejos: "rabbit",
+        Hámsters: "hamster",
+        Tortugas: "turtle",
         Otros: "other",
       };
       const selectedSpecies = filters.species
@@ -301,7 +304,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                   Especie
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["Perros", "Gatos", "Aves", "Otros"].map((s) => (
+                  {["Perros", "Gatos", "Aves", "Conejos", "Hámsters", "Tortugas", "Otros"].map((s) => (
                     <button
                       key={s}
                       onClick={() => toggleSpecies(s)}

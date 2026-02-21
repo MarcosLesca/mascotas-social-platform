@@ -97,6 +97,9 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         'Perros': 'dog',
         'Gatos': 'cat',
         'Aves': 'bird',
+        'Conejos': 'rabbit',
+        'Hámsters': 'hamster',
+        'Tortugas': 'turtle',
         'Otros': 'other'
       };
       const normalizeSpecies = (value: string) => {
@@ -104,6 +107,9 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
         if (normalized.startsWith('perr')) return 'dog';
         if (normalized.startsWith('gat')) return 'cat';
         if (normalized.startsWith('ave')) return 'bird';
+        if (normalized.startsWith('conej')) return 'rabbit';
+        if (normalized.startsWith('hámster') || normalized.startsWith('hamster')) return 'hamster';
+        if (normalized.startsWith('tortuga')) return 'turtle';
         if (normalized.startsWith('other')) return 'other';
         return value;
       };
@@ -266,7 +272,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
               <div>
                 <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-4">Especie</p>
                 <div className="flex flex-wrap gap-2">
-                  {['Perros', 'Gatos', 'Aves', 'Otros'].map(s => (
+                  {['Perros', 'Gatos', 'Aves', 'Conejos', 'Hámsters', 'Tortugas', 'Otros'].map(s => (
                     <button
                       key={s}
                       onClick={() => toggleSpecies(s)}
