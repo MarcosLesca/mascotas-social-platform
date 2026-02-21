@@ -394,13 +394,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                           {pet.age} años
                         </span>
                       </div>
-                    )}
-                    {pet.distinctiveFeatures && (
-                      <div className="flex justify-between">
-                        <span className="text-sm text-black">Marcas:</span>
-                        <span className="text-sm font-bold">{pet.distinctiveFeatures}</span>
-                      </div>
-                    )}
+                      )}
                     <div className="flex justify-between">
                       <span className="text-sm text-black">Estado:</span>
                       <span className="text-sm font-bold">
