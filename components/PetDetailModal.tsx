@@ -87,7 +87,7 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
         <div className={contentClasses} onClick={(e) => e.stopPropagation()}>
           {/* Header con imagen */}
           <div
-            className="relative h-56 sm:h-72 overflow-hidden bg-black cursor-zoom-in group"
+            className="relative h-[70vh] sm:h-[60vh] overflow-hidden bg-black cursor-zoom-in group"
             onClick={() => setIsImageViewerOpen(true)}
           >
             <img
