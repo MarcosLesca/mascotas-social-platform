@@ -1,5 +1,6 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { fetchApprovedAdoptionPets } from '../services/adoptionPetsService';
 import PetCard from '../components/PetCard';
 import PetDetailModal from '../components/PetDetailModal';
@@ -34,6 +35,21 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   const [showFilters, setShowFilters] = useState(false);
   // Flag para evitar loop al cerrar modal manualmente
   const isClosingModal = useRef(false);
+
+  // Manejar query params para compartir enlaces directos
+  const [searchParams] = useSearchParams();
+  const sharedPetId = searchParams.get('pet');
+
+  // Efecto para abrir el modal cuando hay un pet en la URL
+  useEffect(() => {
+    if (sharedPetId && pets.length > 0) {
+      const pet = pets.find(p => p.id === sharedPetId);
+      if (pet) {
+        setSelectedPet(pet);
+        setShowModal(true);
+      }
+    }
+  }, [sharedPetId, pets]);
 
   useEffect(() => {
     let cancelled = false;

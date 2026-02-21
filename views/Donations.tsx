@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import { DonationCampaign } from "../types";
 import DonationModal from "../components/DonationModal";
 import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsService";
@@ -34,6 +35,21 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
   });
   // Flag para evitar loop al cerrar modal manualmente
   const isClosingModal = useRef(false);
+
+  // Manejar query params para compartir enlaces directos
+  const [searchParams] = useSearchParams();
+  const sharedCampaignId = searchParams.get('campaign');
+
+  // Efecto para abrir el modal cuando hay un campaign en la URL
+  useEffect(() => {
+    if (sharedCampaignId && campaigns.length > 0) {
+      const campaign = campaigns.find(c => c.id === sharedCampaignId);
+      if (campaign) {
+        setSelectedCampaign(campaign);
+        setIsModalOpen(true);
+      }
+    }
+  }, [sharedCampaignId, campaigns]);
 
   const loadCampaigns = () => {
     let cancelled = false;
@@ -501,7 +517,8 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
           image: sharingCampaign.image,
           title: sharingCampaign.title,
           description: sharingCampaign.description,
-        } : { id: '', image: '', title: '', description: '' }}
+          type: 'donation',
+        } : { id: '', image: '', title: '', description: '', type: 'donation' }}
         type="donation"
       />
     </div>

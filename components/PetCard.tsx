@@ -57,6 +57,36 @@ const PetCard: React.FC<PetCardProps> = ({
     ? `mailto:${pet.contactEmail!.trim()}?subject=${encodeURIComponent(`Consulta sobre ${pet.name}`)}&body=${encodeURIComponent(`Hola! Vi tu publicación sobre ${pet.name} y me gustaría obtener más información.`)}`
     : null;
 
+  // URL para compartir - según el tipo de publicación
+  const shareUrl = `${window.location.origin}${isLost ? '/lost-pets' : '/adoption'}?pet=${pet.id}`;
+
+  const handleShare = async () => {
+    const shareData = {
+      title: `Mascota: ${pet.name}`,
+      text: `Conocén a ${pet.name} - ${pet.location}`,
+      url: shareUrl
+    };
+
+    // Intentar usar la Web Share API
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err) {
+        if ((err as Error).name === 'AbortError') return;
+      }
+    }
+
+    // Si no está disponible o falló, copiar al portapapeles
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareModalOpen(true); // Mostrar toast de copiado
+    } catch (err) {
+      console.error('Error al copiar:', err);
+      setShareModalOpen(true);
+    }
+  };
+
   return (
     <div className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 card-hover stagger-item flex flex-col">
       <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
@@ -74,10 +104,7 @@ const PetCard: React.FC<PetCardProps> = ({
         <div className="absolute bottom-3 right-3">
           <button
             type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setShareModalOpen(true);
-            }}
+            onClick={handleShare}
             className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold hover:opacity-90 transition-opacity"
             style={{ backgroundColor: '#203553', color: '#ecdbbd' }}
           >
@@ -156,6 +183,7 @@ const PetCard: React.FC<PetCardProps> = ({
           image: pet.image,
           name: pet.name,
           location: pet.location,
+          status: isLost ? 'lost' : 'adoption',
         }}
         type="pet"
       />

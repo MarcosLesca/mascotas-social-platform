@@ -10,6 +10,8 @@ interface ShareModalProps {
     location?: string;
     description?: string;
     title?: string;
+    status?: 'lost' | 'adoption';
+    type?: 'donation';
   };
   type: 'pet' | 'donation';
 }
@@ -37,8 +39,13 @@ const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item, type }) 
     ? item.description?.slice(0, 50) + '...' 
     : item.location || '';
   
-  const basePath = isDonation ? '/donations' : (type === 'pet' ? '/lost-pets' : '/adoption');
-  const itemUrl = `${window.location.origin}${basePath}?pet=${item.id}`;
+  // Usar el status del item si está disponible, sino detectar del type
+  const basePath = isDonation 
+    ? '/donations' 
+    : (item.status === 'adoption' ? '/adoption' : '/lost-pets');
+  // Usar campaign para donaciones, pet para mascotas
+  const queryParam = isDonation ? 'campaign' : 'pet';
+  const itemUrl = `${window.location.origin}${basePath}?${queryParam}=${item.id}`;
 
   const shareData = {
     title: `${isDonation ? 'Campaña de Donación' : 'Mascota'}: ${title}`,
