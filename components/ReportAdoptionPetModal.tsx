@@ -6,6 +6,7 @@ interface ReportAdoptionPetModalProps {
   onClose: () => void;
   onSubmit?: (data: unknown) => void;
   onError?: (message: string) => void;
+  userId: string;
 }
 
 const ACCEPT_IMAGES = "image/jpeg,image/png,image/webp";
@@ -17,6 +18,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
   onClose,
   onSubmit,
   onError,
+  userId,
 }) => {
   const [formData, setFormData] = useState({
     petName: "",
@@ -104,6 +106,7 @@ const ReportAdoptionPetModal: React.FC<ReportAdoptionPetModalProps> = ({
     };
     
     const { error } = await submitAdoptionPetReport({
+      userId,
       petName: formData.petName,
       species: submitData.species,
       breed: formData.breed,

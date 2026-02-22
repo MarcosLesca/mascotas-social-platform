@@ -56,6 +56,7 @@ function rowToDonationCampaign(row: DonationCampaignReportRow): DonationCampaign
 }
 
 export interface SubmitDonationCampaignInput {
+  userId: string;
   title: string;
   description: string;
   goal: number;
@@ -92,6 +93,7 @@ export async function submitDonationCampaign(
   const { error: insertError } = await supabase.from('donation_campaign_reports').insert({
     id,
     status: 'pending',
+    user_id: input.userId,
     title: input.title.trim(),
     description: input.description.trim(),
     goal: input.goal,

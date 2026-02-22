@@ -4,7 +4,9 @@ import { fetchApprovedLostPets } from "../services/lostPetsService";
 import PetCard from "../components/PetCard";
 import PetDetailModal from "../components/PetDetailModal";
 import ReportLostPetModal from "../components/ReportLostPetModal";
+import AuthPromptModal from "../components/AuthPromptModal";
 import { Pet } from "../types";
+import { useAuth } from "../context/AuthContext";
 
 interface FilterState {
   species: string[];
@@ -25,7 +27,9 @@ interface LostPetsProps {
 }
 
 const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
+  const { user, isAuthenticated } = useAuth();
   const [pets, setPets] = useState<Pet[]>([]);
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [loading, setLoading] = useState(true);
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -242,6 +246,10 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
   };
 
   const handleOpenReportModal = () => {
+    if (!isAuthenticated || !user?.id) {
+      setShowAuthPrompt(true);
+      return;
+    }
     setShowReportModal(true);
   };
 
@@ -525,6 +533,15 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         onClose={handleCloseReportModal}
         onSubmit={handleReportSubmit}
         onError={handleReportError}
+        userId={user?.id || ''}
+      />
+
+      {/* Modal de autenticación */}
+      <AuthPromptModal
+        isOpen={showAuthPrompt}
+        onClose={() => setShowAuthPrompt(false)}
+        title="¡Ups! Necesitás estar conectado"
+        message="Para reportar una mascota perdida tenés que crear una cuenta o iniciar sesión."
       />
     </div>
   );

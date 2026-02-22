@@ -31,6 +31,7 @@ function rowToPet(r: AdoptionPetReportRow): Pet {
 }
 
 export interface SubmitAdoptionReportInput {
+  userId: string;
   petName: string;
   species: 'dog' | 'cat' | 'bird' | 'other';
   breed: string;
@@ -68,6 +69,7 @@ export async function submitAdoptionPetReport(
   const { error: insertError } = await supabase.from('adoption_pet_reports').insert({
     id,
     status: 'pending',
+    user_id: input.userId,
     pet_name: input.petName.trim(),
     species: input.species,
     breed: input.breed.trim(),

@@ -53,6 +53,7 @@ function rowToPet(r: LostPetReportRow): Pet {
 }
 
 export interface SubmitReportInput {
+  userId: string;
   petName: string;
   species: 'dog' | 'cat' | 'bird' | 'other';
   breed: string;
@@ -93,6 +94,7 @@ export async function submitLostPetReport(
   const { error: insertError } = await supabase.from('lost_pet_reports').insert({
     id,
     status: 'pending',
+    user_id: input.userId,
     pet_name: input.petName.trim(),
     species: input.species,
     breed: input.breed.trim(),

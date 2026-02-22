@@ -5,7 +5,9 @@ import { fetchApprovedAdoptionPets } from '../services/adoptionPetsService';
 import PetCard from '../components/PetCard';
 import PetDetailModal from '../components/PetDetailModal';
 import ReportAdoptionPetModal from '../components/ReportAdoptionPetModal';
+import AuthPromptModal from '../components/AuthPromptModal';
 import { Pet } from '../types';
+import { useAuth } from '../context/AuthContext';
 
 interface AdoptionFilters {
   species: string[];
@@ -20,7 +22,9 @@ interface AdoptionProps {
 }
 
 const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
+  const { user, isAuthenticated } = useAuth();
   const [pets, setPets] = useState<Pet[]>([]);
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<AdoptionFilters>({
     species: [],
@@ -193,6 +197,10 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
   };
 
   const handleOpenReportModal = () => {
+    if (!isAuthenticated || !user?.id) {
+      setShowAuthPrompt(true);
+      return;
+    }
     setShowReportModal(true);
   };
 
@@ -437,6 +445,15 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             onClose={handleCloseReportModal}
             onSubmit={handleReportSubmit}
             onError={handleReportError}
+            userId={user?.id || ''}
+          />
+
+          {/* Modal de autenticación */}
+          <AuthPromptModal
+            isOpen={showAuthPrompt}
+            onClose={() => setShowAuthPrompt(false)}
+            title="¡Ups! Necesitás estar conectado"
+            message="Para publicar una mascota en adopción tenés que crear una cuenta o iniciar sesión."
           />
         </div>
       </div>

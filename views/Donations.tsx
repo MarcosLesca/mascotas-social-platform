@@ -5,6 +5,8 @@ import DonationModal from "../components/DonationModal";
 import { fetchApprovedDonationCampaigns } from "../services/donationCampaignsService";
 import ReportDonationCampaignModal from "../components/ReportDonationCampaignModal";
 import ShareModal from "../components/ShareModal";
+import AuthPromptModal from "../components/AuthPromptModal";
+import { useAuth } from "../context/AuthContext";
 
 interface DonationFilters {
   type: string[];
@@ -17,6 +19,8 @@ interface DonationsProps {
 }
 
 const Donations: React.FC<DonationsProps> = ({ onToast }) => {
+  const { user, isAuthenticated } = useAuth();
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [selectedCampaign, setSelectedCampaign] =
     useState<DonationCampaign | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -162,6 +166,14 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
     if (window.history.state && window.history.state.modal) {
       window.history.back();
     }
+  };
+
+  const handleOpenReportModal = () => {
+    if (!isAuthenticated || !user?.id) {
+      setShowAuthPrompt(true);
+      return;
+    }
+    setShowReportModal(true);
   };
 
   const toggleType = (type: string) => {
@@ -347,7 +359,7 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
               {/* Report Campaign Card - First Position */}
               <div
                 className="col-span-2 sm:col-span-1 bg-sky-500/5 dark:bg-sky-500/10 border-4 border-dashed border-sky-500/20 rounded-2xl flex flex-col items-center justify-center p-4 sm:p-8 text-center group cursor-pointer hover:bg-sky-500/10 transition-all min-h-[180px] sm:min-h-[380px]"
-                onClick={() => setShowReportModal(true)}
+                onClick={handleOpenReportModal}
               >
                 <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800">
                   ¿Necesitás ayuda para una mascota?
@@ -359,7 +371,7 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
                   className="bg-sky-500 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-sky-500/30 transition-all text-xs sm:text-base"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowReportModal(true);
+                    handleOpenReportModal();
                   }}
                 >
                   COMENZAR
@@ -504,6 +516,15 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
           setSubmitMessage(null);
           setError(message);
         }}
+        userId={user?.id || ''}
+      />
+
+      {/* Modal de autenticación */}
+      <AuthPromptModal
+        isOpen={showAuthPrompt}
+        onClose={() => setShowAuthPrompt(false)}
+        title="¡Ups! Necesitás estar conectado"
+        message="Para publicar una campaña de donación tenés que crear una cuenta o iniciar sesión."
       />
 
       <ShareModal
