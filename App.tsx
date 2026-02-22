@@ -123,13 +123,13 @@ const AppContent: React.FC = () => {
         </section>
       )}
 
-      <footer className="border-t border-[#ecdbbd]/30 py-8 px-6 lg:px-20 mt-auto bg-[#203553]">
+      <footer className="border-t border-[#ecdbbd]/30 py-3 px-6 lg:px-20 mt-auto bg-[#203553]">
         <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-8">
           <div className="flex items-center gap-2">
             <img
-              src="/assets/LyM-logo.png"
+              src="/pwa-512x512.png"
               alt="LyM Desarrollo Web"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
             />
             <span className="text-lg font-black text-[#ecdbbd]">
               Mascotas SJ

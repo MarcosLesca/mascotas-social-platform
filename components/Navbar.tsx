@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
             onClick={() => handleNavigation(View.HOME)}
           >
             <img
-              src="/assets/LyM-logo.png"
+              src="/pwa-512x512.png"
               alt="LyM Desarrollo Web"
               className="h-14 w-auto"
             />
