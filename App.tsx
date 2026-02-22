@@ -143,24 +143,6 @@ const AppContent: React.FC = () => {
           >
             © 2026 LyM Desarrollo Web. Todos los derechos reservados.
           </a>
-          <Link
-            to="/admin"
-            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors"
-          >
-            Admin
-          </Link>
-          <Link
-            to="/login"
-            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors"
-          >
-            Ingresar
-          </Link>
-          <Link
-            to="/signup"
-            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors"
-          >
-            Registrarse
-          </Link>
         </div>
       </footer>
 

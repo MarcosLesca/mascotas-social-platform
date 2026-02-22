@@ -111,11 +111,8 @@ const AdminLogin: React.FC = () => {
               className="w-24 h-24"
             />
             <h1 className="text-2xl font-black text-center text-slate-900 dark:text-white">
-              Admin LyM desarrollo web
+              Inicia sesión para gestionar tus mascotas
             </h1>
-            <p className="text-base text-center text-red-500 font-bold ">
-              Acceso exclusivo para administradores autorizados
-            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">

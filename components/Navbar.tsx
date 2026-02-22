@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { View } from "../types";
 
 interface NavbarProps {
@@ -87,7 +87,19 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
           </nav>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
+          <Link
+            to="/login"
+            className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-bold rounded-lg bg-[#ecdbbd] text-[#203553] hover:bg-[#203553] hover:text-[#ecdbbd] hover:border-2 hover:border-[#ecdbbd] transition-colors"
+          >
+            Ingresar
+          </Link>
+          <Link
+            to="/signup"
+            className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-bold rounded-lg border-2 border-[#ecdbbd] text-[#ecdbbd] hover:bg-[#ecdbbd] hover:text-[#203553] transition-colors"
+          >
+            Registrarse
+          </Link>
         </div>
       </div>
     </header>
