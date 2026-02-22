@@ -8,6 +8,7 @@ import { useApp } from "../context/AppContext";
 import type { Pet, DonationCampaign } from "../types";
 import { View } from "../types";
 import PetCard from "../components/PetCard";
+import ShareModal from "../components/ShareModal";
 
 interface HomeProps {
   onToast: (
@@ -30,6 +31,10 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
   const [adoptionPets, setAdoptionPets] = useState<Pet[]>([]);
   const [donationCampaigns, setDonationCampaigns] = useState<DonationCampaign[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  // Share modal state
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [sharingCampaign, setSharingCampaign] = useState<DonationCampaign | null>(null);
 
   // Helper for navigation
   const handleNavigate = (view: View) => {
@@ -155,121 +160,135 @@ const Home: React.FC<HomeProps> = ({ onToast }) => {
               </p>
             </div>
           ) : (
-            <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+            <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-8">
               {mixedRecentCards.map((item) => {
                 if (item.kind === "donation") {
                   const campaign = item.campaign;
                   return (
-                    <article
+                    <div
                       key={item.id}
                       onClick={() => handleNavigate(View.DONATIONS)}
-                      className="group h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm border border-sky-500/10 hover:shadow-xl transition-all duration-300 flex flex-col"
+                      className="group h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-sm border border-sky-500/10 hover:shadow-xl transition-all duration-300 card-hover flex flex-col"
                     >
+                      {/* Image */}
                       <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
                         <img
                           src={campaign.image}
                           alt={campaign.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute top-2 left-2 flex gap-1.5">
-                          <span className="bg-sky-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg">
+                        <div className="absolute top-3 left-3 flex gap-2">
+                          <span className="bg-sky-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-lg">
                             Donación
                           </span>
                           {campaign.urgency && (
-                            <span className="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg">
+                            <span className="bg-red-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-lg">
                               Urgente
                             </span>
                           )}
                         </div>
+                        {/* Share Button */}
+                        <div className="absolute bottom-3 right-3">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSharingCampaign(campaign);
+                              setShareModalOpen(true);
+                            }}
+                            className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold hover:opacity-90 transition-opacity cursor-pointer"
+                            style={{ backgroundColor: '#203553', color: '#ecdbbd' }}
+                          >
+                            Compartir
+                          </button>
+                        </div>
                       </div>
 
-                      <div className="p-3 sm:p-4 flex flex-col flex-1">
-                        <h3 className="text-sm sm:text-base leading-tight font-bold group-hover:text-sky-500 transition-colors mb-1 line-clamp-2">
+                      {/* Content */}
+                      <div className="p-3 sm:p-5 flex flex-col flex-1">
+                        <h3 className="text-base sm:text-xl leading-tight font-bold group-hover:text-sky-500 transition-colors mb-1 sm:mb-2 line-clamp-2">
                           {campaign.title}
                         </h3>
+                        <p className="text-[10px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate mb-2 sm:mb-3">
+                          {campaign.type === "medical"
+                            ? "Médica"
+                            : campaign.type === "food"
+                              ? "Alimento"
+                              : campaign.type === "shelter"
+                                ? "Refugio"
+                                : "Campaña"}
+                        </p>
 
-                        <p className="text-xs text-black mb-3 line-clamp-2 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-black mb-2 sm:mb-4 line-clamp-2 leading-relaxed">
                           {campaign.description}
                         </p>
 
-                        <div className="mt-auto space-y-2">
-                          <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2 flex justify-between items-center">
-                            <span className="text-xs sm:text-sm font-bold text-green-700 dark:text-green-400">Meta</span>
-                            <span className="text-xs sm:text-sm font-black text-green-600 dark:text-green-400">${campaign.goal.toLocaleString("es-AR")}</span>
+                        <div className="mt-auto space-y-2 sm:space-y-3">
+                          <div className="bg-green-50 dark:bg-green-900/20 rounded-lg sm:rounded-xl p-2 sm:p-3 flex justify-between items-center">
+                            <span className="text-xs sm:text-sm font-bold text-green-700 dark:text-green-400">
+                              Meta
+                            </span>
+                            <span className="text-xs sm:text-sm font-black text-green-600 dark:text-green-400">
+                              ${campaign.goal.toLocaleString("es-AR")}
+                            </span>
                           </div>
 
-                          <div className="flex items-center gap-1 text-xs sm:text-sm text-red-500 font-semibold">
-                            <span className="material-symbols-outlined text-xs sm:text-base">event</span>
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-red-500 font-semibold">
+                            <span className="material-symbols-outlined text-xs sm:text-base">
+                              event
+                            </span>
                             <span>Hasta: {campaign.deadline}</span>
                           </div>
 
-                          <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold py-2 rounded-full transition-all flex items-center justify-center gap-2">
+                          <button className="w-full bg-sky-500 hover:bg-sky-600 text-white text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-full transition-all flex items-center justify-center gap-2">
                             Ver detalles
                           </button>
                         </div>
                       </div>
-                    </article>
+                    </div>
                   );
                 }
 
                 const pet = item.pet;
                 const isLost = item.kind === "lost";
 
+                // Use PetCard for pets - same as in LostPets and Adoption pages
                 return (
-                  <article
+                  <PetCard
                     key={item.id}
-                    onClick={() => handleNavigate(isLost ? View.LOST_PETS : View.ADOPTION)}
-                    className="group h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm border border-accent-teal/5 hover:shadow-xl transition-all duration-300 flex flex-col"
-                  >
-                    <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden">
-                      <img
-                        src={pet.image}
-                        alt={pet.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute top-2 left-2 flex gap-1.5">
-                        <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg ${
-                          isLost ? 'bg-rose-500 text-white' : 'bg-emerald-500 text-white'
-                        }`}>
-                          {isLost ? 'Perdido' : 'Adopción'}
-                        </span>
-                        {isLost && pet.urgency && (
-                          <span className="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-lg">
-                            Urgente
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="p-3 sm:p-4 flex flex-col flex-1">
-                      <h3 className={`text-sm sm:text-base leading-tight font-bold transition-colors ${
-                        isLost ? 'group-hover:text-rose-500' : 'group-hover:text-emerald-500'
-                      }`}>
-                        {pet.name}
-                      </h3>
-                      <p className="text-[10px] sm:text-xs text-gray-600 font-semibold uppercase tracking-wide truncate">
-                        {pet.gender === 'male' ? 'Macho' : 'Hembra'}
-                      </p>
-
-                      <p className="text-xs font-bold leading-snug mt-1">
-                        {isLost ? `Visto: ${pet.location}` : pet.location}
-                      </p>
-
-                      <div className="mt-auto pt-2">
-                        <button className={`w-full text-white text-xs font-bold py-2 rounded-full transition-all flex items-center justify-center gap-2 ${
-                          isLost ? 'bg-rose-500 hover:bg-rose-600' : 'bg-emerald-500 hover:bg-emerald-600'
-                        }`}>
-                          {isLost ? 'La vi' : 'Adoptar'}
-                        </button>
-                      </div>
-                    </div>
-                  </article>
+                    pet={pet}
+                    onAction={(pet, action) => {
+                      if (action === "view") {
+                        handleNavigate(isLost ? View.LOST_PETS : View.ADOPTION);
+                      }
+                    }}
+                    onViewDetails={() => {
+                      handleNavigate(isLost ? View.LOST_PETS : View.ADOPTION);
+                    }}
+                  />
                 );
               })}
             </section>
           )}
         </div>
       </div>
+
+      {/* Share Modal for Donations */}
+      <ShareModal
+        isOpen={shareModalOpen}
+        onClose={() => {
+          setShareModalOpen(false);
+          setSharingCampaign(null);
+        }}
+        item={sharingCampaign ? {
+          id: sharingCampaign.id,
+          image: sharingCampaign.image,
+          title: sharingCampaign.title,
+          description: sharingCampaign.description,
+          type: 'donation',
+        } : { id: '', image: '', title: '', description: '', type: 'donation' }}
+        type="donation"
+      />
     </>
   );
 };
