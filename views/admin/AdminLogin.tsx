@@ -201,12 +201,14 @@ const AdminLogin: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword((s) => !s)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg text-slate-500  text-xs font-bold"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg text-slate-500 text-xs font-bold hover:cursor-pointer transition-colors"
                   aria-label={
                     showPassword ? "Ocultar contraseña" : "Mostrar contraseña"
                   }
                 >
-                  {showPassword ? "Ocultar" : "Ver"}
+                  <span className="material-symbols-outlined text-lg">
+                    {showPassword ? "visibility_off" : "visibility"}
+                  </span>
                 </button>
               </div>
               {errors.password && (
@@ -236,7 +238,14 @@ const AdminLogin: React.FC = () => {
             </button>
           </form>
 
-          <p className="mt-6 text-center">
+          <p className="mt-6 text-center text-sm text-slate-600">
+            ¿No tienes cuenta?{" "}
+            <Link to="/signup" className="font-bold text-[#203553] hover:underline">
+              Regístrate
+            </Link>
+          </p>
+
+          <p className="mt-4 text-center">
             <Link to="/" className="text-sm font-medium ">
               ← Volver al inicio
             </Link>

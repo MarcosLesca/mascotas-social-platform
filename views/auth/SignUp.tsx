@@ -196,12 +196,14 @@ function SignUp() {
                 <button
                   type="button"
                   onClick={() => setShowPassword((s) => !s)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg text-slate-500 text-xs font-bold"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg text-slate-500 text-xs font-bold hover:cursor-pointer transition-colors"
                   aria-label={
                     showPassword ? "Ocultar contraseña" : "Mostrar contraseña"
                   }
                 >
-                  {showPassword ? "Ocultar" : "Ver"}
+                  <span className="material-symbols-outlined text-lg">
+                    {showPassword ? "visibility_off" : "visibility"}
+                  </span>
                 </button>
               </div>
               {errors.password && (
@@ -221,28 +223,42 @@ function SignUp() {
               >
                 Confirmar Contraseña
               </label>
-              <input
-                id="signup-confirm-password"
-                type={showPassword ? "text" : "password"}
-                autoComplete="new-password"
-                value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value);
-                  if (errors.confirmPassword)
-                    setErrors((prev) => ({ ...prev, confirmPassword: undefined }));
-                }}
-                disabled={submitting}
-                className={`w-full px-4 py-3 rounded-xl bg-[#ecdbbd] focus:outline-none focus:ring-2 focus:ring-[#203553] focus:border-[#203553] ${
-                  errors.confirmPassword
-                    ? "border-urgent-red"
-                    : "border-[#203553]/30"
-                }`}
-                placeholder="••••••••"
-                aria-invalid={errors.confirmPassword ? "true" : "false"}
-                aria-describedby={
-                  errors.confirmPassword ? "confirm-password-error" : undefined
-                }
-              />
+              <div className="relative">
+                <input
+                  id="signup-confirm-password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    if (errors.confirmPassword)
+                      setErrors((prev) => ({ ...prev, confirmPassword: undefined }));
+                  }}
+                  disabled={submitting}
+                  className={`w-full px-4 py-3 pr-12 rounded-xl bg-[#ecdbbd] focus:outline-none focus:ring-2 focus:ring-[#203553] focus:border-[#203553] ${
+                    errors.confirmPassword
+                      ? "border-urgent-red"
+                      : "border-[#203553]/30"
+                  }`}
+                  placeholder="••••••••"
+                  aria-invalid={errors.confirmPassword ? "true" : "false"}
+                  aria-describedby={
+                    errors.confirmPassword ? "confirm-password-error" : undefined
+                  }
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((s) => !s)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg text-slate-500 text-xs font-bold hover:cursor-pointer transition-colors"
+                  aria-label={
+                    showPassword ? "Ocultar contraseña" : "Mostrar contraseña"
+                  }
+                >
+                  <span className="material-symbols-outlined text-lg">
+                    {showPassword ? "visibility_off" : "visibility"}
+                  </span>
+                </button>
+              </div>
               {errors.confirmPassword && (
                 <p
                   id="confirm-password-error"
