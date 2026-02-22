@@ -17,6 +17,7 @@ export interface Pet {
   size?: "small" | "medium" | "large";
   color?: string;
   distinctiveFeatures?: string;
+  additionalInfo?: string;
   status: "lost" | "found" | "adoption";
   urgency?: boolean;
   timeLabel?: string;

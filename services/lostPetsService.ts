@@ -18,10 +18,8 @@ function timeLabelFromDate(iso: string): string {
 }
 
 function rowToPet(r: LostPetReportRow): Pet {
-  const parts: string[] = [];
-  if (r.distinctive_features) parts.push(r.distinctive_features);
-  if (r.additional_info) parts.push(r.additional_info);
-  const description = parts.length ? parts.join('\n\n') : undefined;
+  // distinctive_features y additional_info se muestran por separado en el modal
+  const description = undefined;
   // Siempre mostrar San Justo como ubicación base
   const fullLocation = r.last_seen_location ? `San Justo - ${r.last_seen_location}` : 'San Justo';
   // Formatear recompensa con $ y puntos
@@ -38,6 +36,7 @@ function rowToPet(r: LostPetReportRow): Pet {
     size: r.size ?? undefined,
     color: r.color ?? undefined,
     distinctiveFeatures: r.distinctive_features ?? undefined,
+    additionalInfo: r.additional_info ?? undefined,
     status: 'lost',
     urgency: r.urgency,
     timeLabel: timeLabelFromDate(r.last_seen_date),

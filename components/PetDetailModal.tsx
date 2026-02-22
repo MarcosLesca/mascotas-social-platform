@@ -159,6 +159,26 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                   </div>
                 )}
 
+                {/* Características distintivas */}
+                {pet.distinctiveFeatures && (
+                  <div>
+                    <h3 className="text-xl font-bold mb-3">Características distintivas:</h3>
+                    <p className="text-black leading-relaxed">
+                      {pet.distinctiveFeatures}
+                    </p>
+                  </div>
+                )}
+
+                {/* Información adicional */}
+                {pet.additionalInfo && (
+                  <div>
+                    <h3 className="text-xl font-bold mb-3">Información adicional:</h3>
+                    <p className="text-black leading-relaxed">
+                      {pet.additionalInfo}
+                    </p>
+                  </div>
+                )}
+
                 {/* Requisitos de adopción */}
                 {pet.status === "adoption" && pet.requirements && (
                   <div>
@@ -394,8 +414,8 @@ const PetDetailModal: React.FC<PetDetailModalProps> = ({
                           {pet.age} años
                         </span>
                       </div>
-                      )}
-                    <div className="flex justify-between">
+                    )}
+                    <div className="flex justify-between pt-2 border-t border-gray-200 dark:border-gray-700">
                       <span className="text-sm text-black">Estado:</span>
                       <span className="text-sm font-bold text-end">
                         {isLost ? "Perdida" : "Adopción"}
