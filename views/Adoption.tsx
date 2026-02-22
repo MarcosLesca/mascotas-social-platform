@@ -390,7 +390,7 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
                   Publicá su información y ayudá a que encuentre una familia responsable.
                 </p>
                 <button
-                  className="bg-primary text-background-dark w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all text-xs sm:text-base"
+                  className="bg-primary text-background-dark w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-primary/30 transition-all text-xs sm:text-base cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleOpenReportModal();
@@ -452,8 +452,6 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
           <AuthPromptModal
             isOpen={showAuthPrompt}
             onClose={() => setShowAuthPrompt(false)}
-            title="¡Ups! Necesitás estar conectado"
-            message="Para publicar una mascota en adopción tenés que crear una cuenta o iniciar sesión."
           />
         </div>
       </div>

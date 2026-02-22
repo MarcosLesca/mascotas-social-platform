@@ -465,7 +465,7 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
                   posibilidades de reencontrarte.
                 </p>
                 <button
-                  className="bg-red-400 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all text-xs sm:text-base"
+                  className="bg-red-400 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-urgent-red/30 transition-all text-xs sm:text-base cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleOpenReportModal();
@@ -540,8 +540,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
       <AuthPromptModal
         isOpen={showAuthPrompt}
         onClose={() => setShowAuthPrompt(false)}
-        title="¡Ups! Necesitás estar conectado"
-        message="Para reportar una mascota perdida tenés que crear una cuenta o iniciar sesión."
       />
     </div>
   );

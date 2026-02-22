@@ -368,7 +368,7 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
                   Creá una publicación y permití que la comunidad colabore.
                 </p>
                 <button
-                  className="bg-sky-500 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-sky-500/30 transition-all text-xs sm:text-base"
+                  className="bg-sky-500 text-white w-full md:w-auto px-4 sm:px-10 py-2 sm:py-3 rounded-lg sm:rounded-xl font-black shadow-lg hover:shadow-sky-500/30 transition-all text-xs sm:text-base cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleOpenReportModal();
@@ -523,8 +523,6 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
       <AuthPromptModal
         isOpen={showAuthPrompt}
         onClose={() => setShowAuthPrompt(false)}
-        title="¡Ups! Necesitás estar conectado"
-        message="Para publicar una campaña de donación tenés que crear una cuenta o iniciar sesión."
       />
 
       <ShareModal
