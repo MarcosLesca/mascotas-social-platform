@@ -516,7 +516,6 @@ const Donations: React.FC<DonationsProps> = ({ onToast }) => {
           setSubmitMessage(null);
           setError(message);
         }}
-        userId={user?.id || ''}
       />
 
       {/* Modal de autenticación */}

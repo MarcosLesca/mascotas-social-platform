@@ -445,7 +445,6 @@ const Adoption: React.FC<AdoptionProps> = ({ onToast }) => {
             onClose={handleCloseReportModal}
             onSubmit={handleReportSubmit}
             onError={handleReportError}
-            userId={user?.id || ''}
           />
 
           {/* Modal de autenticación */}

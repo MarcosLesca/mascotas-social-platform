@@ -533,7 +533,6 @@ const LostPets: React.FC<LostPetsProps> = ({ onToast }) => {
         onClose={handleCloseReportModal}
         onSubmit={handleReportSubmit}
         onError={handleReportError}
-        userId={user?.id || ''}
       />
 
       {/* Modal de autenticación */}

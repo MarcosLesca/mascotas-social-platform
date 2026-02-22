@@ -31,7 +31,6 @@ function rowToPet(r: AdoptionPetReportRow): Pet {
 }
 
 export interface SubmitAdoptionReportInput {
-  userId: string;
   petName: string;
   species: 'dog' | 'cat' | 'bird' | 'other';
   breed: string;
@@ -53,6 +52,12 @@ export interface SubmitAdoptionReportInput {
 export async function submitAdoptionPetReport(
   input: SubmitAdoptionReportInput
 ): Promise<{ error: Error | null }> {
+  // Obtener usuario autenticado desde el servidor (inmutable desde el cliente)
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user) {
+    return { error: new Error('Debes estar autenticado para publicar.') };
+  }
+
   const id = crypto.randomUUID();
   const ext = input.imageFile.name.split('.').pop()?.toLowerCase() || 'jpg';
   const path = `reports/${id}.${ext}`;
@@ -69,7 +74,7 @@ export async function submitAdoptionPetReport(
   const { error: insertError } = await supabase.from('adoption_pet_reports').insert({
     id,
     status: 'pending',
-    user_id: input.userId,
+    user_id: user.id,
     pet_name: input.petName.trim(),
     species: input.species,
     breed: input.breed.trim(),

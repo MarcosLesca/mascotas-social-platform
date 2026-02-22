@@ -53,7 +53,6 @@ function rowToPet(r: LostPetReportRow): Pet {
 }
 
 export interface SubmitReportInput {
-  userId: string;
   petName: string;
   species: 'dog' | 'cat' | 'bird' | 'other';
   breed: string;
@@ -78,6 +77,12 @@ export interface SubmitReportInput {
 export async function submitLostPetReport(
   input: SubmitReportInput
 ): Promise<{ error: Error | null }> {
+  // Obtener usuario autenticado desde el servidor (inmutable desde el cliente)
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user) {
+    return { error: new Error('Debes estar autenticado para publicar.') };
+  }
+
   const id = crypto.randomUUID();
   const ext = input.imageFile.name.split('.').pop()?.toLowerCase() || 'jpg';
   const path = `reports/${id}.${ext}`;
@@ -94,7 +99,7 @@ export async function submitLostPetReport(
   const { error: insertError } = await supabase.from('lost_pet_reports').insert({
     id,
     status: 'pending',
-    user_id: input.userId,
+    user_id: user.id,
     pet_name: input.petName.trim(),
     species: input.species,
     breed: input.breed.trim(),

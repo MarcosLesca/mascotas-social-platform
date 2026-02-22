@@ -56,7 +56,6 @@ function rowToDonationCampaign(row: DonationCampaignReportRow): DonationCampaign
 }
 
 export interface SubmitDonationCampaignInput {
-  userId: string;
   title: string;
   description: string;
   goal: number;
@@ -77,6 +76,12 @@ export interface SubmitDonationCampaignInput {
 export async function submitDonationCampaign(
   input: SubmitDonationCampaignInput
 ): Promise<{ error: Error | null }> {
+  // Obtener usuario autenticado desde el servidor (inmutable desde el cliente)
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user) {
+    return { error: new Error('Debes estar autenticado para publicar.') };
+  }
+
   const id = crypto.randomUUID();
   const ext = input.imageFile.name.split('.').pop()?.toLowerCase() || 'jpg';
   const path = `reports/${id}.${ext}`;
@@ -93,7 +98,7 @@ export async function submitDonationCampaign(
   const { error: insertError } = await supabase.from('donation_campaign_reports').insert({
     id,
     status: 'pending',
-    user_id: input.userId,
+    user_id: user.id,
     title: input.title.trim(),
     description: input.description.trim(),
     goal: input.goal,

@@ -6,18 +6,13 @@ interface ReportDonationCampaignModalProps {
   onClose: () => void;
   onSubmit?: () => void;
   onError?: (message: string) => void;
-  userId: string;
 }
-
-const ACCEPT_IMAGES = 'image/jpeg,image/png,image/webp';
-const MAX_MB = 5;
 
 const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
   onError,
-  userId,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,7 +84,6 @@ const ReportDonationCampaignModal: React.FC<ReportDonationCampaignModalProps> = 
     const typeValue = formData.type || 'medical';
 
     const { error } = await submitDonationCampaign({
-      userId,
       title: formData.title,
       description: formData.description,
       goal: goalValue,
