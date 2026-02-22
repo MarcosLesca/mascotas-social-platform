@@ -42,6 +42,7 @@ export type LostPetStatus = "pending" | "approved" | "rejected";
 export interface LostPetReportRow {
   id: string;
   status: LostPetStatus;
+  user_id?: string;
   pet_name: string;
   species: "dog" | "cat" | "bird" | "other";
   breed: string;
@@ -71,6 +72,7 @@ export type AdoptionPetStatus = "pending" | "approved" | "rejected";
 export interface AdoptionPetReportRow {
   id: string;
   status: AdoptionPetStatus;
+  user_id?: string;
   pet_name: string;
   species: "dog" | "cat" | "bird" | "other";
   breed: string;
@@ -117,6 +119,7 @@ export type DonationCampaignStatus = "pending" | "approved" | "rejected";
 export interface DonationCampaignReportRow {
   id: string;
   status: DonationCampaignStatus;
+  user_id?: string;
   title: string;
   description: string;
   goal: number;

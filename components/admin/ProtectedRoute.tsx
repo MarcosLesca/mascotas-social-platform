@@ -1,13 +1,19 @@
-import React from 'react';
+import type { ReactElement } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth, type UserRole } from '../../context/AuthContext';
 
 interface ProtectedRouteProps {
-  children: React.ReactElement;
+  children: ReactElement;
+  requiredRole?: UserRole;
+  redirectTo?: string;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
+export default function ProtectedRoute({ 
+  children, 
+  requiredRole,
+  redirectTo = '/login'
+}: ProtectedRouteProps) {
+  const { isAuthenticated, loading, role, isAdmin } = useAuth();
   const location = useLocation();
 
   if (loading) {
@@ -19,10 +25,18 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/admin/login" state={{ from: location }} replace />;
+    return <Navigate to={redirectTo} state={{ from: location }} replace />;
+  }
+
+  // If a specific role is required, check it
+  if (requiredRole) {
+    if (requiredRole === 'admin' && !isAdmin) {
+      return <Navigate to="/mi-cuenta" replace />;
+    }
+    if (requiredRole === 'user' && isAdmin) {
+      return <Navigate to="/admin" replace />;
+    }
   }
 
   return children;
-};
-
-export default ProtectedRoute;
+}

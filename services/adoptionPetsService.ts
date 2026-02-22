@@ -168,3 +168,29 @@ export async function rejectAdoptionPetReport(
 
   return { error: error ? new Error(error.message) : null };
 }
+
+/** Listar publicaciones del usuario actual (user). */
+export async function fetchUserAdoptionPetReports(
+  userId: string
+): Promise<{ data: AdoptionPetReportRow[]; error: Error | null }> {
+  const { data, error } = await supabase
+    .from('adoption_pet_reports')
+    .select('*')
+    .eq('user_id', userId)
+    .order('submitted_at', { ascending: false });
+
+  if (error) return { data: [], error: new Error(error.message) };
+  return { data: (data ?? []) as AdoptionPetReportRow[], error: null };
+}
+
+/** Eliminar publicación (user). */
+export async function deleteAdoptionPetReport(
+  id: string
+): Promise<{ error: Error | null }> {
+  const { error } = await supabase
+    .from('adoption_pet_reports')
+    .delete()
+    .eq('id', id);
+
+  return { error: error ? new Error(error.message) : null };
+}

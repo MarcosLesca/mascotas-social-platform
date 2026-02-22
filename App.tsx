@@ -149,6 +149,18 @@ const AppContent: React.FC = () => {
           >
             Admin
           </Link>
+          <Link
+            to="/login"
+            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors"
+          >
+            Ingresar
+          </Link>
+          <Link
+            to="/signup"
+            className="text-sm font-bold text-[#ecdbbd] hover:text-[#ecdbbd]/80 transition-colors"
+          >
+            Registrarse
+          </Link>
         </div>
       </footer>
 

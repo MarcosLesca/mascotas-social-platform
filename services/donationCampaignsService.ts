@@ -193,3 +193,29 @@ export async function rejectDonationCampaignReport(
 
   return { error: error ? new Error(error.message) : null };
 }
+
+/** Listar donaciones del usuario actual (user). */
+export async function fetchUserDonationCampaignReports(
+  userId: string
+): Promise<{ data: DonationCampaignReportRow[]; error: Error | null }> {
+  const { data, error } = await supabase
+    .from('donation_campaign_reports')
+    .select('*')
+    .eq('user_id', userId)
+    .order('submitted_at', { ascending: false });
+
+  if (error) return { data: [], error: new Error(error.message) };
+  return { data: (data ?? []) as DonationCampaignReportRow[], error: null };
+}
+
+/** Eliminar donacion (user). */
+export async function deleteDonationCampaignReport(
+  id: string
+): Promise<{ error: Error | null }> {
+  const { error } = await supabase
+    .from('donation_campaign_reports')
+    .delete()
+    .eq('id', id);
+
+  return { error: error ? new Error(error.message) : null };
+}

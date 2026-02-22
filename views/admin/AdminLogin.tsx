@@ -19,7 +19,7 @@ function formatRemaining(ms: number): string {
 const AdminLogin: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { signIn, isAuthenticated, loading: authLoading } = useAuth();
+  const { signIn, isAuthenticated, loading: authLoading, isAdmin, role } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -30,14 +30,16 @@ const AdminLogin: React.FC = () => {
 
   const from =
     (location.state as { from?: { pathname: string } })?.from?.pathname ??
-    "/admin";
+    (isAdmin ? "/admin" : "/mi-cuenta");
 
   useEffect(() => {
     if (isAuthenticated && !authLoading) {
       clearRateLimit();
-      navigate(from, { replace: true });
+      // Redirect based on role - if role is null, default to user
+      const destination = (role === "admin") ? "/admin" : "/mi-cuenta";
+      navigate(destination, { replace: true });
     }
-  }, [isAuthenticated, authLoading, navigate, from]);
+  }, [isAuthenticated, authLoading, role, navigate]);
 
   useEffect(() => {
     if (!rateLimit.blocked) return;
@@ -78,7 +80,7 @@ const AdminLogin: React.FC = () => {
           return;
         }
         clearRateLimit();
-        navigate(from, { replace: true });
+        // After login, redirect based on role (will be handled by useEffect)
       } catch {
         recordFailedAttempt();
         setRateLimit(getRateLimitState());
@@ -87,7 +89,7 @@ const AdminLogin: React.FC = () => {
         setSubmitting(false);
       }
     },
-    [email, password, signIn, navigate, from],
+    [email, password, signIn],
   );
 
   if (authLoading) {

@@ -196,3 +196,29 @@ export async function rejectLostPetReport(
 
   return { error: error ? new Error(error.message) : null };
 }
+
+/** Listar reportes del usuario actual (user). */
+export async function fetchUserLostPetReports(
+  userId: string
+): Promise<{ data: LostPetReportRow[]; error: Error | null }> {
+  const { data, error } = await supabase
+    .from('lost_pet_reports')
+    .select('*')
+    .eq('user_id', userId)
+    .order('submitted_at', { ascending: false });
+
+  if (error) return { data: [], error: new Error(error.message) };
+  return { data: (data ?? []) as LostPetReportRow[], error: null };
+}
+
+/** Eliminar reporte (user). */
+export async function deleteLostPetReport(
+  id: string
+): Promise<{ error: Error | null }> {
+  const { error } = await supabase
+    .from('lost_pet_reports')
+    .delete()
+    .eq('id', id);
+
+  return { error: error ? new Error(error.message) : null };
+}
