@@ -1,6 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { submitAdoptionPetReport } from "../services/adoptionPetsService";
 
+const MAX_MB = 5;
+const ACCEPT_IMAGES = "image/jpeg,image/png,image/webp";
+const MED_STATUS_OPTIONS = [
+  "Vacunado",
+  "Desparasitado",
+  "Castrado",
+  "En tratamiento",
+  "Discapacidad",
+];
+
 interface ReportAdoptionPetModalProps {
   isOpen: boolean;
   onClose: () => void;

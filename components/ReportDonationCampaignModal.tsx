@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { submitDonationCampaign } from '../services/donationCampaignsService';
 
+const MAX_MB = 5;
+const ACCEPT_IMAGES = "image/jpeg,image/png,image/webp";
+
 interface ReportDonationCampaignModalProps {
   isOpen: boolean;
   onClose: () => void;

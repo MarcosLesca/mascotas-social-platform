@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { submitLostPetReport } from "../services/lostPetsService";
 
+const MAX_MB = 5;
+const ACCEPT_IMAGES = "image/jpeg,image/png,image/webp";
+
 interface ReportLostPetModalProps {
   isOpen: boolean;
   onClose: () => void;
